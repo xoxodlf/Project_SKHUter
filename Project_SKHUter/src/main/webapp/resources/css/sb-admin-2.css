@@ -4,7 +4,7 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 body {
-  background-color: #f8f8f8;
+  background-color: #ffffff;
 }
 #wrapper {
   width: 100%;
@@ -104,7 +104,7 @@ body {
     z-index: 1;
     position: absolute;
     width: 250px;
-    margin-top: 51px;
+    background-color: #40596b;
   }
   .navbar-top-links .dropdown-messages,
   .navbar-top-links .dropdown-tasks,

@@ -5,8 +5,10 @@
 <!DOCTYPE>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>스쿠터</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>스쿠터</title>
 
 	<!-- Bootstrap Core CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -34,6 +36,7 @@
 
     <!-- SweetAlert JavaScript -->
     <script src="/resources/js/sweetalert2.min.js"></script>
+    
     <script src="/resources/js/bootstrap-datetimepicker.js"></script>
     <script src="/resources/js/bootstrap-datetimepicker.ko.js"></script>
     
