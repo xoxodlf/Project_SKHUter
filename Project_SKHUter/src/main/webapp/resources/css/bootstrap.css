@@ -6767,4 +6767,33 @@ button.close {
     display: none !important;
   }
 }
+/* vote css부분입니당*/
+.tablink {
+    background-color:#555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 40%;
+}
+
+.tablink:hover {
+    background-color: #777;
+}
+
+/* Style the tab content */
+.tabcontent {
+    color: white;
+    display: none;
+    padding: 50px;
+    width: 80%;
+    height: 40%;
+    text-align: center;
+}
+
+#voted {background-color:#40596b;}
+#unvoted {background-color:#ff7058;}
 /*# sourceMappingURL=bootstrap.css.map */
