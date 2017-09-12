@@ -6,6 +6,11 @@
 body {
   background-color: #ffffff;
 }
+section {
+	margin-left: 300px;
+	padding-left: 10px;
+	background-color: white;
+}
 #wrapper {
   width: 100%;
 }

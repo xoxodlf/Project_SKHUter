@@ -4,7 +4,9 @@
 <tiles-definitions>
 	<definition name="layout" template="/WEB-INF/views/tiles/layout/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/tiles/tile/header.jsp" />
+		<put-attribute name="content" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/tile/footer.jsp" />
+		
 	</definition>
 	
 	<definition name="empty" template="/WEB-INF/views/tiles/layout/empty.jsp">
