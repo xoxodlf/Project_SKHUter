@@ -6,7 +6,15 @@
 		<put-attribute name="header" value="/WEB-INF/views/tiles/tile/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/tile/footer.jsp" />
 	</definition>
-    
+	
+	<definition name="empty" template="/WEB-INF/views/tiles/layout/empty.jsp">
+		<put-attribute name="content" value="/WEB-INF/views/index.jsp"/>
+	</definition>
+	
+	<definition name="/" extends="empty">
+        <put-attribute name="content" value="/WEB-INF/views/index.jsp"/>  
+    </definition>
+
 	<definition name="*/*" extends="layout">
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
 	</definition>
