@@ -10,8 +10,9 @@
 	
 	<title>스쿠터</title>
 
+	
 	<!-- Bootstrap Core CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/resources/css/bootstrap.css">
 	<link href="/resources/css/bootstrap.vertical-tabs.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
 	
@@ -21,6 +22,7 @@
     <!-- MetisMenu CSS -->
     <link href="/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
+    <!-- 원래커스텀자리 -->
     <!-- Custom CSS -->
     <link href="/resources/css/sb-admin-2.css" rel="stylesheet">
 
@@ -47,15 +49,16 @@
 
 <body>
 	<div id="wrapper">
-		<div id="header">
-			<tiles:insertAttribute name="header" />
-		</div>
-		<div id="content">
-			<tiles:insertAttribute name="content" />
-		</div>
-		<div id="footer">
+		 <header id="header">
+        	<tiles:insertAttribute name="header" />
+    	</header>
+
+		<section id="siteContent">
+        	<tiles:insertAttribute name="content" />
+   		</section>
+		<footer id="footer">
 			<tiles:insertAttribute name="footer" />
-		</div>
+		</footer>
 	</div>
 
 </body>
