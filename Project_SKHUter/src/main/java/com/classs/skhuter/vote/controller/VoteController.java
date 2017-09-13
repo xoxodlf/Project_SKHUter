@@ -16,7 +16,7 @@ public class VoteController {
 	
 	@RequestMapping("/vote/*")
 	public String vote(Locale locale, Model model) {
-		logger.info("ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~~ The client locale is {}.", locale);
+		logger.info("º¸Æ®µ¥½º³×~~ The client locale is {}.", locale);
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -25,7 +25,7 @@ public class VoteController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "main/vote";
+		return "main/vote.lay";
 	}
 
 }
