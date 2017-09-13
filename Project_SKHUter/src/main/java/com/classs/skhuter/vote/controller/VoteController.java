@@ -1,4 +1,4 @@
-package com.classs.skhuter;
+package com.classs.skhuter.vote.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -9,22 +9,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
-public class HomeController {
+public class VoteController {
+	private static final Logger logger = LoggerFactory.getLogger(VoteController.class);
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("인덱스 페이지 히사시부리", locale);
+	@RequestMapping("/vote/*")
+	public String vote(Locale locale, Model model) {
+		logger.info("��Ʈ������~~ The client locale is {}.", locale);
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -33,7 +25,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "/index";
+		return "main/vote";
 	}
-	
+
 }
