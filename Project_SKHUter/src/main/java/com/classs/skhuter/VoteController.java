@@ -25,7 +25,7 @@ public class VoteController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "main/vote";
+		return "main/vote.lay";
 	}
 
 }

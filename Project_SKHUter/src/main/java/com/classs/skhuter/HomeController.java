@@ -24,7 +24,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("ì¸ë±ìŠ¤ í˜ì´ì§€ íˆì‚¬ì‹œë¶€ë¦¬", locale);
+		logger.info("·Î±×ÀÎÆ÷¿Ö±úÁ³Áö", locale);
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -33,7 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "/index";
+		return "/index.empty";
 	}
 	
 }
