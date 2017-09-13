@@ -1,4 +1,4 @@
-package com.classs.skhuter;
+package com.classs.skhuter.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -24,7 +24,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("ÀÎµ¦½º ÆäÀÌÁö Á¢±Ù", locale);
+		logger.info("ì¸ë±ìŠ¤ í˜ì´ì§€ íˆì‚¬ì‹œë¶€ë¦¬", locale);
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -33,7 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "/index.empty";
+		return "/index";
 	}
 	
 }
