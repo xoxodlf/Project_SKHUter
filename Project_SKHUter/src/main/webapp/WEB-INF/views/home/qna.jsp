@@ -122,22 +122,16 @@
 
 
 															<!-- contact form -->
-															<form method="post" action="../../send-mail.php"
-																class="contact-form">
+															<form method="post" action="../../send-mail.php" class="contact-form">
 
-																<input type="text" name="name" placeholder="Name"
-																	class="required"> <input type="email"
-																	name="email" placeholder="Email address"
-																	class="contact-form-email required"> <input
-																	type="text" name="subject" placeholder="Subject"
-																	class="contact-form-subject">
+																<input type="text" name="name" placeholder="Name" class="required"> 
+																<input type="email" name="email" placeholder="Email address" class="contact-form-email required"> 
+																<input type="text" name="subject" placeholder="Subject" class="contact-form-subject">
 
-																<textarea name="message" placeholder="Message"
-																	class="required" rows="7"></textarea>
+																<textarea name="message" placeholder="Message" class="required" rows="7"></textarea>
 
 																<div class="response-message"></div>
-																<button class="border-button" type="submit" id="submit"
-																	name="submit">Send Message</button>
+																<button class="border-button" type="submit" id="submit" name="submit">Send Message</button>
 
 															</form>
 															<!-- /contact form -->

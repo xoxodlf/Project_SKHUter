@@ -33,6 +33,9 @@
 <script type="text/javascript" src="/resources/js/home/modernizr.js"></script>
 <script type="text/javascript" src="/resources/js/home/snap.svg-min.js"></script>
 
+<!-- jQuery -->
+<script src="/resources/js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
 
 <body class="image-background">
@@ -98,26 +101,34 @@
 									<div class="container">
 										<div class="row">
 											<div class="col-md-10 col-md-offset-1">
+											
+												<!-- header section -->
+												<div class="header-section animated bounceInDown" data-animation-delay="700">
+													<div class="line-separate line-white line-center">
+														<span></span>
+													</div>
+												</div>
+												<!-- /header section -->
 
 												<!-- content slide -->
 												<div class="content-slide">
-													<!-- Clock Countdown -->
-													<h3 class="color-white top-margin animated bounceInDown"
-														data-animation-delay="700">Our website is under
-														construction. We`ll be here soon with our new awesome
-														site, subscribe to be notified.</h3>
 
 													<!-- Subscribe Form -->
 													<div class="form animated bounceInUp" data-animation-delay="700">
 														<!-- container form -->
 														<div class="container-form">
 															<!-- section page -->
-															<form class="subscription-form mailchimp" method="post" id="mc-form">
+															<form method="post" action="" class="login-form">
 																<div class="section-page" id="signup">
-																	<input type="text" id="id" class="border-radius-22 bottom-margin" name="id" placeholder="ID" /> <br>
-																	<input type="password" id="password" class="border-radius-22 bottom-margin" name="password" placeholder="Password" />
+																	<input type="text" name="id" placeholder="ID" class="required"> <br>
+																	<input type="password" name="password" placeholder="Password" class="contact-form-email required"> <br>
+																	
 																	<br>
-																	<button type="submit" id="loginBtn" class="border-button no-bottom-margin">로그인</button>
+																	<button class="border-button" type="submit" id="loginBtn" name="loginBtn">로그인</button> <br> <br>
+																	
+																	<a data-toggle="modal" data-target="#registerModal">회원가입</a> / 
+																	<a data-toggle="modal" data-target="#findIdPwModal">비밀번호 찾기</a>
+																	
 																<p class="message-error"></p>
 																<p class="message-success"></p>
 																</div>
@@ -131,9 +142,8 @@
 													<!-- copyright -->
 													<footer class="copy-right animated bounceInUp"
 														data-animation-delay="700">
-														<div class="copyright">
-															© 2016 <a href="http://templatestock.co">Template
-																Stock</a> - All Rights Reserved
+														<div class="copyright"> <br>
+															© 2017 Classs / SKHU - All Rights Reserved
 														</div>
 													</footer>
 													<!-- /copyright -->
@@ -160,6 +170,10 @@
 		
 	</div>
 	<!-- /container -->
+	
+	<!-- Modal -->
+	<jsp:include page="user/include/registerModal.jsp" />
+	<jsp:include page="user/include/findIdPwModal.jsp" />
 
 	<!-- JS -->
 	<script type="text/javascript" src="/resources/js/home/jquery-1.11.3.min.js"></script>

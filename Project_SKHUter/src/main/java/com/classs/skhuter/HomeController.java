@@ -31,8 +31,18 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/about", method = RequestMethod.GET)
-	public String index(Model model) {
+	public String about (Model model) {
 		return "home/about.empty";
+	}
+	
+	@RequestMapping(value = "/team", method = RequestMethod.GET)
+	public String team (Model model) {
+		return "home/team.empty";
+	}
+	
+	@RequestMapping(value = "/qna", method = RequestMethod.GET)
+	public String qna (Model model) {
+		return "home/qna.empty";
 	}
 	
 }

@@ -100,8 +100,7 @@
 											<div class="col-md-10 col-md-offset-1">
 
 												<!-- header section -->
-												<div class="header-section animated bounceInDown"
-													data-animation-delay="700">
+												<div class="header-section animated bounceInDown" data-animation-delay="700">
 													<!-- title section -->
 													<h2 class="title-section">About Us</h2>
 													<!-- /title section -->

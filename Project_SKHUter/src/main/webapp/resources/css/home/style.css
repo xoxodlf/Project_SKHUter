@@ -817,11 +817,15 @@ input:-moz-placeholder { text-overflow: ellipsis; }
 	margin: 0 auto;
 }
 
+.login-form input[type="text"], .login-form input[type="password"]{
+	width: 45%;
+}
+
 .contact-form input[type="text"], .contact-form input[type="email"] {
 	width: 100%;
 }
 
-.contact-form input, .contact-form textarea, .contact-form select {
+.login-form input, .contact-form input, .contact-form textarea, .contact-form select {
 	background: transparent;
 	outline: none;
 	-webkit-appearance: none;
@@ -865,18 +869,25 @@ input:-moz-placeholder { text-overflow: ellipsis; }
 }
 
 /* WebKit browsers */
+.login-form input::-webkit-input-placeholder,
 .contact-form input::-webkit-input-placeholder,
 .contact-form textarea::-webkit-input-placeholder { 
     color: #fff;
 }
+
+.login-form :-moz-placeholder,
 .contact-form :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color: #fff;
     opacity:  1;
 }
+
+.login-form :-moz-placeholder,
 .contact-form ::-moz-placeholder { /* Mozilla Firefox 19+ */
     color: #fff; 
     opacity:  1;
 }
+
+.login-form :-ms-input-placeholder,
 .contact-form :-ms-input-placeholder { /* Internet Explorer 10+ */
    color: #fff;
 }
