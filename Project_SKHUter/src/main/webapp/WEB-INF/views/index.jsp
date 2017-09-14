@@ -166,7 +166,6 @@
 	<script type="text/javascript" src="/resources/js/home/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/retina.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/jquery.backstretch.min.js"></script>
-	<script type="text/javascript" src="/resources/js/home/jquery.countdown.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/jquery.parallaxify.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/jquery.particleground.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/vegas.min.js"></script>

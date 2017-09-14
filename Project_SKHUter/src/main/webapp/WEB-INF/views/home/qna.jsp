@@ -91,7 +91,7 @@
 							<!-- bt-carousel -->
 							<div class="bt-carousel">
 
-								<!-- services section -->
+								<!-- contact section -->
 								<div class="item-slide show">
 									<!-- container -->
 									<div class="container">
@@ -102,85 +102,66 @@
 												<div class="header-section animated bounceInDown"
 													data-animation-delay="700">
 													<!-- title section -->
-													<h2 class="title-section">Our Team</h2>
+													<h2 class="title-section">Contact Us</h2>
 													<!-- /title section -->
 													<div class="line-separate line-white line-center">
 														<span></span>
 													</div>
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-														elit, sed do eiusmod tempor incididunt ut labore et dolore
-														magna aliqua. Ut enim ad minim veniam, quis nostrud
-														exercitation ullamco laboris nisi ut aliquip ex ea commodo
-														consequat.</p>
 												</div>
 												<!-- /header section -->
 
 												<!-- content slide -->
-												<div class="content-slide">
-													<div class="row animated bounceInUp"
-														data-animation-delay="700">
-														<!-- Team -->
-														<div class="col-md-3 col-sm-6">
-															<div class="panel">
-																<img src="images/team-1.jpg"
-																	data-at2x="images/team-1@2x.jpg" alt="team-1"
-																	class="img-circle img-responsive">
-																<h4>John Doe</h4>
-																<h6>CEO</h6>
-																<a href="#"><i class="fa fa-facebook"></i></a> <a
-																	href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i
-																	class="fa fa-pinterest-p"></i></a> <a href="#"><i
-																	class="fa fa-google-plus"></i></a>
+												<div class="content-slide aboutus">
+													<div class="row">
+														<div class="col-xs-12 col-md-6 animated bounceInLeft"
+															data-animation-delay="700">
+															<h3>Do You Have a Question ?</h3>
+															<p>Lorem ipsum dolor sit amet, consectetur
+																adipisicing elit, sed do eiusmod tempor incididunt ut
+																labore et dolore magna aliqua.</p>
+
+
+															<!-- contact form -->
+															<form method="post" action="../../send-mail.php"
+																class="contact-form">
+
+																<input type="text" name="name" placeholder="Name"
+																	class="required"> <input type="email"
+																	name="email" placeholder="Email address"
+																	class="contact-form-email required"> <input
+																	type="text" name="subject" placeholder="Subject"
+																	class="contact-form-subject">
+
+																<textarea name="message" placeholder="Message"
+																	class="required" rows="7"></textarea>
+
+																<div class="response-message"></div>
+																<button class="border-button" type="submit" id="submit"
+																	name="submit">Send Message</button>
+
+															</form>
+															<!-- /contact form -->
+														</div>
+														<!-- /col-xs-12 col-md-6 -->
+
+														<!-- maps section -->
+														<div
+															class="col-xs-12 col-md-6 maps-section animated bounceInRight"
+															data-animation-delay="700">
+															<div class="big-maps center">
+																<ul>
+																	<li><span>address: </span> New York</li>
+																	<li><span>call us: </span><a href="tel:123456789">123
+																			456 789</a></li>
+																	<li><span>Fax: </span><a href="tel:123456789">123
+																			456 789</a></li>
+																	<li><span>email: </span><a href="#">support@mail.com</a></li>
+																	<li><span>Website: </span><a href="#">www.templatestock.cm</a></li>
+																</ul>
+																<div id="map1"></div>
 															</div>
 														</div>
-														<!-- /panel -->
-
-														<div class="col-md-3 col-sm-6">
-															<div class="panel">
-																<img src="images/team-2.jpg"
-																	data-at2x="images/team-2@2x.jpg" alt="team-2"
-																	class="img-circle img-responsive">
-																<h4>K.E Anderson</h4>
-																<h6>PROJECT MANAGER</h6>
-																<a href="#"><i class="fa fa-facebook"></i></a> <a
-																	href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i
-																	class="fa fa-pinterest-p"></i></a> <a href="#"><i
-																	class="fa fa-google-plus"></i></a>
-															</div>
-														</div>
-														<!-- /panel -->
-
-														<div class="col-md-3 col-sm-6">
-															<div class="panel">
-																<img src="images/team-3.jpg"
-																	data-at2x="images/team-3@2x.jpg" alt="team-3"
-																	class="img-circle img-responsive">
-																<h4>Perry Warner</h4>
-																<h6>MARKET ANALYST</h6>
-																<a href="#"><i class="fa fa-facebook"></i></a> <a
-																	href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i
-																	class="fa fa-pinterest-p"></i></a> <a href="#"><i
-																	class="fa fa-google-plus"></i></a>
-															</div>
-														</div>
-														<!-- /panel -->
-
-														<div class="col-md-3 col-sm-6">
-															<div class="panel">
-																<img src="images/team-4.jpg"
-																	data-at2x="images/team-4@2x.jpg" alt="team-4"
-																	class="img-circle img-responsive">
-																<h4>R.A Bhuiyan</h4>
-																<h6>WEB DEVELOPER</h6>
-																<a href="#"><i class="fa fa-facebook"></i></a> <a
-																	href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i
-																	class="fa fa-pinterest-p"></i></a> <a href="#"><i
-																	class="fa fa-google-plus"></i></a>
-															</div>
-														</div>
-														<!-- /panel -->
-
-														<!-- /Team -->
+														<!-- /maps section -->
 													</div>
 													<!-- /row -->
 
@@ -192,7 +173,7 @@
 									</div>
 									<!-- /container -->
 								</div>
-								<!-- /Team section -->
+								<!-- /contact section -->
 
 							</div>
 							<!-- /bt-carousel -->
@@ -225,6 +206,7 @@
 	<script type="text/javascript" src="/resources/js/home/classie.js"></script>
 	<script type="text/javascript" src="/resources/js/home/sidebar.js"></script>
 	<script type="text/javascript" src="/resources/js/home/main.js"></script>
+
 
 </body>
 </html>
