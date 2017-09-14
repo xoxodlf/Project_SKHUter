@@ -8,7 +8,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 
-<title>dsgdf</title>
+<title>스쿠터</title>
 
 <!-- CSS Global Compulsory -->
 <link rel="stylesheet" href="/resources/css/home/bootstrap.min.css">
@@ -58,7 +58,7 @@
 			</button>
 			<div class="menu__inner">
 				<ul>
-					<li><a href="/"><i class="fa fa-fw fa-home"></i><span>Home</span></a></li>
+					<li><a href="/"><i class="fa fa-fw fa-home"></i><span>Home</span></a></li>	
 					<li><a href="/about"><i class="fa fa-fw fa-info"></i><span>About</span></a></li>
 					<li><a href="/qna"><i class="fa fa-fw fa-envelope"></i><span>Q & A</span></a></li>
 					<li><a href="/team"><i class="fa fa-fw fa-users"></i><span>Team</span></a></li>
@@ -157,6 +157,7 @@
 			<!-- /section -->
 		</div>
 		<!-- /main -->
+		
 	</div>
 	<!-- /container -->
 
