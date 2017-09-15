@@ -7,7 +7,14 @@
 </style>
 <body>
 	<div style="text-align:center;  font-size:30px;">학생회 일정</div>
-	<input type="button">
+	
+	<div class="row">
+		<div style="text-align: center;">
+			<button type="button" class="btn btn-default btn-circle">＜</button>
+			<span>　9월　</span>
+			<button type="button" class="btn btn-default btn-circle">＞</button>
+		</div>
+	</div>
 	<div id="wrapper">
 		<div id="page-wrapper">
 			<div class="row">

@@ -2534,6 +2534,8 @@ input[type="checkbox"] {
   margin: 4px 0 0;
   margin-top: 1px \9;
   line-height: normal;
+  position: absolute;
+    width: 500px;
 }
 input[type="file"] {
   display: block;
@@ -3130,6 +3132,10 @@ fieldset[disabled] .btn-default.focus {
   color: #fff;
   background-color: #337ab7;
   border-color: #2e6da4;
+  width: 60px;
+  height: 30px;
+  margin-bottom: 15px;
+  margin-left: 10px;
 }
 .btn-primary:focus,
 .btn-primary.focus {
@@ -6767,7 +6773,7 @@ button.close {
     display: none !important;
   }
 }
-/* vote cssºÎºÐÀÔ´Ï´ç*/
+/* vote cssï¿½Îºï¿½ï¿½Ô´Ï´ï¿½*/
 .tablink {
     background-color:#555;
     color: white;
