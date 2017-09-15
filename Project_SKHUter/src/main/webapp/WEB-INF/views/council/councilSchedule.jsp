@@ -8,6 +8,7 @@
 
 <body>
 	<div style="text-align:center;  font-size:30px;">학생회 일정</div>
+	<input type="button">
 	<div id="wrapper">
 		<div id="page-wrapper">
 			<div class="row">
@@ -19,7 +20,7 @@
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
+                                            <h4 class="timeline-title">Lorem ipsum</h4>
                                             <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small>
                                             </p>
                                         </div>
