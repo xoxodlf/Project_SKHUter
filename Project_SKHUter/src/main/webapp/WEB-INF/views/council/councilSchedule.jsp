@@ -8,18 +8,18 @@
 <body>
 	<div style="text-align:center;  font-size:30px;">학생회 일정</div>
 	
-	<div class="row">
-		<div style="text-align: center;">
-			<button type="button" class="btn btn-default btn-circle">＜</button>
-			<span>　9월　</span>
-			<button type="button" class="btn btn-default btn-circle">＞</button>
-		</div>
-	</div>
 	<div id="wrapper">
 		<div id="page-wrapper">
 			<div class="row">
 					<div id="top" class="panel panel-default">
                         <div class="panel-body">
+                        <div class="row">
+						<div style="text-align: center;">
+						<button type="button" class="btn btn-default btn-circle">＜</button>
+						<span>　9월　</span>
+						<button type="button" class="btn btn-default btn-circle">＞</button>
+						</div>
+						</div>
                             <ul class="timeline">
                                 <li>
                                     <div class="timeline-badge"><i class="fa fa-check"></i>

@@ -50,48 +50,80 @@
                </div>
             
                 <div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Default Panel
+                    <div class="panel panel-info">
+                     <div class="panel-heading">
+                        	제목
+                           <a class="btn btn-default btn-sm removeBtn" id="removeBtn"  style="float: right; padding: 2px 9px;"> 
+                              <i class="fa fa-trash-o fa-sm"></i> 
+                           </a>
                             <input type="checkbox">
+                     </div>
+
+                     <div class="panel-body" style="height: 90px">
+                        <div class="libraryList">
+                           <a href="#" class="thumbnailList"> 
+                              		파일 이름
+                           </a>
                         </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                           		 <input type="file">
-                        </div>
-                    </div>
+                     </div>
+                     
+                     <div class="panel-footer">   작성자 : 이종윤
+                     <a class="btn btn-default btn-sm" id="downloadBtn"  onclick="" style="float: right; padding: 2px 9px;"> 
+                           <i class="fa fa-download fa-sm"></i> 
+                     </a>
+                     </div>
+                  </div>
                 </div>
                 <!-- /.col-lg-4 -->
                 <div class="col-lg-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            Primary Panel
+                    <div class="panel panel-info">
+                     <div class="panel-heading">
+                        	제목
+                           <a class="btn btn-default btn-sm removeBtn" id="removeBtn"  style="float: right; padding: 2px 9px;"> 
+                              <i class="fa fa-trash-o fa-sm"></i> 
+                           </a>
                             <input type="checkbox">
+                     </div>
+
+                     <div class="panel-body" style="height: 90px">
+                        <div class="libraryList">
+                           <a href="#" class="thumbnailList"> 
+                              		파일 이름
+                           </a>
                         </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                            	<input type="file">
-                        </div>
-                    </div>
+                     </div>
+                     
+                     <div class="panel-footer">   작성자 : 김희태
+                     <a class="btn btn-default btn-sm" id="downloadBtn"  onclick="" style="float: right; padding: 2px 9px;"> 
+                           <i class="fa fa-download fa-sm"></i> 
+                     </a>
+                     </div>
+                  </div>
                 </div>
                 <!-- /.col-lg-4 -->
                 <div class="col-lg-4">
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            Success Panel
+                    <div class="panel panel-info">
+                     <div class="panel-heading">
+                        	제목
+                           <a class="btn btn-default btn-sm removeBtn" id="removeBtn"  style="float: right; padding: 2px 9px;"> 
+                              <i class="fa fa-trash-o fa-sm"></i> 
+                           </a>
                             <input type="checkbox">
+                     </div>
+
+                     <div class="panel-body" style="height: 90px">
+                        <div class="libraryList">
+                           <a href="#" class="thumbnailList"> 
+                              		파일 이름
+                           </a>
                         </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                         	   <input type="file">
-                        </div>
-                    </div>
+                     </div>
+                     
+                     <div class="panel-footer">   작성자 : 양태일
+                     <a class="btn btn-default btn-sm" id="downloadBtn"  onclick="" style="float: right; padding: 2px 9px;"> 
+                           <i class="fa fa-download fa-sm"></i> 
+                     </a>
+                     </div>
                 </div>
                 <!-- /.col-lg-4 -->
             </div>
