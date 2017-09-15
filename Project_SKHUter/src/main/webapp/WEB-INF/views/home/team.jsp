@@ -102,7 +102,7 @@
 												<div class="header-section animated bounceInDown"
 													data-animation-delay="700">
 													<!-- title section -->
-													<h2 class="title-section">Our Team</h2>
+													<h2 class="title-section">The Classs</h2>
 													<!-- /title section -->
 													<div class="line-separate line-white line-center">
 														<span></span>
@@ -122,30 +122,26 @@
 														<!-- Team -->
 														<div class="col-md-3 col-sm-6">
 															<div class="panel">
-																<img src="images/team-1.jpg"
-																	data-at2x="images/team-1@2x.jpg" alt="team-1"
-																	class="img-circle img-responsive">
-																<h4>John Doe</h4>
-																<h6>CEO</h6>
-																<a href="#"><i class="fa fa-facebook"></i></a> <a
-																	href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i
-																	class="fa fa-pinterest-p"></i></a> <a href="#"><i
-																	class="fa fa-google-plus"></i></a>
+																<img src="/resources/images/jy.jpg" class="img-circle img-responsive">
+																<h4>이종윤</h4>
+																<h6>Team Leader</h6>
+																<a href="#"><i class="fa fa-facebook"></i></a> 
+																<a href="#"><i class="fa fa-twitter"></i></a> 
+																<a href="#"><i class="fa fa-pinterest-p"></i></a> 
+																<a href="#"><i class="fa fa-google-plus"></i></a>
 															</div>
 														</div>
 														<!-- /panel -->
 
 														<div class="col-md-3 col-sm-6">
 															<div class="panel">
-																<img src="images/team-2.jpg"
-																	data-at2x="images/team-2@2x.jpg" alt="team-2"
-																	class="img-circle img-responsive">
-																<h4>K.E Anderson</h4>
-																<h6>PROJECT MANAGER</h6>
-																<a href="#"><i class="fa fa-facebook"></i></a> <a
-																	href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i
-																	class="fa fa-pinterest-p"></i></a> <a href="#"><i
-																	class="fa fa-google-plus"></i></a>
+																<img src="/resources/images/sy.jpg" class="img-circle img-responsive">
+																<h4>나상연</h4>
+																<h6>Team Member</h6>
+																<a href="#"><i class="fa fa-facebook"></i></a> 
+																<a href="#"><i class="fa fa-twitter"></i></a> 
+																<a href="#"><i class="fa fa-pinterest-p"></i></a> 
+																<a href="#"><i class="fa fa-google-plus"></i></a>
 															</div>
 														</div>
 														<!-- /panel -->
@@ -212,7 +208,6 @@
 	<script type="text/javascript" src="/resources/js/home/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/retina.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/jquery.backstretch.min.js"></script>
-	<script type="text/javascript" src="/resources/js/home/jquery.countdown.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/jquery.parallaxify.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/jquery.particleground.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/vegas.min.js"></script>
