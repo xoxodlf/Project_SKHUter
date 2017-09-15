@@ -5,8 +5,7 @@
 
 <!-- META DATA -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <title>스쿠터</title>
 
@@ -107,11 +106,6 @@
 													<div class="line-separate line-white line-center">
 														<span></span>
 													</div>
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-														elit, sed do eiusmod tempor incididunt ut labore et dolore
-														magna aliqua. Ut enim ad minim veniam, quis nostrud
-														exercitation ullamco laboris nisi ut aliquip ex ea commodo
-														consequat.</p>
 												</div>
 												<!-- /header section -->
 
