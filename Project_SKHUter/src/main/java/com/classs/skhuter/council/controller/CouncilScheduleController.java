@@ -18,7 +18,7 @@ public class CouncilScheduleController {
 	//Test
 	@RequestMapping("/council/*")
 	public String TimeLine(Locale locale, Model model) {
-		logger.info("여기는 학생회 일정!!!! The client locale is {}.", locale);
+		logger.info("여기는 학생회 일정!!! The client locale is {}.", locale);
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
