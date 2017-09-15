@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
 /* 기타 */
-	/* 페이지 제목 : 공지사항 : 가운데 정렬 + 굵게 */
+	/* 페이지 제목 : 익명 게시판 : 가운데 정렬 + 굵게 */
 	h1.page-header {
 		text-align: center;
 		font-weight: bold;
@@ -57,7 +57,7 @@
 </style>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">공지사항</h1>
+		<h1 class="page-header">익명 게시판</h1>
 	</div>
 </div>
 <div class="col-lg-12">
@@ -79,7 +79,6 @@
 				<col width="7%"/>
 				<col width="*"/>
 				<col width="15%"/>
-				<col width="15%"/>
 				<col width="7%"/>
 			</colgroup>
 			<thead>
@@ -87,7 +86,6 @@
 				<th>전체<br/><input type="checkbox" /></th>
 				<th>No</th>
 				<th>제목</th>
-				<th>작성자</th>
 				<th>작성일</th>
 				<th>조회수</th>
 				</tr>
@@ -96,32 +94,28 @@
 				<tr>
 					<td><input type="checkbox" /></td>
 					<td>4</td>
-					<td><a href="#">[공지] 게시글입니다</a></td>
-					<td>관리자1</td>
+					<td><a href="#">야 진짜 그건 아니지 않냐</a></td>
 					<td>2017-09-16</td>
 					<td>32</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" /></td>
 					<td>3</td>
-					<td><a href="#">[공지] 게시글입니다</a></td>
-					<td>관리자1</td>
+					<td><a href="#">야 진짜 그건 아니지 않냐</a></td>
 					<td>2017-09-16</td>
 					<td>32</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" /></td>
 					<td>2</td>
-					<td><a href="#">[공지] 게시글입니다</a></td>
-					<td>관리자1</td>
+					<td><a href="#">야 진짜 그건 아니지 않냐</a></td>
 					<td>2017-09-16</td>
 					<td>32</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" /></td>
 					<td>1</td>
-					<td><a href="#">[공지] 게시글입니다</a></td>
-					<td>관리자1</td>
+					<td><a href="#">야 진짜 그건 아니지 않냐</a></td>
 					<td>2017-09-16</td>
 					<td>32</td>
 				</tr>

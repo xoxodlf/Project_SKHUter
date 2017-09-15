@@ -13,4 +13,13 @@ public class NoticeController {
 		return "notice/noticeList.lay";
 	}
 	
+	@RequestMapping(value="/notice/noticeDetail", method=RequestMethod.GET)
+	public String noticeDetail(Model model) {
+		return "notice/noticeDetail.lay";
+	}
+	
+	@RequestMapping(value="/notice/noticeForm", method=RequestMethod.GET)
+	public String noticeForm(Model model) {
+		return "notice/noticeForm.lay";
+	}
 }
