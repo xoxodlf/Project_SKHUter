@@ -5,7 +5,7 @@
 	margintop:100px;
 }
 </style>
-
+<!-- Test -->
 <body>
 	<div style="text-align:center;  font-size:30px;">학생회 일정</div>
 	<input type="button">

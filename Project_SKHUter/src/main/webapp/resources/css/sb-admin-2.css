@@ -19,6 +19,7 @@ section {
   min-height: 568px;
   background-color: white;
 }
+<!-- Test -->
 @media (min-width: 768px) {
   #page-wrapper {
     position: inherit;
