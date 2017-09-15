@@ -1,82 +1,75 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<head>
 <style>
-/* vote css부분입니당*/
-.tablink {
-	position:relative;
-	left:10%;
-	top:20px;
-    background-color:#555;
-    color: white;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    font-size: 17px;
-    width: 40%;
+.panel.with-nav-tabs .panel-heading{
+    padding: 5px 5px 0 5px;
+    width:55em;
 }
-
-.tablink:hover {
-    background-color: #777;
+.panel-primary > .panel-heading {
+    color: #fff;
+    background-color: #40596b;
+    border-color: #40596b;
 }
-
-/* Style the tab content */
-.tabcontent {
-	position:relative;
-	left:10%;
-	top:71px;
-    color: white;
-    display: none;
-    padding: 20px;
-    width: 80%;
-    height: 40%;
-    text-align: center;
+.panel.with-nav-tabs .nav-tabs{
+	border-bottom: none;
 }
-.tabcontentin{
-	margin-top:0;
-	background-color:#222;
-	padding:8%;
+.panel.with-nav-tabs .nav-justified{
+	margin-bottom: -1px;
 }
-
-#voted {background-color:#40596b;}
-#unvoted {background-color:#ff7058;}
+.with-nav-tabs.panel-primary .nav-tabs > li > a,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+    color: #fff;
+}
+.with-nav-tabs.panel-primary .nav-tabs > .open > a,
+.with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+	color: #fff;
+	background-color: #2A0066;
+	border-color: #2A0066;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
+	color: #428bca;
+	background-color: #fff;
+	border-color: #428bca;
+	border-bottom-color: transparent;
+}
+.panel-body{
+	height:25em;
+}
 </style>
+</head>
 <body>
-<div style="text-align:center;  font-size:30px;">투 표</div>
-<button class="tablink" onclick="openCity('voted', this, '#40596b')" id="defaultOpen">진행중인 투표</button>
-<button class="tablink" onclick="openCity('unvoted', this, '#ff7058')">마감된 투표</button>
-
-<div id="voted" class="tabcontent">
-<h4>진행중인 투표</h4>
-  <div class="tabcontentin">
-  <p>내용 추가예정</p>
-  </div>
-</div>
-
-<div id="unvoted" class="tabcontent">
-<h4>마감된 투표</h4>
-<div class="tabcontentin"> 
-  <p>내용 추가예정</p> 
-  </div>
-</div>
-
-<script>
-function openCity(vote,elmnt,color) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].style.backgroundColor = "";
-    }
-    document.getElementById(vote).style.display = "block";
-    elmnt.style.backgroundColor = color;
-
-}
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-</script>     
+<div class="container">
+    <div class="page-header">
+        <h1 style="text-align:center;">투표<span class="pull-right label label-default"></span></h1>
+    </div>
+     <div class="col-md-6" style="width:57.25em; margin-left:14.6%;">
+            <div class="panel with-nav-tabs panel-primary">
+                <div class="panel-heading">
+                        <ul class="nav nav-tabs" style="background-color:#40596b">
+                            <li class="active"><a style="width:27em; font-weight:bold; text-align:center;" href="#tab1primary" data-toggle="tab">진행중인 투표</a></li>
+                            <li><a style="font-weight:bold; width:27em;text-align:center;" href="#tab2primary" data-toggle="tab">종료된 투표</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab1primary">
+                        <div class="alert alert-warning ">
+                           <a href="#" class="alert-link">  Lorem ipsum dolor sit amet, consectetur adipisicing elit.Alert Link</a>.
+                        </div>
+                        </div>
+                        
+                        <div class="tab-pane fade" id="tab2primary">Primary 2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>

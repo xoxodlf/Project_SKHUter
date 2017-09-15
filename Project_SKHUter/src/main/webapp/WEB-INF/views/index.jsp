@@ -82,6 +82,7 @@
 			<!-- header -->
 			<header class="header-site">
 				<div class="logo-site animated bounceInDown" data-animation-delay="700">
+				<br><br>
 					<img class="img-responsive" src="/resources/images/logo.png" alt="Logo" />
 				</div>
 			</header>
