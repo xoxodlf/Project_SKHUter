@@ -62,14 +62,26 @@
                 <div class="panel-body">
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="tab1primary">
-                        <div class="alert alert-warning ">
-                           <a href="#" class="alert-link">  Lorem ipsum dolor sit amet, consectetur adipisicing elit.Alert Link</a>.
+                        	<div class="alert alert-warning ">
+                           		<a data-toggle="modal" data-target="#doVoteModal" class="alert-link"> 과연 꼴뚜기보다 오징어가 맛있을까요???</a>.
+                        	</div>
                         </div>
+                        <div class="tab-pane fade in active" id="tab1primary">
+                        	<div class="alert alert-warning ">
+                           		<a data-toggle="modal" data-target="#doneVoteModal" class="alert-link"> 과연 꼴뚜기보다 오징어가 맛있을까요???</a>.
+                        	</div>
                         </div>
+                        
                         
                         <div class="tab-pane fade" id="tab2primary">Primary 2</div>
                     </div>
                 </div>
             </div>
         </div>
+        
+    <!-- Modal -->
+	<jsp:include page="include/doVoteModal.jsp" />
+	<jsp:include page="include/doneVoteModal.jsp" />
 </body>
+
+
