@@ -173,7 +173,7 @@
 	
 	<!-- Modal -->
 	<jsp:include page="user/include/registerModal.jsp" />
-	<jsp:include page="user/include/findIdPwModal.jsp" />
+	<jsp:include page="user/include/findPwModal.jsp" />
 
 	<!-- JS -->
 	<script type="text/javascript" src="/resources/js/home/jquery-1.11.3.min.js"></script>

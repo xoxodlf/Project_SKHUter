@@ -2,15 +2,16 @@
  *  
  * 아이디/비밀번호 찾기 모달페이지
  *
- * @파일명 : user/include/findIdPwModal.jsp
- * @작성자 : 이현명
- * @작성일 : 2017. 5. 29.
+ * @파일명 : user/include/findPwModal.jsp
+ * @작성자 : 이종윤
+ * @작성일 : 2017. 9. 15.
 -->
 
 <%@ page contentType="text/html; charset=UTF-8"%>
 <style>
 .tabbable {
 	font-size: 15px;
+	color: black;
 }
 
 @font-face {
@@ -39,7 +40,7 @@ font-family: 'LotteMartDream';
 
 			<div class="modal-header" style="background: #354555; color: #ffffff;">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h2 class="tabbable" style="font-weight: bolder;">회원정보 찾기</h2>
+				<h2 class="tabbable" style="font-weight: bolder; color: white; font-size: 20px; text-align: center;">회원정보 찾기</h2>
 			</div>
 
 			<div class="modal-body">
@@ -47,51 +48,14 @@ font-family: 'LotteMartDream';
 					<div class="tabbable">
 
 						<ul class="nav nav-tabs">
-							<li class="active"><a href="#tab1" data-toggle="tab">아이디 찾기</a></li>
-							<li id="findPassword"><a href="#tab2" data-toggle="tab">비밀번호 찾기</a></li>
+							<li id="findPassword"><a href="#tab2" data-toggle="tab" style="color: black;">비밀번호 찾기</a></li>
 							<li id="newPassword"><a href="#tab3" data-toggle="tab">새 비밀번호 만들기</a></li>
 						</ul>
 
 						<div class="tab-content">
-							<div class="tab-pane active" id="tab1">
-                          <form id="tab1Form" action="/user/findId">
-							<br>
-								<p style="text-align: center;">　 회원정보에 등록한 이름과 휴대전화 번호를 입력해 주세요.</p>
-							<br>
 
-								<div class="form-group">
-									<div class="col-xs-3 col-sm-3 text-center">
-										<label class="regist_label">이름</label>
-									</div>
-									<div class="col-xs-7 col-sm-7">
-										<input type="text" class="form-control" id="nameForId" name="name" placeholder="이름을 입력하세요" />
-									</div>
-									<div class="clearfix"></div>
-								</div>
 
-								<div class="form-group">
-									<div class="col-xs-3 col-sm-3 text-center">
-										<label class="regist_label">휴대폰 번호</label>
-									</div>
-									<div class="col-xs-7 col-sm-7 ">
-										<input type="tel" class="form-control placeholder" id="phoneForId" name="phone" placeholder="휴대폰 번호를 입력하세요" />
-									</div>
-									<div class="clearfix"></div>
-								</div>
-                                <div class="modal-footer">
-                                  <div class="row">
-                                    <div class="col-xs-2 col-xs-offset-4">
-                                      <button type="submit" id="findIdBtn" class="btn btn-warning" style="width: 100%; font-size: 15px; font-weight: bold;">찾기</button>
-                                    </div>
-                                    <div class="col-xs-2">
-                                      <button type="button" class="btn btn-default" data-dismiss="modal" style="width: 100%; font-size: 15px; font-weight: bold; background-color: #333; color: #ffffff;">취소</button>
-                                    </div>
-                                  </div>
-                                </div>
-                          </form>
-							</div>
-
-						<div class="tab-pane" id="tab2">
+						<div class="tab-pane active" id="tab2">
                        <form action="/user/findPw">
 							<br>
 								<p style="text-align: center;">회원정보에 등록한 아이디, 이름과 휴대전화 번호를 입력해 주세요. <br> 새로운 비밀번호를 발급합니다.</p>
@@ -102,7 +66,7 @@ font-family: 'LotteMartDream';
 										<label for="id" class="regist_label">아이디</label>
 									</div>
 									<div class="col-xs-7 col-sm-7">
-										<input type="email" class="form-control onlyAlphabetAndNumber" id="idForPw" name="id" placeholder="이메일 형식으로만 입력 가능" maxlength="30">
+										<input type="email" class="form-control onlyAlphabetAndNumber" id="idForPw" name="id" placeholder="학번을 입력하세요" maxlength="30">
 									</div>
 									<div class="clearfix"></div>
 								</div>
