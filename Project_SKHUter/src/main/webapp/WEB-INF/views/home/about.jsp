@@ -1,12 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE>
 <html>
+
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en-US"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en-US"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en-US">  <!--<![endif]-->
+
 <head>
 
 <!-- META DATA -->
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
+	content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <title>스쿠터</title>
 
@@ -32,6 +41,16 @@
 <!-- JS -->
 <script type="text/javascript" src="/resources/js/home/modernizr.js"></script>
 <script type="text/javascript" src="/resources/js/home/snap.svg-min.js"></script>
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<script src="http://webnextbd.net/demo/js/respond.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 11]>
+<link rel="stylesheet" type="text/css" href="http://webnextbd.net/demo/css/ie.css">
+<![endif]-->
 
 </head>
 
@@ -113,9 +132,7 @@
 												<!-- content slide -->
 												<div class="content-slide aboutus">
 													<div class="row">
-														<div class="col-xs-12 col-md-6 animated bounceInLeft"
-															data-animation-delay="700">
-															<h3>our story</h3>
+														<div class="col-xs-6 col-md-offset-3 animated " data-animation-delay="700">
 															<p>Lorem ipsum dolor sit amet, consectetur
 																adipisicing elit, sed do eiusmod tempor incididunt ut
 																labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -123,62 +140,9 @@
 																aliquip ex ea commodo consequat.Lorem ipsum dolor sit
 																amet, consectetur adipisicing elit, sed do eiusmod
 																tempor incididunt ut labore et dolore magna aliqua.</p>
-															<!-- Pregress bar -->
-															<h3>resource available</h3>
-															<div class="pregress-bar">
-																<div class="skill-lockup">
-																	<span class="category-name mb">communication</span><span
-																		class="progress-status">90%</span> <span
-																		class="skill-bar"> <span
-																		class="skill-level  planning"></span>
-																	</span>
-																</div>
-																<!-- /planning -->
 
-																<div class="skill-lockup">
-																	<span class="category-name mb">visual design</span><span
-																		class="progress-status">80%</span> <span
-																		class="skill-bar"> <span
-																		class="skill-level programming"></span>
-																	</span>
-																</div>
-																<!-- /programming -->
-
-																<div class="skill-lockup">
-																	<span class="category-name">business strategy</span><span
-																		class="progress-status">70%</span> <span
-																		class="skill-bar"> <span
-																		class="skill-level developing"></span>
-																	</span>
-																</div>
-																<!-- /developing -->
-
-																<div class="skill-lockup">
-																	<span class="category-name">branding</span><span
-																		class="progress-status">85%</span> <span
-																		class="skill-bar"> <span
-																		class="skill-level supporting"></span>
-																	</span>
-																</div>
-																<!-- /supporting -->
-															</div>
-															<!-- /Pregress bar -->
 														</div>
 														<!-- /col-xs-12 col-md-6 -->
-
-														<!-- video section -->
-														<div
-															class="col-xs-12 col-md-6 video-section animated bounceInRight"
-															data-animation-delay="700">
-															<div class="big-video center">
-																<h3>About with a video</h3>
-																<div class="video-content">
-																	<iframe src="https://www.youtube.com/embed/BpYaM87g3oY"
-																		allowfullscreen></iframe>
-																</div>
-															</div>
-														</div>
-														<!-- /video section -->
 													</div>
 													<!-- /row -->
 
@@ -210,19 +174,21 @@
 	<script type="text/javascript" src="/resources/js/home/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/retina.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/jquery.backstretch.min.js"></script>
-	<script type="text/javascript" src="/resources/js/home/jquery.countdown.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/jquery.parallaxify.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/jquery.particleground.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/vegas.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/trianglify.min.js"></script>
-	<script type="text/javascript" src="/resources/js/home/jquery.mb.YTPlayer.js"></script>
-	<script type="text/javascript" src="/resources/js/home/jquery.nicescroll.min.js"></script>
+	
 	<script type="text/javascript" src="/resources/js/home/jquery.flexslider-min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/owl.carousel.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/jquery.appear.js"></script>
 	<script type="text/javascript" src="/resources/js/home/classie.js"></script>
 	<script type="text/javascript" src="/resources/js/home/sidebar.js"></script>
 	<script type="text/javascript" src="/resources/js/home/main.js"></script>
+	
+	<script type="text/javascript" src="/resources/js/home/jquery.nicescroll.min.js"></script>
+	
+	
 
 </body>
 </html>

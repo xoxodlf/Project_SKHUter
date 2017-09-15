@@ -115,9 +115,8 @@
 													<div class="row">
 														<div class="col-xs-6 col-md-offset-3 animated " data-animation-delay="700">
 															<h3>Do You Have a Question ?</h3>
-															<p>Lorem ipsum dolor sit amet, consectetur
-																adipisicing elit, sed do eiusmod tempor incididunt ut
-																labore et dolore magna aliqua.</p>
+															<p style="text-align: center;"> 　　　스쿠터의 서비스에 대해 궁금한 점이 있으시다면　　　
+															  	아래의 내용을 채워서 관리자에게 전송해 주세요!</p>
 
 
 															<!-- contact form -->

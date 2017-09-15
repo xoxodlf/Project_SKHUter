@@ -125,6 +125,7 @@
 																<img src="/resources/images/jy.jpg" class="img-circle img-responsive">
 																<h4>이종윤</h4>
 																<h6>Team Leader</h6>
+																<h6>Glocal IT</h6>
 																<a href="#"><i class="fa fa-facebook"></i></a> 
 																<a href="#"><i class="fa fa-twitter"></i></a> 
 																<a href="#"><i class="fa fa-pinterest-p"></i></a> 
@@ -138,6 +139,7 @@
 																<img src="/resources/images/sy.jpg" class="img-circle img-responsive">
 																<h4>나상연</h4>
 																<h6>Team Member</h6>
+																<h6>Glocal IT</h6>
 																<a href="#"><i class="fa fa-facebook"></i></a> 
 																<a href="#"><i class="fa fa-twitter"></i></a> 
 																<a href="#"><i class="fa fa-pinterest-p"></i></a> 
@@ -148,30 +150,28 @@
 
 														<div class="col-md-3 col-sm-6">
 															<div class="panel">
-																<img src="images/team-3.jpg"
-																	data-at2x="images/team-3@2x.jpg" alt="team-3"
-																	class="img-circle img-responsive">
-																<h4>Perry Warner</h4>
-																<h6>MARKET ANALYST</h6>
-																<a href="#"><i class="fa fa-facebook"></i></a> <a
-																	href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i
-																	class="fa fa-pinterest-p"></i></a> <a href="#"><i
-																	class="fa fa-google-plus"></i></a>
+																<img src="/resources/images/ti.jpg" class="img-circle img-responsive">
+																<h4>양태일</h4>
+																<h6>Team Member</h6>
+																<h6>Glocal IT</h6>
+																<a href="#"><i class="fa fa-facebook"></i></a> 
+																<a href="#"><i class="fa fa-twitter"></i></a> 
+																<a href="#"><i class="fa fa-pinterest-p"></i></a> 
+																<a href="#"><i class="fa fa-google-plus"></i></a>
 															</div>
 														</div>
 														<!-- /panel -->
 
 														<div class="col-md-3 col-sm-6">
 															<div class="panel">
-																<img src="images/team-4.jpg"
-																	data-at2x="images/team-4@2x.jpg" alt="team-4"
-																	class="img-circle img-responsive">
-																<h4>R.A Bhuiyan</h4>
-																<h6>WEB DEVELOPER</h6>
-																<a href="#"><i class="fa fa-facebook"></i></a> <a
-																	href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i
-																	class="fa fa-pinterest-p"></i></a> <a href="#"><i
-																	class="fa fa-google-plus"></i></a>
+																<img src="/resources/images/gl.jpg" class="img-circle img-responsive">
+																<h4>이겨레</h4>
+																<h6>Team Member</h6>
+																<h6>Glocal IT</h6>
+																<a href="#"><i class="fa fa-facebook"></i></a> 
+																<a href="#"><i class="fa fa-twitter"></i></a> 
+																<a href="#"><i class="fa fa-pinterest-p"></i></a> 
+																<a href="#"><i class="fa fa-google-plus"></i></a>
 															</div>
 														</div>
 														<!-- /panel -->
