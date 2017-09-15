@@ -212,14 +212,15 @@
 	<script type="text/javascript" src="/resources/js/home/jquery.particleground.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/vegas.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/trianglify.min.js"></script>
-	<script type="text/javascript" src="/resources/js/home/jquery.mb.YTPlayer.js"></script>
-	<script type="text/javascript" src="/resources/js/home/jquery.nicescroll.min.js"></script>
+	
 	<script type="text/javascript" src="/resources/js/home/jquery.flexslider-min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/owl.carousel.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/jquery.appear.js"></script>
 	<script type="text/javascript" src="/resources/js/home/classie.js"></script>
 	<script type="text/javascript" src="/resources/js/home/sidebar.js"></script>
 	<script type="text/javascript" src="/resources/js/home/main.js"></script>
+	
+	<script type="text/javascript" src="/resources/js/home/jquery.nicescroll.min.js"></script>
 
 </body>
 </html>
