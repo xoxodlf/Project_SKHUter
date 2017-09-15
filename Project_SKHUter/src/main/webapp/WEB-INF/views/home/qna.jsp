@@ -113,8 +113,7 @@
 												<!-- content slide -->
 												<div class="content-slide aboutus">
 													<div class="row">
-														<div class="col-xs-12 col-md-6 animated bounceInLeft"
-															data-animation-delay="700">
+														<div class="col-xs-6 col-md-offset-3 animated " data-animation-delay="700">
 															<h3>Do You Have a Question ?</h3>
 															<p>Lorem ipsum dolor sit amet, consectetur
 																adipisicing elit, sed do eiusmod tempor incididunt ut
@@ -137,25 +136,6 @@
 															<!-- /contact form -->
 														</div>
 														<!-- /col-xs-12 col-md-6 -->
-
-														<!-- maps section -->
-														<div
-															class="col-xs-12 col-md-6 maps-section animated bounceInRight"
-															data-animation-delay="700">
-															<div class="big-maps center">
-																<ul>
-																	<li><span>address: </span> New York</li>
-																	<li><span>call us: </span><a href="tel:123456789">123
-																			456 789</a></li>
-																	<li><span>Fax: </span><a href="tel:123456789">123
-																			456 789</a></li>
-																	<li><span>email: </span><a href="#">support@mail.com</a></li>
-																	<li><span>Website: </span><a href="#">www.templatestock.cm</a></li>
-																</ul>
-																<div id="map1"></div>
-															</div>
-														</div>
-														<!-- /maps section -->
 													</div>
 													<!-- /row -->
 
@@ -187,19 +167,19 @@
 	<script type="text/javascript" src="/resources/js/home/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/retina.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/jquery.backstretch.min.js"></script>
-	<script type="text/javascript" src="/resources/js/home/jquery.countdown.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/jquery.parallaxify.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/jquery.particleground.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/vegas.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/trianglify.min.js"></script>
-	<script type="text/javascript" src="/resources/js/home/jquery.mb.YTPlayer.js"></script>
-	<script type="text/javascript" src="/resources/js/home/jquery.nicescroll.min.js"></script>
+	
 	<script type="text/javascript" src="/resources/js/home/jquery.flexslider-min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/owl.carousel.min.js"></script>
 	<script type="text/javascript" src="/resources/js/home/jquery.appear.js"></script>
 	<script type="text/javascript" src="/resources/js/home/classie.js"></script>
 	<script type="text/javascript" src="/resources/js/home/sidebar.js"></script>
 	<script type="text/javascript" src="/resources/js/home/main.js"></script>
+	
+	<script type="text/javascript" src="/resources/js/home/jquery.nicescroll.min.js"></script>
 
 
 </body>
