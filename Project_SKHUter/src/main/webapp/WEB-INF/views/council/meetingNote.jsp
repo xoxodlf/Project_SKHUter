@@ -4,9 +4,13 @@
 #align{
 	text-align:center;
 }
+.posit{
+	position: absolute;
+    width: 500px;
+}
 </style>
 <body>
-<div id="page-wrapper">
+		<div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
                     <h1 id="align" class="page-header">학생회 회의록</h1>
@@ -21,7 +25,6 @@
             </div>
             <!-- /.row -->
             <div class="row">
-            
                <div class="col-lg-4">
                   <div class="panel panel-info">
                      <div class="panel-heading">
@@ -29,7 +32,7 @@
                            <a class="btn btn-default btn-sm removeBtn" id="removeBtn"  style="float: right; padding: 2px 9px;"> 
                               <i class="fa fa-trash-o fa-sm"></i> 
                            </a>
-                            <input type="checkbox">
+                            <input type="checkbox" class="posit" >
                      </div>
 
                      <div class="panel-body" style="height: 90px">
@@ -60,7 +63,7 @@
                      </div>
 
                      <div class="panel-body" style="height: 90px">
-                        <div class="libraryList">
+                        <div class="libraryList" class="posit">
                            <a href="#" class="thumbnailList"> 
                               		파일 이름
                            </a>
@@ -82,7 +85,7 @@
                            <a class="btn btn-default btn-sm removeBtn" id="removeBtn"  style="float: right; padding: 2px 9px;"> 
                               <i class="fa fa-trash-o fa-sm"></i> 
                            </a>
-                            <input type="checkbox">
+                            <input type="checkbox" class="posit">
                      </div>
 
                      <div class="panel-body" style="height: 90px">
@@ -100,6 +103,8 @@
                      </div>
                   </div>
                 </div>
+                </div>
+                <div class="row">
                 <!-- /.col-lg-4 -->
                 <div class="col-lg-4">
                     <div class="panel panel-info">
@@ -108,7 +113,7 @@
                            <a class="btn btn-default btn-sm removeBtn" id="removeBtn"  style="float: right; padding: 2px 9px;"> 
                               <i class="fa fa-trash-o fa-sm"></i> 
                            </a>
-                            <input type="checkbox">
+                            <input type="checkbox" class="posit">
                      </div>
 
                      <div class="panel-body" style="height: 90px">
@@ -128,101 +133,6 @@
                 <!-- /.col-lg-4 -->
             </div>
             <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            Info Panel
-                            <input type="checkbox">
-                        </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                         	   <input type="file">
-                        </div>
-                    </div>
-                </div>
-                <!-- /.col-lg-4 -->
-                <div class="col-lg-4">
-                    <div class="panel panel-warning">
-                        <div class="panel-heading">
-                            Warning Panel
-                            <input type="checkbox">
-                        </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                          	  <input type="file">
-                        </div>
-                    </div>
-                </div>
-                <!-- /.col-lg-4 -->
-                <div class="col-lg-4">
-                    <div class="panel panel-danger">
-                        <div class="panel-heading">
-                            Danger Panel
-                            <input type="checkbox">
-                        </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                            	<input type="file">
-                        </div>
-                    </div>
-                </div>
-                <!-- /.col-lg-4 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            Green Panel
-                            <input type="checkbox">
-                        </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                           	 <input type="file">
-                        </div>
-                    </div>
-                    <!-- /.col-lg-4 -->
-                </div>
-                <div class="col-lg-4">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            Yellow Panel
-                            <input type="checkbox">
-                        </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                          	  <input type="file">
-                        </div>
-                    </div>
-                    <!-- /.col-lg-4 -->
-                </div>
-                <div class="col-lg-4">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            Red Panel
-                            <input type="checkbox">
-                        </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                            <input type="file">
-                        </div>
-                    </div>
-                    <!-- /.col-lg-4 -->
-                </div>
-                <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
         </div>
