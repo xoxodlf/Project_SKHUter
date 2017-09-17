@@ -15,7 +15,7 @@ import com.classs.skhuter.notice.controller.VoteController;
 @Controller
 public class CouncilScheduleController {
 	private static final Logger logger = LoggerFactory.getLogger(VoteController.class);
-	//Test
+	
 	@RequestMapping("/council/councilSchedule")
 	public String TimeLine(Locale locale, Model model) {
 		logger.info("여기는 학생회 일정!!! The client locale is {}.", locale);

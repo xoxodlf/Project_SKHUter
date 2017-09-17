@@ -1,26 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<style>
-
-.sidebar .sidebar-nav.navbar-collapse {
-	overflow: hidden;
-}
-</style>
-
 <!-- Navigation -->
 <nav class="navbar navbar-default sidebar" role="navigation">
 
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="dropdown" data-target="#navbar">
-				<span class="icon-bar"></span> 
-				<span class="icon-bar"></span> 
-				<span class="icon-bar"></span>
-			</button>
-		</div>
-		<!-- /.navbar-header -->
-
-		<div class="sidebar-nav navbar-collapse" id="navbar">
+		<div class="sidebar-nav navbar-collapse">
 			<a class="navbar-brand" href="/">
 			<img src="/resources/images/logo2.png" style="width: 180px; margin-left: 20px"> </a>
 
@@ -38,7 +22,7 @@
 					<a href="#" style="color: white;"><i class="fa fa-bar-chart-o fa-fw"></i> 학생회<span class="fa arrow"></span></a>
                       <ul class="nav nav-second-level">
                           <li id="councilSchedule">
-                              <a href="#">학생회 일정</a>
+                              <a href="/council/councilSchedule">학생회 일정</a>
                           </li>
                           <li id="meetingNote">
                                 <a href="/council/meetingNote">학생회 회의록</a>
@@ -51,8 +35,8 @@
                           <li id="noticeMenu">
                               <a href="/notice/noticeList">공지사항</a>
                           </li>
-                          <li id="schoolSchedule">
-                                <a href="#">학사 일정</a>
+                          <li id="stuSchedule">
+                                <a href="/notice/stuSchedule">학사 일정</a>
                           </li>
                           <li id="vote">
                                 <a href="/vote/vote">투표</a>
