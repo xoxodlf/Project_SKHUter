@@ -79,10 +79,10 @@ div.board-btn button {
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="tab1primary">
                         	<div class="alert alert-warning ">
-                           		<a data-toggle="modal" data-target="#doVoteModal" class="alert-link"> 과연 꼴뚜기보다 오징어가 맛있을까요???</a>.
+                           		<a data-toggle="modal" data-target="#doVoteModal" class="alert-link"> 과연 꼴뚜기보다 오징어가 맛있을까요???</a>
                         	</div>
                         <div class="alert alert-warning ">
-                           		<a data-toggle="modal" data-target="#doneVoteModal" class="alert-link"> 과연 꼴뚜기보다 오징어가 맛있을까요???</a>.
+                           		<a data-toggle="modal" data-target="#doneVoteModal" class="alert-link"> 과연 꼴뚜기보다 오징어가 맛있을까요???</a>
                         	</div>
                         </div> 
                         <div class="tab-pane fade" id="tab2primary">Primary 2</div>

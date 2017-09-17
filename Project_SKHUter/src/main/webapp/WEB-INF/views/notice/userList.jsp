@@ -70,12 +70,12 @@
         					<option>학생회</option>
         					<option>임원진</option>
       					</select>
-	<button type="button" class="btn btn-default">승인</button>
+	<button type="button" class="btn btn-default">등급변경</button>
 		<button type="button" class="btn btn-danger">삭제</button>
 		
 	</div>
 	<div class="board-btn">
-		<button type="button" class="btn btn-default">인수인계</button>
+		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#doGiveAndTakeModal">인수인계</button>
 	</div>
 	</div>
 	<!-- div.board-btns -->
@@ -166,4 +166,5 @@
 <!-- div.panel-body -->
 </div>
 <!-- div.col-lg-12 -->
+<jsp:include page="include/doGiveAndTakeModal.jsp" />
 
