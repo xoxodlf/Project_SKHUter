@@ -67,7 +67,7 @@
 		<button type="button" class="btn btn-danger">삭제</button>
 	</div>
 	<div class="board-btn">
-		<button type="button" class="btn btn-default">글쓰기</button>
+		<a href="/board/boardForm" class="btn btn-default"> 글쓰기 </a>
 	</div>
 	</div>
 	<!-- div.board-btns -->
@@ -96,7 +96,7 @@
 				<tr>
 					<td><input type="checkbox" /></td>
 					<td>4</td>
-					<td><a href="#">[공지] 게시글입니다</a></td>
+					<td><a href="/notice/noticeDetail">[공지] 게시글입니다</a></td>
 					<td>관리자1</td>
 					<td>2017-09-16</td>
 					<td>32</td>
@@ -104,7 +104,7 @@
 				<tr>
 					<td><input type="checkbox" /></td>
 					<td>3</td>
-					<td><a href="#">[공지] 게시글입니다</a></td>
+					<td><a href="/notice/noticeDetail">[공지] 게시글입니다</a></td>
 					<td>관리자1</td>
 					<td>2017-09-16</td>
 					<td>32</td>
@@ -112,7 +112,7 @@
 				<tr>
 					<td><input type="checkbox" /></td>
 					<td>2</td>
-					<td><a href="#">[공지] 게시글입니다</a></td>
+					<td><a href="/notice/noticeDetail">[공지] 게시글입니다</a></td>
 					<td>관리자1</td>
 					<td>2017-09-16</td>
 					<td>32</td>
@@ -120,7 +120,7 @@
 				<tr>
 					<td><input type="checkbox" /></td>
 					<td>1</td>
-					<td><a href="#">[공지] 게시글입니다</a></td>
+					<td><a href="/notice/noticeDetail">[공지] 게시글입니다</a></td>
 					<td>관리자1</td>
 					<td>2017-09-16</td>
 					<td>32</td>

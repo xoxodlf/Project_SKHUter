@@ -88,10 +88,10 @@
 <div class="panel-body">
 	<div class="board-btns">
 	<div class="board-btn">
-		<button type="button" class="btn btn-default">글등록</button>
+		<a href="/board/boardList" class="btn btn-default"> 등록 </a>
 	</div>
 	<div class="board-btn">
-		<button type="button" class="btn btn-default">목록</button>
+		<a href="/board/boardList" class="btn btn-default"> 목록으로 </a>
 	</div>
 	</div>
 	<!-- div.board-btns -->
