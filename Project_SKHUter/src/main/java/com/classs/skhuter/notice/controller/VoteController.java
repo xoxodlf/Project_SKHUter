@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class VoteController {
@@ -27,5 +28,9 @@ public class VoteController {
 		
 		return "notice/vote.lay";
 	}
-
+	@RequestMapping(value="/vote/voteForm", method=RequestMethod.GET)
+	public String boardList(Model model) {
+		return "notice/voteForm.lay";
+	}
+	
 }

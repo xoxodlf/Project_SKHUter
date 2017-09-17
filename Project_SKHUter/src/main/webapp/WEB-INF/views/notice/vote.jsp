@@ -42,7 +42,23 @@
 .panel-body{
 	height:25em;
 }
+div.board-btn button {
+		width: auto;
+		height: auto;
+		margin: 0;
+	}
+	div.board-btn {
+		display: inline-block;
+		width: 48%;
+	}
+	div.board-btns div:nth-child(1) {
+		text-align: right;
+	}
+	div.board-btns div:nth-child(2) {
+		text-align: left;
+	}
 </style>
+
 </head>
 <body>
 <div class="container">
@@ -65,23 +81,33 @@
                         	<div class="alert alert-warning ">
                            		<a data-toggle="modal" data-target="#doVoteModal" class="alert-link"> 과연 꼴뚜기보다 오징어가 맛있을까요???</a>.
                         	</div>
-                        </div>
-                        <div class="tab-pane fade in active" id="tab1primary">
-                        	<div class="alert alert-warning ">
+                        <div class="alert alert-warning ">
                            		<a data-toggle="modal" data-target="#doneVoteModal" class="alert-link"> 과연 꼴뚜기보다 오징어가 맛있을까요???</a>.
                         	</div>
-                        </div>
-                        
-                        
+                        </div> 
                         <div class="tab-pane fade" id="tab2primary">Primary 2</div>
                     </div>
                 </div>
             </div>
         </div>
         
+        <div class="board-btns">
+			<div class="board-btn" onclick="goVoteForm();">
+				<button type="button" class="btn btn-default">투표등록</button>
+			</div>
+		<div class="board-btn">
+				<button type="button" class="btn btn-default">투표삭제</button>
+		</div>
+</div>
+        
     <!-- Modal -->
 	<jsp:include page="include/doVoteModal.jsp" />
 	<jsp:include page="include/doneVoteModal.jsp" />
+	<script type="text/javascript">
+		function goVoteForm() {
+			location.href = "/vote/voteForm";
+		}
+	</script>
 </body>
 
 
