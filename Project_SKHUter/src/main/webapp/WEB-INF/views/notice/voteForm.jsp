@@ -30,6 +30,7 @@
 	width:80%;
 	margin-left: 8.5%;
 	height:auto; 
+	overflow: hidden;
 }
 .form-control {
     width: 80%;
@@ -51,18 +52,8 @@
 <div class="backgroundbox">
 	<div class="form-group" style=" font-weight:bold; margin-left:2%;margin-top:2px; ">
           <p style="padding-top:9px;"> 투표제목</p><input type="text" data-text-content="true" class="form-control">
-    </div>
-    <div class="form-group" style=" font-weight:bold; margin-left:2%;margin-top:2px;padding-bottom: 9px; float:left;width:47%;display: inline-block;">
-          <p style="padding-top:9px;"> 항목입력</p><input type="text" value="항목1" style="width:98%; color:rgb(97,97,97)" data-text-content="true" class="form-control">
-          <p style="padding-top:9px;"></p><input type="text" value="항목2" style="width:98%" data-text-content="true" class="form-control">
-          <p style="padding-top:9px;"></p><input type="text" value="항목3" style="width:98%" data-text-content="true" class="form-control">
-          <p style="padding-top:9px;"></p><input type="text" value="항목4" style="width:98%" data-text-content="true" class="form-control">
-          <p style="padding-top:9px;"></p><input id="contentvote1"  type="text" value="항목5" style=" display: none; width:98%" data-text-content="true" class="form-control">
-          <p style="padding-top:9px;"></p><input id="contentvote2"  type="text" value="항목6" style="  display: none; width:98%" data-text-content="true" class="form-control">
-    </div>
-    <div class="form-group" style=" font-weight:bold; margin-left:2%;margin-top:2px;padding-bottom: 9px; float:letf;display: inline-block; width:47%;">
-    	<p style="padding-top:9px;"> 마감시간</p>
-   	 <div>
+          <p style="padding-top:9px;"> 마감시간</p>
+   		<div>
     	<select class="form-control" style="width:16%; display: inline-block;">
        		<option>2017</option>
         	<option>2018</option>
@@ -154,16 +145,27 @@
         	<option>40</option>
         	<option>50</option>
       	</select>분&nbsp까지
+    </div>
+    <div class="form-group" style=" font-weight:bold; margin-left:2%;margin-top:2px;padding-bottom: 9px; float:left;width:47%;display: inline-block;">
+          <p style="padding-top:9px;"> 항목입력</p><input type="text" value="항목1" style="width:98%; color:rgb(97,97,97)" data-text-content="true" class="form-control">
+          <p style="padding-top:9px;"></p><input type="text" value="항목2" style="width:98%" data-text-content="true" class="form-control">
+          <p style="padding-top:9px;"></p><input type="text" value="항목3" style="width:98%" data-text-content="true" class="form-control">
+          <p style="padding-top:9px;"></p><input type="text" value="항목4" style="width:98%" data-text-content="true" class="form-control">
+          <p style="padding-top:9px;"></p><input id="contentvote1"  type="text" value="항목5" style=" display: none; width:98%" data-text-content="true" class="form-control">
+          <p style="padding-top:9px;"></p><input id="contentvote2"  type="text" value="항목6" style="  display: none; width:98%" data-text-content="true" class="form-control">
+    </div>
+    <div class="form-group" style=" font-weight:bold; margin-left:2%;margin-top:2px;padding-bottom: 9px;padding-top: 25px; float:letf;display: inline-block; width:47%;">
+    	
       	<div>
       		<div class="checkbox">
-      			<label style="font-size:20px;"><input type="checkbox" value="" style="height:20px;">복수선택 여부</label>
+      			<label style="font-size:20px; margin-left:34%;"><input type="checkbox" value="" style=" height:20px;">복수선택 여부</label>
    			</div>
     		<div class="checkbox" style="margin-top:10px;">
-      			<label style="font-size:20px;"><input type="checkbox" value="" style="height:20px;">익명투표 여부</label>
+      			<label style="font-size:20px; margin-left:34%;"><input type="checkbox" value="" style=" height:20px;">익명투표 여부</label>
     		</div>
       	</div>
       	
-      	<button type="button" onclick="addcontent()" class="btn btn-default btn-lg" style="margin-left:22.5%; width:52%;height:5%;">
+      	<button type="button" onclick="addcontent()" class="btn btn-default btn-lg" style="margin-top:10px; margin-left:22.5%; width:52%;height:5%;">
  				<span class="glyphicon glyphicon-plus"></span>
  				<p style="display:inline-block">항목 추가하기</p>
 		</button>
