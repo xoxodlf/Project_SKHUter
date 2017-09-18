@@ -5,7 +5,7 @@
 <nav class="navbar navbar-default sidebar" role="navigation">
 
 		<div class="sidebar-nav navbar-collapse">
-			<a class="navbar-brand" href="/">
+			<a class="navbar-brand" href="/home">
 			<img src="/resources/images/logo2.png" style="width: 180px; margin-left: 20px"> </a>
 
 			<div class="row" id="modalWrapper">

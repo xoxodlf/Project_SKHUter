@@ -8,23 +8,26 @@
 	position: absolute;
     width: 500px;
 }
+/* 가운데 정렬 */
+div.col-lg-12 {
+	text-align: center;
+}
 </style>
 <body>
 		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<img src="/resources/images/title/meeting_note.png" class="page-header" style="width: 18%;">
+				</div>
+			</div>
             <div class="row">
-                <div class="col-lg-12">
-                    <h1 id="align" class="page-header">학생회 회의록</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <div class="row">
-            	<div class="col-lg-12">
-            		<button type="button" class="btn btn-primary">등록</button>
-            		<button type="button" class="btn btn-primary">삭제</button>
+            	<div class="col-lg-10">
+            		<button type="button" class="btn btn-default">등록</button>
+            		<button type="button" class="btn btn-danger">삭제</button>
             	</div>
             </div>
             <!-- /.row -->
-            <div class="row">
+            <div class="row" style="margin-top: 20px">
                <div class="col-lg-4">
                   <div class="panel panel-info">
                      <div class="panel-heading">

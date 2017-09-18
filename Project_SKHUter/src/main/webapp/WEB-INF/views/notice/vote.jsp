@@ -57,14 +57,21 @@ div.board-btn button {
 	div.board-btns div:nth-child(2) {
 		text-align: left;
 	}
+	
+	/* 가운데 정렬 */
+	div.col-lg-12 {
+		text-align: center;
+	}
 </style>
 
 </head>
 <body>
 <div class="container">
-    <div class="page-header">
-        <h1 style="text-align:center;">투표<span class="pull-right label label-default"></span></h1>
-    </div>
+	<div class="row">
+		<div class="col-lg-12">
+			<img src="/resources/images/title/vote.png" class="page-header" style="width: 18%;">
+		</div>
+	</div>
      <div class="col-md-6" style="width:57.25em; margin-left:14.6%;">
             <div class="panel with-nav-tabs panel-primary">
                 <div class="panel-heading">
