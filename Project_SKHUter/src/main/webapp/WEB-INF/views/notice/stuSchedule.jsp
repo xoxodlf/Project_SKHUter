@@ -1,12 +1,18 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
-#top{
-	margintop:100px;
+/* 가운데 정렬 */
+div.col-lg-12 {
+	text-align: center;
 }
 </style>
+
 <body>
-	<div style="text-align:center;  font-size:30px;">학사 일정</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<img src="/resources/images/title/stu_schedule.png" class="page-header" style="width: 20%;">
+		</div>
+	</div>
 	
 	<div id="wrapper">
 		<div id="page-wrapper">
