@@ -30,22 +30,24 @@
     <!-- Morris Charts CSS -->
     <link href="/resources/vendor/morrisjs/morris.css" rel="stylesheet">
     
+    <link href="/resources/css/metisMenu.css" rel="stylesheet">
+    
     
 	<!-- JavaScript -->
     
 	<!-- jQuery JavaScript -->
-	<script src="/resources/js/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="/resources/js/jquery.js"></script>
+<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
 	
 	<!-- Bootstrap Core JavaScript -->
 	<script src="/resources/js/bootstrap.min.js"></script>
 
     <!-- SweetAlert JavaScript -->
     <script src="/resources/js/sweetalert2.min.js"></script>
-    
+    <script src="/resources/js/metisMenu.js"></script>
     <script src="/resources/js/bootstrap-datetimepicker.js"></script>
     <script src="/resources/js/bootstrap-datetimepicker.ko.js"></script>
-    
+    <script src="/resources/js/sb-admin-2.js"></script>
     <script src="/resources/js/jquery.flexslider.js"></script>
 
     
