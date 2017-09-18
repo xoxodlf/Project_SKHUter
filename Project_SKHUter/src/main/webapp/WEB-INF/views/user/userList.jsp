@@ -2,11 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
 /* 기타 */
-	/* 페이지 제목 : 공지사항 : 가운데 정렬 + 굵게 */
-	h1.page-header {
-		text-align: center;
-		font-weight: bold;
-	}
 	
 	/* 글쓰기+삭제 버튼 한 줄 차지 */
 	div.board-btn {
@@ -55,19 +50,27 @@
 	}
 	
 </style>
-	<div class="row">
-		<div class="col-lg-12">
-			<img src="/resources/images/title/notice.png" class="page-header" style="width: 20%;">
-		</div>
+<div class="row">
+	<div class="col-lg-12">
+		<img src="/resources/images/title/user_list.png" class="page-header" style="width: 20%">
 	</div>
+</div>
 <div class="col-lg-12">
 <div class="panel-body">
 	<div class="board-btns">
 	<div class="board-btn">
+	<select class="form-control" style="width:20%;display: inline-block;">
+        					<option>승인대기</option>
+        					<option>글티학생</option>
+        					<option>학생회</option>
+        					<option>임원진</option>
+      					</select>
+	<button type="button" class="btn btn-default">등급 변경</button>
 		<button type="button" class="btn btn-danger">삭제</button>
+		
 	</div>
 	<div class="board-btn">
-		<a href="/notice/noticeForm" class="btn btn-default"> 글쓰기 </a>
+		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#doGiveAndTakeModal">인수인계</button>
 	</div>
 	</div>
 	<!-- div.board-btns -->
@@ -80,50 +83,50 @@
 				<col width="*"/>
 				<col width="15%"/>
 				<col width="15%"/>
-				<col width="7%"/>
+				<col width="15%"/>
 			</colgroup>
 			<thead>
 				<tr>
 				<th>전체<br/><input type="checkbox" /></th>
 				<th>No</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-				<th>조회수</th>
+				<th>학번</th>
+				<th>이름</th>
+				<th>가입일</th>
+				<th>등급</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td><input type="checkbox" /></td>
 					<td>4</td>
-					<td><a href="/notice/noticeDetail">[공지] 게시글입니다</a></td>
-					<td>관리자1</td>
+					<td><a href="#">201434019</a></td>
+					<td>양태일</td>
 					<td>2017-09-16</td>
-					<td>32</td>
+					<td>닝겐</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" /></td>
 					<td>3</td>
-					<td><a href="/notice/noticeDetail">[공지] 게시글입니다</a></td>
-					<td>관리자1</td>
+					<td><a href="#">201434019</a></td>
+					<td>양태일</td>
 					<td>2017-09-16</td>
-					<td>32</td>
+					<td>닝겐</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" /></td>
 					<td>2</td>
-					<td><a href="/notice/noticeDetail">[공지] 게시글입니다</a></td>
-					<td>관리자1</td>
+					<td><a href="#">201434019</a></td>
+					<td>양태일</td>
 					<td>2017-09-16</td>
-					<td>32</td>
+					<td>닝겐</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" /></td>
 					<td>1</td>
-					<td><a href="/notice/noticeDetail">[공지] 게시글입니다</a></td>
-					<td>관리자1</td>
+					<td><a href="#">201434019</a></td>
+					<td>양태일</td>
 					<td>2017-09-16</td>
-					<td>32</td>
+					<td>닝겐</td>
 				</tr>
 			</tbody>
 		</table>
@@ -158,4 +161,5 @@
 <!-- div.panel-body -->
 </div>
 <!-- div.col-lg-12 -->
+<jsp:include page="include/doGiveAndTakeModal.jsp" />
 

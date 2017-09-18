@@ -5,7 +5,7 @@
 <nav class="navbar navbar-default sidebar" role="navigation">
 
 		<div class="sidebar-nav navbar-collapse">
-			<a class="navbar-brand" href="/">
+			<a class="navbar-brand" href="/home">
 			<img src="/resources/images/logo2.png" style="width: 180px; margin-left: 20px"> </a>
 
 			<div class="row" id="modalWrapper">
@@ -16,7 +16,7 @@
 
 			<ul class="nav" id="side-menu" style="margin-top: 10%">
 				<li id="studentList">
-					<a href="/notice/userList" style="color: white;"><i class="fa fa-th-list fa-fw"></i> 학생 목록 </a>
+					<a href="/user/userList" style="color: white;"><i class="fa fa-th-list fa-fw"></i> 학생 목록 </a>
 				</li>
 				<li id="council">
 					<a href="#" style="color: white;"><i class="fa fa-users fa-fw"></i> 학생회<span class="fa arrow"></span></a>
