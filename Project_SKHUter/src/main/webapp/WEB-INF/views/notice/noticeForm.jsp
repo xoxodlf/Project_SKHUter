@@ -81,7 +81,7 @@
 </style>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">공지사항</h1>
+		<h1 class="page-header">공지사항 글쓰기</h1>
 	</div>
 </div>
 <div class="col-lg-12">

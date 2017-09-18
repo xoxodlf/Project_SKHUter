@@ -70,26 +70,34 @@
 	<div class="table-responsive table-bordered">
 		<table class="table">
 			<colgroup>
-				<col width="15%"/>
-				<col width="35%"/>
-				<col width="15%"/>
-				<col width="35%"/>
+				<col width="10%"/>
+				<col width="20%"/>
+				<col width="8%"/>
+				<col width="10%"/>
+				<col width="8%"/>
+				<col width="10%"/>
+				<col width="8%"/>
+				<col width="20%"/>
 			</colgroup>
 			<thead>
 				<tr>
 				<th>제목</th>
-				<td colspan="3">제목입네다</td>
+				<td colspan="7">제목입네다</td>
 				</tr>
 				<tr>
 				<th>작성자</th>
 				<td>익명123</td>
+				<th>조회</th>
+				<td>300</td>
+				<th>추천</th>
+				<td>123</td>
 				<th>작성일</th>
 				<td>2017-09-16</td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td class="table-content" colspan="4">
+					<td class="table-content" colspan="8">
 					<pre>내용은 여기에</pre>
 					</td>
 				</tr>

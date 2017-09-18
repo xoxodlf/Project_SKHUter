@@ -67,7 +67,7 @@
 		<button type="button" class="btn btn-danger">삭제</button>
 	</div>
 	<div class="board-btn">
-		<button type="button" class="btn btn-default">글쓰기</button>
+		<a href="/board/boardForm" class="btn btn-default">글쓰기</a>
 	</div>
 	</div>
 	<!-- div.board-btns -->
@@ -80,6 +80,7 @@
 				<col width="*"/>
 				<col width="15%"/>
 				<col width="7%"/>
+				<col width="7%"/>
 			</colgroup>
 			<thead>
 				<tr>
@@ -88,21 +89,24 @@
 				<th>제목</th>
 				<th>작성일</th>
 				<th>조회수</th>
+				<th>추천수</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td><input type="checkbox" /></td>
 					<td>4</td>
-					<td><a href="#">야 진짜 그건 아니지 않냐</a></td>
+					<td><a href="/board/boardDetail">야 진짜 그건 아니지 않냐 [5]</a></td>
 					<td>2017-09-16</td>
 					<td>32</td>
+					<td>10</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" /></td>
 					<td>3</td>
 					<td><a href="#">야 진짜 그건 아니지 않냐</a></td>
 					<td>2017-09-16</td>
+					<td>32</td>
 					<td>32</td>
 				</tr>
 				<tr>
@@ -111,6 +115,7 @@
 					<td><a href="#">야 진짜 그건 아니지 않냐</a></td>
 					<td>2017-09-16</td>
 					<td>32</td>
+					<td>10</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" /></td>
@@ -118,6 +123,7 @@
 					<td><a href="#">야 진짜 그건 아니지 않냐</a></td>
 					<td>2017-09-16</td>
 					<td>32</td>
+					<td>10</td>
 				</tr>
 			</tbody>
 		</table>

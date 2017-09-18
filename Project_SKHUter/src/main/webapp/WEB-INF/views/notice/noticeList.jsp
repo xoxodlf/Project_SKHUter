@@ -67,7 +67,7 @@
 		<button type="button" class="btn btn-danger">삭제</button>
 	</div>
 	<div class="board-btn">
-		<a href="/board/boardForm" class="btn btn-default"> 글쓰기 </a>
+		<a href="/notice/noticeForm" class="btn btn-default"> 글쓰기 </a>
 	</div>
 	</div>
 	<!-- div.board-btns -->
