@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class UserController {
 	
-	@RequestMapping(value="/notice/userList", method=RequestMethod.GET)
+	@RequestMapping(value="/user/userList", method=RequestMethod.GET)
 	public String noticeList(Model model) {
-		return "notice/userList.lay";
+		return "user/userList.lay";
 	}
 }

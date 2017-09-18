@@ -17,7 +17,7 @@ public class VoteController {
 	
 	@RequestMapping("/notice/*")
 	public String vote(Locale locale, Model model) {
-		logger.info("��Ʈ������~~ The client locale is {}.", locale);
+		logger.info("투표 내역 입장");
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
