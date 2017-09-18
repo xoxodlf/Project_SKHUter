@@ -28,6 +28,7 @@ public class VoteController {
 		
 		return "notice/vote.lay";
 	}
+	
 	@RequestMapping(value="/vote/voteForm", method=RequestMethod.GET)
 	public String boardList(Model model) {
 		return "notice/voteForm.lay";
