@@ -39,10 +39,10 @@
                                 <a href="/notice/stuSchedule">학사 일정</a>
                           </li>
                           <li id="vote">
-                                <a href="/vote/vote">투표</a>
+                                <a href="/notice/vote">투표</a>
                           </li>
                           <li id="accounting">
-                                <a href="#">회계 내역</a>
+                                <a href="/notice/accountingList">회계 내역</a>
                           </li>
                       </ul>
 				</li>

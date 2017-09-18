@@ -62,7 +62,7 @@
 							<input type="password" class="form-control" id="registerPassword" name="password" placeholder="비밀번호를 입력하세요" >
 						</div>
                         <div class="col-xs-3 col-sm-3" style="font-size:small; color: black;">
-                          <label id="">(영문소문자/숫자, 4~16자)</label>
+                          <label id="">(8 ~ 12자)</label>
                         </div>            
 						<div class="clearfix"></div>
 					</div>

@@ -45,4 +45,9 @@ public class HomeController {
 		return "home/qna.empty";
 	}
 	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home (Model model) {
+		return "home/home.lay";
+	}
+	
 }

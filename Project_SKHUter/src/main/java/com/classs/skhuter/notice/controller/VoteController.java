@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class VoteController {
 	private static final Logger logger = LoggerFactory.getLogger(VoteController.class);
 	
-	@RequestMapping("/vote/*")
+	@RequestMapping("/notice/*")
 	public String vote(Locale locale, Model model) {
 		logger.info("��Ʈ������~~ The client locale is {}.", locale);
 		
