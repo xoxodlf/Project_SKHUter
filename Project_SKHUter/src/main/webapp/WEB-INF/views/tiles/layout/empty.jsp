@@ -9,6 +9,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<title>스쿠터</title>
+	
+	
+    <!-- SweetAlert JavaScript -->
+    <script src="/resources/js/sweetalert2.min.js"></script>
+    
 </head>
 
 <body>

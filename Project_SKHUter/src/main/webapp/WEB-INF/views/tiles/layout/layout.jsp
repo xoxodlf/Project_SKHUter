@@ -9,7 +9,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<title>스쿠터</title>
-
+	
+	
+	<!-- CSS -->
 	
 	<!-- Bootstrap Core CSS -->
 	<link rel="stylesheet" href="/resources/css/bootstrap.css">
@@ -22,14 +24,16 @@
     <!-- MetisMenu CSS -->
     <link href="/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
-    <!-- 원래커스텀자리 -->
     <!-- Custom CSS -->
     <link href="/resources/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="/resources/vendor/morrisjs/morris.css" rel="stylesheet">
     
-	<!-- jQuery -->
+    
+	<!-- JavaScript -->
+    
+	<!-- jQuery JavaScript -->
 	<script src="/resources/js/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	
@@ -41,6 +45,9 @@
     
     <script src="/resources/js/bootstrap-datetimepicker.js"></script>
     <script src="/resources/js/bootstrap-datetimepicker.ko.js"></script>
+    
+    <script src="/resources/js/jquery.flexslider.js"></script>
+
     
     <!-- Custom Fonts -->
     <link href="/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">

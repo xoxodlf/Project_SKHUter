@@ -108,6 +108,8 @@ section {
     position: absolute;
     width: 250px;
     background-color: #40596b;
+    height: 100%;
+    overflow: hidden;
   }
   .navbar-top-links .dropdown-messages,
   .navbar-top-links .dropdown-tasks,
