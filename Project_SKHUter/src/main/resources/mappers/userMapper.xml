@@ -3,7 +3,14 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
                         
 <!-- 네임스페이스(사용영역) 설정 -->
-<mapper namespace="com.classs.skhuter.mapper.UserMapper">
+<mapper namespace="com.classs.skhuter.mappers.UserMapper">
 
+<!-- 회원가입 -->
+<insert id="register">
+
+INSERT INTO Users (id, password, name, phone, grade, is_leave, status, secession) 
+VALUES (#{id}, #{password}, #{name}, #{phone}, #{grade}, #{isLeave}, #{status}, #{secession});
+
+</insert>
 
 </mapper>
