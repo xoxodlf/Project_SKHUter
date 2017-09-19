@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
 import com.classs.skhuter.user.domain.UserDTO;
 
@@ -16,6 +17,8 @@ import com.classs.skhuter.user.domain.UserDTO;
  * @작성일 : 2017. 9. 19. 
  *
  */
+
+@Repository
 public class UserDAOImpl implements UserDAO {
 	
 	@Inject

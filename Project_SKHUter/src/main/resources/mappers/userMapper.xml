@@ -8,8 +8,8 @@
 <!-- 회원가입 -->
 <insert id="register">
 
-INSERT INTO Users (id, password, name, phone, grade, is_leave, status, secession) 
-VALUES (#{id}, #{password}, #{name}, #{phone}, #{grade}, #{isLeave}, #{status}, #{secession});
+INSERT INTO Users (user_no, id, password, name, phone, grade, is_leave, status, secession) 
+VALUES (seq_Users.nextVal, #{id}, #{password}, #{name}, #{phone}, #{grade}, #{isLeave}, #{status}, #{secession})
 
 </insert>
 
