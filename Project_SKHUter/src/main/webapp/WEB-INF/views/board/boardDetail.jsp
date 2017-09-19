@@ -82,7 +82,7 @@
 			<thead>
 				<tr>
 				<th>제목</th>
-				<td colspan="7">제목입네다</td>
+				<td colspan="7">제목입네다 [3]</td>
 				</tr>
 				<tr>
 				<th>작성자</th>
@@ -102,6 +102,18 @@
 					</td>
 				</tr>
 			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="8">
+					<button type="button" class="btn btn-default">추천</button>
+					<button type="button" class="btn btn-default">비추천</button>
+					</td>
+				</tr>
+				<tr>
+					<td align=center>댓글</td> <td colspan="6"><input type="text" name="comment" class="comment" size="100"/></td>
+					<td align=center><button type="button" class="btn btn-default" size="30">등록</button></td>
+				</tr>
+			</tfoot>
 		</table>
 		<!-- end of table -->
 	</div>
