@@ -2,6 +2,8 @@ package com.classs.skhuter.user.service;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
 import com.classs.skhuter.user.dao.UserDAO;
 import com.classs.skhuter.user.domain.UserDTO;
 
@@ -14,6 +16,8 @@ import com.classs.skhuter.user.domain.UserDTO;
  * @작성일 : 2017. 9. 19. 
  *
  */
+
+@Service
 public class UserServiceImpl implements UserService {
 	
 	@Inject

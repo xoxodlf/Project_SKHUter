@@ -20,10 +20,10 @@ public class UserDaoTest {
 	
 	Logger logger = Logger.getLogger(UserDaoTest.class);
 	
-	
 	/** 회원가입 테스트 */
 	@Test
 	public void TestRegister() {
+		
 		UserDTO user = new UserDTO();
 		user.setId("201434025");
 		user.setPassword("1111");
