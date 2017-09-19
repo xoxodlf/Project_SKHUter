@@ -70,19 +70,19 @@
 	<div class="table-responsive table-bordered">
 		<table class="table">
 			<colgroup>
+				<col width="15%"/>
+				<col width="15%"/>
+				<col width="5%"/>
 				<col width="10%"/>
-				<col width="20%"/>
-				<col width="8%"/>
+				<col width="5%"/>
 				<col width="10%"/>
-				<col width="8%"/>
-				<col width="10%"/>
-				<col width="8%"/>
+				<col width="5%"/>
 				<col width="20%"/>
 			</colgroup>
 			<thead>
 				<tr>
 				<th>제목</th>
-				<td colspan="7">제목입네다 [3]</td>
+				<td colspan="7">제목입네다 [13]</td>
 				</tr>
 				<tr>
 				<th>작성자</th>
@@ -110,12 +110,28 @@
 					</td>
 				</tr>
 				<tr>
-					<td align=center>댓글</td> <td colspan="6"><input type="text" name="comment" class="comment" size="100"/></td>
-					<td align=center><button type="button" class="btn btn-default" size="30">등록</button></td>
+					<td align=center>댓글</td> 
+					<td colspan="6">
+					<input type="text" name="comment" class="comment" size="100"/></td>
+					<td align=center>
+						<button type="button" class="btn btn-default" size="30" style="margin-left:5;">등록</button>
+					</td>
 				</tr>
+				
+				<script type="text/javascript">
+					var comment=13;
+					var line = comment;
+					for (i = 0; i < line; i++){
+				   		document.write("<tr> <td align=center> <img src=\"/resources/images/anonymouscomment.png\" style=\"width: 30%;\"></td>");
+				   		document.write("<td colspan=\"5\" style=\" vertical-align: middle; \"><b>이렇게 하면 정말 좋겠다! 공감공감~ 추천꾸욱~!!! </b></td>");
+				   		document.write("<td colspan=\"2\" style=\"font-size:15px; vertical-align: top; text-align:right;\"> 2017-09-16 18:06 </td>");
+				     	document.write("</tr>");
+				   	}
+				</script>
 			</tfoot>
 		</table>
 		<!-- end of table -->
+		
 	</div>
 	<!-- div.table-responsive -->
 </div>
