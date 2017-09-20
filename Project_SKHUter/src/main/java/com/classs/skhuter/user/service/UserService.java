@@ -15,4 +15,7 @@ public interface UserService {
 
 	/** 회원 가입 */
 	public void register(UserDTO user);
+	
+	/** 회원 아이디 중복 체크*/
+	public boolean idCheck(String id);
 }

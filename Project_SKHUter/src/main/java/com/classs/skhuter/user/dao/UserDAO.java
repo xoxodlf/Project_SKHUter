@@ -15,5 +15,7 @@ public interface UserDAO {
 	
 	/** 회원 가입 */
 	public void register(UserDTO user);
+	
+	public boolean idCheck (String id);
 
 }

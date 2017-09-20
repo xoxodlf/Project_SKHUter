@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import com.classs.skhuter.user.domain.UserDTO;
 
+import oracle.net.aso.i;
+
 /**
  * UserDao 인터페이스를 구현하는 클래스
  * 
@@ -31,6 +33,16 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void register(UserDTO user) {
 		sqlSession.insert(namespace + ".register", user);
+	}
+
+	@Override
+	public boolean idCheck(String id) {
+		String idCheck = sqlSession.selectOne(namespace + ".idCheck", id);
+		if (idCheck == null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
