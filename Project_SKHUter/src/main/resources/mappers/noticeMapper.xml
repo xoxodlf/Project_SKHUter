@@ -3,7 +3,11 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
                         
 <!-- 네임스페이스(사용영역) 설정 -->
-<mapper namespace="com.classs.skhuter.mapper.NoticeMapper">
-
+<mapper namespace="com.classs.skhuter.mappers.NoticeMapper">
+<!-- 투표부분 -->
+ <select id="readVote" resultType="Vote">
+SELECT INTO Vote (voteNo,userNo,enrollDate,startDate,endDate, title, content, item1, item2, item3, item4, item5, item6)
+ VALUES (seq_Vote.nextVal, #{voteNo}) 
+ </select>
 
 </mapper>
