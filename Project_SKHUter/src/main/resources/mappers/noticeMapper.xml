@@ -7,7 +7,7 @@
 <!-- 투표부분 -->
  <select id="readVote" resultType="Vote">
 SELECT INTO Vote (voteNo,userNo,enrollDate,startDate,endDate, title, content, item1, item2, item3, item4, item5, item6)
- VALUES (seq_Vote.nextVal, #{voteNo}) 
+ VALUES (seq_Vote.nextVal, #{userNo},sysdate,#{startDate},#{endDate},#{title},#{content},#{item1},#{item2},#{item3},#{item4},#{item5},#{item6}) 
  </select>
 
 </mapper>
