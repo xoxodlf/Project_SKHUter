@@ -4,8 +4,11 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
 import com.classs.skhuter.user.domain.UserDTO;
+
+import oracle.net.aso.i;
 
 /**
  * UserDao 인터페이스를 구현하는 클래스
@@ -16,6 +19,8 @@ import com.classs.skhuter.user.domain.UserDTO;
  * @작성일 : 2017. 9. 19. 
  *
  */
+
+@Repository
 public class UserDAOImpl implements UserDAO {
 	
 	@Inject
@@ -28,6 +33,16 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void register(UserDTO user) {
 		sqlSession.insert(namespace + ".register", user);
+	}
+
+	@Override
+	public boolean idCheck(String id) {
+		String idCheck = sqlSession.selectOne(namespace + ".idCheck", id);
+		if (idCheck == null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

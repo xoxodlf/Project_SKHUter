@@ -49,8 +49,11 @@
 							<label for="id" class="regist_label">아이디</label>
 						</div>
 						<div class="col-xs-6 col-sm-6">
-							<input type="email" class="form-control onlyNumber" id="registerId" name="id" placeholder="학번" maxlength="30" onkeyup="idCheck()">
+							<input type="text" class="form-control onlyNumber" id="registerId" name="id" placeholder="학번" maxlength="9" onkeyup="idCheck()">
 						</div>
+                        <div class="col-xs-3 col-sm-3" style="font-size:small">
+                          <label id="display">(학번)</label>
+                        </div>
 						<div class="clearfix"></div>
 					</div>
 
@@ -120,7 +123,7 @@
 							<label class="regist_label"> 학적 상태 </label>
 						</div>
 						<div class="col-xs-6 col-sm-6 ">
-							<select name="grade" style="width: 50%">
+							<select name="status" style="width: 50%">
 								<option value="attend"> 재학 </option>
 								<option value="leave"> 휴학 </option>
 							</select>
@@ -152,7 +155,6 @@
 
 	/** 아이디 중복체크 */
    function idCheck() {
-   	  var emailpattern = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
       var registerId = $('#registerId').val();
       
       if (registerId.length > 3) {
@@ -161,25 +163,20 @@
             type : 'GET',
             url : "/user/idCheck",
             data : {
-            	
             	registerId : registerId
-
             },
             success : function(request) {
                var display = document.getElementById("display");
                if (request == "success") {
-                  display.innerHTML = "사용가능합니다.";
+                  display.innerHTML = "사용 가능합니다.";
                   $("#display").css("color", "blue");
                } else if (request == "fail") {
-                  display.innerHTML = "이미 사용중입니다.";
+                  display.innerHTML = "이미 사용 중입니다.";
                   $("#display").css("color", "red");
                }
             }
-
          });
-
       }
-
    }	
    
    
@@ -189,10 +186,10 @@
       var repassword = $('#repassword').val();
       var passwdText = document.getElementById("info");
       if (registerPassword == repassword) {
-         passwdText.innerHTML = "비밀번호가 일치합니다.";
+         passwdText.innerHTML = "일치!";
          $("#info").css("color","blue");
       } else {
-         passwdText.innerHTML = "비밀번호가 일치하지 않습니다.";
+         passwdText.innerHTML = "일치하지 않습니다.";
          $("#info").css("color","red");
       }
   
@@ -213,32 +210,21 @@ $(function(){
               return false;
             }
     
-          if (registerId.length < 4) {
+          if (registerId.length != 9) {
               swal({
                  title : '',
-                 text : '아이디는 4자 이상이여야합니다.',
+                 text : '아이디를 학번으로 입력해 주세요.',
                  type : 'warning',
                  confirmButtonText : '닫기'
               })
               $('#registerId').focus();
               return false;
            }	
-
-          var emailpattern = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-          if(!(emailpattern).test(registerId)){
-      		swal({
-                  title: 'email 형식으로 입력하세요.',
-                  text: 'EX) asc@gmail.com',
-                  type: 'warning',
-                  confirmButtonText: '닫기'
-                })
-            return false;
-      	};
-          
+        
           
           if ($('#display').text() == "이미 사용중인 아이디입니다.") {
               swal({
-                 title : '아이디 중복',
+                 title : '아이디 중복!',
                  text : '다른 아이디를 입력해주세요.',
                  type : 'warning',
                  confirmButtonText : '닫기'
@@ -267,7 +253,7 @@ $(function(){
             if ($('#registerPassword').val() != $('#repassword').val()) {
                swal({
                   title : '비밀번호 불일치',
-                  text : '비밀번호를 확인해주세요.',
+                  text : '비밀번호를 확인해 주세요.',
                   type : 'warning',
                   confirmButtonText : '닫기'
                })
@@ -333,13 +319,11 @@ $(function(){
              return false;
            }
           
-          
          	var h = $(window).height();
          	$('#indexLoding').height(h);
          	$('#indexLoding').show();
 		return true;
        });
-
 });
 
 

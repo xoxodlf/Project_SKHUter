@@ -25,6 +25,9 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/home/menu.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/sidebar.css" />
 
+<!-- SweetAlert CSS -->
+<link href="/resources/css/sweetalert2.min.css" rel="stylesheet">
+
 <!-- Fonts -->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,400,300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700,900' rel='stylesheet' type='text/css'>
@@ -32,6 +35,9 @@
 <!-- JS -->
 <script type="text/javascript" src="/resources/js/home/modernizr.js"></script>
 <script type="text/javascript" src="/resources/js/home/snap.svg-min.js"></script>
+
+<!-- SweetAlert JavaScript -->
+<script src="/resources/js/sweetalert2.min.js"></script>
 
 <!-- jQuery -->
 <script src="/resources/js/jquery.min.js"></script>
