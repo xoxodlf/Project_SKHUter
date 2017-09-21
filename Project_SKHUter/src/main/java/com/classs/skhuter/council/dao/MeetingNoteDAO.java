@@ -1,5 +1,9 @@
 package com.classs.skhuter.council.dao;
 
-public interface MeetingNoteDAO {
+import com.classs.skhuter.council.domain.MeetingNoteDTO;
 
+public interface MeetingNoteDAO {
+	
+	public void register(MeetingNoteDTO meetingNote);
+	
 }

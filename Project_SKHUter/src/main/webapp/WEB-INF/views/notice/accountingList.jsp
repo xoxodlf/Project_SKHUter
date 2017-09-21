@@ -55,55 +55,55 @@
 	}
 	
 </style>
-	<div class="row">
-		<div class="col-lg-12">
-			<img src="/resources/images/title/account.png" class="page-header" style="width: 20%;">
-		</div>
+<div class="row">
+	<div class="col-lg-12">
+		<img src="/resources/images/title/account.png" class="page-header" style="width: 20%;">
 	</div>
+</div>
 <div class="col-lg-12">
-<div class="panel-body">
-	<div class="board-btns">
-	<div class="board-btn">
-		<button type="button" class="btn btn-danger">삭제</button>
-	</div>
-	<div class="board-btn">
-		<button type="button" data-toggle="modal" data-target="#accountingModal" class="btn btn-default">등록</button>
-	</div>
-	</div>
-	<!-- div.board-btns -->
-	<br/>
-	<div class="table-responsive">
-		<table class="table table-hover">
-			<colgroup>
-				<col width="7%"/>
-				<col width="7%"/>
-				<col width="*"/>
-				<col width="15%"/>
-				<col width="7%"/>
-			</colgroup>
-			<thead>
-				<tr>
-				<th>전체<br/><input type="checkbox" /></th>
-				<th>No</th>
-				<th>거래 내역</th>
-				<th>지출</th>
-				<th>수입</th>
-				<th>잔액</th>
-				<th>작성일</th>
-				<th>영수증</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>4</td>
-					<td><a href="#">10만원을 어따 썼더라</a></td>
-					<td>100000</td>
-					<td></td>
-					<td>50000</td>
-					<td>2017-09-16</td>
-					<td><a href="#">영수증</a></td>
-				</tr>
+	<div class="panel-body">
+		<div class="board-btns">
+			<div class="board-btn">
+				<button type="button" class="btn btn-danger">삭제</button>
+			</div>
+			<div class="board-btn">
+				<button type="button" data-toggle="modal" data-target="#accountingModal" class="btn btn-default">등록</button>
+			</div>
+		</div>
+		<!-- div.board-btns -->
+		<br/>
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<colgroup>
+					<col width="7%"/>
+					<col width="7%"/>
+					<col width="*"/>
+					<col width="15%"/>
+					<col width="7%"/>
+				</colgroup>
+				<thead style="text-align:left">
+					<tr>
+					<th>전체<br/><input type="checkbox" /></th>
+					<th>No</th>
+					<th>거래 내역</th>
+					<th>지출</th>
+					<th>수입</th>
+					<th>잔액</th>
+					<th>작성일</th>
+					<th>영수증</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input type="checkbox" /></td>
+						<td>4</td>
+						<td><a href="#">10만원을 어따 썼더라</a></td>
+						<td>100000</td>
+						<td></td>
+						<td>50000</td>
+						<td>2017-09-16</td>
+						<td><a href="#">영수증</a></td>
+					</tr>
 				<tr>
 					<td><input type="checkbox" /></td>
 					<td>3</td>

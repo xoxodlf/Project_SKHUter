@@ -100,8 +100,7 @@
                      </div>
                   </div>
                </div>
-            
-                <div class="col-lg-4" style="text-align:left">
+               <div class="col-lg-4" style="text-align:left">
                     <div class="panel panel-info">
                      <div class="panel-heading">
                         	제목
