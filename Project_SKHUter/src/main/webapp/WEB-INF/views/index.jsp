@@ -45,9 +45,72 @@
 <!-- jQuery -->
 <script src="/resources/js/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<script>
+$(function(){
+	var status = getUrlParams();
+	var result = status.result;
+	if(result == "error") {
+		swal({
+            title: '',
+            text: '사이트에 등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.',
+            type: 'warning',
+            confirmButtonText: 'OK'
+          });
+	}
+	
+	
+	if(result == "notAuth") {
+		swal({
+            title: '가입 승인 중',
+            text: '가입 승인 대기 중입니다.',
+            type: 'warning',
+            confirmButtonText: 'OK'
+          });
+	}
+
+	if(result == "delete") {
+		swal({
+            title: '',
+            text: '탈퇴한 회원입니다.',
+            type: 'warning',
+            confirmButtonText: 'OK'
+          });
+	}
+	
+	var message = $("#successMessage").val();
+	if(message == "success") {
+		swal(     
+          		 '회원가입 신청 완료!',
+          	     '관리자에게 승인 요청되었습니다.',
+          	     'success'
+          		)
+	}
+	
+	var message = $("#statusMessage").val();
+	if(message == "status") {
+		swal(     
+          		 '메일 인증 성공!',
+          	     '로그인 후 이용가능합니다.',
+          	     'success'
+          		)
+	}	
+	
+});
+
+function getUrlParams() {
+    var params = {};
+    window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, 
+    		function(str, key, value) { params[key] = value; });
+    return params;
+}
+</script>
+
 </head>
 
 <body class="image-background">
+<input type="hidden" id="successMessage" value="${message}"/>
+<input type="hidden" id="statusMessage" value="${setStatus}"/>
 	
 	<!-- Preloader -->
 	<div id="preloader">
@@ -127,7 +190,7 @@
 														<!-- container form -->
 														<div class="container-form">
 															<!-- section page -->
-															<form method="post" action="" class="login-form">
+															<form method="post" action="/user/login" class="login-form">
 																<div class="section-page" id="signup">
 																	<input type="text" name="id" placeholder="ID" class="required"> <br>
 																	<input type="password" name="password" placeholder="Password" class="contact-form-email required"> <br>
@@ -183,6 +246,48 @@
 	<!-- Modal -->
 	<jsp:include page="user/include/registerModal.jsp" />
 	<jsp:include page="user/include/findPwModal.jsp" />
+	
+	
+	<script>
+	
+	$("#loginBtn").on("click", function() {
+		var emailpattern = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+		var id = $(".login__input").val();
+		var password = $("#password").val();
+		
+		if(id.trim().length <1){
+			swal({
+	            title: '아이디 미입력!',
+	            text: '아이디를 입력해주세요.',
+	            type: 'warning',
+	            confirmButtonText: '닫기'
+	          })
+	      return false;
+		};
+		
+		if(!(emailpattern).test(id)){
+			swal({
+	            title: 'email 형식으로 입력하세요.',
+	            text: 'EX) asc@gmail.com',
+	            type: 'warning',
+	            confirmButtonText: '닫기'
+	          })
+	      return false;
+		};
+		
+		
+		if(password.trim().length <1){
+			swal({
+	            title : '비밀번호 미입력!',
+	            text : '비밀번호를 입력해주세요.',
+	            type : 'warning',
+	            confirmButtonText : '닫기'
+	         })
+			return false;	
+		};
+	});
+	
+	</script>
 
 	<!-- JS -->
 	<script type="text/javascript" src="/resources/js/home/jquery-1.11.3.min.js"></script>

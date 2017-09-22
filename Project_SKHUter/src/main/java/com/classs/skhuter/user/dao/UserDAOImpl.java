@@ -1,6 +1,9 @@
 package com.classs.skhuter.user.dao;
 
+import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -46,10 +49,38 @@ public class UserDAOImpl implements UserDAO {
 			return false;
 		}
 	}
+	
+	@Override
+	public UserDTO get(int userNo) {
+		return sqlSession.selectOne(namespace + ".get", userNo);
+	}
 
 	@Override
 	public List<UserDTO> UserListAll() {
 		return sqlSession.selectList(namespace + ".userListAll");
 	}
+
+	@Override
+	public UserDTO login(UserDTO user) {
+		return sqlSession.selectOne(namespace + ".login", user);
+	}
+
+	@Override
+	public void keepLogin(String id, String sessionId, Date sessionLimit) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("id", id);
+		paramMap.put("sessionId", sessionId);
+		paramMap.put("sessionLimit", sessionLimit);
+		
+		sqlSession.update(namespace + ".keepLogin", paramMap);		
+	}
+
+	@Override
+	public UserDTO checkUserWithSessionKey(String cookieValue) {
+		return sqlSession.selectOne(namespace + ".checkUserWithSessionKey", cookieValue);
+	}
+
+
 
 }

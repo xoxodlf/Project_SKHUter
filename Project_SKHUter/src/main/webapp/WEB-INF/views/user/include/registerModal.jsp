@@ -109,10 +109,10 @@
 						</div>
 						<div class="col-xs-6 col-sm-6 ">
 							<select name="grade" style="width: 50%">
-								<option value="one"> 1학년 </option>
-								<option value="two"> 2학년 </option>
-								<option value="three"> 3학년 </option>
-								<option value="four"> 4학년 </option>
+								<option value="1"> 1학년 </option>
+								<option value="2"> 2학년 </option>
+								<option value="3"> 3학년 </option>
+								<option value="4"> 4학년 </option>
 							</select>
 						</div>
 						<div class="clearfix"></div>
@@ -123,9 +123,9 @@
 							<label class="regist_label"> 학적 상태 </label>
 						</div>
 						<div class="col-xs-6 col-sm-6 ">
-							<select name="status" style="width: 50%">
-								<option value="attend"> 재학 </option>
-								<option value="leave"> 휴학 </option>
+							<select name="isLeave" style="width: 50%">
+								<option value="1"> 재학 </option>
+								<option value="0"> 휴학 </option>
 							</select>
 						</div>
 						<div class="clearfix"></div>

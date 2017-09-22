@@ -9,22 +9,60 @@
 	<insert id="register">
 	
 	INSERT INTO Users (user_no, id, password, name, phone, grade, is_leave, status, secession) 
-	VALUES (seq_Users.nextVal, #{id}, #{password}, #{name}, #{phone}, #{grade}, #{isLeave}, #{status}, #{secession})
+	VALUES (seq_Users.nextVal, #{id}, #{password}, #{name}, #{phone}, #{grade}, #{isLeave}, 0, 0)
 	
 	</insert>
 
 	<!-- 회원 아이디 중복 체크 -->
 	<select id="idCheck" resultType="String">
 	
-	select name from users where id=#{id}
+	SELECT name FROM users WHERE id=#{id}
 	
 	</select>
 
 	<!-- 회원 목록 조회 -->
 	<select id="userListAll" resultType="User">
-		SELECT user_no as UserNo, id, password, name, phone, grade, is_leave as isLeave, status, takeover_code as takeoverCode, 
-			   recent_login as recentLogin, session_key as sessionKey, session_limit as sessionLimit, secession
-		FROM Users
+	SELECT user_no as UserNo, id, password, name, phone, grade, is_leave as isLeave, status, takeover_code as takeoverCode, 
+		   recent_login as recentLogin, session_key as sessionKey, session_limit as sessionLimit, secession
+	FROM Users
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="User">
+	
+	SELECT user_no as userNo, id, password, name 
+	FROM Users 
+	WHERE id=#{id} AND password=#{password}
+	
+	</select>
+	
+	<!-- 회원번호로 회원정보 조회-->
+	<select id="get" resultType="User">
+	
+	SELECT user_no as UserNo, id, password, name, phone, grade, is_leave as isLeave, status, takeover_code as takeoverCode, 
+		   recent_login as recentLogin, session_key as sessionKey, session_limit as sessionLimit, secession
+	FROM Users
+ 	WHERE user_no=#{userNo}
+	
+	</select>
+	
+	<!-- 로그인한 사람의 세션키 세션리밋 업데이트 -->
+	<update id="keepLogin">
+	
+	UPDATE Users 
+	SET session_key =#{paramMap.sessionId}, session_limit=#{paramMap.sessionLimit}
+	WHERE id=#{paramMap.id}
+	
+	</update>
+	
+	<!-- 로그인 쿠키에 기록된 값으로 사용자 조회 -->
+	<select id="checkUserWithSessionKey" resultType="User">
+	
+	SELECT user_no as UserNo, id, password, name, phone, grade, is_leave as isLeave, status, takeover_code as takeoverCode, 
+		   recent_login as recentLogin, session_key as sessionKey, session_limit as sessionLimit, secession
+	FROM users 
+	WHERE session_key =#{cookieValue} and session_limit> sysdate
+	
 	</select>
 
 
