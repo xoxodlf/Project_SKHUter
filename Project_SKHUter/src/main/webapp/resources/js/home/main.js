@@ -1,9 +1,3 @@
-/*
-	Metronic by TEMPLATE STOCK
-	templatestock.co @templatestock
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-*/
-
 
 (function($) {
 	"use strict";
@@ -147,20 +141,6 @@
 		  });
 		 
 		});
-
-		/*====================================
-					Nice Scroll
-		======================================*/
-			
-		$("html").niceScroll({
-			cursorcolor: '#ccc',
-			cursoropacitymin: '0',
-			cursoropacitymax: '1',
-			cursorwidth: '3px',
-			zindex: 10000,
-			horizrailenabled: false,
-		});
-
 				
 			
 		/*====================================

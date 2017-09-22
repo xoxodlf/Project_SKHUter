@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib  prefix="m" uri="urlDecode"%> 
 
 <!-- Navigation -->
 <nav class="navbar navbar-default sidebar" role="navigation">
@@ -10,7 +11,7 @@
 
 			<div class="row" id="modalWrapper">
 				<div class="col-xs-10 col-sm-10">
-					<div style="color: white; font-size: 20px; text-align: center; margin-top: 30px">스쿠터</div>
+					<div style="color: white; font-size: 20px; text-align: center; margin-top: 30px">이종윤</div>
 				</div>
 			</div>
 
