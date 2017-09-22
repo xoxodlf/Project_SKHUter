@@ -6,9 +6,11 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
 import com.classs.skhuter.board.domain.BoardDTO;
 
+@Repository
 public class BoardDAOImpl implements BoardDAO {
 	@Inject
 	private SqlSession sqlSession;
@@ -23,28 +25,5 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.insert(namespace + ".create", board);
 	}
 
-	@Override
-	public BoardDTO read(int boardNo) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + ".get", boardNo);
-	}
-
-	@Override
-	public void delete(int boardNo) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public List<BoardDTO> listAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<BoardDTO> listPage(int page) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
