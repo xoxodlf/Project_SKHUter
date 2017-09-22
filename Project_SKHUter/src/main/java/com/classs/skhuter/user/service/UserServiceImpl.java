@@ -61,4 +61,24 @@ public class UserServiceImpl implements UserService {
 		return dao.checkUserWithSessionKey(cookieValue);
 	}
 
+	@Override
+	public void modify(UserDTO user) {
+		dao.modify(user);
+	}
+
+	@Override
+	public String findPw(String id, String name, String phone) {
+		return dao.findPw(id, name, phone);
+	}
+
+	@Override
+	public void createNewPw(String id, String password) {
+		dao.createNewPw(id, password);
+	}
+
+	@Override
+	public void delete(int userNo) {
+		dao.delete(userNo);
+	}
+
 }

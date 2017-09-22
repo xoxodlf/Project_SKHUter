@@ -12,6 +12,13 @@
 	VALUES (seq_Users.nextVal, #{id}, #{password}, #{name}, #{phone}, #{grade}, #{isLeave}, 0, 0)
 	
 	</insert>
+	
+	<!-- 가입 승인 후 계정 활성화 -->
+	<update id="setStatus">
+	
+	UPDATE users SET status=1 WHERE id=#{id}
+	
+	</update>
 
 	<!-- 회원 아이디 중복 체크 -->
 	<select id="idCheck" resultType="String">
@@ -64,6 +71,38 @@
 	WHERE session_key =#{cookieValue} and session_limit> sysdate
 	
 	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="modify">
+	
+	UPDATE Users 
+	SET password = #{password}, name = #{name}, phone = #{phone}, grade = #{grade}, is_leave = #{isLeave}
+	WHERE id = #{id}
+	
+	</update>
+	
+	<!-- 아이디, 이름, 전화번호로 비밀번호 찾기 -->
+	<select id="findPw" resultType="String">
+	
+	SELECT password 
+	FROM Users 
+	WHERE id=#{id} AND name=#{name} AND phone=#{phone}
+	
+	</select>
+	
+	<!-- 비밀번호 찾기 후 새로운 비밀번호 등록 -->
+	<update id="createNewPw">
+	
+	UPDATE users SET password=#{password} WHERE id=#{id}
+	
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<update id="delete">
+	
+	UPDATE users SET secession = 1 WHERE user_no=#{userNo}
+	
+	</update>
 
 
 </mapper>

@@ -236,8 +236,7 @@ $(function(){
           
           var registerPassword = $("#registerPassword").val();
           var repassword = $("#repassword").val();
-          if (registerPassword < 1
-                  || repassword < 1) {
+          if (registerPassword < 1 || repassword < 1) {
                swal({
                   title : '',
                   text : '비밀번호를 입력해주세요.',

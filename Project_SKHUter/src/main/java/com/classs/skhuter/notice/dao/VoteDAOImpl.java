@@ -1,4 +1,6 @@
 package com.classs.skhuter.notice.dao;
+import java.util.List;
+
 import javax.inject.Inject;
 
 
@@ -13,11 +15,18 @@ public class VoteDAOImpl implements VoteDAO {
 	@Inject
 	  private SqlSession session;
 
-	  private static String namespace = "com.classs.skhuter.mappers.noticeMapper";
+	  private static String namespace = "com.classs.skhuter.mappers.NoticeMapper";
+
+	@Override
+	public List<VoteDTO> readVote() {
+	return session.selectList(namespace + ".readVote");
+	}
+
+	@Override
+	public void registeVote(VoteDTO vote) {
+		session.insert(namespace + ".registeVote", vote);
+	}
 	  
-	  @Override
-	  public VoteDTO getVote(int voteNo) {
-		  return session.selectOne(namespace + ".readVote", voteNo);
-	  };
+	 
 
 }

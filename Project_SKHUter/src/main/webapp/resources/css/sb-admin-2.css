@@ -81,7 +81,7 @@ section {
   border-bottom: 1px solid #e7e7e7;
 }
 .sidebar ul li a.active {
-  background-color: #eeeeee;
+  background-color: rgba(238, 238, 238, 0.24);
 }
 .sidebar .arrow {
   float: right;

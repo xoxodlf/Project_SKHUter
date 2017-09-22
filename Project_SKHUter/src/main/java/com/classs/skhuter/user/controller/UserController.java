@@ -1,8 +1,11 @@
 package com.classs.skhuter.user.controller;
 
-import java.sql.Date;
+import java.net.URLEncoder;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.WebUtils;
 
 import com.classs.skhuter.user.domain.UserDTO;
 import com.classs.skhuter.user.service.UserService;
@@ -40,7 +44,7 @@ public class UserController {
 
 	UserDTO user;
 
-	@RequestMapping(value = "/user/userList", method = RequestMethod.GET)
+	@RequestMapping(value = "/userList", method = RequestMethod.GET)
 	public String noticeList(Model model) {
 		return "user/userList.lay";
 	}
@@ -99,7 +103,6 @@ public class UserController {
 	}
 
 	/**
-	 * 
 	 * 로그인
 	 * 
 	 * @Method Name : login
@@ -117,5 +120,107 @@ public class UserController {
 		}
 
 		model.addAttribute("user", loginCheck);
+	}
+
+	/**
+	 * 가입한 회원의 모든 정보 받아오기
+	 * 
+	 * @Method Name : get
+	 * @param user
+	 */
+	@RequestMapping(value = "/get", method = RequestMethod.GET)
+	public void get(UserDTO user) {
+
+		service.get(user.getUserNo());
+
+	}
+
+	/**
+	 * 회원의 수정 정보를 입력받아 저장
+	 * 
+	 *
+	 * @Method Name : modify
+	 * @param user
+	 * @param session
+	 * @param request
+	 * @param response
+	 * @param rttr
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String modify(UserDTO user, HttpSession session, HttpServletRequest request, HttpServletResponse response,
+			RedirectAttributes rttr) throws Exception {
+
+		service.modify(user);
+
+		Object obj = session.getAttribute("login");
+		Cookie userIdCookie = WebUtils.getCookie(request, "userIdCookie");
+		if (obj != null) {
+			UserDTO user2 = (UserDTO) obj;
+			if (userIdCookie != null) {
+				userIdCookie.setPath("/");
+				userIdCookie.setMaxAge(0);
+				response.addCookie(userIdCookie);
+				// service.keepLogin(user2.getId(), session.getId(), new Date(0));
+
+			}
+		}
+
+		UserDTO userCookie = (UserDTO) user;
+		Cookie userIdCookie2 = new Cookie("userIdCookie", userCookie.getId());
+		userIdCookie2.setPath("/");
+		userIdCookie2.setMaxAge(60 * 60 * 24 * 7);
+		response.addCookie(userIdCookie2);
+
+		Cookie CookieForUser = new Cookie("CookieForUser", URLEncoder.encode((userCookie.getName()), "utf-8"));
+		CookieForUser.setPath("/");
+		CookieForUser.setMaxAge(60 * 60 * 24 * 7);
+		response.addCookie(CookieForUser);
+
+		rttr.addFlashAttribute("message", "success");
+
+		return "redirect:/home";
+	}
+
+	/**
+	 * 
+	 * 회원의 상태를 탈퇴회원으로 변경
+	 * 
+	 * @Method Name : delete
+	 * @param userNo
+	 * @param password
+	 * @param repassword
+	 * @return
+	 */
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<String> delete(@RequestParam("userNo") int userNo, String password, String repassword) {
+		ResponseEntity<String> entity = null;
+
+		String result = "";
+
+		UserDTO loginUser = service.get(userNo);
+		String userPw = loginUser.getPassword();
+		try {
+			// 회원 비밀번호와 입력한 비번이 다르면
+			if (!password.equals(userPw)) {
+				result = "fail";
+
+			} else {
+				result = "success";
+
+				service.delete(userNo);
+			}
+			
+			entity = new ResponseEntity<String>(result, HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+
+		return entity;
+
 	}
 }

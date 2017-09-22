@@ -59,11 +59,11 @@
 <div class="panel-body">
 	<div class="board-btns">
 	<div class="board-btn">
-	<select class="form-control" style="width:20%;display: inline-block;">
-        					<option>승인대기</option>
-        					<option>글티학생</option>
+	<select class="form-control" style="width:23%; display: inline-block; text-align: center;">
+        					<option>승인 대기</option>
+        					<option>일반 학생</option>
         					<option>학생회</option>
-        					<option>임원진</option>
+        					<option>회장단</option>
       					</select>
 	<button type="button" class="btn btn-default">등급 변경</button>
 		<button type="button" class="btn btn-danger">삭제</button>

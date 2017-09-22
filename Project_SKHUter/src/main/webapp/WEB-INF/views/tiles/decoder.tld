@@ -5,7 +5,7 @@
   <uri>urlDecode</uri> 
   <function> 
       <name>urlDecode</name> 
-      <function-class>com.object.asc.util.UrlDecoder</function-class> 
+      <function-class>com.classs.skhuter.util.UrlDecoder</function-class> 
       <function-signature>String urlDecode(java.lang.String)</function-signature> 
   </function> 
 </taglib> 
