@@ -181,6 +181,6 @@ div.col-lg-12 {
 			</div>
 		</div>
 	</div>
-	<jsp:include page="include/stuScheduleModal.jsp" />
+<%-- 	<jsp:include page="/include/stuScheduleModal.jsp" /> --%>
 </body>
 

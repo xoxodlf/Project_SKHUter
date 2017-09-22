@@ -1,5 +1,8 @@
 package com.classs.skhuter.user;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
@@ -38,6 +41,20 @@ public class UserDaoTest {
 		
 		logger.info("신규 회원가입 완료~~~~");
 		logger.info(user.toString());
+	}
+	
+	/** 회원 목록 조회 테스트 */
+	@Test
+	public void TestIdCheck() {
+		
+		List<UserDTO> list = new ArrayList<UserDTO>();
+		
+		list = dao.UserListAll();
+		
+		for (UserDTO user : list) {
+			logger.info("리스트 : "+list);
+		}
+		
 	}
 
 }

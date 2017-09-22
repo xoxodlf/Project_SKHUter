@@ -9,6 +9,9 @@
 
 <title>스쿠터</title>
 
+<!-- 파비콘 설정 -->
+<link rel="shortcut icon" type="image/x-icon" href="/resources/images/skhuter.ico" />
+
 <!-- CSS Global Compulsory -->
 <link rel="stylesheet" href="/resources/css/home/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/home/style.css">
