@@ -66,5 +66,24 @@ public class UserDaoTest {
 		logger.info("상태 변경 완료!");
 		
 	}
+	
+	/** 회원 상태 변경 테스트 */
+	@Test
+	public void TestModify() {
+		
+		UserDTO user = new UserDTO();
+		
+		user.setId("201434025");
+		user.setPassword("2222");
+		user.setName("이종윤");
+		user.setPhone("010-2222-2222");
+		user.setGrade(4);
+		user.setIsLeave(1);
+		
+		dao.modify(user);
+		
+		logger.info("정보 수정 완료!");
+		
+	}
 
 }
