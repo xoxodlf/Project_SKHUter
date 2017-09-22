@@ -1,8 +1,6 @@
 package com.classs.skhuter.user.controller;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.sql.Date;
 
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
@@ -136,24 +134,24 @@ public class UserController {
 		service.get(user.getUserNo());
 
 	}
-	
- 	/**
- 	 * 회원의 수정 정보를 입력받아 저장
- 	 * 
- 	 *
- 	 * @Method Name : modify
- 	 * @param user
- 	 * @param session
- 	 * @param request
- 	 * @param response
- 	 * @param rttr
- 	 * @return
- 	 * @throws Exception
- 	 */
+
+	/**
+	 * 회원의 수정 정보를 입력받아 저장
+	 * 
+	 *
+	 * @Method Name : modify
+	 * @param user
+	 * @param session
+	 * @param request
+	 * @param response
+	 * @param rttr
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modify(UserDTO user, HttpSession session, HttpServletRequest request, HttpServletResponse response,
 			RedirectAttributes rttr) throws Exception {
-		
+
 		service.modify(user);
 
 		Object obj = session.getAttribute("login");
@@ -164,7 +162,7 @@ public class UserController {
 				userIdCookie.setPath("/");
 				userIdCookie.setMaxAge(0);
 				response.addCookie(userIdCookie);
-//				service.keepLogin(user2.getId(), session.getId(), new Date(0));
+				// service.keepLogin(user2.getId(), session.getId(), new Date(0));
 
 			}
 		}
@@ -180,9 +178,49 @@ public class UserController {
 		CookieForUser.setMaxAge(60 * 60 * 24 * 7);
 		response.addCookie(CookieForUser);
 
-
 		rttr.addFlashAttribute("message", "success");
 
 		return "redirect:/home";
+	}
+
+	/**
+	 * 
+	 * 회원의 상태를 탈퇴회원으로 변경
+	 * 
+	 * @Method Name : delete
+	 * @param userNo
+	 * @param password
+	 * @param repassword
+	 * @return
+	 */
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<String> delete(@RequestParam("userNo") int userNo, String password, String repassword) {
+		ResponseEntity<String> entity = null;
+
+		String result = "";
+
+		UserDTO loginUser = service.get(userNo);
+		String userPw = loginUser.getPassword();
+		try {
+			// 회원 비밀번호와 입력한 비번이 다르면
+			if (!password.equals(userPw)) {
+				result = "fail";
+
+			} else {
+				result = "success";
+
+				service.delete(userNo);
+			}
+			
+			entity = new ResponseEntity<String>(result, HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+
+		return entity;
+
 	}
 }

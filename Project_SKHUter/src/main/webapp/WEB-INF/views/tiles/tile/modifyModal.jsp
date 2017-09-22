@@ -290,8 +290,7 @@ $(function() {
 	    var repassword = $('#repassword').val();
 	    $('#repassword').val("");
 	    
-        if (password < 1
-                || repassword < 1) {
+        if (password < 1 || repassword < 1) {
              swal({
                 title : '',
                 text : '비밀번호를 입력해주세요.',
@@ -341,7 +340,7 @@ $(function() {
                         return false;
                   	  
                       }else{
-        				swal('탈퇴완료','같은 아이디로 재가입 하실 수 없습니다.','success').then(function () {
+        				swal('탈퇴 완료!','같은 아이디로 재가입 하실 수 없습니다.','success').then(function () {
                   			location.href = "/";
           				})
                 	  
