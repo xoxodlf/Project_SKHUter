@@ -1,5 +1,7 @@
 package com.classs.skhuter.user.service;
 
+import java.util.List;
+
 import com.classs.skhuter.user.domain.UserDTO;
 
 /**
@@ -18,4 +20,7 @@ public interface UserService {
 	
 	/** 회원 아이디 중복 체크*/
 	public boolean idCheck(String id);
+	
+	/** 회원 목록 조회 */
+	public List<UserDTO> UserListAll ();
 }

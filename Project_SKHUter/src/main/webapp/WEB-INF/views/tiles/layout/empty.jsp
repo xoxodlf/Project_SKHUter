@@ -10,6 +10,9 @@
 	
 	<title>스쿠터</title>
 	
+	<!-- 파비콘 설정 -->
+	<link rel="shortcut icon" type="image/x-icon" href="/resources/images/skhuter.ico" />
+	
 	
     <!-- SweetAlert JavaScript -->
     <script src="/resources/js/sweetalert2.min.js"></script>

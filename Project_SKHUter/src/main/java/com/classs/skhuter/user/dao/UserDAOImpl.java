@@ -1,5 +1,7 @@
 package com.classs.skhuter.user.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -43,6 +45,11 @@ public class UserDAOImpl implements UserDAO {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public List<UserDTO> UserListAll() {
+		return sqlSession.selectList(namespace + ".userListAll");
 	}
 
 }

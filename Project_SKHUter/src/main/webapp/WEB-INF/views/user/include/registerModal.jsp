@@ -222,7 +222,7 @@ $(function(){
            }	
         
           
-          if ($('#display').text() == "이미 사용중인 아이디입니다.") {
+          if ($('#display').text() == "이미 사용 중입니다.") {
               swal({
                  title : '아이디 중복!',
                  text : '다른 아이디를 입력해주세요.',

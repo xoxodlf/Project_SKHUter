@@ -1,5 +1,7 @@
 package com.classs.skhuter.user.dao;
 
+import java.util.List;
+
 import com.classs.skhuter.user.domain.UserDTO;
 
 /**
@@ -16,6 +18,10 @@ public interface UserDAO {
 	/** 회원 가입 */
 	public void register(UserDTO user);
 	
+	/** 회원 아이디 중복 체크 */
 	public boolean idCheck (String id);
+	
+	/** 회원 목록 조회 */
+	public List<UserDTO> UserListAll ();
 
 }
