@@ -39,6 +39,11 @@ public class UserDAOImpl implements UserDAO {
 	public void register(UserDTO user) {
 		sqlSession.insert(namespace + ".register", user);
 	}
+	
+	@Override
+	public void setStatus(String id) {
+		sqlSession.update(namespace + ".setStatus", id);
+	}
 
 	@Override
 	public boolean idCheck(String id) {
@@ -80,7 +85,5 @@ public class UserDAOImpl implements UserDAO {
 	public UserDTO checkUserWithSessionKey(String cookieValue) {
 		return sqlSession.selectOne(namespace + ".checkUserWithSessionKey", cookieValue);
 	}
-
-
 
 }

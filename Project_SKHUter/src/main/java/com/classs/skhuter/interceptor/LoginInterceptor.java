@@ -78,6 +78,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		if (user2.getName() != null) {
 			
 			UserDTO userInfo = service.get(user2.getUserNo());
+			
+			logger.info("유저 정보 : " + userInfo.toString());
 
 			if(userInfo.getStatus() == 1){
 				

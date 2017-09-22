@@ -11,7 +11,7 @@
 
 			<div class="row" id="modalWrapper">
 				<div class="col-xs-10 col-sm-10">
-					<div style="color: white; font-size: 20px; text-align: center; margin-top: 30px">이종윤</div>
+					<div style="color: white;font-size: 25px;text-align: center;margin-top: 50px;margin-bottom: 5px;">${m:urlDecode(cookie.CookieForUser.value)}</div>
 				</div>
 			</div>
 
