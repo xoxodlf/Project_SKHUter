@@ -6,12 +6,13 @@
 <nav class="navbar navbar-default sidebar" role="navigation">
 
 		<div class="sidebar-nav navbar-collapse">
-			<a class="navbar-brand" href="/home">
-			<img src="/resources/images/logo2.png" style="width: 180px; margin-left: 20px"> </a>
+			<a class="navbar-brand" href="/home"> <img src="/resources/images/logo2.png" style="width: 180px; margin-left: 20px"> </a>
 
 			<div class="row" id="modalWrapper">
 				<div class="col-xs-10 col-sm-10">
-					<div style="color: white;font-size: 25px;text-align: center;margin-top: 50px;margin-bottom: 5px;">${m:urlDecode(cookie.CookieForUser.value)}</div>
+					<div style="font-size: 25px;text-align: center;margin-top: 50px;margin-bottom: 5px;">
+						<a data-toggle="modal" data-target="#modifyModal" style="color: white;"> ${m:urlDecode(cookie.CookieForUser.value)} </a>
+					</div>
 				</div>
 			</div>
 
@@ -58,3 +59,6 @@
 		<!-- /.sidebar-collapse -->
 	<!-- /.navbar-static-side -->
 </nav>
+
+<!-- Modal -->
+<jsp:include page="modifyModal.jsp" />

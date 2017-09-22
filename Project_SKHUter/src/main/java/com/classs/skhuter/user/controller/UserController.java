@@ -40,7 +40,7 @@ public class UserController {
 
 	UserDTO user;
 
-	@RequestMapping(value = "/user/userList", method = RequestMethod.GET)
+	@RequestMapping(value = "/userList", method = RequestMethod.GET)
 	public String noticeList(Model model) {
 		return "user/userList.lay";
 	}
