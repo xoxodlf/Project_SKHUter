@@ -16,7 +16,7 @@
 }
 
 #stuScheduleModal label {
-  font-family: 'LotteMartDream';
+  font-family: 'LotteMartDream'; 
 }
 .list-group-item{
 border:none;
