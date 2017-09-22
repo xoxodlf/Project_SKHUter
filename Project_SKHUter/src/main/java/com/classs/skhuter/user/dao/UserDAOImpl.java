@@ -86,4 +86,35 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne(namespace + ".checkUserWithSessionKey", cookieValue);
 	}
 
+	@Override
+	public void modify(UserDTO user) {
+		sqlSession.update(namespace + ".modify", user);
+	}
+
+	@Override
+	public String findPw(String id, String name, String phone) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("id", id);
+		paramMap.put("name", name);
+		paramMap.put("phone", phone);
+		
+		return sqlSession.selectOne(namespace + ".findPw", paramMap);
+	}
+
+	@Override
+	public void createNewPw(String id, String password) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("id", id);
+		paramMap.put("password", password);
+		
+		sqlSession.update(namespace + ".createNewPw", paramMap);
+	}
+
+	@Override
+	public void delete(int userNo) {
+		sqlSession.update(namespace + ".delete", userNo);
+	}
+
 }

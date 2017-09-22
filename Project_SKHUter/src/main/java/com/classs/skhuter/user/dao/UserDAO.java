@@ -39,5 +39,17 @@ public interface UserDAO {
 	
 	/** 로그인쿠키로 사용자 조회 */
 	public UserDTO checkUserWithSessionKey (String cookieValue);
+	
+	/** 회원 정보수정 */
+	public void modify (UserDTO user);
+	
+	/** 아이디, 이름, 전화번호로 비밀번호 찾기*/
+	public String findPw(String id, String name, String phone);
+	
+	/** 비밀번호 찾기 후 새로운 비밀번호 등록 */
+	public void createNewPw(String id, String password);
+	
+	/** 회원 탈퇴*/
+	public void delete(int userNo);
 
 }
