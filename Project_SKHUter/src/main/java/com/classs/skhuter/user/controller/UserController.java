@@ -1,6 +1,7 @@
 package com.classs.skhuter.user.controller;
 
 import java.net.URLEncoder;
+import java.sql.Date;
 
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
@@ -212,7 +213,7 @@ public class UserController {
 
 				service.delete(userNo);
 			}
-			
+
 			entity = new ResponseEntity<String>(result, HttpStatus.OK);
 
 		} catch (Exception e) {
@@ -222,5 +223,46 @@ public class UserController {
 
 		return entity;
 
+	}
+
+	/**
+	 * 
+	 * 로그아웃 실행
+	 * 
+	 * @Method Name : logout
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		Object obj = session.getAttribute("login");
+
+		if (obj != null) {
+			UserDTO user = (UserDTO) obj;
+
+			session.removeAttribute("login");
+			session.invalidate();
+
+			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+			Cookie userIdCookie = WebUtils.getCookie(request, "userIdCookie");
+
+			if (loginCookie != null) {
+				loginCookie.setPath("/");
+				loginCookie.setMaxAge(0);
+				response.addCookie(loginCookie);
+//				service.keepLogin(user.getId(), session.getId(), new Date(0));
+			}
+			if (userIdCookie != null) {
+				userIdCookie.setPath("/");
+				userIdCookie.setMaxAge(0);
+				response.addCookie(userIdCookie);
+//				service.keepLogin(user.getId(), session.getId(), new Date(0));
+			}
+
+		}
+		return "redirect:/";
 	}
 }

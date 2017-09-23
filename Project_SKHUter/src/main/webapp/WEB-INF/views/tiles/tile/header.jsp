@@ -15,7 +15,7 @@
 					</div>
 				</div>
 			</div>
-
+		 <form action="/user/logout" id="logout">
 			<ul class="nav" id="side-menu" style="margin-top: 10%">
 				<li id="studentList">
 					<a href="/user/userList" style="color: white;"><i class="fa fa-th-list fa-fw"></i> 학생 목록 </a>
@@ -52,13 +52,36 @@
 					<a href="/board/boardList" style="color: white;"><i class="fa fa-comments fa-fw"></i> 익명 게시판 </a>
 				</li>
 				<li id="logout">
-					<a href="/" style="color: white;"><i class="fa fa-sign-out fa-fw"></i> 로그아웃 </a>
+					<a href="#" class="logout" style="color: white;"><i class="fa fa-sign-out fa-fw"></i> 로그아웃 </a>
 				</li>
 			</ul>
+			</form>
 		</div>
 		<!-- /.sidebar-collapse -->
 	<!-- /.navbar-static-side -->
 </nav>
+
+
+<script>
+
+$('#logout').on('click', function() {
+    swal({
+       title: '로그아웃 하시겠습니까?',
+       text: "",
+      type: 'warning',
+       showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+       cancelButtonColor: '#d33',
+       confirmButtonText: 'YES',
+       cancelButtonText: 'NO'
+    }).then(function () {
+       document.getElementById("logout").submit();
+       
+     })
+   
+ });
+
+</script>
 
 <!-- Modal -->
 <jsp:include page="modifyModal.jsp" />
