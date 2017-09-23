@@ -69,169 +69,39 @@
 	<div class="panel-body">
            	<div class="board-btns">
 				<div class="board-btn">
-					<button type="button" class="btn btn-danger">삭제</button>
 				</div>
 				<div class="board-btn">
 					<button type="button" data-toggle="modal" data-target="#doMeetingModal" class="btn btn-default">등록</button>
 				</div>
 			</div>
             <div class="row" style="margin-top: 20px">
+            <c:forEach items="${list }" var="MeetingNoteDTO" varStatus="status">
                <div class="col-lg-4" style="text-align:left">
                   <div class="panel panel-info">
                      <div class="panel-heading">
-                        	제목
+                        	${MeetingNoteDTO.title}
                            <a class="btn btn-default btn-sm removeBtn" id="removeBtn"  style="float: right; padding: 2px 9px;"> 
                               <i class="fa fa-trash-o fa-sm"></i> 
                            </a>
-                           <input type="checkbox" class="posit" >
                      </div>
                      <div class="panel-body" style="height: 90px">
                         <div class="libraryList">
-                           <a href="#" class="thumbnailList"> 
-                              		파일 이름
-                           </a>
+								${MeetingNoteDTO.fileName }
                         </div>
                      </div>
                      
-                     <div class="panel-footer">   작성자 : 나상연
+                     <div class="panel-footer">   작성자 : ${name[status.index].name}
                      <a class="btn btn-default btn-sm" id="downloadBtn"  onclick="" style="float: right; padding: 2px 9px;"> 
                            <i class="fa fa-download fa-sm"></i> 
                      </a>
                      </div>
                   </div>
                </div>
-               <div class="col-lg-4" style="text-align:left">
-                    <div class="panel panel-info">
-                     <div class="panel-heading">
-                        	제목
-                           <a class="btn btn-default btn-sm removeBtn" id="removeBtn"  style="float: right; padding: 2px 9px;"> 
-                              <i class="fa fa-trash-o fa-sm"></i> 
-                           </a>
-                            <input type="checkbox" class="posit">
-                     </div>
-
-                     <div class="panel-body" style="height: 90px">
-                        <div class="libraryList" class="posit">
-                           <a href="#" class="thumbnailList"> 
-                              		파일 이름
-                           </a>
-                        </div>
-                     </div>
-                     
-                     <div class="panel-footer">   작성자 : 이종윤
-                     <a class="btn btn-default btn-sm" id="downloadBtn"  onclick="" style="float: right; padding: 2px 9px;"> 
-                           <i class="fa fa-download fa-sm"></i> 
-                     </a>
-                     </div>
-                  </div>
-                </div>
+               </c:forEach>
                 <!-- /.col-lg-4 -->
-                <div class="col-lg-4" style="text-align:left">
-                    <div class="panel panel-info">
-                     <div class="panel-heading">
-                        	제목
-                           <a class="btn btn-default btn-sm removeBtn" id="removeBtn"  style="float: right; padding: 2px 9px;"> 
-                              <i class="fa fa-trash-o fa-sm"></i> 
-                           </a>
-                            <input type="checkbox" class="posit">
-                     </div>
-
-                     <div class="panel-body" style="height: 90px">
-                        <div class="libraryList">
-                           <a href="#" class="thumbnailList"> 
-                              		파일 이름
-                           </a>
-                        </div>
-                     </div>
-                     
-                     <div class="panel-footer">   작성자 : 김희태
-                     <a class="btn btn-default btn-sm" id="downloadBtn"  onclick="" style="float: right; padding: 2px 9px;"> 
-                           <i class="fa fa-download fa-sm"></i> 
-                     </a>
-                     </div>
-                  </div>
-                </div>
-                </div>
-                <!-- /.col-lg-4 -->
-                <div class="row" style="margin-top: 20px">
-                <div class="col-lg-4" style="text-align:left">
-                    <div class="panel panel-info">
-                     <div class="panel-heading">
-                        	제목
-                           <a class="btn btn-default btn-sm removeBtn" id="removeBtn"  style="float: right; padding: 2px 9px;"> 
-                              <i class="fa fa-trash-o fa-sm"></i> 
-                           </a>
-                            <input type="checkbox" class="posit">
-                     </div>
-
-                     <div class="panel-body" style="height: 90px">
-                        <div class="libraryList">
-                           <a href="#" class="thumbnailList"> 
-                              		파일 이름
-                           </a>
-                        </div>
-                     </div>
-                     
-                     <div class="panel-footer">   작성자 : 김희태
-                     <a class="btn btn-default btn-sm" id="downloadBtn"  onclick="" style="float: right; padding: 2px 9px;"> 
-                           <i class="fa fa-download fa-sm"></i> 
-                     </a>
-                     </div>
-                  </div>
-                </div>
-                <div class="col-lg-4" style="text-align:left">
-                    <div class="panel panel-info">
-                     <div class="panel-heading">
-                        	제목
-                           <a class="btn btn-default btn-sm removeBtn" id="removeBtn"  style="float: right; padding: 2px 9px;"> 
-                              <i class="fa fa-trash-o fa-sm"></i> 
-                           </a>
-                            <input type="checkbox" class="posit">
-                     </div>
-
-                     <div class="panel-body" style="height: 90px">
-                        <div class="libraryList">
-                           <a href="#" class="thumbnailList"> 
-                              		파일 이름
-                           </a>
-                        </div>
-                     </div>
-                     
-                     <div class="panel-footer">   작성자 : 김희태
-                     <a class="btn btn-default btn-sm" id="downloadBtn"  onclick="" style="float: right; padding: 2px 9px;"> 
-                           <i class="fa fa-download fa-sm"></i> 
-                     </a>
-                     </div>
-                  </div>
-                </div>
-                <div class="col-lg-4" style="text-align:left">
-                    <div class="panel panel-info">
-                     <div class="panel-heading">
-                        	제목
-                           <a class="btn btn-default btn-sm removeBtn" id="removeBtn"  style="float: right; padding: 2px 9px;"> 
-                              <i class="fa fa-trash-o fa-sm"></i> 
-                           </a>
-                            <input type="checkbox" class="posit">
-                     </div>
-
-                     <div class="panel-body" style="height: 90px">
-                        <div class="libraryList">
-                           <a href="#" class="thumbnailList"> 
-                              		파일 이름
-                           </a>
-                        </div>
-                     </div>
-                     
-                     <div class="panel-footer">   작성자 : 김희태
-                     <a class="btn btn-default btn-sm" id="downloadBtn"  onclick="" style="float: right; padding: 2px 9px;"> 
-                           <i class="fa fa-download fa-sm"></i> 
-                     </a>
-                     </div>
-                  </div>
-                </div>
                 </div>
             </div>
-           </div>
+        </div>
             <!-- /.row -->
 </body>
 <jsp:include page="include/doMeetingModal.jsp" />

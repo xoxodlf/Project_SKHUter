@@ -1,6 +1,7 @@
 package com.classs.skhuter.user.controller;
 
 import java.net.URLEncoder;
+import java.sql.Date;
 
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
@@ -212,7 +213,7 @@ public class UserController {
 
 				service.delete(userNo);
 			}
-			
+
 			entity = new ResponseEntity<String>(result, HttpStatus.OK);
 
 		} catch (Exception e) {
@@ -222,5 +223,100 @@ public class UserController {
 
 		return entity;
 
+	}
+
+	/**
+	 * 
+	 * 로그아웃 실행
+	 * 
+	 * @Method Name : logout
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		Object obj = session.getAttribute("login");
+
+		if (obj != null) {
+			UserDTO user = (UserDTO) obj;
+
+			session.removeAttribute("login");
+			session.invalidate();
+
+			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+			Cookie userIdCookie = WebUtils.getCookie(request, "userIdCookie");
+
+			if (loginCookie != null) {
+				loginCookie.setPath("/");
+				loginCookie.setMaxAge(0);
+				response.addCookie(loginCookie);
+				// service.keepLogin(user.getId(), session.getId(), new Date(0));
+			}
+			if (userIdCookie != null) {
+				userIdCookie.setPath("/");
+				userIdCookie.setMaxAge(0);
+				response.addCookie(userIdCookie);
+				// service.keepLogin(user.getId(), session.getId(), new Date(0));
+			}
+
+		}
+		return "redirect:/";
+	}
+
+	/**
+	 * 
+	 * 비밀번호 찾기
+	 * 
+	 * @Method Name : findPw
+	 * @param id
+	 * @param name
+	 * @param phone
+	 * @return
+	 */
+	@RequestMapping(value = "/findPw")
+	@ResponseBody
+	public ResponseEntity<String> findPw(String id, String name, String phone) {
+		ResponseEntity<String> entity = null;
+
+		try {
+			String returnPw = service.findPw(id, name, phone);
+			entity = new ResponseEntity<String>(returnPw, HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
+	/**
+	 * 
+	 * 새로운 비밀번호를 생성
+	 * 
+	 * @Method Name : createNewPw
+	 * @param password
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/createNewPw")
+	@ResponseBody
+	public ResponseEntity<String> createNewPw(@RequestParam("password") String password,
+			@RequestParam("id") String id) {
+		ResponseEntity<String> entity = null;
+
+		try {
+			service.createNewPw(id, password);
+
+			String success = "success";
+
+			entity = new ResponseEntity<String>(success, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
 	}
 }

@@ -1,5 +1,7 @@
 package com.classs.skhuter.council.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -20,6 +22,18 @@ public class MeetingNoteDAOImpl implements MeetingNoteDAO {
 	public void register(MeetingNoteDTO meetingNote) {
 		// TODO Auto-generated method stub
 		sqlSession.insert(namespace+".insertMeetingNote",meetingNote);
+	}
+
+	@Override
+	public void remove(int meetingNoteNo) {
+		// TODO Auto-generated method stub
+		sqlSession.delete(namespace+".deleteMeetingNote", meetingNoteNo);
+	}
+
+	@Override
+	public List<MeetingNoteDTO> listAll() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".meetingNoteListAll");
 	}
 	
 }

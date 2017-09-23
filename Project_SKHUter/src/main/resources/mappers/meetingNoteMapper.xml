@@ -10,4 +10,17 @@ INSERT INTO Meeting_note (meeting_note_no,user_no,title,file_name,uuid_name,orig
 VALUES (seq_Meeting_note.nextVal,#{userNo},#{title},#{fileName},#{uuidName},#{originName},sysdate)
 </insert>
 
+<select id="meetingNoteListAll" resultType="MeetingNote">
+SELECT meeting_note_no as meetingNoteNo, user_no as userNo, title, file_name as fileName, uuid_name as uuidName, origin_name as originName, regdate 
+FROM Meeting_note
+order by meeting_note_no desc, regdate desc
+</select>
+
+<delete id="deleteMeetingNote">
+DELETE FROM Meeting_note 
+WHERE meeting_note_no = #{meetingNoteNo}
+</delete>
+
+
+
 </mapper>
