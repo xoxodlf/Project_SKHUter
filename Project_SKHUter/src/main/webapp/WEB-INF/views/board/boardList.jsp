@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <style>
 /* 기타 */
 	/* 페이지 제목 : 익명 게시판 : 가운데 정렬 + 굵게 */
@@ -31,6 +32,15 @@
 	}
 
 /* 표 */
+
+	/* 전체 메뉴 글씨 흰색으로 나오는 현상 익명게시판 리스트만 임시 수정 */
+	/* 링크 시 밑줄 제거 */
+	.table > tbody > tr > th > a, .table > tbody > tr > td > a {
+   		color: #333;
+    }
+     .table > tbody > tr > td > a:hover, .table > tbody > tr > td > a:active, .table > tbody > tr > td > a:link{
+     	color: #40596b;
+     }
 	/* 링크 시 밑줄 제거 */
 	a, a:hover, a:active, a:link {
 		text-decoration: none;
@@ -44,6 +54,14 @@
 		position:relative;
 		width: inherit;
 	}
+	/* 테이블 게시물리스트부분 글자크기 및 정렬*/
+	.table > thead > tr > th, .table > tbody > tr > th, .table > tbody > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: middle;
+    font-size: medium;
+    
+}
 /* 검색 */
 	div.search-box {
 		display: block;
@@ -53,8 +71,45 @@
 		display: inline-block;
 		width: 20%;
 	}
-	
 </style>
+
+<!-- 전체 체크박스 클릭시 모든 체크박스 선택
+<--- 체크박스 하나라도 해제시 전체 체크부분 해제 -->
+<script type="text/javascript">
+	function allCheckFunc(obj) {
+		$("[name=checkOne]").prop("checked", $(obj).prop("checked"));
+	}
+
+	/* 체크박스 체크시 전체선택 체크 여부 */
+	function oneCheckFunc(obj) {
+		var allObj = $("[name=checkAll]");
+		var objName = $(obj).attr("name");
+
+		if ($(obj).prop("checked")) {
+			checkBoxLength = $("[name=" + objName + "]").length;
+			checkedLength = $("[name=" + objName + "]:checked").length;
+
+			if (checkBoxLength == checkedLength) {
+				allObj.prop("checked", true);
+			} else {
+				allObj.prop("checked", false);
+			}
+		} else {
+			allObj.prop("checked", false);
+		}
+	}
+
+	$(function() {
+		$("[name=checkAll]").click(function() {
+			allCheckFunc(this);
+		});
+		$("[name=checkOne]").each(function() {
+			$(this).click(function() {
+				oneCheckFunc($(this));
+			});
+		});
+	});
+</script>
 	<div class="row">
 		<div class="col-lg-12">
 			<img src="/resources/images/title/board.png" class="page-header" style="width: 20%;">
@@ -75,54 +130,66 @@
 	<div class="table-responsive">
 		<table class="table table-hover">
 			<colgroup>
-				<col width="7%"/>
-				<col width="7%"/>
+				<col width="6%"/>
+				<col width="6%"/>
+				<col width="13%"/>
 				<col width="*"/>
-				<col width="15%"/>
-				<col width="7%"/>
-				<col width="7%"/>
+				<col width="12%"/>
+				<col width="6%"/>
+				<col width="6%"/>
+				<col width="6%"/>
 			</colgroup>
 			<thead>
 				<tr>
-				<th>전체<br/><input type="checkbox" /></th>
+				<th style="margin-bottom: 0px;">전체<br/><input type="checkbox"  name="checkAll" /></th>
 				<th>No</th>
+				<th> </th>
 				<th>제목</th>
 				<th>작성일</th>
 				<th>조회수</th>
-				<th>추천수</th>
+				<th>추천</th>
+				<th>비추천</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type="checkbox" /></td>
+					<td><input type="checkbox" name="checkOne"/></td>
 					<td>4</td>
+					<th> </th>
 					<td><a href="/board/boardDetail">야 진짜 그건 아니지 않냐 [5]</a></td>
-					<td>2017-09-16</td>
+					<td>2017-09-16<br/><p style="font-size: small;margin-bottom: 0px;">13:01</p></td>
 					<td>32</td>
+					<td>10</td>
 					<td>10</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" /></td>
+					<td><input type="checkbox"  name="checkOne" /></td>
 					<td>3</td>
-					<td><a href="#">야 진짜 그건 아니지 않냐</a></td>
-					<td>2017-09-16</td>
+					<th> </th>
+					<td><a href="#">야 진짜 그건 아니지 않냐 [5]</a></td>
+					<td>2017-09-16<br/><p style="font-size: small;margin-bottom: 0px;">13:01</p></td>
 					<td>32</td>
-					<td>32</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>2</td>
-					<td><a href="#">야 진짜 그건 아니지 않냐</a></td>
-					<td>2017-09-16</td>
 					<td>32</td>
 					<td>10</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" /></td>
-					<td>1</td>
-					<td><a href="#">야 진짜 그건 아니지 않냐</a></td>
-					<td>2017-09-16</td>
+					<td><input type="checkbox"  name="checkOne" /></td>
+					<td>2</td>
+					<th> </th>
+					<td><a href="#">야 진짜 그건 아니지 않냐 [5]</a></td>
+					<td>2017-09-16<br/><p style="font-size: small;margin-bottom: 0px;">13:01</p></td>
 					<td>32</td>
+					<td>10</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox"  name="checkOne" /></td>
+					<td>1</td>
+					<th > </th>
+					<td><a href="#">야 진짜 그건 아니지 않냐 [5]</a></td>
+					<td>2017-09-16<br/><p style="font-size: small;margin-bottom: 0px;">13:01</p></td>
+					<td>32</td>
+					<td>10</td>
 					<td>10</td>
 				</tr>
 			</tbody>
