@@ -20,7 +20,6 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/home/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/ionicons.min.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/animate.min.css" />
-<link rel="stylesheet" type="text/css" href="/resources/css/home/flexslider.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/owl.carousel.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/owl.theme.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/vegas.min.css" />
@@ -114,8 +113,7 @@
 
 												<!-- content slide -->
 												<div class="content-slide">
-													<div class="row animated bounceInUp"
-														data-animation-delay="700">
+													<div class="row animated bounceInUp" data-animation-delay="700">
 														<!-- Team -->
 														<div class="col-md-3 col-sm-6">
 															<div class="panel">
@@ -123,9 +121,9 @@
 																<h4>이종윤</h4>
 																<h6>Team Leader</h6>
 																<h6>Glocal IT</h6>
-																<a href="#"><i class="fa fa-facebook"></i></a> 
+																<a href="https://www.facebook.com/YiJongYoon" target="_blank"><i class="fa fa-facebook"></i></a> 
 																<a href="#"><i class="fa fa-twitter"></i></a> 
-																<a href="#"><i class="fa fa-instagram"></i></a> 
+																<a href="https://www.instagram.com/y5.5n/" target="_blank"><i class="fa fa-instagram"></i></a> 
 															</div>
 														</div>
 														<!-- /panel -->
@@ -136,7 +134,7 @@
 																<h4>나상연</h4>
 																<h6>Team Member</h6>
 																<h6>Glocal IT</h6>
-																<a href="#"><i class="fa fa-facebook"></i></a> 
+																<a href="https://www.facebook.com/sangyeon.na" target="_blank"><i class="fa fa-facebook"></i></a> 
 																<a href="#"><i class="fa fa-twitter"></i></a> 
 																<a href="#"><i class="fa fa-instagram"></i></a> 
 															</div>
@@ -149,9 +147,9 @@
 																<h4>양태일</h4>
 																<h6>Team Member</h6>
 																<h6>Glocal IT</h6>
-																<a href="#"><i class="fa fa-facebook"></i></a> 
+																<a href="https://www.facebook.com/taeil.yang.75" target="_blank"><i class="fa fa-facebook"></i></a> 
 																<a href="#"><i class="fa fa-twitter"></i></a> 
-																<a href="#"><i class="fa fa-instagram"></i></a> 
+																<a href="https://www.instagram.com/taeil1928/" target="_blank"><i class="fa fa-instagram"></i></a> 
 															</div>
 														</div>
 														<!-- /panel -->
@@ -162,7 +160,7 @@
 																<h4>이겨레</h4>
 																<h6>Team Member</h6>
 																<h6>Glocal IT</h6>
-																<a href="#"><i class="fa fa-facebook"></i></a> 
+																<a href="https://www.facebook.com/profile.php?id=100006269670267" target="_blank"><i class="fa fa-facebook"></i></a> 
 																<a href="#"><i class="fa fa-twitter"></i></a> 
 																<a href="#"><i class="fa fa-instagram"></i></a> 
 															</div>

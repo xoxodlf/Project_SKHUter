@@ -21,7 +21,6 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/home/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/ionicons.min.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/animate.min.css" />
-<link rel="stylesheet" type="text/css" href="/resources/css/home/flexslider.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/owl.carousel.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/owl.theme.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/vegas.min.css" />

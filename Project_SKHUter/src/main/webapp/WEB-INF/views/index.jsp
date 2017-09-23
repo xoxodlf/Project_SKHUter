@@ -21,7 +21,6 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/home/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/ionicons.min.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/animate.min.css" />
-<link rel="stylesheet" type="text/css" href="/resources/css/home/flexslider.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/owl.carousel.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/owl.theme.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/vegas.min.css" />
@@ -81,7 +80,7 @@ $(function(){
 	var message = $("#successMessage").val();
 	if(message == "success") {
 		swal(     
-          		 '회원가입 신청 완료!',
+          		 '회원가입 완료!',
           	     '관리자에게 승인 요청되었습니다.',
           	     'success'
           		)
@@ -90,7 +89,7 @@ $(function(){
 	var message = $("#statusMessage").val();
 	if(message == "status") {
 		swal(     
-          		 '메일 인증 성공!',
+          		 '가입 승인 완료!',
           	     '로그인 후 이용가능합니다.',
           	     'success'
           		)
@@ -192,7 +191,7 @@ function getUrlParams() {
 															<!-- section page -->
 															<form method="post" action="/user/login" class="login-form">
 																<div class="section-page" id="signup">
-																	<input type="text" name="id" placeholder="ID" class="required"> <br>
+																	<input type="text" name="id" placeholder="ID" class="required" maxlength="9"> <br>
 																	<input type="password" name="password" placeholder="Password" class="contact-form-email required"> <br>
 																	
 																	<br>
