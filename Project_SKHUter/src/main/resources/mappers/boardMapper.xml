@@ -3,44 +3,27 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 네임스페이스(사용영역) 설정 -->
-<mapper namespace="com.classs.skhuter.mappers.BoardMapper">
 
+<mapper namespace="com.classs.skhuter.mappers.BoardMapper">
 	<!-- 글쓰기 -->
 	<insert id="create">
-		insert into Board (board_no,user_no, title,regdate,hit_count, password, content, like_count,hate_count)
-		values(seq_Board.nextVal, 1, ${title}, sysdate, 0, ${password}, ${content}, 0,0)
+		INSERT INTO Board (board_no, user_no, title, regdate,
+		hit_count, password, content, like_count, hate_count)
+		VALUES
+		(seq_board.nextVal, 4, #{title}, sysdate, 10, #{password}, #{content},
+		4, 3)
 	</insert>
-<!--  
-	<select id="read" resultType="com.classs.skhuter.Board.domain">
-		select
-		boardNo, title, regdate,
-		hitCount, password, content, like, hate
-		from
-		Board
-		where boardNo =
-		#{boardNo}
+
+	<!-- 게시글 읽기 -->
+	<select id="read" resultType="board">
+		SELECT board_no as boardNo, user_no as userNo, title, 
+		regdate, hit_count as hitCount, password, content, 
+		like_count as likeCount, hate_count as hateCount 
+		FROM Board where board_no = #{boardNo}
 	</select>
--->
-	<!-- <select id="listPage" resultType="BoardVO"> <![CDATA[ select bno, title, 
-		content, writer, regdate, viewcnt from tbl_board where bno > 0 order by bno 
-		desc, regdate desc limit #{page}, 10 ]]> </select> <select id="listCriteria" 
-		resultType="BoardVO"> <![CDATA[ select bno, title, content, writer, regdate, 
-		viewcnt from tbl_board where bno > 0 order by bno desc, regdate desc limit 
-		#{pageStart}, #{perPageNum} ]]> </select> <select id="countPaging" resultType="int"> 
-		<![CDATA[ select count(bno) from tbl_board where bno > 0 ]]> </select> <sql 
-		id="search"> <if test="searchType != null"> <if test="searchType == 't'.toString()"> 
-		and title like CONCAT('%', #{keyword}, '%') </if> <if test="searchType == 
-		'c'.toString()"> and content like CONCAT('%', #{keyword}, '%') </if> <if 
-		test="searchType == 'w'.toString()"> and writer like CONCAT('%', #{keyword}, 
-		'%') </if> <if test="searchType == 'tc'.toString()"> and ( title like CONCAT('%', 
-		#{keyword}, '%') OR content like CONCAT('%', #{keyword}, '%')) </if> <if 
-		test="searchType == 'cw'.toString()"> and ( content like CONCAT('%', #{keyword}, 
-		'%') OR writer like CONCAT('%', #{keyword}, '%')) </if> <if test="searchType 
-		== 'tcw'.toString()"> and ( title like CONCAT('%', #{keyword}, '%') OR content 
-		like CONCAT('%', #{keyword}, '%') OR writer like CONCAT('%', #{keyword}, 
-		'%')) </if> </if> </sql> <select id="listSearch" resultType="BoardVO"> <![CDATA[ 
-		select * from tbl_board where bno > 0 ]]> <include refid="search"></include> 
-		<![CDATA[ order by bno desc limit #{pageStart}, #{perPageNum} ]]> </select> 
-		<select id="listSearchCount" resultType="int"> <![CDATA[ select count(bno) 
-		from tbl_board where bno > 0 ]]> <include refid="search"></include> </select> -->
+	
+	<!-- 게시물 삭제 -->
+	<delete id="delete">
+		delete from board where board_no = #{board_no}
+	</delete>
 </mapper>

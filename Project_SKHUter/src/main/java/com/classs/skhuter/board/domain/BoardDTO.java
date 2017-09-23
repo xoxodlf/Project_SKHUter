@@ -13,20 +13,28 @@ import java.sql.Date;
  */
 public class BoardDTO {
 	private int boardNo;
+	private int userNo; 
 	private String title;
 	private Date regdate;
 	private int hitCount;
 	private String password;
 	private String content;
-	private int like;
-	private int hate;
+	private int likeCount;
+	private int hateCount;
 
 	public int getBoardNo() {
 		return boardNo;
 	}
 
-	public void setBoardNo(int boardno) {
-		this.boardNo = boardno;
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
+	}
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 
 	public String getTitle() {
@@ -69,26 +77,27 @@ public class BoardDTO {
 		this.content = content;
 	}
 
-	public int getLike() {
-		return like;
+	public int getLikecount() {
+		return likeCount;
 	}
 
-	public void setLike(int like) {
-		this.like = like;
+	public void setLikecount(int likeCount) {
+		this.likeCount = likeCount;
 	}
 
-	public int getHate() {
-		return hate;
+	public int getHateCount() {
+		return hateCount;
 	}
 
-	public void setHate(int hate) {
-		this.hate = hate;
+	public void setHateCount(int hateCount) {
+		this.hateCount = hateCount;
 	}
-
 	@Override
 	public String toString() {
-		return "BoardDTO [boardNo=" + boardNo + ", title=" + title + ", regdate=" + regdate + ", hitCount=" + hitCount
-				+ ", password=" + password + ", content=" + content + ", like=" + like + ", hate=" + hate + "]";
+		return "BoardDTO [boardNo=" + boardNo + ", userNo=" + userNo + ", title=" + title + ", regdate=" + regdate
+				+ ", hitCount=" + hitCount + ", password=" + password + ", content=" + content + ", likeCount="
+				+ likeCount + ", hateCount=" + hateCount + "]";
 	}
+	
 	
 }

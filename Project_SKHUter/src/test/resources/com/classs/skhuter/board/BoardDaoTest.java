@@ -1,5 +1,7 @@
 package com.classs.skhuter.board;
 
+import java.sql.Date;
+
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
@@ -12,24 +14,39 @@ import com.classs.skhuter.board.dao.BoardDAO;
 import com.classs.skhuter.board.domain.BoardDTO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/root-context.xml"})
+@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/root-context.xml" })
 public class BoardDaoTest {
-	
+
 	@Inject
 	private BoardDAO dao;
-	
+
 	Logger logger = Logger.getLogger(BoardDaoTest.class);
 
 	@Test
-	public void TestRegister() {
+	public void TestCreate() {
 		BoardDTO board = new BoardDTO();
-		board.setTitle("제목이다데스");
+		board.setUserNo(4);
+		board.setTitle("테스트12");
+		board.setHitCount(10);
 		board.setPassword("123");
-		board.setContent("내용이다데스");
-		
+		board.setContent("테스트5의 내용이다");
+		board.setLikecount(1);
+		board.setHateCount(2);
+
 		dao.create(board);
-		
+
 		logger.info("신규게시 완료~~~~");
 		logger.info(board.toString());
+	}
+
+	@Test
+	public void testRead() throws Exception {
+
+		logger.info(dao.read(10).toString());
+	}
+
+	@Test
+	public void testDelete() throws Exception {
+		dao.delete(10);
 	}
 }

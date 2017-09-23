@@ -25,5 +25,14 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.insert(namespace + ".create", board);
 	}
 
-
+	@Override
+	public BoardDTO read(int boardNo) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".read", boardNo);
+	}
+	
+	  @Override
+	  public void delete(int boardNo) throws Exception {
+		sqlSession.delete(namespace + ".delete", boardNo);
+	  }
 }
