@@ -12,19 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequestMapping("/notice")
 public class VoteController {
 	private static final Logger logger = LoggerFactory.getLogger(VoteController.class);
 	
-	@RequestMapping("/notice/*")
+	@RequestMapping("/voteList")
 	public String vote(Locale locale, Model model) {
-		logger.info("투표 내역 입장");
+		logger.info("투표내역입장");
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "notice/vote.lay";
 	}

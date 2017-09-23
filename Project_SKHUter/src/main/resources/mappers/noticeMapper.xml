@@ -6,8 +6,13 @@
 <mapper namespace="com.classs.skhuter.mappers.NoticeMapper">
 <!-- 투표부분 -->
  <select id="readVote" resultType="Vote">
-SELECT INTO Vote (voteNo,userNo,enrollDate,startDate,endDate, title, content, item1, item2, item3, item4, item5, item6)
- VALUES (seq_Vote.nextVal, #{userNo},sysdate,#{startDate},#{endDate},#{title},#{content},#{item1},#{item2},#{item3},#{item4},#{item5},#{item6}) 
+SELECT vote_no as voteNo ,user_no as userNo,enroll_date as enrollDate,start_date as startDate,end_date as endDate, title, content, item1, item2, item3, item4, item5, item6
+ from Vote
  </select>
+<insert id="registeVote">
+	INSERT INTO Vote
+  (vote_no, user_no,  title, enroll_date,  start_date, end_date,  content, item1, item2, item3, item4,  item5, item6) 
+VALUES (seq_Vote.nextVal, 1,#{title},sysdate,sysdate,sysdate,#{content},#{item1},#{item2},#{item3},#{item4},#{item5},#{item6})	
+	</insert>
 
 </mapper>
