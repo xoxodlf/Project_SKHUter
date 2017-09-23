@@ -53,7 +53,7 @@ $(function(){
 	if(result == "error") {
 		swal({
             title: '',
-            text: '사이트에 등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.',
+            html: '사이트에 등록되지 않은 아이디이거나, <br/> 아이디 또는 비밀번호를 잘못 입력하셨습니다.',
             type: 'warning',
             confirmButtonText: 'OK'
           });

@@ -73,8 +73,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		Object user = modelMap.get("user");
 
 		UserDTO user2 = (UserDTO) user;
-
-		if (user2.getName() != null) {
+		
+		if (user2 == null) {
+			logger.info("탈퇴맨");
+			response.sendRedirect("/?result=error"); // 로그인 정보가 틀린 회원
+		} else {
 			UserDTO userInfo = service.get(user2.getUserNo());
 
 			logger.info("유저 정보 : " + userInfo.toString());
@@ -115,11 +118,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 					response.sendRedirect("/home");
 
 				} else {
+					logger.info("가입 승인 안 받았셈");
 					response.sendRedirect("/?result=notAuth"); // 가입 승인 받지 않은 회원
 				}
 			}
-		} else {
-			response.sendRedirect("/?result=error"); // 로그인 정보가 틀린 회원
 		}
 
 	}
