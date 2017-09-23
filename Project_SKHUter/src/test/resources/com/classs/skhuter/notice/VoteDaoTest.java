@@ -1,5 +1,8 @@
 package com.classs.skhuter.notice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
@@ -23,7 +26,7 @@ public class VoteDaoTest {
 	Logger logger = Logger.getLogger(VoteDaoTest.class);
 	
 	@Test
-public void TestRegister() {
+	public void TestRegister() {
 		
 		VoteDTO vote = new VoteDTO();
 		vote.setTitle("아 진짜 이걸 다시 만들고 있구나.. ㅎㅎㅎ");
@@ -40,5 +43,16 @@ public void TestRegister() {
 		logger.info("보트생성완료데스네~~~~");
 		logger.info(vote.toString());
 	}
-
+	
+	@Test
+	public void TestReader() {
+		
+		List<VoteDTO> list = new ArrayList<VoteDTO>();
+		list = dao.readVote();
+	
+		
+		
+			logger.info("리스트 : "+list);
+		
+	}
 }
