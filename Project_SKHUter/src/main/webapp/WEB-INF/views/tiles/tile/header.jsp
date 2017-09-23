@@ -24,10 +24,10 @@
 					<a href="#" style="color: white;"><i class="fa fa-users fa-fw"></i> 학생회<span class="fa arrow"></span></a>
                       <ul class="nav nav-second-level">
                           <li id="councilSchedule">
-                              <a href="/council/councilSchedule"><i class="fa fa-calendar-o fa-fw"></i> 학생회 일정 </a>
+                              <a href="/council/councilSchedule" style="color: white;"><i class="fa fa-calendar-o fa-fw"></i> 학생회 일정 </a>
                           </li>
                           <li id="meetingNote">
-                                <a href="/council/meetingNote"><i class="fa fa-book  fa-fw"></i> 학생회 회의록 </a>
+                                <a href="/council/meetingNote" style="color: white;"><i class="fa fa-book  fa-fw"></i> 학생회 회의록 </a>
                           </li>
                       </ul>
 				</li>
@@ -35,16 +35,16 @@
 					<a href="#" style="color: white;"><i class="fa fa-bullhorn fa-fw"></i> 공지사항<span class="fa arrow"></span></a>
                       <ul class="nav nav-second-level">
                           <li id="noticeMenu">
-                              <a href="/notice/noticeList"><i class="fa fa-star fa-fw"></i> 공지사항 </a>
+                              <a href="/notice/noticeList" style="color: white;"><i class="fa fa-star fa-fw"></i> 공지사항 </a>
                           </li>
                           <li id="stuSchedule">
-                                <a href="/notice/stuSchedule"><i class="fa fa-calendar-o fa-fw"></i> 학사 일정 </a>
+                                <a href="/notice/stuSchedule" style="color: white;"><i class="fa fa-calendar-o fa-fw"></i> 학사 일정 </a>
                           </li>
                           <li id="vote">
-                                <a href="/notice/voteList"><i class="fa fa-thumbs-up fa-fw"></i> 투표 </a>
+                                <a href="/notice/voteList" style="color: white;"><i class="fa fa-thumbs-up fa-fw"></i> 투표 </a>
                           </li>
                           <li id="accounting">
-                                <a href="/notice/accountingList"><i class="fa fa-money fa-fw"></i> 회계 내역 </a>
+                                <a href="/notice/accountingList" style="color: white;"><i class="fa fa-money fa-fw"></i> 회계 내역 </a>
                           </li>
                       </ul>
 				</li>
