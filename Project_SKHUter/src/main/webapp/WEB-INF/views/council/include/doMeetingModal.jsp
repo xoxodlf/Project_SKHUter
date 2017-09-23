@@ -30,7 +30,7 @@
 
 
 <!-- Modal -->
-<form action="/user/register" method="post" enctype="multipart/form-data" onsubmit="">
+<form action="/council/MeetingNote/register" method="post" enctype="multipart/form-data" onsubmit="">
 <div class="modal fade" id="doMeetingModal" role="dialog">
 	<div class="modal-dialog" style="width: 35%">
 
@@ -49,7 +49,7 @@
 							<label for="id" class="regist_label">제목</label>
 						</div>
 						<div class="col-xs-6 col-sm-6">
-							<input type="email" class="form-control onlyNumber" id="registerId" name="id" placeholder="블라블라" maxlength="30" onkeyup="idCheck()">
+							<input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요." maxlength="30" onkeyup="idCheck()">
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -59,8 +59,8 @@
 						</div>
 						<div class="col-xs-6 col-sm-6 ">
 							<div class="form-group">
-                                            <input type="file">
-                                        </div>
+                            	<input type="file">
+                            </div>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -71,7 +71,7 @@
 			<div class="modal-footer">
 				<div class="row">
 					<div class="col-xs-2 col-xs-offset-4">
-						<button id="registerBtn" type="submit" class="btn btn-warning" style="width: 100%; font-size: 15px; font-weight: bold;">가입</button>
+						<button id="registerBtn" type="submit" class="btn btn-warning" style="width: 100%; font-size: 15px; font-weight: bold;">등록</button>
 					</div>
 					<div class="col-xs-2">
 						<button type="button" class="btn btn-default" data-dismiss="modal" style="width: 100%; font-size: 15px; font-weight: bold; background-color: #333; color: #ffffff;">취소</button>

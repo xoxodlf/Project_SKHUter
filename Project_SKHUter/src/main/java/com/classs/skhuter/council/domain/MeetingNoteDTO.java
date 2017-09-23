@@ -5,10 +5,10 @@ import java.util.Date;
 public class MeetingNoteDTO {
 	private int meetingNoteNo;
 	private int userNo;
-	private String title;
-	private String fileName;
-	private String uuidName;
-	private String originName;
+	private String title;//게시글의 제목
+	private String fileName;//파일의 .txt까지 포함된 이름
+	private String uuidName;//랜덤하게 생성된 파일 이름 (파일 중복방지)
+	private String originName;//파일 이름의 .txt를 뺀 파일 이름
 	private Date regdate;
 	
 	public MeetingNoteDTO() {
