@@ -64,7 +64,7 @@
 
 <script>
 
-$('#logout').on('click', function() {
+$('.logout').on('click', function() {
     swal({
        title: '로그아웃 하시겠습니까?',
        text: "",
@@ -76,9 +76,7 @@ $('#logout').on('click', function() {
        cancelButtonText: 'NO'
     }).then(function () {
        document.getElementById("logout").submit();
-       
      })
-   
  });
 
 </script>
