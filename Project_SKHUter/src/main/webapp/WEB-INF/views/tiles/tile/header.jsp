@@ -41,7 +41,7 @@
                                 <a href="/notice/stuSchedule"><i class="fa fa-calendar-o fa-fw"></i> 학사 일정 </a>
                           </li>
                           <li id="vote">
-                                <a href="/notice/vote"><i class="fa fa-thumbs-up fa-fw"></i> 투표 </a>
+                                <a href="/notice/voteList"><i class="fa fa-thumbs-up fa-fw"></i> 투표 </a>
                           </li>
                           <li id="accounting">
                                 <a href="/notice/accountingList"><i class="fa fa-money fa-fw"></i> 회계 내역 </a>
