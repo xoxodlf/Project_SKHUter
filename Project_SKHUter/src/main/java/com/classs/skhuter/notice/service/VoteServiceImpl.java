@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.classs.skhuter.notice.dao.VoteDAO;
 import com.classs.skhuter.notice.domain.VoteDTO;
+import com.classs.skhuter.notice.domain.VoteListDTO;
 
 @Service
 public class VoteServiceImpl implements VoteService {
@@ -16,13 +17,23 @@ public class VoteServiceImpl implements VoteService {
 	private VoteDAO dao;
 
 	@Override
-	public void registeVote(VoteDTO vote) {
-		dao.registeVote(vote);
+	public void registVote(VoteDTO vote) {
+		dao.registVote(vote);
 	}
 
 	@Override
 	public List<VoteDTO> readVote() {
 		return dao.readVote();
+	}
+
+	@Override
+	public void deleteVote(int voteNo) {
+		dao.deleteVote(voteNo);
+	}
+
+	@Override
+	public void doVote(VoteListDTO doVote) {
+		dao.doVote(doVote);
 	}
 
 	

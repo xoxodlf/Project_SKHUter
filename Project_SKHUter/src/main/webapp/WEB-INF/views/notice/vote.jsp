@@ -78,16 +78,16 @@ div.board-btn button {
                         <ul class="nav nav-tabs" style="background-color:#40596b">
                             <li class="active"><a style="width:27em; font-weight:bold; text-align:center;" href="#tab1primary" data-toggle="tab">진행중인 투표</a></li>
                             <li><a style="font-weight:bold; width:27em;text-align:center;" href="#tab2primary" data-toggle="tab">종료된 투표</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                       </ul>
                 </div>
                 <div class="panel-body">
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="tab1primary">
+                        <c:forEach items="${voteList}" var="vote">
                         	<div class="alert alert-warning ">
-                           		<a data-toggle="modal" data-target="#doVoteModal" class="alert-link"> 과연 꼴뚜기보다 오징어가 맛있을까요???</a>
+                           		<a href="javascript:showModal('${vote.title}','${vote.item1}','${vote.item2}','${vote.item3}','${vote.item4}','${vote.item5}','${vote.item6}','${vote.voteNo}');">${vote.title}</a>
                         	</div>
+                        </c:forEach>
                         <div class="alert alert-warning ">
                            		<a data-toggle="modal" data-target="#doneVoteModal" class="alert-link"> 과연 꼴뚜기보다 오징어가 맛있을까요???</a>
                         	</div>
@@ -105,15 +105,48 @@ div.board-btn button {
 		<div class="board-btn">
 				<button type="button" class="btn btn-default">투표삭제</button>
 		</div>
+	</div>
 </div>
         
     <!-- Modal -->
 	<jsp:include page="include/doVoteModal.jsp" />
 	<jsp:include page="include/doneVoteModal.jsp" />
 	<script type="text/javascript">
+		var result = '${msg}';
+		if(result =='SECCESS'){
+			alert("처리완료데스")
+		}
 		function goVoteForm() {
 			location.href = "/vote/voteForm";
 		}
+		function showModal(title,item1,item2,item3,item4,item5,item6,voteNo) {
+			$('div#doVoteModal').modal();
+			$('label#title').text(title);
+			$('label#item1').text(item1);
+			$('label#item2').text(item2);
+			$('label#item3').text(item3);
+			$('label#item4').text(item4);
+			$('label#item5').text(item5);
+			$('label#item6').text(item6);
+			$('input#item1').val(item1);
+			$('input#item2').val(item2);
+			$('input#item3').val(item3);
+			$('input#item4').val(item4);
+			$('input#item5').val(item5);
+			$('input#item6').val(item6);
+			$('input#voteNo').val(voteNo);
+			
+			
+		}
+		
+		$(function() {
+			$("#registerBtn").click(function() {
+				var selectItem=$(":input:radio[name=selectItem]:checked").val();
+				var userNo=$(":input:hidden[name=userNo]").val();
+				alert(selectItem);
+				alert(userNo);
+			});
+		});
 	</script>
 </body>
 

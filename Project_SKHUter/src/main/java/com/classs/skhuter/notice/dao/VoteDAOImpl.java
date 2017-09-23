@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.classs.skhuter.notice.dao.VoteDAO;
 import com.classs.skhuter.notice.domain.VoteDTO;
+import com.classs.skhuter.notice.domain.VoteListDTO;
 
 @Repository
 public class VoteDAOImpl implements VoteDAO {
@@ -23,8 +24,18 @@ public class VoteDAOImpl implements VoteDAO {
 	}
 
 	@Override
-	public void registeVote(VoteDTO vote) {
-		session.insert(namespace + ".registeVote", vote);
+	public void registVote(VoteDTO vote) {
+		session.insert(namespace + ".registVote", vote);
+	}
+
+	@Override
+	public void deleteVote(int voteNo) {
+		session.delete(namespace+".deleteVote",voteNo);
+	}
+
+	@Override
+	public void doVote(VoteListDTO doVote) {
+		session.insert(namespace+".doVote",doVote);
 	}
 	  
 	 

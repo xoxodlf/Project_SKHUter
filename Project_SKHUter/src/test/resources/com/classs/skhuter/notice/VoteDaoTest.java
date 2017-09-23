@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.classs.skhuter.board.dao.BoardDAO;
 import com.classs.skhuter.notice.dao.VoteDAO;
 import com.classs.skhuter.notice.domain.VoteDTO;
+import com.classs.skhuter.notice.domain.VoteListDTO;
 import com.classs.skhuter.user.domain.UserDTO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,6 +23,7 @@ public class VoteDaoTest {
 	
 	@Inject
 	private VoteDAO dao;
+	
 	
 	Logger logger = Logger.getLogger(VoteDaoTest.class);
 	
@@ -38,7 +40,7 @@ public class VoteDaoTest {
 		vote.setItem5("아이템5");
 		vote.setItem6("아이템6");
 		
-		dao.registeVote(vote);
+		dao.registVote(vote);
 		
 		logger.info("보트생성완료데스네~~~~");
 		logger.info(vote.toString());
@@ -54,5 +56,22 @@ public class VoteDaoTest {
 		
 			logger.info("리스트 : "+list);
 		
+	}
+	
+	@Test
+	public void TestDelecter() {
+		dao.deleteVote(1);
+	}
+	@Test
+	public void TestDoVote() {
+		
+		VoteListDTO doVote = new VoteListDTO();
+		doVote.setUserNo(1);
+		doVote.setVoteNo(2);
+		doVote.setSelectItem("123123");
+		dao.doVote(doVote);
+		
+		logger.info("투표하기데스네~~~~");
+		logger.info(doVote.toString());
 	}
 }

@@ -32,7 +32,7 @@ border:none;
 
 
 <!-- Modal -->
-<form action="/vote/" method="post" enctype="multipart/form-data" onsubmit="">
+<form action="/notice/voteList/doVote" method="post" enctype="multipart/form-data" onsubmit="">
 <div class="modal fade" id="doVoteModal" role="dialog">
 	<div class="modal-dialog" style="width: 35%">
 
@@ -43,12 +43,13 @@ border:none;
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h2 class="regist_label" style="font-weight: bolder; color: white; font-size: 20px; text-align: center;">투표하기</h2>
 			</div>
-
+			<input id="voteNo" type="hidden" name="voteNo">
+			<input id="userNo" type="hidden" name="userNo" value="${login.userNo}">
 			<div class="modal-body">
 				<div class="row">
 					<div class="form-group">
 						<div class="col-xs-12 col-sm-12 text-center">
-							<label for="id" class="regist_label">오징어는 맛이 있을까요?</label>
+							<label id="title" class="regist_label"></label>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -56,42 +57,38 @@ border:none;
 					<ul class="list-group">
                     <li class="list-group-item">
                         <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios">
-                                Excellent
-                            </label>
+                            <input id="item1" type="radio" name="selectItem" style="margin-left:AUTO;">
+                            <label id="item1" style="display:inline-block;"></label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                       <div class="radio">
+                            <input id="item2" type="radio" name="selectItem" style="margin-left:AUTO;">
+                            <label id="item2" style="display:inline-block;"></label>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios">
-                                Good
-                            </label>
+                            <input id="item3" type="radio" name="selectItem" style="margin-left:AUTO;">
+                            <label id="item3" style="display:inline-block;"></label>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios">
-                                Can Be Improved
-                            </label>
+                            <input id="item4" type="radio" name="selectItem" style="margin-left:AUTO;">
+                            <label id="item4" style="display:inline-block;"></label>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios">
-                                Bad
-                            </label>
+                            <input id="item5" type="radio" name="selectItem" style="margin-left:AUTO;">
+                            <label id="item5" style="display:inline-block;"></label>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios">
-                                No Comment
-                            </label>
+                            <input id="item6" type="radio" name="selectItem" style="margin-left:AUTO;">
+                            <label id="item6" style="display:inline-block;"></label>
                         </div>
                     </li>
                 </ul>
@@ -104,7 +101,7 @@ border:none;
 			<div class="modal-footer">
 				<div class="row">
 					<div class="col-xs-2 col-xs-offset-4">
-						<button id="registerBtn" type="submit" class="btn btn-warning" style="width: 100%; font-size: 15px; font-weight: bold;">투표</button>
+						<button id="registerBtn" type="submit"  class="btn btn-warning" style="width: 100%; font-size: 15px; font-weight: bold;">투표</button>
 					</div>
 					<div class="col-xs-2">
 						<button type="button" class="btn btn-default" data-dismiss="modal" style="width: 100%; font-size: 15px; font-weight: bold; background-color: #333; color: #ffffff;">취소</button>
