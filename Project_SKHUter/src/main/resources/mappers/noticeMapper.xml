@@ -9,10 +9,23 @@
 SELECT vote_no as voteNo ,user_no as userNo,enroll_date as enrollDate,start_date as startDate,end_date as endDate, title, content, item1, item2, item3, item4, item5, item6
  from Vote
  </select>
-<insert id="registeVote">
+<insert id="registVote">
 	INSERT INTO Vote
   (vote_no, user_no,  title, enroll_date,  start_date, end_date,  content, item1, item2, item3, item4,  item5, item6) 
 VALUES (seq_Vote.nextVal, 1,#{title},sysdate,sysdate,sysdate,#{content},#{item1},#{item2},#{item3},#{item4},#{item5},#{item6})	
 	</insert>
-
+	
+	<delete id="deleteVote">
+		DELETE FROM Vote 
+		  WHERE vote_no = #{voteNo}
+	</delete>
+	
+	<!-- Votelist부분 -->
+<insert id="doVote">
+	INSERT INTO Vote_list
+  (vote_list_no, vote_no, user_no, select_item) 
+VALUES 
+  (seq_Vote_List.nextVal,#{voteNo},#{userNo},#{selectItem})
+</insert>
+	
 </mapper>
