@@ -14,14 +14,19 @@
 <script src="lang/summernote-ko-KR.js"></script>
 <script>
 	/* SummerNote */
+	/* SummerNote내용 value값으로 전달 */
+	function contentsend(){
+			var markupStr = $('.summernote').summernote('code');
+			$('input#content').val(markupStr);
+	}
+	
 	/* SummerNote 내용 받아오기 */
-	var markupStr = $('#summernote').summernote('code');
     $(document).ready(function() {
-        $('#summernote').summernote({
+        $('.summernote').summernote({
         	lang: 'ko-KR',
         	height: 300,
         	focus: false,
-        	placeholder: '공지사항을 입력해주세요'
+        	placeholder: '내용을 입력해주세요.'
         });
     });
 </script>
@@ -59,7 +64,12 @@
 	div.col-lg-12 {
 		text-align: center;
 	}
+	
 
+	/* 테이블 정렬*/
+	th, td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+    vertical-align: middle;
+	}
 /* 표 */
 	/* 링크 시 밑줄 제거 */
 	a, a:hover, a:active, a:link {
@@ -79,6 +89,7 @@
 	}
 	
 </style>
+<form role="form" id="form" action="/board/boardForm" method="post">
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">익명 게시판</h1>
@@ -86,9 +97,10 @@
 </div>
 <div class="col-lg-12">
 <div class="panel-body">
+<input type="hidden" name="userNo" value="${login.userNo}">
 	<div class="board-btns">
 	<div class="board-btn">
-		<button type="button" class="btn btn-default">글등록</button>
+		<button type="submit" onmouseover="contentsend()" class="btn btn-default">글등록</button>
 	</div>
 	<div class="board-btn">
 		<button type="button" class="btn btn-default">목록</button>
@@ -108,26 +120,27 @@
 				<tr>
 				<th>제목</th>
 				<td colspan="3">
-				<input type="text" name="title" class="title"/>
+				<input type="text" name="title" class="title" style="width:820;"/>
 				</td>
-				</tr>
-				<tr>
-				<th>작성자</th>
-				<!-- Issue : 랜덤숫자부여된 익명코드 -->
-				<td>익명123</td>
-				<th>작성일</th>
-				<!-- 지금 날짜 -->
-				<td>2017-09-16</td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td class="table-content" colspan="4">
 					<!-- SummerNote Editer -->
-					<div id="summernote"></div>
+					 <textarea class="summernote" name="content"></textarea>
+					<input type="hidden" name="content" id="content">
 					</td>
 				</tr>
 			</tbody>
+			<tfoot>
+			<tr>
+				<th style="vertical-align: middle; text-align: center;">암호</th>
+				<td colspan="3" style="vertical-align: middle;">
+				<input type="password" name="password" class="password"/><p style="font-size: small; display: inline-block;">　*게시물 삭제시 사용됩니다.*</p>
+				</td>
+				</tr>
+			</tfoot>
 		</table>
 		<!-- end of table -->
 	</div>
@@ -136,5 +149,5 @@
 <!-- div.panel-body -->
 </div>
 <!-- div.col-lg-12 -->
-
+</form>
 

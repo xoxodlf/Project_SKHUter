@@ -10,20 +10,36 @@
 		INSERT INTO Board (board_no, user_no, title, regdate,
 		hit_count, password, content, like_count, hate_count)
 		VALUES
-		(seq_board.nextVal, 4, #{title}, sysdate, 10, #{password}, #{content},
-		4, 3)
+		(seq_board.nextVal, #{userNo}, #{title}, sysdate, 0, #{password}, #{content},
+		0, 0)
 	</insert>
 
 	<!-- 게시글 읽기 -->
 	<select id="read" resultType="board">
-		SELECT board_no as boardNo, user_no as userNo, title, 
-		regdate, hit_count as hitCount, password, content, 
-		like_count as likeCount, hate_count as hateCount 
-		FROM Board where board_no = #{boardNo}
+		SELECT board_no as boardNo, user_no as userNo, title,
+		regdate, hit_count as hitCount, password, content,
+		like_count as likeCount, hate_count as hateCount
+		FROM 
+		Board where board_no = #{boardNo}
 	</select>
-	
+
 	<!-- 게시물 삭제 -->
 	<delete id="delete">
 		delete from board where board_no = #{board_no}
 	</delete>
+
+	<select id="listAll" resultType="board">
+ 	<![CDATA[
+ 		SELECT board_no as boardNo, user_no
+			as userNo, title, regdate, hit_count as hitCount, password, 
+			content, like_count as likeCount, hate_count as hateCount
+		FROM 
+			Board 
+		where 
+			board_no > 0 
+		order by 
+			board_no desc, regdate desc
+ 	]]>
+	</select>
+
 </mapper>

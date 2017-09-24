@@ -60,8 +60,7 @@
     line-height: 1.42857143;
     vertical-align: middle;
     font-size: medium;
-    
-}
+	}
 /* 검색 */
 	div.search-box {
 		display: block;
@@ -109,6 +108,12 @@
 			});
 		});
 	});
+	
+	var result='${msg}';
+	if(result=="success"){
+		alert("처리가 완료되었습니다.")
+	}
+	
 </script>
 	<div class="row">
 		<div class="col-lg-12">
@@ -147,21 +152,24 @@
 				<th>제목</th>
 				<th>작성일</th>
 				<th>조회수</th>
-				<th>추천</th>
-				<th>비추천</th>
+				<th><i class="fa fa-thumbs-up"></i></th>
+				<th><i class="fa fa-thumbs-down"></i></th>
 				</tr>
 			</thead>
 			<tbody>
+			<c:forEach items="${list}" var="boardDTO">
 				<tr>
 					<td><input type="checkbox" name="checkOne"/></td>
-					<td>4</td>
+					<td>${boardDTO.boardNo}</td>
 					<th> </th>
-					<td><a href="/board/boardDetail">야 진짜 그건 아니지 않냐 [5]</a></td>
-					<td>2017-09-16<br/><p style="font-size: small;margin-bottom: 0px;">13:01</p></td>
-					<td>32</td>
-					<td>10</td>
-					<td>10</td>
+					<td><a href="/board/boardDetail?boardNo=${boardDTO.boardNo}">${boardDTO.title}</a></td>
+					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
+				value="${boardDTO.regdate}" /><br/><p style="font-size: small;margin-bottom: 0px;">13:01</p></td>
+					<td>${boardDTO.hitCount}</td>
+					<td>${boardDTO.likeCount}</td>
+					<td>${boardDTO.hateCount}</td>
 				</tr>
+				</c:forEach>
 				<tr>
 					<td><input type="checkbox"  name="checkOne" /></td>
 					<td>3</td>

@@ -4,7 +4,7 @@ import java.sql.Date;
 
 /**
  * 게시판 관련 객체 선언 및 getter(), setter() 메소드 정의
- * 
+ *  
  * @패키지 : com.classs.skhuter.Board.domain
  * @파일명 : BoardDTO.java
  * @작성자 : 이겨레
