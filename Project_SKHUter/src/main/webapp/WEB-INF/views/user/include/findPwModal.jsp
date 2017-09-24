@@ -29,7 +29,7 @@
 	font-family: 'LotteMartDream';
 }
 
-#registerModal * {
+#findIdPwModal * {
 	font-family: 'LotteMartDream';
 }
 </style>

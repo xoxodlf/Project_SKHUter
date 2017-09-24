@@ -30,7 +30,6 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/home/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/ionicons.min.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/animate.min.css" />
-<link rel="stylesheet" type="text/css" href="/resources/css/home/flexslider.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/owl.carousel.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/owl.theme.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/home/vegas.min.css" />
@@ -45,16 +44,26 @@
 <script type="text/javascript" src="/resources/js/home/modernizr.js"></script>
 <script type="text/javascript" src="/resources/js/home/snap.svg-min.js"></script>
 
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<script src="http://webnextbd.net/demo/js/respond.min.js"></script>
-<![endif]-->
+<style>
+@font-face {
+	font-family: 'LotteMartDream';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff2')
+		format('woff2'),
+		url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff')
+		format('woff');
+}
 
-<!--[if lt IE 11]>
-<link rel="stylesheet" type="text/css" href="http://webnextbd.net/demo/css/ie.css">
-<![endif]-->
+* {
+	font-family: 'LotteMartDream';
+}
 
+.content-slide * {
+	font-family: 'LotteMartDream';
+}
+</style>
 </head>
 
 <body class="image-background">
