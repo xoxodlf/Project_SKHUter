@@ -38,6 +38,7 @@
 }
 </style>
 <body> 
+<form action="/notice/voteList/doVote" method="post" enctype="multipart/form-data" onsubmit="">
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">투표등록</h1>
@@ -45,106 +46,23 @@
 </div>
 <div class="board-btns">
 	<div class="board-btn" style="margin-left:8%; margin-bottom:14px;">
-		<button type="button" class="btn btn-default">투표등록</button>
+		<button type="submit" class="btn btn-default">투표등록</button>
 		<button type="button" class="btn btn-default"onclick="goVote();">투표목록</button>
 	</div>
 </div>
 <div class="backgroundbox">
 	<div class="form-group" style=" font-weight:bold; margin-left:2%;margin-top:2px; ">
           <p style="padding-top:9px;"> 투표제목</p><input type="text" data-text-content="true" class="form-control">
-          <p style="padding-top:9px;"> 마감시간</p>
+          <p style="display:inline-block; padding-top:9px; width:45.5%; "> 시작 시간</p><p style="display:inline-block; width:45%; padding-top:9px;"> 마감시간</p>
    		<div>
-    	<select class="form-control" style="width:16%; display: inline-block;">
-       		<option>2017</option>
-        	<option>2018</option>
-        	<option>2019</option>
-        	<option>2020</option>
-        	<option>2021</option>
-        	<option>2022</option>
-        	<option>2023</option>
-        	<option>2024</option>
-      	</select>년
-      	
-      	<select class="form-control" style="width:13%; display: inline-block;">
-       		<option>1</option>
-        	<option>2</option>
-        	<option>3</option>
-        	<option>4</option>
-        	<option>5</option>
-        	<option>6</option>
-        	<option>7</option>
-        	<option>8</option>
-        	<option>9</option>
-        	<option>10</option>
-        	<option>11</option>
-        	<option>12</option>
-      	</select>월
-      	<select class="form-control" style="width:13%; display: inline-block;">
-       		<option>1</option>
-        	<option>2</option>
-        	<option>3</option>
-        	<option>4</option>
-        	<option>5</option>
-        	<option>6</option>
-        	<option>7</option>
-        	<option>8</option>
-        	<option>9</option>
-        	<option>10</option>
-        	<option>11</option>
-        	<option>12</option>
-        	<option>13</option>
-        	<option>14</option>
-        	<option>15</option>
-        	<option>16</option>
-        	<option>17</option>
-        	<option>18</option>
-        	<option>19</option>
-        	<option>20</option>
-        	<option>21</option>
-        	<option>22</option>
-        	<option>23</option>
-        	<option>24</option>
-        	<option>25</option>
-        	<option>26</option>
-        	<option>27</option>
-        	<option>28</option>
-        	<option>29</option>
-        	<option>30</option>
-      	</select>일
-      	<select class="form-control" style="width:13%; display: inline-block;">
-       		<option>0</option>
-       		<option>1</option>
-        	<option>2</option>
-        	<option>3</option>
-        	<option>4</option>
-        	<option>5</option>
-        	<option>6</option>
-        	<option>7</option>
-        	<option>8</option>
-        	<option>9</option>
-        	<option>10</option>
-        	<option>11</option>
-        	<option>12</option>
-        	<option>13</option>
-        	<option>14</option>
-        	<option>15</option>
-        	<option>16</option>
-        	<option>17</option>
-        	<option>18</option>
-        	<option>19</option>
-        	<option>20</option>
-        	<option>21</option>
-        	<option>22</option>
-        	<option>23</option>
-      	</select>시
-      	<select class="form-control" style="width:13%; display: inline-block;">
-       		<option>00</option>
-       		<option>10</option>
-        	<option>20</option>
-        	<option>30</option>
-        	<option>40</option>
-        	<option>50</option>
-      	</select>분&nbsp까지
+    	<div class="form-group" style="display:inline-block;width:45%;" >
+            <input type="date" class="form-control onlyNumber" style="display: inline-block; width: 45%;">
+            <input type="time" class="form-control onlyNumber" style="display: inline-block; width: 45%; margin-left: 21px;">
+        </div>
+        <div class="form-group" style="display:inline-block;width:45%;" >
+            <input type="date" class="form-control onlyNumber" style="display: inline-block; width: 45%;">
+            <input type="time" class="form-control onlyNumber" style="display: inline-block; width: 45%; margin-left: 21px;">
+        </div>
     </div>
     <div class="form-group" style=" font-weight:bold; margin-left:2%;margin-top:2px;padding-bottom: 9px; float:left;width:47%;display: inline-block;">
           <p style="padding-top:9px;"> 항목입력</p><input type="text" value="항목1" style="width:98%; color:rgb(97,97,97)" data-text-content="true" class="form-control">
@@ -174,10 +92,10 @@
     </div>
     
 </div>
-
+</form>
 <script type="text/javascript">
 	function goVote() { 
-		location.href = "/vote/";
+		location.href = "/notice/voteList";
 	}
 	var is_push=0;
 	function addcontent(){

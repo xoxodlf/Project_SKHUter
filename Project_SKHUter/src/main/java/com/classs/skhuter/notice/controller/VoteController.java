@@ -45,7 +45,7 @@ public class VoteController {
 		return "redirect:/notice/voteList";	
 	}
 	
-	@RequestMapping(value="/vote/voteForm", method=RequestMethod.GET)
+	@RequestMapping(value="/voteForm", method=RequestMethod.GET)
 	public String boardList(Model model) {
 		return "notice/voteForm.lay";
 	}
