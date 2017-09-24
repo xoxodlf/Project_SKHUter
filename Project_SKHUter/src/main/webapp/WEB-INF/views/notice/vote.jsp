@@ -56,7 +56,7 @@ div.board-btn button {
 	}
 	div.board-btns div:nth-child(2) {
 		text-align: left;
-	}
+	} 
 	
 	/* 가운데 정렬 */
 	div.col-lg-12 {

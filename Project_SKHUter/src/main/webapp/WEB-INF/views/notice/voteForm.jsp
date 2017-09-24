@@ -37,7 +37,7 @@
     margin-right: 0;
 }
 </style>
-<body>
+<body> 
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">투표등록</h1>

@@ -46,7 +46,7 @@ border:none;
 			<input id="voteNo" type="hidden" name="voteNo">
 			<input id="userNo" type="hidden" name="userNo" value="${login.userNo}">
 			<div class="modal-body">
-				<div class="row">
+				<div class="row"> 
 					<div class="form-group">
 						<div class="col-xs-12 col-sm-12 text-center">
 							<label id="title" class="regist_label"></label>

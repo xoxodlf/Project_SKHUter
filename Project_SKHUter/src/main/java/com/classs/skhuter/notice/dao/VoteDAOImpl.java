@@ -14,7 +14,7 @@ import com.classs.skhuter.notice.domain.VoteListDTO;
 @Repository
 public class VoteDAOImpl implements VoteDAO {
 	@Inject
-	  private SqlSession session;
+	  private SqlSession session; 
 
 	  private static String namespace = "com.classs.skhuter.mappers.NoticeMapper";
 
