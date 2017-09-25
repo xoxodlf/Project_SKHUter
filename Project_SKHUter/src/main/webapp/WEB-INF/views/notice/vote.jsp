@@ -80,12 +80,12 @@ div.board-btn button {
                             <li><a style="font-weight:bold; width:27em;text-align:center;" href="#tab2primary" data-toggle="tab">종료된 투표</a></li>
                        </ul>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="height:auto;">
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="tab1primary">
                         <c:forEach items="${voteList}" var="vote">
                         	<div class="alert alert-warning ">
-                           		<a href="javascript:showModal('${vote.title}','${vote.item1}','${vote.item2}','${vote.item3}','${vote.item4}','${vote.item5}','${vote.item6}','${vote.voteNo}');">${vote.title}</a>
+                           		<a href="javascript:showModal('${vote.title}','${vote.item1}','${vote.item2}','${vote.item3}','${vote.item4}','${vote.item5}','${vote.item6}','${vote.voteNo}','${vote.content}');">${vote.title}</a>
                         	</div>
                         </c:forEach>
                         <div class="alert alert-warning ">
@@ -117,9 +117,9 @@ div.board-btn button {
 			alert("처리완료데스")
 		}
 		function goVoteForm() {
-			location.href = "/vote/voteForm";
+			location.href = "/notice/voteForm";
 		}
-		function showModal(title,item1,item2,item3,item4,item5,item6,voteNo) {
+		function showModal(title,item1,item2,item3,item4,item5,item6,voteNo,content) {
 			$('div#doVoteModal').modal();
 			$('label#title').text(title);
 			$('label#item1').text(item1);
@@ -135,6 +135,7 @@ div.board-btn button {
 			$('input#item5').val(item5);
 			$('input#item6').val(item6);
 			$('input#voteNo').val(voteNo);
+			$('label#content').text(content);
 			
 			
 		}

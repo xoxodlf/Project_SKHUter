@@ -27,7 +27,7 @@ public class VoteController {
 	@Inject
 	private VoteService service;
 	
-	@RequestMapping("/voteList")
+	@RequestMapping(value="/voteList", method=RequestMethod.GET)
 	public String vote(Locale locale, Model model) {
 		List<VoteDTO> vote = service.readVote();
 		model.addAttribute("voteList", vote);
@@ -37,10 +37,18 @@ public class VoteController {
 		return "notice/vote.lay";
 	}
 	
-	@RequestMapping("/voteList/doVote")
+	@RequestMapping(value="/voteList/doVote", method = RequestMethod.POST)
 	public String doVote(VoteListDTO doVote,RedirectAttributes rttr) {
 		service.doVote(doVote);
 		logger.info(doVote.toString());
+		rttr.addFlashAttribute("message", "success");
+		return "redirect:/notice/voteList";	
+	}
+	@RequestMapping(value="/voteList/registVote", method = RequestMethod.POST)
+	public String registVote(VoteDTO registeredVote,RedirectAttributes rttr) {
+		
+		service.registVote(registeredVote);
+		logger.info(registeredVote.toString());
 		rttr.addFlashAttribute("message", "success");
 		return "redirect:/notice/voteList";	
 	}

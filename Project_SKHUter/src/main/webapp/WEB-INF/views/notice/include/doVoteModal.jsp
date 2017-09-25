@@ -51,6 +51,9 @@ border:none;
 						<div class="col-xs-12 col-sm-12 text-center">
 							<label id="title" class="regist_label"></label>
 						</div>
+						<div class="col-xs-12 col-sm-12 text-center">
+							<label style="font-size:15px; margin-top:10px;" id="content" class="regist_label"></label>
+						</div>
 						<div class="clearfix"></div>
 					</div>
 
