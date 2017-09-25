@@ -32,6 +32,7 @@
 	SELECT user_no as UserNo, id, password, name, phone, grade, is_leave as isLeave, status, takeover_code as takeoverCode, 
 		   recent_login as recentLogin, session_key as sessionKey, session_limit as sessionLimit, secession
 	FROM Users
+	order by USER_NO desc
 	</select>
 	
 	<!-- 로그인 -->
