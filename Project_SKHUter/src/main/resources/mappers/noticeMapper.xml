@@ -12,7 +12,7 @@ SELECT vote_no as voteNo ,user_no as userNo,enroll_date as enrollDate,start_date
 <insert id="registVote">
 	INSERT INTO Vote
   (vote_no, user_no,  title, enroll_date,  start_date, end_date,  content, item1, item2, item3, item4,  item5, item6) 
-VALUES (seq_Vote.nextVal, #{userNo},#{title},sysdate,to_date(#{startDate},'yyyy/mm/dd hh24:mi'),to_date(#{endDate},'yyyy/mm/dd hh24:mi'),#{content},#{item1},#{item2},#{item3},#{item4},#{item5},#{item6})	
+VALUES (seq_Vote.nextVal, #{userNo},#{title},sysdate,TO_DATE(#{startDate},'yyyy-MM-dd hh24:mi'),TO_DATE(#{endDate}, 'yyyy-MM-dd hh24:mi'),#{content},#{item1},#{item2},#{item3},#{item4},#{item5},#{item6})	
 	</insert>
 	
 	<delete id="deleteVote">

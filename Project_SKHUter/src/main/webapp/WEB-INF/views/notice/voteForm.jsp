@@ -46,7 +46,7 @@
 </div>
 <div class="board-btns">
 	<div class="board-btn" style="margin-left:8%; margin-bottom:14px;">
-		<button type="submit" class="btn btn-default">투표등록</button>
+		<button type="submit" class="btn btn-default" onmouseover="throwDate()">투표등록</button>
 		<button type="button" class="btn btn-default"onclick="goVote();">투표목록</button>
 	</div>
 </div>
@@ -58,10 +58,12 @@
           <p style="display:inline-block; padding-top:9px; width:45.5%; "> 시작 시간</p><p style="display:inline-block; width:45%; padding-top:9px;"> 마감시간</p>
    	<div>
     	<div class="form-group" style="display: inline-block; width: 45%;">
-                  <input type="datetime-local" id="sinputdate" name="sdate" class="form-control onlyNumber" style="display: inline-block; width: 45%;">
+                  <input type="datetime-local" id="sinputdate" class="form-control onlyNumber" style="display: inline-block; width: 45%;">
+                  <input type="hidden" id="startDate" name="startDate">
         </div>
         <div class="form-group" style="display: inline-block; width: 45%;">
-                  <input type="datetime-local" id="einputdate" name="edate" class="form-control onlyNumber" style="display: inline-block; width: 45%;">
+                  <input type="datetime-local" id="einputdate" class="form-control onlyNumber" style="display: inline-block; width: 45%;">
+                  <input type="hidden" id="endDate" name="endDate">
         </div>
     </div>
     <div class="form-group" style=" font-weight:bold; margin-left:2%;margin-top:2px;padding-bottom: 9px; float:left;width:47%;display: inline-block;">
@@ -78,7 +80,6 @@
  				<span class="glyphicon glyphicon-plus"></span>
  				<p style="display:inline-block">항목 추가하기</p>
 		</button>
-      	<button type="button" class="btn btn-default" onclick="contenttest();">투표목록</button>
       </div>
     </div>
     
@@ -98,16 +99,14 @@ var today= new Date();
 			contentvote2.style.display="inline";
 		}
 	}
-	function contenttest(){
+	function throwDate(){
 	       var x =new Date();   //시작날짜
 	       x = document.getElementById('sinputdate');
 	       var y = document.getElementById('einputdate');   //마감날짜
 	       var start =x.value.replace(/T/g, ' ');
 	       var end =y.value.replace(/T/g, ' ');
-			   alert(start);
-			   alert(end);
-		   $('input#sdate').val(start);
-		   $('input#edate').val(end);
+		   $('input#startDate').val(start);
+		   $('input#endDate').val(end);
 	}
 	
 	

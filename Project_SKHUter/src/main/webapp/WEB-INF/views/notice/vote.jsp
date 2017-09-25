@@ -148,6 +148,14 @@ div.board-btn button {
 				alert(userNo);
 			});
 		});
+		$(document).ready(function() {
+			$(function(){
+				  var visible = $('input#item1');
+				  if('input#item5.val()'==null){
+					  visible.css('display','none');
+				  }
+				});
+	    });
 	</script>
 </body>
 

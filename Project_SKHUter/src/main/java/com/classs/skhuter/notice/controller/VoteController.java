@@ -46,9 +46,9 @@ public class VoteController {
 	}
 	@RequestMapping(value="/voteList/registVote", method = RequestMethod.POST)
 	public String registVote(VoteDTO registeredVote,RedirectAttributes rttr) {
-		
-		service.registVote(registeredVote);
 		logger.info(registeredVote.toString());
+		service.registVote(registeredVote);
+		
 		rttr.addFlashAttribute("message", "success");
 		return "redirect:/notice/voteList";	
 	}

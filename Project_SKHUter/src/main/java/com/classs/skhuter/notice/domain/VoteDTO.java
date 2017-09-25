@@ -7,8 +7,8 @@ public class VoteDTO {
 	private int voteNo;
 	private int userNo;
 	private Date enrollDate;
-	private Date startDate;
-	private Date endDate;
+	private String startDate;
+	private String endDate;
 	private String title;
 	private String content;
 	private String item1;
@@ -35,16 +35,16 @@ public class VoteDTO {
 	public void setEnrollDate(Date enrollDate) {
 		this.enrollDate = enrollDate;
 	}
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 	public String getTitle() {
