@@ -75,6 +75,13 @@
 				</div>
 			</div>
             <div class="row" style="margin-top: 20px">
+            <c:choose>
+            <c:when test="${empty list }">
+               <div style="margin-top: 10%">
+                  <p style="text-align: center; font-size: 20px"> <mark>자료실 내역이 존재하지 않습니당</mark></p>
+               </div>
+            </c:when>
+            <c:otherwise>
             <c:forEach items="${list }" var="MeetingNoteDTO" varStatus="status">
                <div class="col-lg-4" style="text-align:left">
                   <div class="panel panel-info">
@@ -98,10 +105,15 @@
                   </div>
                </div>
                </c:forEach>
+               </c:otherwise>
+               </c:choose>
                 <!-- /.col-lg-4 -->
                 </div>
             </div>
         </div>
             <!-- /.row -->
 </body>
+<script>
+
+</script>
 <jsp:include page="include/doMeetingModal.jsp" />
