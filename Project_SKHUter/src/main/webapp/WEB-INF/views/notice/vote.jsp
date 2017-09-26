@@ -130,10 +130,18 @@ div.board-btn button {
 			$('label#item6').text(item6);
 			$('input#item1').val(item1);
 			$('input#item2').val(item2);
-			$('input#item3').val(item3);
-			$('input#item4').val(item4);
-			$('input#item5').val(item5);
-			$('input#item6').val(item6);
+			if(item3==''){
+				$('li#itembox3').css("display","none");
+			}$('input#item3').val(item3);
+			if(item4==''){
+				$('li#itembox4').css("display","none");
+			}$('input#item4').val(item4);
+			if(item5==''){
+				$('li#itembox5').css("display","none");
+			}$('input#item5').val(item5);
+			if(item6==''){
+				$('li#itembox6').css("display","none");
+			}$('input#item6').val(item6);
 			$('input#voteNo').val(voteNo);
 			$('label#content').text(content);
 			
@@ -148,14 +156,8 @@ div.board-btn button {
 				alert(userNo);
 			});
 		});
-		$(document).ready(function() {
-			$(function(){
-				  var visible = $('input#item1');
-				  if('input#item5.val()'==null){
-					  visible.css('display','none');
-				  }
-				});
-	    });
+		
+		
 	</script>
 </body>
 

@@ -69,7 +69,7 @@ public class VoteDTO {
 		return item2;
 	}
 	public void setItem2(String item2) {
-		this.item2 = item2;
+		this.item2 = item2; 
 	}
 	public String getItem3() {
 		return item3;
