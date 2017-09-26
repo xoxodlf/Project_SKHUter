@@ -226,7 +226,6 @@ public class MeetingNoteController {
 	 * @return
 	 * @throws Exception
 	 */
-	//폰서트
 	@ResponseBody
 	@RequestMapping(value = "/council/meetingNote/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
@@ -234,6 +233,7 @@ public class MeetingNoteController {
 		return new ResponseEntity<>(UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()),
 				HttpStatus.CREATED);
 	}
+	
 	/**
 	 * 업로드 파일 삭제 처리
 	 * 

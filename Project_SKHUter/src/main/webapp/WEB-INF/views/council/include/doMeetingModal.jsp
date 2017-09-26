@@ -36,7 +36,7 @@
 <form id="uploadForm" action="/council/meetingNote/registMeetingNote" method="post" enctype="multipart/form-data">
 <div class="modal fade" id="doMeetingModal" role="dialog">
 	<div class="modal-dialog" style="width: 35%">
-		<!-- Modal content-->
+		<!-- Modal  content-->
 		<div class="modal-content">
 			<div class="modal-header" style="background: #40596b;">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
