@@ -114,19 +114,25 @@
 								<td>${userList.phone }</td>
 								<td>${userList.recentLogin }</td>
 								<td> 
-									<c:if test="${0 eq userList.status}">
-										승인 대기
-									</c:if>
-									<c:if test="${1 eq userList.status}">
-										일반 학생
-									</c:if>
-									<c:if test="${2 eq userList.status}">
-										학생회
-									</c:if>
-									<c:if test="${3 eq userList.status}">
-										회장단
-									</c:if>
-
+								<c:choose>
+									<c:when test="${1 eq userList.secession }">
+										<font color="red"> 탈퇴 회원 </font>   
+									</c:when>
+									<c:otherwise>
+										<c:if test="${0 eq userList.status}">
+											<font color="blue"> 승인 대기 </font>
+										</c:if>
+										<c:if test="${1 eq userList.status}">
+											<font color="green"><strong>일반 학생 </strong></font>
+										</c:if>
+										<c:if test="${2 eq userList.status}">
+											<font color="green"><strong>학생회 </strong></font>
+										</c:if>
+										<c:if test="${3 eq userList.status}">
+											<font color="green"><strong>회장단 </strong></font>
+										</c:if>
+									</c:otherwise>
+								</c:choose>
 								</td>
 							</tr>
 						</tbody>
