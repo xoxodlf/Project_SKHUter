@@ -84,9 +84,20 @@ div.board-btn button {
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="tab1primary">
                         <c:forEach items="${voteList}" var="vote">
+                        <form role="form" method="post" action="/notice/vote/delete">
+    							<input type='hidden' name='voteNo' value ="${vote.voteNo}">    
+ 							
                         	<div class="alert alert-warning ">
                            		<a href="javascript:showModal('${vote.title}','${vote.item1}','${vote.item2}','${vote.item3}','${vote.item4}','${vote.item5}','${vote.item6}','${vote.voteNo}','${vote.content}');">${vote.title}</a>
+                        		<div style="float: right;display:inline-block;">
+                        		<button id="deleteBtn" type="submit">
+                        		<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
+                        		</button>
+                        		
+                        		</div>
+                        		
                         	</div>
+                        	</form>
                         </c:forEach>
                         <div class="alert alert-warning ">
                            		<a data-toggle="modal" data-target="#doneVoteModal" class="alert-link"> 과연 꼴뚜기보다 오징어가 맛있을까요???</a>
@@ -119,6 +130,7 @@ div.board-btn button {
 		function goVoteForm() {
 			location.href = "/notice/voteForm";
 		}
+	
 		function showModal(title,item1,item2,item3,item4,item5,item6,voteNo,content) {
 			$('div#doVoteModal').modal();
 			$('label#title').text(title);
@@ -132,31 +144,33 @@ div.board-btn button {
 			$('input#item2').val(item2);
 			if(item3==''){
 				$('li#itembox3').css("display","none");
-			}$('input#item3').val(item3);
+			}else{
+				$('li#itembox3').css("display","");
+			}
+			$('input#item3').val(item3);
 			if(item4==''){
 				$('li#itembox4').css("display","none");
-			}$('input#item4').val(item4);
+			}else{
+				$('li#itembox4').css("display","");
+			}
+			$('input#item4').val(item4);
 			if(item5==''){
 				$('li#itembox5').css("display","none");
-			}$('input#item5').val(item5);
+			}else{
+				$('li#itembox5').css("display","");
+			}
+			$('input#item5').val(item5);
 			if(item6==''){
 				$('li#itembox6').css("display","none");
-			}$('input#item6').val(item6);
+			}else{
+				$('li#itembox6').css("display","");
+			}
+			$('input#item6').val(item6);
 			$('input#voteNo').val(voteNo);
 			$('label#content').text(content);
 			
 			
 		}
-		
-		$(function() {
-			$("#registerBtn").click(function() {
-				var selectItem=$(":input:radio[name=selectItem]:checked").val();
-				var userNo=$(":input:hidden[name=userNo]").val();
-				alert(selectItem);
-				alert(userNo);
-			});
-		});
-		
 		
 	</script>
 </body>

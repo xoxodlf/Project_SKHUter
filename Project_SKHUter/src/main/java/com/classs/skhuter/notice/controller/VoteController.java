@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.classs.skhuter.notice.domain.VoteDTO;
@@ -36,6 +37,16 @@ public class VoteController {
 		
 		return "notice/vote.lay";
 	}
+	
+	 @RequestMapping(value = "/vote/delete", method = RequestMethod.POST)
+	  public String remove(@RequestParam("voteNo") int voteNo, RedirectAttributes rttr) throws Exception {
+
+	    service.deleteVote(voteNo);
+
+	    rttr.addFlashAttribute("msg", "SUCCESS");
+
+	    return "redirect:/notice/voteList";
+	  }
 	
 	@RequestMapping(value="/voteList/doVote", method = RequestMethod.POST)
 	public String doVote(VoteListDTO doVote,RedirectAttributes rttr) {
