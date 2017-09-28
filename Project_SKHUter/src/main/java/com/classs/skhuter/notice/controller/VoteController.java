@@ -43,7 +43,7 @@ public class VoteController {
 
 	    service.deleteVote(voteNo);
 
-	    rttr.addFlashAttribute("msg", "SUCCESS");
+	    rttr.addFlashAttribute("message", "deletesuccess");
 
 	    return "redirect:/notice/voteList";
 	  }
@@ -60,7 +60,7 @@ public class VoteController {
 		logger.info(registeredVote.toString());
 		service.registVote(registeredVote);
 		
-		rttr.addFlashAttribute("message", "votesuccess");
+		rttr.addFlashAttribute("message", "createsuccess");
 		return "redirect:/notice/voteList";	
 	}
 	

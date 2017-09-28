@@ -38,7 +38,9 @@
 }
 </style>
 <body> 
-<form action="/notice/voteList/registVote" method="post" enctype="multipart/form-data" onsubmit="">
+
+<form id="createForm" action="/notice/voteList/registVote" method="post" enctype="multipart/form-data" onsubmit="">
+
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">투표등록</h1>
@@ -60,6 +62,7 @@
     	<div class="form-group" style="display: inline-block; width: 45%;">
                   <input type="datetime-local" id="sinputdate" class="form-control onlyNumber" style="display: inline-block; width: 45%;">
                   <input type="hidden" id="startDate" name="startDate">
+                  <input type="hidden" id="startDate" name="nowDate">
         </div>
         <div class="form-group" style="display: inline-block; width: 45%;">
                   <input type="datetime-local" id="einputdate" class="form-control onlyNumber" style="display: inline-block; width: 45%;">
@@ -100,6 +103,8 @@ var today= new Date();
 		}
 	}
 	function throwDate(){
+		var now = new Date();
+        console.log('now');
 	       var x =new Date();   //시작날짜
 	       x = document.getElementById('sinputdate');
 	       var y = document.getElementById('einputdate');   //마감날짜
@@ -107,8 +112,59 @@ var today= new Date();
 	       var end =y.value.replace(/T/g, ' ');
 		   $('input#startDate').val(start);
 		   $('input#endDate').val(end);
+		   $('input#nowDate').val(now);
 	}
 	
+	
+	$('#createForm').submit(function(form) {
+        var now = new Date();
+        console.log('now');
+         var year= now.getFullYear();
+         var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
+         var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
+         var current_date = year + '-' + mon + '-' + day;
+
+      var createForm = $(form)[0].target;
+      
+      if(createForm.title.value.trim().length == 0){
+         swal({
+                title : '투표 이름을 입력해주세요!',
+                type : 'warning',
+                confirmButtonText : '닫기'
+                 });
+         return false;
+      }
+      
+      
+      if(createForm.startDate.value > createForm.endDate.value){
+         swal({
+                title : '투표 기간을 확인해주세요!',
+                type : 'warning',
+                confirmButtonText : '닫기'
+                 });
+         return false;
+      }
+      
+      if(createForm.startDate.value == createForm.endDate.value){
+         swal({
+                title : '투표 기간을 확인해주세요!',
+                type : 'warning',
+                confirmButtonText : '닫기'
+                 });
+         return false;
+      }
+      
+      if(createForm.nowDate.value > createForm.startDate.value){
+          swal({
+                 title : '투표 시작 시점을 확인해주세요!',
+                 type : 'warning',
+                 confirmButtonText : '닫기'
+                  });
+          return false;
+       }
+      
+      return true;
+   });
 	
 </script>
 

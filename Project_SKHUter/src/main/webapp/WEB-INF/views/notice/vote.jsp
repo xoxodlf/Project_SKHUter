@@ -66,6 +66,8 @@ div.board-btn button {
   
 </head>
 <body>
+<input type="hidden" id="deletesuccess" value="${message}">
+<input type="hidden" id="createsuccess" value="${message}">
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
@@ -91,19 +93,20 @@ div.board-btn button {
             			</c:when>
           				<c:otherwise>
                         <c:forEach items="${voteList}" var="vote">
-                        <form role="form" method="post" action="/notice/vote/delete">
-    							<input type='hidden' name='voteNo' value ="${vote.voteNo}">    
+                        <form role="form" id="deleteform" method="post" action="/notice/vote/delete">
+    							<input type='hidden' name='voteNo' value ="${vote.voteNo}"> 
+    					</form>   
                         	<div class="alert alert-warning ">
                            		<a href="javascript:showModal('${vote.title}','${vote.item1}','${vote.item2}','${vote.item3}','${vote.item4}','${vote.item5}','${vote.item6}','${vote.voteNo}','${vote.content}');">${vote.title}</a>
                         		<div style="float: right;display:inline-block;">
-                        		<button id="deleteBtn" class="btn btn-default btn-sm removeBtn" type="submit">
+                        		<button id="deleteBtn" class="btn btn-default btn-sm removeBtn" type="button">
                         		<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
                         		</button>
                         		
                         		</div>
                         		
                         	</div>
-                        	</form>
+                        	
                         </c:forEach>
                         </c:otherwise>
                         </c:choose>
@@ -134,20 +137,27 @@ div.board-btn button {
 	<jsp:include page="include/doVoteModal.jsp" />
 	<jsp:include page="include/doneVoteModal.jsp" />
 	<script type="text/javascript">
-		var result = '${msg}';
 		$(function(){
-			var message = $('#modifySuccess').val();
-			if (message == 'success') {
+			var message = $('#createsuccess').val();
+			if (message == 'createsuccess') {
 				swal(     
 			     		 '',
-			     	     '수정이 완료되었습니다.',
+			     	     '등록이 완료되었습니다.',
 			     	     'success'
 			     		)
 			}
 			});
-		function goVoteForm() {
-			location.href = "/notice/voteForm";
-		}
+		$(function(){
+			var message = $('#deletesuccess').val();
+			if (message == 'deletesuccess') {
+				swal(     
+			     		 '',
+			     	     '삭제가 완료되었습니다.',
+			     	     'success'
+			     		)
+			}
+			});
+		
 	
 		function showModal(title,item1,item2,item3,item4,item5,item6,voteNo,content) {
 			$('div#doVoteModal').modal();
@@ -186,9 +196,40 @@ div.board-btn button {
 			$('input#item6').val(item6);
 			$('input#voteNo').val(voteNo);
 			$('label#content').text(content);
-			
+		
 			
 		}
+		
+
+		function goVoteForm() {
+			location.href = "/notice/voteForm";
+		}
+		
+		
+		
+		
+		$('.removeBtn').on('click',(function() {
+			var link = $(this).parent().parent().prev();
+			console.log('link');
+			 swal({
+	               title: '삭제 하시겠습니까?',
+	               text: "",
+	               type: 'warning',
+	               showCancelButton: true,
+	               confirmButtonColor: '#3085d6',
+	               cancelButtonColor: '#d33',
+	               confirmButtonText: 'YES',
+	               cancelButtonText: 'NO'
+	            }).then(function (){
+	            	var form = link;
+	    			var arr = [];
+	    			form.attr("action", "/notice/vote/delete");
+	    			form.submit();
+	    			link = '';
+	            })
+		}));
+		
+		
 		
 	</script>
 </body>
