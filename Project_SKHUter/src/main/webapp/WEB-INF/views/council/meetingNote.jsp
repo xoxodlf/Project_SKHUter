@@ -93,6 +93,7 @@ div.search-box input[type="search"] {
 								<input type="hidden" name="meetingNoteNo" id="meetingNoteNo"
 									value="${MeetingNoteDTO.meetingNoteNo }">
 							</form>
+							
 							<div class="col-lg-4" style="text-align: left">
 								<div class="panel panel-info">
 									<div class="panel-heading">
