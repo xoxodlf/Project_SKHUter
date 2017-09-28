@@ -87,11 +87,9 @@ div.search-box input[type="search"] {
 						</div>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${list }" var="MeetingNoteDTO"
-							varStatus="status">
+						<c:forEach items="${list }" var="MeetingNoteDTO" varStatus="status">
 							<form role="form" method="POST">
-								<input type="hidden" name="meetingNoteNo" id="meetingNoteNo"
-									value="${MeetingNoteDTO.meetingNoteNo }">
+								<input type="hidden" name="meetingNoteNo" id="meetingNoteNo" value="${MeetingNoteDTO.meetingNoteNo }">
 							</form>
 							
 							<div class="col-lg-4" style="text-align: left">
@@ -108,10 +106,9 @@ div.search-box input[type="search"] {
 									</div>
 
 									<div class="panel-footer">
-										작성자 : ${name[status.index].name} <a
-											class="btn btn-default btn-sm" id="downloadBtn" onclick=""
-											style="float: right; padding: 2px 9px;"> <i
-											class="fa fa-download fa-sm"></i>
+										작성자 : ${name[status.index].name} 
+										<a class="btn btn-default btn-sm" id="downloadBtn" onclick="downloadFunc('${MeetingNoteDTO.uuidName}')" style="float: right; padding: 2px 9px;">
+										 <i class="fa fa-download fa-sm"></i>
 										</a>
 									</div>
 								</div>
@@ -158,19 +155,25 @@ div.search-box input[type="search"] {
 	/** 다운로드 클릭 시 이벤트 */
 	function downloadFunc(uuidName) {
 		event.preventDefault();
-
+		console.log(uuidName);
 		var data = uuidName;
 		var url = "";
 
 		if (checkImageType(data)) {
-			var front = data.substring(0, 5); // /asc 경로 추출
-			var end = data.substring(7); // s_ 제거
+			var front = data.substring(0, 9); // /asc 경로 추출
+			var end = data.substring(11); // s_ 제거
 
-			location.href = "/project/library/1/displayFile?fileName=" + front
+			location.href = "/council/meetingNote/displayFile?fileName=" + front
 					+ end;
 		} else {
-			location.href = "/project/library/1/displayFile?fileName=" + data;
+			location.href = "/council/meetingNote/displayFile?fileName=" + data;
 		}
 	}
+	
+	function checkImageType(fileName) {
+		  var pattern = /jpg|gif|png|jpeg/i;   // i는 대소문자 구분 없음을 의미
+	      
+	      return fileName.match(pattern);
+	   }
 </script>
 <jsp:include page="include/doMeetingModal.jsp" />
