@@ -60,7 +60,7 @@ public class VoteController {
 		logger.info(registeredVote.toString());
 		service.registVote(registeredVote);
 		
-		rttr.addFlashAttribute("message", "success");
+		rttr.addFlashAttribute("message", "votesuccess");
 		return "redirect:/notice/voteList";	
 	}
 	
