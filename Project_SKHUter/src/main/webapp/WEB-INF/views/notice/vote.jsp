@@ -135,9 +135,16 @@ div.board-btn button {
 	<jsp:include page="include/doneVoteModal.jsp" />
 	<script type="text/javascript">
 		var result = '${msg}';
-		if(result =='SECCESS'){
-			alert("처리완료데스")
-		}
+		$(function(){
+			var message = $('#modifySuccess').val();
+			if (message == 'success') {
+				swal(     
+			     		 '',
+			     	     '수정이 완료되었습니다.',
+			     	     'success'
+			     		)
+			}
+			});
 		function goVoteForm() {
 			location.href = "/notice/voteForm";
 		}
