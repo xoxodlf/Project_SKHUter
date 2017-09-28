@@ -126,39 +126,6 @@ div.search-box input[type="search"] {
 	<!-- /.row -->
 </body>
 <script>
-	// /** 삭제 버튼 이벤트 처리 */
-	//  $('.removeBtn').on('click', function() {
-	//    var meetingNoteNo = $("#meetingNoteNo").val();
-
-	//    swal({
-	//         title: '프로젝트를 삭제하시겠습니까?',
-	//         text: "한번 삭제된 프로젝트는 돌이킬 수 없습니다.",
-	//         type: 'question',
-	//         showCancelButton : true,
-	//         confirmButtonColor : '#3085d6',
-	//         cancelButtonColor : '#d33',
-	//         confirmButtonText : 'Yes',
-	//         cancelButtonText : 'No',
-	//       }).then(function () {
-	//     	  $.ajax({
-	//               url : "/council/meetingNote/remove",
-	//               type : "POST",
-	//               data : {
-	//                  meetingNoteNo : meetingNoteNo,
-	//               },
-	//               success : function(data) {
-	//                  swal(
-	//                          'Success!',
-	//                          '수고하셨습니다.',
-	//                          'success'
-	//                        ).then(function(){
-	//                            location.href="/council/meetingNote/remove?meetingNoteNo="+meetingNoteNo;
-	//                         });
-	//               }
-	//            });
-	//     });
-	// });
-
 	/** 삭제 버튼 이벤트 처리 */
 	$(".removeBtn").on("click", function() {
 		var link = $(this).parent().parent().parent().prev();
