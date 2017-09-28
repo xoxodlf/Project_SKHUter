@@ -69,7 +69,7 @@
 					<div class="col-xs-6 col-sm-6 ">
 						<div class="form-group">
                             <button id="fileBtn" class="btn btn-primary" style="background-color:#40596b; margin:-4px 2px; border:#354555; width:35%">파일 선택</button>
-                     		<input type="file" class="fileSelect" style="display:none;" id="fileSelect" name="file" style="width: 100%">
+                     		<input type="file" class="fileSelect" style="display:none;" id="fileSelect" name="file" style="width: 100%" accept="">
                             <input type="hidden" id="uuidName" name="uuidName">
                            	<input type="hidden" id="originName" name="originName">
                            	<input type="hidden"  id="displayName"  name="displayName">

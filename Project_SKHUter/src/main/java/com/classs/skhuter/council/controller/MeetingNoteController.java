@@ -4,11 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -24,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,7 +31,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.classs.skhuter.council.domain.MeetingNoteDTO;
 import com.classs.skhuter.council.service.MeetingNoteService;
-import com.classs.skhuter.notice.controller.VoteController;
 import com.classs.skhuter.user.domain.UserDTO;
 import com.classs.skhuter.user.service.UserService;
 import com.classs.skhuter.util.MediaUtils;
@@ -257,4 +254,21 @@ public class MeetingNoteController {
 		
 		return new ResponseEntity<String>("deleted",HttpStatus.OK);
 	}
+	   /**
+	    * 
+	    * 자료 내역 삭제
+	    * 
+	    * @param meetingNoteNo 삭제할 자료 내역 번호
+	    * @param rttr
+	    * @return
+	    */
+	   @RequestMapping(value = "/council/meetingNote/remove", method = RequestMethod.POST)
+	   public String remove(@RequestParam int meetingNoteNo, RedirectAttributes rttr) {
+	      
+	      noteService.remove(meetingNoteNo);
+	      
+	      rttr.addFlashAttribute("msg", "SUCCESS");
+	      
+	      return "redirect:/council/meetingNote";
+	   }
 }
