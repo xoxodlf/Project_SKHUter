@@ -40,19 +40,26 @@ public class BoardController {
 
 		service.create(board);
 
-		rttr.addAttribute("result", "success");
+		rttr.addAttribute("msg", "success");
 
 		return "redirect:/board/boardList.lay";
 	}
 	 
 	/*게시판 목록 불러오기*/
+	 @RequestMapping(value = "/boardList", method = RequestMethod.GET)
+	  public String listAll(Model model){
+		 List<BoardDTO> list = service.listAll();
+			model.addAttribute("boardList", list);
+			return "board/boardList.lay";
+	 }
+	/**
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public String boardList(Locale locale, Model model) throws Exception {
 		List<BoardDTO> board = service.listAll();
 		model.addAttribute("listAll", board);
 		return "board/boardList.lay";
 	}
-	
+	**/
 	/*게시물 불러오기*/
 	@RequestMapping(value="/boardDetail", method=RequestMethod.GET)
 	public String boardDetail(Model model) {

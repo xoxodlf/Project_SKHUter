@@ -20,7 +20,8 @@
 		regdate, hit_count as hitCount, password, content,
 		like_count as likeCount, hate_count as hateCount
 		FROM 
-		Board where board_no = #{boardNo}
+		Board 
+		where board_no = #{boardNo}
 	</select>
 
 	<!-- 게시물 삭제 -->
@@ -29,17 +30,12 @@
 	</delete>
 
 	<select id="listAll" resultType="board">
- 	<![CDATA[
  		SELECT board_no as boardNo, user_no
 			as userNo, title, regdate, hit_count as hitCount, password, 
 			content, like_count as likeCount, hate_count as hateCount
 		FROM 
-			Board 
-		where 
-			board_no > 0 
-		order by 
-			board_no desc, regdate desc
- 	]]>
+			Board
+ 	
 	</select>
 
 </mapper>

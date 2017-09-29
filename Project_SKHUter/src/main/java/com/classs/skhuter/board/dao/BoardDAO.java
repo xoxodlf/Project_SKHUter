@@ -25,7 +25,7 @@ public interface BoardDAO {
 	public void delete(int boardNo) throws Exception;
 
 	/**글 목록 모두 보이게 하기**/
-	public List<BoardDTO> listAll() throws Exception;
+	public List<BoardDTO> listAll();
 
 //	public List<BoardDTO> listPage(int page) throws Exception;
 

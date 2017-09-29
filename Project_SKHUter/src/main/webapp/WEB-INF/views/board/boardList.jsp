@@ -1,5 +1,7 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 <style>
 /* 기타 */
@@ -115,6 +117,7 @@
 	}
 	
 </script>
+<form role="form" id="form" action="/board/boardList" method="post">
 	<div class="row">
 		<div class="col-lg-12">
 			<img src="/resources/images/title/board.png" class="page-header" style="width: 20%;">
@@ -157,49 +160,19 @@
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${list}" var="boardDTO">
+			<c:forEach items="${boardList}" var="boardDTO">
 				<tr>
 					<td><input type="checkbox" name="checkOne"/></td>
 					<td>${boardDTO.boardNo}</td>
 					<th> </th>
 					<td><a href="/board/boardDetail?boardNo=${boardDTO.boardNo}">${boardDTO.title}</a></td>
-					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
-				value="${boardDTO.regdate}" /><br/><p style="font-size: small;margin-bottom: 0px;">13:01</p></td>
+					<td>${boardDTO.regdate}</td>
 					<td>${boardDTO.hitCount}</td>
 					<td>${boardDTO.likeCount}</td>
 					<td>${boardDTO.hateCount}</td>
 				</tr>
-				</c:forEach>
-				<tr>
-					<td><input type="checkbox"  name="checkOne" /></td>
-					<td>3</td>
-					<th> </th>
-					<td><a href="#">야 진짜 그건 아니지 않냐 [5]</a></td>
-					<td>2017-09-16<br/><p style="font-size: small;margin-bottom: 0px;">13:01</p></td>
-					<td>32</td>
-					<td>32</td>
-					<td>10</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox"  name="checkOne" /></td>
-					<td>2</td>
-					<th> </th>
-					<td><a href="#">야 진짜 그건 아니지 않냐 [5]</a></td>
-					<td>2017-09-16<br/><p style="font-size: small;margin-bottom: 0px;">13:01</p></td>
-					<td>32</td>
-					<td>10</td>
-					<td>10</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox"  name="checkOne" /></td>
-					<td>1</td>
-					<th > </th>
-					<td><a href="#">야 진짜 그건 아니지 않냐 [5]</a></td>
-					<td>2017-09-16<br/><p style="font-size: small;margin-bottom: 0px;">13:01</p></td>
-					<td>32</td>
-					<td>10</td>
-					<td>10</td>
-				</tr>
+			</c:forEach>
+				
 			</tbody>
 		</table>
 		<!-- end of table -->
@@ -233,4 +206,4 @@
 <!-- div.panel-body -->
 </div>
 <!-- div.col-lg-12 -->
-
+</form>

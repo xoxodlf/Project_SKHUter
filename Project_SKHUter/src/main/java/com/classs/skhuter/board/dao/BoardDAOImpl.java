@@ -37,7 +37,7 @@ public class BoardDAOImpl implements BoardDAO {
 	  }
 	  
 	  @Override
-	  public List<BoardDTO> listAll() throws Exception {
+	  public List<BoardDTO> listAll() {
 	    return sqlSession.selectList(namespace + ".listAll");
 	  }
 } 
