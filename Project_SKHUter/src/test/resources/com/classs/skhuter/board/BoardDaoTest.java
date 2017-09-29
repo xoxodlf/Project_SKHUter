@@ -25,7 +25,7 @@ public class BoardDaoTest {
 	@Test
 	public void TestCreate() {
 		BoardDTO board = new BoardDTO();
-		board.setUserNo(4);
+		board.setUserNo(1);
 		board.setTitle("테스트12");
 		board.setHitCount(10);
 		board.setPassword("123");
@@ -42,7 +42,7 @@ public class BoardDaoTest {
 	@Test
 	public void testRead() throws Exception {
 
-		logger.info(dao.read(10).toString());
+		logger.info(dao.read(1).toString());
 	}
 
 	@Test

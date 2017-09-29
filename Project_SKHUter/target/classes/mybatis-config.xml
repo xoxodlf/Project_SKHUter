@@ -5,6 +5,21 @@
 <!-- MyBatis XML 설정 파일(MyBatis설정의 중앙 허브 역할) -->
 <configuration>
 	 <typeAliases>
-
+	 	<!-- 회원 -->
+		<typeAlias type="com.classs.skhuter.user.domain.UserDTO" alias="User"/>
+		
+		<!-- 공지사항 -->
+		<typeAlias type="com.classs.skhuter.notice.domain.NoticeDTO" alias="Notice"/>
+		<typeAlias type="com.classs.skhuter.notice.domain.StuScheduleDTO" alias="StuSchedule"/>
+		<typeAlias type="com.classs.skhuter.notice.domain.VoteDTO" alias="Vote"/>
+		<typeAlias type="com.classs.skhuter.notice.domain.VoteListDTO" alias="VoteList"/>
+		<typeAlias type="com.classs.skhuter.notice.domain.AccountingDTO" alias="Accounting"/>
+		
+		<!-- 학생회 -->
+		<typeAlias type="com.classs.skhuter.council.domain.CouncilScheduleDTO" alias="CouncilSchedule"/>
+		<typeAlias type="com.classs.skhuter.council.domain.MeetingNoteDTO" alias="MeetingNote"/>
+		
+		<!-- 익명게시판 -->
+		<typeAlias type="com.classs.skhuter.board.domain.BoardDTO" alias="Board"/>
      </typeAliases>
 </configuration> 

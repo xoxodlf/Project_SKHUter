@@ -28,9 +28,9 @@ public class UserDaoTest {
 	public void TestRegister() {
 		
 		UserDTO user = new UserDTO();
-		user.setId("201434019");
+		user.setId("201434025");
 		user.setPassword("1111");
-		user.setName("양태일");
+		user.setName("이종윤");
 		user.setPhone("010-1111-2222");
 		user.setGrade(4);
 		user.setIsLeave(0);

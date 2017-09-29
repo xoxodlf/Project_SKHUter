@@ -34,10 +34,10 @@
 /** 정보 수정 완료 alert */
 $(function(){
 var message = $('#modifySuccess').val();
-if (message == 'success') {
+if (message == 'votesuccess') {
 	swal(     
      		 '',
-     	     '수정이 완료되었습니다.',
+     	     '투표를 등록하였습니다.',
      	     'success'
      		)
 }
