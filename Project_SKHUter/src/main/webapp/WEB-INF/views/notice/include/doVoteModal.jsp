@@ -51,6 +51,9 @@ border:none;
 						<div class="col-xs-12 col-sm-12 text-center">
 							<label id="title" class="regist_label"></label>
 						</div>
+						<div class="col-xs-12 col-sm-12 text-center">
+							<label style="font-size:15px; margin-top:10px;" id="content" class="regist_label"></label>
+						</div>
 						<div class="clearfix"></div>
 					</div>
 
@@ -67,25 +70,25 @@ border:none;
                             <label id="item2" style="display:inline-block;"></label>
                         </div>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item" id="itembox3">
                         <div class="radio">
                             <input id="item3" type="radio" name="selectItem" style="margin-left:AUTO;">
                             <label id="item3" style="display:inline-block;"></label>
                         </div>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item" id="itembox4">
                         <div class="radio">
                             <input id="item4" type="radio" name="selectItem" style="margin-left:AUTO;">
                             <label id="item4" style="display:inline-block;"></label>
                         </div>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item" id="itembox5">
                         <div class="radio">
                             <input id="item5" type="radio" name="selectItem" style="margin-left:AUTO;">
                             <label id="item5" style="display:inline-block;"></label>
                         </div>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item" id="itembox6">
                         <div class="radio">
                             <input id="item6" type="radio" name="selectItem" style="margin-left:AUTO;">
                             <label id="item6" style="display:inline-block;"></label>

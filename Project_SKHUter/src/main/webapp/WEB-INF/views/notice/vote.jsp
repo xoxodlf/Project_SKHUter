@@ -66,6 +66,8 @@ div.board-btn button {
   
 </head>
 <body>
+<input type="hidden" id="deletesuccess" value="${message}">
+<input type="hidden" id="createsuccess" value="${message}">
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
@@ -80,19 +82,42 @@ div.board-btn button {
                             <li><a style="font-weight:bold; width:27em;text-align:center;" href="#tab2primary" data-toggle="tab">종료된 투표</a></li>
                        </ul>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="height:auto;">
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="tab1primary">
+                        <c:choose>
+            			<c:when test="${empty voteList }">
+               			<div style="margin-top: 10%">
+                 				 <p style="background-color:white; text-align: center; font-size: 20px;margin-bottom:130px;"> <mark style="background-color:white; ">투표내역이 존재하지 않습니당</mark></p>
+               			</div>
+            			</c:when>
+          				<c:otherwise>
                         <c:forEach items="${voteList}" var="vote">
+                        <form role="form" id="deleteform" method="post" action="/notice/vote/delete">
+    							<input type='hidden' name='voteNo' value ="${vote.voteNo}"> 
+    					</form>   
                         	<div class="alert alert-warning ">
-                           		<a href="javascript:showModal('${vote.title}','${vote.item1}','${vote.item2}','${vote.item3}','${vote.item4}','${vote.item5}','${vote.item6}','${vote.voteNo}');">${vote.title}</a>
+                           		<a href="javascript:showModal('${vote.title}','${vote.item1}','${vote.item2}','${vote.item3}','${vote.item4}','${vote.item5}','${vote.item6}','${vote.voteNo}','${vote.content}');">${vote.title}</a>
+                        		<div style="float: right;display:inline-block;">
+                        		<button id="deleteBtn" class="btn btn-default btn-sm removeBtn" type="button">
+                        		<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
+                        		</button>
+                        		
+                        		</div>
+                        		
                         	</div>
+                        	
                         </c:forEach>
+                        </c:otherwise>
+                        </c:choose>
+                        
+                        </div> 
+                        <div class="tab-pane fade" id="tab2primary">
                         <div class="alert alert-warning ">
                            		<a data-toggle="modal" data-target="#doneVoteModal" class="alert-link"> 과연 꼴뚜기보다 오징어가 맛있을까요???</a>
                         	</div>
-                        </div> 
-                        <div class="tab-pane fade" id="tab2primary">Primary 2</div>
+                        
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,14 +137,29 @@ div.board-btn button {
 	<jsp:include page="include/doVoteModal.jsp" />
 	<jsp:include page="include/doneVoteModal.jsp" />
 	<script type="text/javascript">
-		var result = '${msg}';
-		if(result =='SECCESS'){
-			alert("처리완료데스")
-		}
-		function goVoteForm() {
-			location.href = "/vote/voteForm";
-		}
-		function showModal(title,item1,item2,item3,item4,item5,item6,voteNo) {
+		$(function(){
+			var message = $('#createsuccess').val();
+			if (message == 'createsuccess') {
+				swal(     
+			     		 '',
+			     	     '등록이 완료되었습니다.',
+			     	     'success'
+			     		)
+			}
+			});
+		$(function(){
+			var message = $('#deletesuccess').val();
+			if (message == 'deletesuccess') {
+				swal(     
+			     		 '',
+			     	     '삭제가 완료되었습니다.',
+			     	     'success'
+			     		)
+			}
+			});
+		
+	
+		function showModal(title,item1,item2,item3,item4,item5,item6,voteNo,content) {
 			$('div#doVoteModal').modal();
 			$('label#title').text(title);
 			$('label#item1').text(item1);
@@ -130,23 +170,67 @@ div.board-btn button {
 			$('label#item6').text(item6);
 			$('input#item1').val(item1);
 			$('input#item2').val(item2);
+			if(item3==''){
+				$('li#itembox3').css("display","none");
+			}else{
+				$('li#itembox3').css("display","");
+			}
 			$('input#item3').val(item3);
+			if(item4==''){
+				$('li#itembox4').css("display","none");
+			}else{
+				$('li#itembox4').css("display","");
+			}
 			$('input#item4').val(item4);
+			if(item5==''){
+				$('li#itembox5').css("display","none");
+			}else{
+				$('li#itembox5').css("display","");
+			}
 			$('input#item5').val(item5);
+			if(item6==''){
+				$('li#itembox6').css("display","none");
+			}else{
+				$('li#itembox6').css("display","");
+			}
 			$('input#item6').val(item6);
 			$('input#voteNo').val(voteNo);
-			
+			$('label#content').text(content);
+		
 			
 		}
 		
-		$(function() {
-			$("#registerBtn").click(function() {
-				var selectItem=$(":input:radio[name=selectItem]:checked").val();
-				var userNo=$(":input:hidden[name=userNo]").val();
-				alert(selectItem);
-				alert(userNo);
-			});
-		});
+
+		function goVoteForm() {
+			location.href = "/notice/voteForm";
+		}
+		
+		
+		
+		
+		$('.removeBtn').on('click',(function() {
+			var link = $(this).parent().parent().prev();
+			console.log('link');
+			 swal({
+	               title: '삭제 하시겠습니까?',
+	               text: "",
+	               type: 'warning',
+	               showCancelButton: true,
+	               confirmButtonColor: '#3085d6',
+	               cancelButtonColor: '#d33',
+	               confirmButtonText: 'YES',
+	               cancelButtonText: 'NO'
+	            }).then(function (){
+	            	var form = link;
+	    			var arr = [];
+	    			form.attr("action", "/notice/vote/delete");
+	    			form.submit();
+	    			link = '';
+	            })
+		}));
+		
+		
+		
 	</script>
 </body>
 

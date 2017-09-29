@@ -2,6 +2,8 @@ package com.classs.skhuter.user.controller;
 
 import java.net.URLEncoder;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
@@ -47,6 +49,10 @@ public class UserController {
 
 	@RequestMapping(value = "/userList", method = RequestMethod.GET)
 	public String noticeList(Model model) {
+		List<UserDTO> userList = service.UserListAll();
+		
+		model.addAttribute("list", userList);
+		
 		return "user/userList.lay";
 	}
 

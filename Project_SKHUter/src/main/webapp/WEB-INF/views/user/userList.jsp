@@ -39,7 +39,7 @@
 		position:relative;
 		width: inherit;
 	}
-/* 검색 */
+	/* 검색 */
 	div.search-box {
 		display: block;
 		width: 100%;
@@ -91,44 +91,55 @@
 				<th>No</th>
 				<th>학번</th>
 				<th>이름</th>
-				<th>가입일</th>
+				<th>휴대폰 번호</th>
+				<th>최근 접속일</th>
 				<th>등급</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>4</td>
-					<td><a href="#">201434019</a></td>
-					<td>양태일</td>
-					<td>2017-09-16</td>
-					<td>닝겐</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>3</td>
-					<td><a href="#">201434019</a></td>
-					<td>양태일</td>
-					<td>2017-09-16</td>
-					<td>닝겐</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>2</td>
-					<td><a href="#">201434019</a></td>
-					<td>양태일</td>
-					<td>2017-09-16</td>
-					<td>닝겐</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>1</td>
-					<td><a href="#">201434019</a></td>
-					<td>양태일</td>
-					<td>2017-09-16</td>
-					<td>닝겐</td>
-				</tr>
-			</tbody>
+			<c:choose>
+				<c:when test="${empty list }">
+					<div style="margin-top: 10%">
+						<p style="text-align: center; font-size: 20px"> <mark>회원 목록이 존재하지 않습니당</mark></p>
+					</div>
+				</c:when>
+				
+				<c:otherwise>
+					<c:forEach items="${list }" var="userList" varStatus="status">
+						<tbody>
+							<tr>
+								<td><input type="checkbox" /></td>
+								<td>${userList.userNo }</td>
+								<td>${userList.id}</td>
+								<td>${userList.name }</td>
+								<td>${userList.phone }</td>
+								<td>${userList.recentLogin }</td>
+								<td> 
+								<c:choose>
+									<c:when test="${1 eq userList.secession }">
+										<font color="red"> 탈퇴 회원 </font>   
+									</c:when>
+									<c:otherwise>
+										<c:if test="${0 eq userList.status}">
+											<font color="blue"> 승인 대기 </font>
+										</c:if>
+										<c:if test="${1 eq userList.status}">
+											<font color="green"><strong>일반 학생 </strong></font>
+										</c:if>
+										<c:if test="${2 eq userList.status}">
+											<font color="green"><strong>학생회 </strong></font>
+										</c:if>
+										<c:if test="${3 eq userList.status}">
+											<font color="green"><strong>회장단 </strong></font>
+										</c:if>
+									</c:otherwise>
+								</c:choose>
+								</td>
+							</tr>
+						</tbody>
+					</c:forEach>
+				</c:otherwise>
+			
+			</c:choose>
 		</table>
 		<!-- end of table -->
 		
