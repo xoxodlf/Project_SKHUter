@@ -30,9 +30,7 @@
 	</delete>
 
 	<select id="listAll" resultType="board">
- 		SELECT board_no as boardNo, user_no
-			as userNo, title, regdate, hit_count as hitCount, password, 
-			content, like_count as likeCount, hate_count as hateCount
+ 		SELECT board_no as boardNo, user_no as userNo, title, regdate, hit_count as hitCount, password, content, like_count as likeCount, hate_count as hateCount
 		FROM 
 			Board
  	
