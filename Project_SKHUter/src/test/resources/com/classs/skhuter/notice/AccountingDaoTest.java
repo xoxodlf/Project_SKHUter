@@ -23,11 +23,11 @@ public class AccountingDaoTest {
 	@Test
 	public void TestRegist() {
 		AccountingDTO accounting = new AccountingDTO();
-		
+
 		accounting.setUserNo(1);
 		accounting.setContent("Test중입니다");
-		accounting.setStatus(1);
-		accounting.setPrice(50000);
+		accounting.setStatus(0);
+		accounting.setPrice(500);
 		accounting.setFileName("TestFile");
 		System.out.println(accounting.getUserNo()+" "+accounting.getContent());
 		
@@ -37,9 +37,9 @@ public class AccountingDaoTest {
 		logger.info(accounting.toString());
 	}
 	
-//	@Test
-//	public void TestListAll() {
-//		logger.info("회계내역 리스트 불러오기 테스트 중입니다~!");
-//		logger.info(dao.listAll());
-//	}
+	@Test
+	public void TestListAll() {
+		logger.info("회계내역 리스트 불러오기 테스트 중입니다~!");
+		logger.info(dao.listAll());
+	}
 }
