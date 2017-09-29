@@ -1,31 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-                        
+
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.classs.skhuter.mappers.NoticeMapper">
-<!-- 투표부분 -->
- <select id="readVote" resultType="Vote">
-SELECT vote_no as voteNo ,user_no as userNo,enroll_date as enrollDate,start_date as startDate,end_date as endDate, title, content, item1, item2, item3, item4, item5, item6
- from Vote
- </select>
-<insert id="registVote">
-	INSERT INTO Vote
-  (vote_no, user_no,  title, enroll_date,  start_date, end_date,  content, item1, item2, item3, item4,  item5, item6) 
-VALUES (seq_Vote.nextVal, #{userNo},#{title},sysdate,TO_DATE(#{startDate},'yyyy-MM-dd hh24:mi'),TO_DATE(#{endDate}, 'yyyy-MM-dd hh24:mi'),#{content},#{item1},#{item2},#{item3},#{item4},#{item5},#{item6})	
+	<!-- 투표부분 -->
+	<select id="readVote" resultType="Vote">
+		SELECT vote_no as voteNo ,user_no as userNo,enroll_date as
+		enrollDate,start_date as startDate,end_date as endDate, title,
+		content, item1, item2, item3, item4, item5, item6
+		from Vote
+	</select>
+	<insert id="registVote">
+		INSERT INTO Vote
+		(vote_no, user_no, title, enroll_date, start_date, end_date, content, item1,
+		item2, item3, item4, item5, item6)
+		VALUES (seq_Vote.nextVal,
+		#{userNo},#{title},sysdate,TO_DATE(#{startDate},'yyyy-MM-dd
+		hh24:mi'),TO_DATE(#{endDate}, 'yyyy-MM-dd
+		hh24:mi'),#{content},#{item1},#{item2},#{item3},#{item4},#{item5},#{item6})
+	</insert>
+
+	<delete id="deleteVote">
+		DELETE FROM Vote
+		WHERE vote_no = #{voteNo}
+	</delete>
+
+	<!-- Votelist부분 -->
+	<insert id="doVote">
+		INSERT INTO Vote_list
+		(vote_list_no, vote_no, user_no, select_item)
+		VALUES
+		(seq_Vote_List.nextVal,#{voteNo},#{userNo},#{selectItem})
+	</insert>
+
+	<insert id="insertAccounting">
+		INSERT INTO Accounting
+		(account_no, user_no, account_date, content, status, price, file_name)
+		VALUES
+		(seq_Accounting.nextVal,#{userNo},sysdate,#{content},#{status},#{price},#{fileName})
 	</insert>
 	
-	<delete id="deleteVote">
-		DELETE FROM Vote 
-		  WHERE vote_no = #{voteNo}
+	<delete id="deleteAccounting">
+		DELETE FROM Accounting
+		WHERE Account_no = #{accountNo}
 	</delete>
 	
-	<!-- Votelist부분 -->
-<insert id="doVote">
-	INSERT INTO Vote_list
-  (vote_list_no, vote_no, user_no, select_item) 
-VALUES 
-  (seq_Vote_List.nextVal,#{voteNo},#{userNo},#{selectItem})
-</insert>
+	<select id="accountingListAll" resultType="Accounting">
+		SELECT account_no as accountNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName
+		FROM Accounting
+		order by account_no desc, account_date desc
+	</select>
 	
 </mapper>
