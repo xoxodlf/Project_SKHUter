@@ -90,6 +90,7 @@ div.board-btn button {
                			<div style="margin-top: 10%">
                  				 <p style="background-color:white; text-align: center; font-size: 20px;margin-bottom:130px;"> <mark style="background-color:white; ">투표내역이 존재하지 않습니당</mark></p>
                			</div>
+               			
             			</c:when>
           				<c:otherwise>
                         <c:forEach items="${doingVoteList}" var="vote">
