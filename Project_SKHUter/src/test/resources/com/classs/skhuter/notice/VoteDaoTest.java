@@ -74,4 +74,14 @@ public class VoteDaoTest {
 		logger.info("�닾�몴�븯湲곕뜲�뒪�꽕~~~~");
 		logger.info(doVote.toString());
 	}
+	
+	@Test
+	public void testCount() {
+		VoteListDTO countVote = new VoteListDTO();
+		int countNum;
+		countVote.setVoteNo(101);
+		countVote.setSelectItem("wefwef");
+		countNum=dao.countVote(countVote);
+		logger.info(countNum);
+	}
 }

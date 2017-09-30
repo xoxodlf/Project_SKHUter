@@ -1,5 +1,7 @@
 package com.classs.skhuter.notice.dao;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -40,6 +42,11 @@ public class VoteDAOImpl implements VoteDAO {
 	@Override
 	public void doVote(VoteListDTO doVote) {
 		session.insert(namespace+".doVote",doVote);
+	}
+	@Override
+	public int countVote(VoteListDTO countVote) {
+
+		return session.selectOne(namespace+".countVote",countVote);
 	}
 	  
 	 

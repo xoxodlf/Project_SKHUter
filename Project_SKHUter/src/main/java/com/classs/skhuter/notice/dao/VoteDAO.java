@@ -11,4 +11,5 @@ public interface VoteDAO {
 	public List<VoteDTO> readDoneVote();
 	public void deleteVote(int voteNo);
 	public void doVote(VoteListDTO doVote);
+	public int countVote(VoteListDTO countVote);
 }

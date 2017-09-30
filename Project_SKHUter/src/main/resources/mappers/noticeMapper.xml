@@ -25,6 +25,15 @@
 	]]>
 	</select>
 	
+	
+	<select id="countVote"  resultType="int">
+	SELECT COUNT(select_item)
+	from VOTE_LIST
+	where vote_no = #{voteNo} and select_item= #{selectItem}
+	</select>
+
+	
+	
 	<!-- 투표 등록 -->
 	<insert id="registVote">
 		INSERT INTO Vote
