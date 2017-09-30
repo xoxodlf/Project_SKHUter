@@ -14,12 +14,15 @@
 		FROM VOTE
 		WHERE end_date >= TO_DATE(sysdate,'YYYY-MM-DD')
 	</select>
+	
 	<select id="readDoneVote" resultType="Vote">
+	<![CDATA[
 		SELECT vote_no as voteNo ,user_no as userNo,enroll_date as
 		enrollDate,start_date as startDate,end_date as endDate, title,
 		content, item1, item2, item3, item4, item5, item6
 		FROM VOTE
 		WHERE end_date < TO_DATE(sysdate,'YYYY-MM-DD')
+	]]>
 	</select>
 	
 	<!-- 투표 등록 -->
