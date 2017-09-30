@@ -1,5 +1,10 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<script src="/resources/js/lightbox.js"></script>
+<link href="/resources/css/lightbox.css" rel="stylesheet" />
+
 <style>
 /* 기타 */
 /* 페이지 제목 : 익명 게시판 : 가운데 정렬 + 굵게 */
@@ -66,9 +71,11 @@ div.search-box input[type="search"] {
 <div class="col-lg-12">
 	<div class="panel-body">
 		<div class="board-btns">
+			<!-- 삭제 버튼 -->
 			<div class="board-btn">
 				<button type="button" class="btn btn-danger">삭제</button>
 			</div>
+			<!-- 글 등록 버튼 -->
 			<div class="board-btn">
 				<button type="button" data-toggle="modal"
 					data-target="#accountingModal" class="btn btn-default">등록</button>
@@ -118,20 +125,20 @@ div.search-box input[type="search"] {
 								<tr>
 									<td><input type="checkbox" /></td>
 									<td>${AccountingDTO.accountNo }</td>
-									<td><a href="#">${AccountingDTO.content }</a></td>
+									<td>${AccountingDTO.content }</td>
 									<c:choose>
 										<c:when test="${AccountingDTO.status == 1 }">
-											<td>${AccountingDTO.price }</td>
+											<td style="color: RED">-${AccountingDTO.price }</td>
 											<td></td>
 										</c:when>
 										<c:otherwise>
 											<td></td>
-											<td>${AccountingDTO.price }</td>
+											<td style="color: BLUE">+${AccountingDTO.price }</td>
 										</c:otherwise>
 									</c:choose>
-									<td>50000</td>
-									<td>${AccountingDTO.accountDate }</td>
-									<td><a href="#">${AccountingDTO.filaName }</a></td>
+									<td><strong>50000</strong></td>
+									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${AccountingDTO.accountDate}" /></td>
+									<td><a href="/resources/upload${AccountingDTO.uuidName }" rel="lightbox" data-lightbox="image-${status.index}">${AccountingDTO.fileName }</a></td>
 								</tr>
 							</tbody>
 						</c:forEach>
