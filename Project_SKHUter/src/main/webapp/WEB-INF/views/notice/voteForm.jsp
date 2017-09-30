@@ -108,7 +108,7 @@ var today= new Date();
         var year= now.getFullYear();
         var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
         var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
-        var hours = now.getHours();
+        var hours = now.getHours()>9 ?''+now.getHours():'0'+now.getHours();
         var min = now.getMinutes();
         var current_date = year + '-' + mon + '-' + day+' '+hours+':'+min;
 	       var x =new Date();   //시작날짜
@@ -119,6 +119,8 @@ var today= new Date();
 		   $('input#startDate').val(start);
 		   $('input#endDate').val(end);
 		   $('input#nowDate').val(current_date);
+		   console.log(current_date);
+		   console.log(start);
 	}
 	
 	

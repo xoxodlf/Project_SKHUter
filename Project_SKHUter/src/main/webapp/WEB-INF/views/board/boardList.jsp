@@ -166,9 +166,10 @@
 					<td>${boardDTO.boardNo}</td>
 					<th> </th>
 					<td><a href="/board/boardDetail?boardNo=${boardDTO.boardNo}">${boardDTO.title}</a></td>
-					<td>${boardDTO.regdate}</td>
+					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
+										value="${boardDTO.regdate}" /></td>
 					<td>${boardDTO.hitCount}</td>
-					<td>${boardDTO.likeCount}</td>
+					<td>23</td>
 					<td>${boardDTO.hateCount}</td>
 				</tr>
 			</c:forEach>
@@ -183,6 +184,7 @@
 			<button class="btn btn-default">검색</button>
 		</div>
 		<!-- div.search-box -->
+		
 		
 		<!-- 페이징 버튼들 -->
 		<div class="paging-box">

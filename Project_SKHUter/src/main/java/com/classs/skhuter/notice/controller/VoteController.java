@@ -30,8 +30,10 @@ public class VoteController {
 	
 	@RequestMapping(value="/voteList", method=RequestMethod.GET)
 	public String vote(Locale locale, Model model) {
-		List<VoteDTO> vote = service.readVote();
-		model.addAttribute("voteList", vote);
+		List<VoteDTO> doingvote = service.readDoingVote();
+		List<VoteDTO> donevote = service.readDoneVote();
+		model.addAttribute("doingVoteList", doingvote);
+		model.addAttribute("doneVoteList", donevote);
 		logger.info("투표내역입장");
 		
 		

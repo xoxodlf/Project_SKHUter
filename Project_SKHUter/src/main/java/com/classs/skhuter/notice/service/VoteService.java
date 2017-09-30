@@ -8,7 +8,8 @@ import com.classs.skhuter.notice.domain.VoteListDTO;
 public interface VoteService {
 
 	public void registVote(VoteDTO vote);
-	public List<VoteDTO> readVote();
+	public List<VoteDTO> readDoingVote();
+	public List<VoteDTO> readDoneVote();
 	public void deleteVote(int voteNo);
 	public void doVote(VoteListDTO doVote);
 }

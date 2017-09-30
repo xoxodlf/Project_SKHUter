@@ -86,13 +86,14 @@ div.board-btn button {
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="tab1primary">
                         <c:choose>
-            			<c:when test="${empty voteList }">
+            			<c:when test="${empty doingVoteList }">
                			<div style="margin-top: 10%">
                  				 <p style="background-color:white; text-align: center; font-size: 20px;margin-bottom:130px;"> <mark style="background-color:white; ">투표내역이 존재하지 않습니당</mark></p>
                			</div>
+               			
             			</c:when>
           				<c:otherwise>
-                        <c:forEach items="${voteList}" var="vote">
+                        <c:forEach items="${doingVoteList}" var="vote">
                         <form role="form" id="deleteform" method="post" action="/notice/vote/delete">
     							<input type='hidden' name='voteNo' value ="${vote.voteNo}"> 
     					</form>   
@@ -113,9 +114,33 @@ div.board-btn button {
                         
                         </div> 
                         <div class="tab-pane fade" id="tab2primary">
-                        <div class="alert alert-warning ">
-                           		<a data-toggle="modal" data-target="#doneVoteModal" class="alert-link"> 과연 꼴뚜기보다 오징어가 맛있을까요???</a>
+                        <c:choose>
+            			<c:when test="${empty doneVoteList}">
+            			<div style="margin-top: 10%">
+                 				 <p style="background-color:white; text-align: center; font-size: 20px;margin-bottom:130px;"> <mark style="background-color:white; ">투표내역이 존재하지 않습니당</mark></p>
+               			</div>
+            			</c:when>
+          				<c:otherwise>
+          				<c:forEach items="${doneVoteList}" var="vote">
+          				<form role="form" id="deleteform" method="post" action="/notice/vote/delete">
+    							<input type='hidden' name='voteNo' value ="${vote.voteNo}"> 
+    					</form>
+            			<div class="alert alert-warning ">
+                           		<a href="javascript:showModal('${vote.title}','${vote.item1}','${vote.item2}','${vote.item3}','${vote.item4}','${vote.item5}','${vote.item6}','${vote.voteNo}','${vote.content}');">${vote.title}</a>
+                        		<div style="float: right;display:inline-block;">
+                        		<button id="deleteBtn" class="btn btn-default btn-sm removeBtn" type="button">
+                        		<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
+                        		</button>
+                        		
+                        		</div>
+                        		
                         	</div>
+                        	</c:forEach>
+                        </c:otherwise>
+                        </c:choose>
+<!--                         <div class="alert alert-warning "> -->
+<!--                            		<a data-toggle="modal" data-target="#doneVoteModal" class="alert-link"> 과연 꼴뚜기보다 오징어가 맛있을까요???</a> -->
+<!--                         	</div> -->
                         
                         </div>
                     </div>
@@ -196,8 +221,6 @@ div.board-btn button {
 			$('input#item6').val(item6);
 			$('input#voteNo').val(voteNo);
 			$('label#content').text(content);
-		
-			
 		}
 		
 

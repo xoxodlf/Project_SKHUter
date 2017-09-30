@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.classs.skhuter.board.domain.BoardDTO;
@@ -52,21 +53,19 @@ public class BoardController {
 			model.addAttribute("boardList", list);
 			return "board/boardList.lay";
 	 }
-	/**
-	@RequestMapping(value="/boardList", method=RequestMethod.GET)
-	public String boardList(Locale locale, Model model) throws Exception {
-		List<BoardDTO> board = service.listAll();
-		model.addAttribute("listAll", board);
-		return "board/boardList.lay";
-	}
-	**/
-	/*게시물 불러오기*/
+
+	/*게시물 불러오기
 	@RequestMapping(value="/boardDetail", method=RequestMethod.GET)
 	public String boardDetail(Model model) {
 		return "board/boardDetail.lay";
 	}
-	
-	
-	
+	*/
+	  @RequestMapping(value = "/boardDetail", method = RequestMethod.GET)
+	  public String read(@RequestParam("boardNo") int boardNo, Model model) throws Exception {
+
+	    model.addAttribute(service.read(boardNo));
+	    return "board/boardDetail.lay";
+	  }
+
 	
 }
