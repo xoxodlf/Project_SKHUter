@@ -53,19 +53,23 @@ public class BoardController {
 			model.addAttribute("boardList", list);
 			return "board/boardList.lay";
 	 }
-
-	/*게시물 불러오기
-	@RequestMapping(value="/boardDetail", method=RequestMethod.GET)
-	public String boardDetail(Model model) {
-		return "board/boardDetail.lay";
-	}
-	*/
+	 /*게시글 불러오기*/
 	  @RequestMapping(value = "/boardDetail", method = RequestMethod.GET)
 	  public String read(@RequestParam("boardNo") int boardNo, Model model) throws Exception {
 
 	    model.addAttribute(service.read(boardNo));
 	    return "board/boardDetail.lay";
 	  }
+	  
+	  /*게시글 삭제하기*/
+	  @RequestMapping(value = "boardDetail/delete", method = RequestMethod.POST)
+	  public String remove(@RequestParam("boardNo") int boardNo, RedirectAttributes rttr) throws Exception {
 
+	    service.delete(boardNo);
+
+	    rttr.addFlashAttribute("msg", "SUCCESS");
+
+	    return "redirect:/board/boardList.lay";
+	  }
 	
 }
