@@ -19,8 +19,12 @@ public class VoteDAOImpl implements VoteDAO {
 	  private static String namespace = "com.classs.skhuter.mappers.NoticeMapper";
 
 	@Override
-	public List<VoteDTO> readVote() {
-	return session.selectList(namespace + ".readVote");
+	public List<VoteDTO> readDoingVote() {
+	return session.selectList(namespace + ".readDoingVote");
+	}
+	@Override
+	public List<VoteDTO> readDoneVote() {
+	return session.selectList(namespace + ".readDoneVote");
 	}
 
 	@Override

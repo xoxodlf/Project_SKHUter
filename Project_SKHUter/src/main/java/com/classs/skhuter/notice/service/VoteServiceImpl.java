@@ -22,8 +22,8 @@ public class VoteServiceImpl implements VoteService {
 	}
 
 	@Override
-	public List<VoteDTO> readVote() {
-		return dao.readVote();
+	public List<VoteDTO> readDoingVote() {
+		return dao.readDoingVote();
 	}
 
 	@Override
@@ -34,6 +34,12 @@ public class VoteServiceImpl implements VoteService {
 	@Override
 	public void doVote(VoteListDTO doVote) {
 		dao.doVote(doVote);
+	}
+
+	@Override
+	public List<VoteDTO> readDoneVote() {
+		// TODO Auto-generated method stub
+		return dao.readDoneVote();
 	}
 
 	
