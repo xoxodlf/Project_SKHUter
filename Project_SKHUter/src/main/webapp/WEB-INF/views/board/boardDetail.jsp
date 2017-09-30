@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
 /* 기타 */
 	/* 페이지 제목 : 익명게시판 : 가운데 정렬 + 굵게 */
@@ -50,6 +51,7 @@
 	}
 	
 </style>
+<form role="form" id="form" action="/board/boardDetail" method="post">
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">익명 게시판</h1>
@@ -82,31 +84,31 @@
 			<thead>
 				<tr>
 				<th>제목</th>
-				<td colspan="7">제목입네다 [13]</td>
+				<td colspan="7"> ${boardDTO.title} [13]</td>
 				</tr>
 				<tr>
-				<th>작성자</th>
-				<td>익명123</td>
 				<th>조회</th>
-				<td>300</td>
-				<th>추천</th>
-				<td>123</td>
+				<td>${boardDTO.hitCount}</td>
+				<th> </th>
+				<td> </td>
 				<th>작성일</th>
-				<td>2017-09-16</td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardDTO.regdate}" /></td>
+				<th> </th>
+				<td> </td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td class="table-content" colspan="8">
-					<pre>내용은 여기에</pre>
+					<pre>${boardDTO.content}</pre>
 					</td>
 				</tr>
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="8">
-					<button type="button" class="btn btn-default"><i class="fa fa-thumbs-o-up"></i>　추천</button>
-					<button type="button" class="btn btn-default"><i class="fa fa-thumbs-down"></i>비추천</button>
+					<td colspan="8" style="text-align: center;" >
+					<button type="button" class="btn btn-default"><i class="fa fa-thumbs-o-up "></i> 23</button>
+					<button type="button" class="btn btn-default"><i class="fa fa-thumbs-o-down"></i> ${boardDTO.hateCount}</button>
 					</td>
 				</tr>
 				<tr>
@@ -121,7 +123,7 @@
 				<tr> 
 					<td align=center> <img src="/resources/images/anonymouscomment.png" style="width: 30%;"></td>
 				   	<td colspan="5" style=" vertical-align: middle;"><b>이렇게 하면 정말 좋겠다! 공감공감~ 추천꾸욱~!!! </b></td>
-				   	<td colspan="2" style="font-size:15px; vertical-align: top; text-align:right;"> 2017-09-16 18:06 </td>
+				   	<td colspan="2" style="font-size:15px; vertical-align: middle; text-align:right;"> 2017-09-16 18:06 </td>
 				</tr>
 			</tfoot>
 		</table>

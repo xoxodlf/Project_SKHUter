@@ -31,7 +31,7 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne(namespace + ".read", boardNo);
 	}
 	
-	  @Override
+	@Override
 	  public void delete(int boardNo) throws Exception {
 		sqlSession.delete(namespace + ".delete", boardNo);
 	  }

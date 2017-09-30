@@ -166,7 +166,8 @@
 					<td>${boardDTO.boardNo}</td>
 					<th> </th>
 					<td><a href="/board/boardDetail?boardNo=${boardDTO.boardNo}">${boardDTO.title}</a></td>
-					<td>${boardDTO.regdate}</td>
+					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
+										value="${boardDTO.regdate}" /></td>
 					<td>${boardDTO.hitCount}</td>
 					<td>23</td>
 					<td>${boardDTO.hateCount}</td>

@@ -16,9 +16,7 @@
 
 	<!-- 게시글 읽기 -->
 	<select id="read" resultType="board">
-		SELECT board_no as boardNo, user_no as userNo, title,
-		regdate, hit_count as hitCount, password, content,
-		like_count as likeCount, hate_count as hateCount
+		SELECT board_no as boardNo, user_no as userNo, title, regdate, hit_count as hitCount, password, content, like_count as likeCount, hate_count as hateCount
 		FROM 
 		Board 
 		where board_no = #{boardNo}
@@ -33,7 +31,7 @@
  		SELECT board_no as boardNo, user_no as userNo, title, regdate, hit_count as hitCount, password, content, like_count as likeCount, hate_count as hateCount
 		FROM 
 			Board
- 	
+		order by board_no desc
 	</select>
 
 </mapper>
