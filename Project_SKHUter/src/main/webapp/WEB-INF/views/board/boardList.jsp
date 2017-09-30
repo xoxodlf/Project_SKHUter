@@ -168,7 +168,7 @@
 					<td><a href="/board/boardDetail?boardNo=${boardDTO.boardNo}">${boardDTO.title}</a></td>
 					<td>${boardDTO.regdate}</td>
 					<td>${boardDTO.hitCount}</td>
-					<td>${boardDTO.likeCount}</td>
+					<td>23</td>
 					<td>${boardDTO.hateCount}</td>
 				</tr>
 			</c:forEach>
