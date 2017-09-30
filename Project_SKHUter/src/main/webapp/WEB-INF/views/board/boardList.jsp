@@ -184,6 +184,7 @@
 		</div>
 		<!-- div.search-box -->
 		
+		
 		<!-- 페이징 버튼들 -->
 		<div class="paging-box">
 			<ul class="pagination">
