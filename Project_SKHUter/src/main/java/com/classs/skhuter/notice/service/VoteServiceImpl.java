@@ -42,5 +42,11 @@ public class VoteServiceImpl implements VoteService {
 		return dao.readDoneVote();
 	}
 
+	@Override
+	public int countVote(VoteListDTO countVote) {
+		// TODO Auto-generated method stub
+		return dao.countVote(countVote);
+	}
+
 	
 }
