@@ -31,18 +31,18 @@ public class VoteDaoTest {
 	public void TestRegister() {
 		
 		VoteDTO vote = new VoteDTO();
-		vote.setTitle("�븘 吏꾩쭨 �씠嫄� �떎�떆 留뚮뱾怨� �엳援щ굹.. �뀕�뀕�뀕");
-		vote.setContent("�씠�윴�씪�� �삉�씪�뼱�굹吏��븡�쓣以꾩븣�븯李�....");
-		vote.setItem1("�븘�씠�뀥1");
-		vote.setItem2("�븘�씠�뀥2");
-		vote.setItem3("�븘�씠�뀥3");
-		vote.setItem4("�븘�씠�뀥4");
-		vote.setItem5("�븘�씠�뀥5");
-		vote.setItem6("�븘�씠�뀥6");
+		vote.setTitle("투표 제목");
+		vote.setContent("투표 내용");
+		vote.setItem1("1");
+		vote.setItem2("2");
+		vote.setItem3("3");
+		vote.setItem4("4");
+		vote.setItem5("5");
+		vote.setItem6("6");
 		
 		dao.registVote(vote);
 		
-		logger.info("蹂댄듃�깮�꽦�셿猷뚮뜲�뒪�꽕~~~~");
+		logger.info("투표 등록 완료~~~~");
 		logger.info(vote.toString());
 	}
 	
