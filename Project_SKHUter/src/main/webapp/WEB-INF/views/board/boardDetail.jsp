@@ -51,7 +51,7 @@
 	}
 	
 </style>
-<form role="form" id="form" action="/board/boardDetail" method="post">
+
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">익명 게시판</h1>
@@ -61,10 +61,13 @@
 <div class="panel-body">
 	<div class="board-btns">
 	<div class="board-btn">
-		<button type="button" class="btn btn-danger">삭제</button>
+		 <form role="form" id="deleteform" method="post" action="/board/boardDetail/delete">
+    			<input type='hidden' name='boardNo' value ="${boardDTO.boardNo}"> 
+    	</form>   
+		<button class="btn btn-default removeBtn" type="button">삭제</button>
 	</div>
 	<div class="board-btn">
-		<button type="button" class="btn btn-default">목록</button>
+		<button type="button" class="btn btn-default btn-primary">목록</button>
 	</div>
 	</div>
 	<!-- div.board-btns -->
@@ -135,4 +138,45 @@
 <!-- div.panel-body -->
 </div>
 <!-- div.col-lg-12 -->
+<script>
+$('.removeBtn').on('click',(function() {
+	var link = $(this).prev();
+	console.log('link');
+	 swal({
+           title: '삭제 하시겠습니까?',
+           text: "",
+           type: 'warning',
+           showCancelButton: true,
+           confirmButtonColor: '#3085d6',
+           cancelButtonColor: '#d33',
+           confirmButtonText: 'YES',
+           cancelButtonText: 'NO'
+        }).then(function (){
+        	var form = link;
+			var arr = [];
+			form.attr("action", "/board/boardDetail/delete");
+			form.submit();
+			link = '';
+        })
+}));
 
+$(document).ready(function(){
+	
+	var formObj = $("form[role='form']");
+$(".btn-primary").on("click", function(){
+	self.location = "/board/boardList";
+});
+});
+
+$(function(){
+	var msg = $('#SUCCESS').val();
+	if (msg == 'SUCCESS') {
+		swal(     
+	     		 '',
+	     	     '삭제가 완료되었습니다.',
+	     	     'SUCCESS'
+	     		)
+	}
+	});
+
+</script>
