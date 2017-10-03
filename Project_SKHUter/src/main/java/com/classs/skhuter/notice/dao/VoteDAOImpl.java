@@ -48,6 +48,11 @@ public class VoteDAOImpl implements VoteDAO {
 
 		return session.selectOne(namespace+".countVote",countVote);
 	}
+	@Override
+	public void upVote(VoteDTO upVote) {
+		session.update(namespace+".upVote",upVote);
+		
+	}
 	  
 	 
 

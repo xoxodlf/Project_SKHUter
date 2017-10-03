@@ -48,5 +48,11 @@ public class VoteServiceImpl implements VoteService {
 		return dao.countVote(countVote);
 	}
 
+	@Override
+	public void upVote(VoteDTO upVote) {
+		dao.upVote(upVote);
+		
+	}
+
 	
 }

@@ -17,6 +17,53 @@ public class VoteDTO {
 	private String item4;
 	private String item5;
 	private String item6;
+	private int item1Count;
+	private int item2Count;
+	private int item3Count;
+	private int item4Count;
+	private int item5Count;
+	private int item6Count;
+	
+	
+	public int getItem1Count() {
+		return item1Count;
+	}
+	public void setItem1Count(int item1Count) {
+		this.item1Count = item1Count;
+	}
+	public int getItem2Count() {
+		return item2Count;
+	}
+	public void setItem2Count(int item2Count) {
+		this.item2Count = item2Count;
+	}
+	public int getItem3Count() {
+		return item3Count;
+	}
+	public void setItem3Count(int item3Count) {
+		this.item3Count = item3Count;
+	}
+	public int getItem4Count() {
+		return item4Count;
+	}
+	public void setItem4Count(int item4Count) {
+		this.item4Count = item4Count;
+	}
+	public int getItem5Count() {
+		return item5Count;
+	}
+	public void setItem5Count(int item5Count) {
+		this.item5Count = item5Count;
+	}
+	public int getItem6Count() {
+		return item6Count;
+	}
+	public void setItem6Count(int item6Count) {
+		this.item6Count = item6Count;
+	}
+	
+	
+	
 	public int getVoteNo() {
 		return voteNo;
 	}
@@ -100,7 +147,8 @@ public class VoteDTO {
 		return "VoteDTO [voteNo=" + voteNo + ", userNo=" + userNo + ", enrollDate=" + enrollDate + ", startDate="
 				+ startDate + ", endDate=" + endDate + ", title=" + title + ", content=" + content + ", item1=" + item1
 				+ ", item2=" + item2 + ", item3=" + item3 + ", item4=" + item4 + ", item5=" + item5 + ", item6=" + item6
-				+ "]";
+				+ ", item1Count=" + item1Count + ", item2Count=" + item2Count + ", item3Count=" + item3Count
+				+ ", item4Count=" + item4Count + ", item5Count=" + item5Count + ", item6Count=" + item6Count + "]";
 	}
 	
 	

@@ -57,58 +57,52 @@ border:none;
 				<div class="row">
 					<div class="form-group">
 						<div class="col-xs-12 col-sm-12 text-center">
-							<label for="id" class="regist_label">투표결과셈</label>
+							<label for="id" class="content"></label>
 						</div>
 						<div class="clearfix"></div>
 					</div>
 					 <div class="row vote-results results">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-left: 5px;">
-                        Excellent
+                        <input type="hidden" id="item1Count" name="item1Count">
+						<input type="hidden" id="item2Count" name="item2Count">
+						<input type="hidden" id="item3Count" name="item3Count">
+						<input type="hidden" id="item4Count" name="item4Count">
+						<input type="hidden" id="item5Count" name="item5Count">
+						<input type="hidden" id="item6Count" name="item6Count">
+                        <label id="item1" style="display:inline-block;"></label>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                            <div id="item1bar" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                                 <span class="sr-only">40% Excellent (success)</span>
                             </div>
                         </div>
-                        Good
+                        <label id="item2" style="display:inline-block;"></label>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                            <div id="item2bar" class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
                                 <span class="sr-only">20% Good (primary)</span>
                             </div>
                         </div>
-                        Can Be Improved
+                        <label id="item3" style="display:inline-block;"></label>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
+                            <div id="item3bar" class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                 <span class="sr-only">60% Can Be Improved (warning)</span>
                             </div>
                         </div>
-                        bad
+                        <label id="item4" style="display:inline-block;"></label>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+                            <div id="item4bar" class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" >
                                 <span class="sr-only">80% Bad (danger)</span>
                             </div>
                         </div>
-                        No Comment
+                        <label id="item5" style="display:inline-block;"></label>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 5%">
+                            <div id="item5bar" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">
                                 <span class="sr-only">80% No Comment (info)</span>
                             </div>
                         </div>
-                        Overall
+                        <label id="item6" style="display:inline-block;"></label>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-success" style="width: 20%">
+                            <div id="item6bar" class="progress-bar progress-bar-success" >
                                 <span class="sr-only">35% Complete (success)</span>
-                            </div>
-                            <div class="progress-bar progress-bar-primary" style="width: 40%">
-                                <span class="sr-only">20% Complete (primary)</span>
-                            </div>
-                            <div class="progress-bar progress-bar-warning" style="width: 25%">
-                                <span class="sr-only">10% Complete (warning)</span>
-                            </div>
-                            <div class="progress-bar progress-bar-danger" style="width: 10%">
-                                <span class="sr-only">10% Complete (danger)</span>
-                            </div>
-                            <div class="progress-bar progress-bar-info" style="width: 5%">
-                                <span class="sr-only">10% Complete (info)</span>
                             </div>
                         </div>
                     </div>

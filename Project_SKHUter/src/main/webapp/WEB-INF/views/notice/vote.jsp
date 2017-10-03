@@ -98,7 +98,7 @@ div.board-btn button {
     							<input type='hidden' name='voteNo' value ="${vote.voteNo}"> 
     					</form>   
                         	<div class="alert alert-warning ">
-                           		<a href="javascript:showModal('${vote.title}','${vote.item1}','${vote.item2}','${vote.item3}','${vote.item4}','${vote.item5}','${vote.item6}','${vote.voteNo}','${vote.content}');">${vote.title}</a>
+                           		<a href="javascript:showModal('${vote.title}','${vote.item1}','${vote.item2}','${vote.item3}','${vote.item4}','${vote.item5}','${vote.item6}','${vote.voteNo}','${vote.content}','${vote.item1Count}','${vote.item2Count}','${vote.item3Count}','${vote.item4Count}','${vote.item5Count}','${vote.item6Count}');">${vote.title}</a>
                         		<div style="float: right;display:inline-block;">
                         		<button id="deleteBtn" class="btn btn-default btn-sm removeBtn" type="button">
                         		<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
@@ -126,7 +126,7 @@ div.board-btn button {
     							<input type='hidden' name='voteNo' value ="${vote.voteNo}"> 
     					</form>
             			<div class="alert alert-warning ">
-                           		<a href="javascript:showModal('${vote.title}','${vote.item1}','${vote.item2}','${vote.item3}','${vote.item4}','${vote.item5}','${vote.item6}','${vote.voteNo}','${vote.content}');">${vote.title}</a>
+                           		<a href="javascript:showDoneModal('${vote.title}','${vote.item1}','${vote.item2}','${vote.item3}','${vote.item4}','${vote.item5}','${vote.item6}','${vote.voteNo}','${vote.content}','${vote.item1Count}','${vote.item2Count}','${vote.item3Count}','${vote.item4Count}','${vote.item5Count}','${vote.item6Count}');">${vote.title}</a>
                         		<div style="float: right;display:inline-block;">
                         		<button id="deleteBtn" class="btn btn-default btn-sm removeBtn" type="button">
                         		<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
@@ -149,13 +149,10 @@ div.board-btn button {
         </div>
         
         <div class="board-btns">
-			<div class="board-btn" onclick="goVoteForm();">
+			<div class="board-btn" onclick="goVoteForm();" style="width:100%; text-align: center;">
 				<button type="button" class="btn btn-default">투표등록</button>
 			</div>
-		<div class="board-btn">
-				<button type="button" class="btn btn-default">투표삭제</button>
-		</div>
-	</div>
+	    </div>
 </div>
         
     <!-- Modal -->
@@ -184,7 +181,7 @@ div.board-btn button {
 			});
 		
 	
-		function showModal(title,item1,item2,item3,item4,item5,item6,voteNo,content) {
+		function showModal(title,item1,item2,item3,item4,item5,item6,voteNo,content,item1Count,item2Count,item3Count,item4Count,item5Count,item6Count) {
 			$('div#doVoteModal').modal();
 			$('label#title').text(title);
 			$('label#item1').text(item1);
@@ -221,6 +218,73 @@ div.board-btn button {
 			$('input#item6').val(item6);
 			$('input#voteNo').val(voteNo);
 			$('label#content').text(content);
+			$('input#item1Count').val(item1Count);
+			$('input#item2Count').val(item2Count);
+			$('input#item3Count').val(item3Count);
+			$('input#item4Count').val(item4Count);
+			$('input#item5Count').val(item5Count);
+			$('input#item6Count').val(item6Count);
+		}
+		
+		
+		function showDoneModal(title,item1,item2,item3,item4,item5,item6,voteNo,content,item1Count,item2Count,item3Count,item4Count,item5Count,item6Count) {
+			$('div#doneVoteModal').modal();
+			$('label#title').text(title);
+			$('label#item1').text(item1);
+			$('label#item2').text(item2);
+			$('label#item3').text(item3);
+			$('label#item4').text(item4);
+			$('label#item5').text(item5);
+			$('label#item6').text(item6);
+			$('input#item1').val(item1);
+			$('input#item2').val(item2);
+			if(item3==''){
+				$('li#itembox3').css("display","none");
+			}else{
+				$('li#itembox3').css("display","");
+			}
+			$('input#item3').val(item3);
+			if(item4==''){
+				$('li#itembox4').css("display","none");
+			}else{
+				$('li#itembox4').css("display","");
+			}
+			$('input#item4').val(item4);
+			if(item5==''){
+				$('li#itembox5').css("display","none");
+			}else{
+				$('li#itembox5').css("display","");
+			}
+			$('input#item5').val(item5);
+			if(item6==''){
+				$('li#itembox6').css("display","none");
+			}else{
+				$('li#itembox6').css("display","");
+			}
+			$('input#item6').val(item6);
+			$('input#voteNo').val(voteNo);
+			$('label#content').text(content);
+			$('input#item1Count').val(item1Count);
+			$('input#item2Count').val(item2Count);
+			$('input#item3Count').val(item3Count);
+			$('input#item4Count').val(item4Count);
+			$('input#item5Count').val(item5Count);
+			$('input#item6Count').val(item6Count);
+			var total = Number(item1Count)+Number(item2Count)+Number(item3Count)+Number(item4Count)+Number(item5Count)+Number(item6Count);
+			console.log(total);
+			var item1bar =Number($('input#item1Count').val())/total*100+'%';
+			var item2bar =Number($('input#item2Count').val())/total*100+'%';
+			var item3bar =Number($('input#item3Count').val())/total*100+'%';
+			var item4bar =Number($('input#item4Count').val())/total*100+'%';
+			var item5bar =Number($('input#item5Count').val())/total*100+'%';
+			var item6bar =Number($('input#item6Count').val())/total*100+'%';
+			$('div#item1bar').width(item1bar);
+			$('div#item2bar').width(item2bar);
+			$('div#item3bar').width(item3bar);
+			$('div#item4bar').width(item4bar);
+			$('div#item5bar').width(item5bar);
+			$('div#item6bar').width(item6bar);
+			
 		}
 		
 
@@ -228,6 +292,40 @@ div.board-btn button {
 			location.href = "/notice/voteForm";
 		}
 		
+		$('.registerBtn').on('click',(function() {
+			var item1 = document.getElementById('item1');
+			var item2 = document.getElementById('item2');
+			var item3 = document.getElementById('item3');
+			var item4 = document.getElementById('item4');
+			var item5 = document.getElementById('item5');
+			var item6 = document.getElementById('item6');
+			 if($(item1).is(":checked")==true){
+				 $('input#item1Count').val( Number($('input#item1Count').val())+1);
+			 }
+			 if($(item2).is(":checked")==true){
+				 $('input#item2Count').val( Number($('input#item2Count').val())+1);
+			 }
+			 if($(item3).is(":checked")==true){
+				 $('input#item3Count').val( Number($('input#item3Count').val())+1);
+			 }
+			 if($(item4).is(":checked")==true){
+				 $('input#item4Count').val( Number($('input#item4Count').val())+1);
+			 }
+			 if($(item5).is(":checked")==true){
+				 $('input#item5Count').val( Number($('input#item5Count').val())+1);
+			 }
+			 if($(item6).is(":checked")==true){
+				 $('input#item6Count').val( Number($('input#item6Count').val())+1);
+			 }
+					
+	            	var form = $(this).parent().parent().parent().parent().parent().parent().parent().prev();
+	            	var arr = [];
+	            	console.log(form);
+	            	form.attr("action", "/notice/voteList/upVote");
+	    			form.submit();
+	    			link = '';
+	        
+		}));
 		
 		
 		

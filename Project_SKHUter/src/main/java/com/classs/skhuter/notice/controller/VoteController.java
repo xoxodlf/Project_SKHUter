@@ -42,7 +42,7 @@ public class VoteController {
 	
 	 @RequestMapping(value = "/vote/delete", method = RequestMethod.POST)
 	  public String remove(@RequestParam("voteNo") int voteNo, RedirectAttributes rttr) throws Exception {
-
+		
 	    service.deleteVote(voteNo);
 
 	    rttr.addFlashAttribute("message", "deletesuccess");
@@ -50,8 +50,17 @@ public class VoteController {
 	    return "redirect:/notice/voteList";
 	  }
 	
-	@RequestMapping(value="/voteList/doVote", method = RequestMethod.POST)
-	public String doVote(VoteListDTO doVote,RedirectAttributes rttr) {
+	 
+	 
+	@RequestMapping(value="/voteList/upVote", method = RequestMethod.POST)
+	public String doVote(VoteDTO upVote,RedirectAttributes rttr) {
+		
+		logger.info(upVote.toString());
+		service.upVote(upVote);
+		VoteListDTO doVote = new VoteListDTO();
+		doVote.setVoteNo(upVote.getVoteNo());
+		doVote.setUserNo(upVote.getUserNo());
+		doVote.setSelectItem("투표했다이사람");
 		service.doVote(doVote);
 		logger.info(doVote.toString());
 		rttr.addFlashAttribute("message", "success");

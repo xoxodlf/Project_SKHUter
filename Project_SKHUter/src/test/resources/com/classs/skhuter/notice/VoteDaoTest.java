@@ -84,4 +84,20 @@ public class VoteDaoTest {
 		countNum=dao.countVote(countVote);
 		logger.info(countNum);
 	}
+	
+	@Test
+	public void testupvote() {
+		VoteDTO upvote = new VoteDTO();
+		upvote.setVoteNo(121);
+		upvote.setItem1Count(1);
+		upvote.setItem2Count(0);
+		upvote.setItem3Count(0);
+		upvote.setItem4Count(0);
+		upvote.setItem5Count(0);
+		upvote.setItem6Count(0);
+		
+		dao.upVote(upvote);
+		logger.info("정보 수정 완료!");
+	}
+	
 }
