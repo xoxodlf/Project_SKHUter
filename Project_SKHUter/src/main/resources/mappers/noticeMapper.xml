@@ -85,7 +85,7 @@
 		WHERE Account_no = #{accountNo}
 	</delete>
 	
-	<!-- 회계 내역 전체 조회 -->
+	<!-- 회계 내역  전체 조회 -->
 	<select id="accountingListAll" resultType="Accounting">
 		SELECT account_no as accountNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName
 		FROM Accounting
