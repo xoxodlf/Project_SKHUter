@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -46,12 +47,26 @@ public class AccountingController {
 	public String accountingList(Model model) {
 		logger.info("여기는 회계내역 페이지!!!");
 		
+		int i =0;
+		int Money = 0;
+		
 		List<AccountingDTO> accountingList = accountingService.listAll();
 		
+		for(int listsize = accountingList.size();i < listsize;i++) {
+			if(accountingList.get(i).getStatus() == 0) {
+				Money += accountingList.get(i).getPrice();
+			}
+			else {
+				Money -= accountingList.get(i).getPrice();
+			}
+		}
+		
+		model.addAttribute("money",Money);
 		model.addAttribute("list",accountingList);
 		
 		return "notice/accountingList.lay";
 	}
+	
 	
 	/** 회계내역 등록
 	 * 
@@ -236,6 +251,6 @@ public class AccountingController {
 	      
 	      rttr.addFlashAttribute("msg", "SUCCESS");
 	      
-	      return "redirect:/notice/accountingList/";
+	      return "redirect:/notice/accountingList";
 	   }
 }

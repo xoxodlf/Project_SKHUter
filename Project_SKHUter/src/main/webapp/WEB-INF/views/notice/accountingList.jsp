@@ -89,12 +89,11 @@ div.search-box input[type="search"] {
 					<table class="table table-hover">
 						<thead style="text-align: left">
 							<tr>
-								<th>전체<br /> <input type="checkbox" /></th>
+								<th>전체<br /> <input type="checkbox" id="checkall"/></th>
 								<th>No</th>
 								<th>거래 내역</th>
 								<th>지출</th>
 								<th>수입</th>
-								<th>잔액</th>
 								<th>작성일</th>
 								<th>영수증</th>
 							</tr>
@@ -110,33 +109,37 @@ div.search-box input[type="search"] {
 					<table class="table table-hover">
 						<thead style="text-align: left">
 							<tr>
-								<th>전체<br /> <input type="checkbox" /></th>
+								<th>전체<br /> <input type="checkbox" id="checkall"/></th>
 								<th>No</th>
 								<th>거래 내역</th>
 								<th>지출</th>
 								<th>수입</th>
-								<th>잔액</th>
 								<th>작성일</th>
 								<th>영수증</th>
 							</tr>
 						</thead>
 						<c:forEach items="${list }" var="AccountingDTO" varStatus="status">
+							<input type="hidden" value="${AccountingDTO.price }" id="price">
+							<input type="hidden" value="${AccountingDTO.status }" id="what">
 							<tbody>
 								<tr>
-									<td><input type="checkbox" /></td>
+									<td><input type="checkbox" name="check"/></td>
 									<td>${AccountingDTO.accountNo }</td>
 									<td>${AccountingDTO.content }</td>
+									
+									<!-- 현재 루프가 처음이라면 잔액 계산을 위해 초기값 저장 -->
 									<c:choose>
-										<c:when test="${AccountingDTO.status == 1 }">
-											<td style="color: RED">-${AccountingDTO.price }</td>
+										<c:when test="${AccountingDTO.status eq 1 }">
+											<input type="hidden" value="${AccountingDTO.status }" id="status">
+											<td style="color: RED">-${AccountingDTO.price } </td>
 											<td></td>
 										</c:when>
 										<c:otherwise>
+											<input type="hidden" value="${AccountingDTO.status }" id="status">
 											<td></td>
-											<td style="color: BLUE">+${AccountingDTO.price }</td>
+											<td style="color: BLUE">+${AccountingDTO.price } </td>
 										</c:otherwise>
 									</c:choose>
-									<td><strong>50000</strong></td>
 									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${AccountingDTO.accountDate}" /></td>
 									<td><a href="/resources/upload${AccountingDTO.uuidName }" rel="lightbox" data-lightbox="image-${status.index}">${AccountingDTO.fileName }</a></td>
 								</tr>
@@ -145,6 +148,8 @@ div.search-box input[type="search"] {
 					</table>
 				</c:otherwise>
 			</c:choose>
+			
+			<div style="text-align:right;font-size:18px;style:bold">잔액:   ${money }</div>
 			<!-- end of table -->
 
 			<!-- 검색창 -->
@@ -164,12 +169,29 @@ div.search-box input[type="search"] {
 				</ul>
 			</div>
 			<!-- div.paging-box -->
-
 		</div>
 		<!-- div.table-responsive -->
 	</div>
 	<!-- div.panel-body -->
 </div>
 <!-- div.col-lg-12 -->
+<script type="text/javascript">
+
+$(document).ready(function(){
+	    //최상단 체크박스 클릭
+	    $("#checkall").click(function(){
+	        //클릭되었으면
+	        if($("#checkall").prop("checked")){
+	            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+	            $("input[name=check]").prop("checked",true);
+	            //클릭이 안되있으면
+	        }else{
+	            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+	            $("input[name=check]").prop("checked",false);
+	        }
+	    })
+	})
+
+</script>
 
 <jsp:include page="include/accountingModal.jsp" />
