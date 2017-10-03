@@ -59,13 +59,14 @@
 <div class="panel-body">
 	<div class="board-btns">
 	<div class="board-btn">
-	<select class="form-control" style="width:23%; display: inline-block; text-align: center;">
-        					<option>승인 대기</option>
-        					<option>일반 학생</option>
-        					<option>학생회</option>
-        					<option>회장단</option>
+	
+	<select id="selectStatus" class="form-control" style="width:23%; display: inline-block; text-align: center;">
+        					<option value="0">승인 대기</option>
+        					<option value="1">일반 학생</option>
+        					<option value="2">학생회</option>
+        					<option value="3">회장단</option>
       					</select>
-	<button type="button" class="btn btn-default">등급 변경</button>
+	<button id="changeStatusBtn" type="button" class="btn btn-default" onmouseover="throwStatus()">등급 변경</button>
 		<button type="button" class="btn btn-danger">삭제</button>
 		
 	</div>
@@ -75,7 +76,10 @@
 	</div>
 	<!-- div.board-btns -->
 	<br/>
+	
 	<div class="table-responsive">
+	<form id="userForm" role="form" method="post" action="/user/userList/changeStatus">
+	<input type="hidden" id="Status"  name="Status">
 		<table class="table table-hover">
 			<colgroup>
 				<col width="7%"/>
@@ -87,12 +91,12 @@
 			</colgroup>
 			<thead>
 				<tr>
-				<th>전체<br/><input type="checkbox" /></th>
+				<th>전체<br/><input type="checkbox" id="checkall"/></th>
 				<th>No</th>
 				<th>학번</th>
 				<th>이름</th>
 				<th>휴대폰 번호</th>
-				<th>최근 접속일</th>
+				<th>등록일</th>
 				<th>등급</th>
 				</tr>
 			</thead>
@@ -107,7 +111,7 @@
 					<c:forEach items="${list }" var="userList" varStatus="status">
 						<tbody>
 							<tr>
-								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" name="check" value="${userList.userNo }" /></td>
 								<td>${userList.userNo }</td>
 								<td>${userList.id}</td>
 								<td>${userList.name }</td>
@@ -141,6 +145,7 @@
 			
 			</c:choose>
 		</table>
+		</form>
 		<!-- end of table -->
 		
 		<!-- 검색창 -->
@@ -172,5 +177,48 @@
 <!-- div.panel-body -->
 </div>
 <!-- div.col-lg-12 -->
-<jsp:include page="include/doGiveAndTakeModal.jsp" />
 
+<script>
+$(document).ready(function(){
+	    //최상단 체크박스 클릭
+	    $("#checkall").click(function(){
+	        //클릭되었으면
+	        if($("#checkall").prop("checked")){
+	            //input태그의 class이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+	            $("input[name=check]").prop("checked",true);
+	            //클릭이 안되있으면
+	        }else{
+	            //input태그의 class이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+	            $("input[name=check]").prop("checked",false);
+	        }
+	    })
+	})
+function throwStatus(){
+	var status = $("#selectStatus option:selected").val();
+	console.log(status);
+	$('input#Status').val(status);
+
+}	
+
+
+$('#changeStatusBtn').on('click',(function() {
+			var link = $("form#userForm");
+			console.log(link);
+			 swal({
+	               title: '변경 하시겠습니까?',
+	               text: "",
+	               type: 'warning',
+	               showCancelButton: true,
+	               confirmButtonColor: '#3085d6',
+	               cancelButtonColor: '#d33',
+	               confirmButtonText: 'YES',
+	               cancelButtonText: 'NO'
+	            }).then(function (){
+	            	var form = link;
+	    			var arr = [];
+	    			form.attr("action", "/user/userList/changeStatus");
+	    			form.submit();
+	    			link = '';
+	            })
+		}));
+</script>

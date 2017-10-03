@@ -239,27 +239,27 @@ div.board-btn button {
 			$('input#item1').val(item1);
 			$('input#item2').val(item2);
 			if(item3==''){
-				$('li#itembox3').css("display","none");
+				$('div#itembox3').css("display","none");
 			}else{
-				$('li#itembox3').css("display","");
+				$('div#itembox3').css("display","");
 			}
 			$('input#item3').val(item3);
 			if(item4==''){
-				$('li#itembox4').css("display","none");
+				$('div#itembox4').css("display","none");
 			}else{
-				$('li#itembox4').css("display","");
+				$('div#itembox4').css("display","");
 			}
 			$('input#item4').val(item4);
 			if(item5==''){
-				$('li#itembox5').css("display","none");
+				$('div#itembox5').css("display","none");
 			}else{
-				$('li#itembox5').css("display","");
+				$('div#itembox5').css("display","");
 			}
 			$('input#item5').val(item5);
 			if(item6==''){
-				$('li#itembox6').css("display","none");
+				$('div#itembox6').css("display","none");
 			}else{
-				$('li#itembox6').css("display","");
+				$('div#itembox6').css("display","");
 			}
 			$('input#item6').val(item6);
 			$('input#voteNo').val(voteNo);

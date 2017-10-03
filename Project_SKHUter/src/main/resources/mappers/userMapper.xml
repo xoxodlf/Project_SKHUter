@@ -104,6 +104,11 @@
 	UPDATE users SET secession = 1 WHERE user_no=#{userNo}
 	
 	</update>
+	<!-- 회원등급변경 -->
+	<update id="changeStatus">
+	
+	update users set status = #{status} where user_no=#{userNo}
+	</update>
 
 
 </mapper>

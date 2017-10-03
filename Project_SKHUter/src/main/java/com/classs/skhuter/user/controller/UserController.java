@@ -55,7 +55,23 @@ public class UserController {
 		
 		return "user/userList.lay";
 	}
+	
+	@RequestMapping(value="userList/changeStatus", method = RequestMethod.POST)
+	public String changeStatus(@RequestParam(value="check", required=true) List<String> checks, @RequestParam(value="Status", required=true) String Status){
+		logger.info(Status);
+		UserDTO users= new UserDTO();
+		for(String check : checks) {
+	       users.setUserNo(Integer.parseInt(check));
+	       users.setStatus(Integer.parseInt(Status));
+	       service.changeStatus(users);
+			
+	    }
 
+		return "redirect:/user/userList";
+	}
+	
+	
+	
 	/**
 	 * 회원가입 모달에 입력한 정보 저장
 	 * 
@@ -325,4 +341,8 @@ public class UserController {
 		}
 		return entity;
 	}
+	
+	
+	
+	
 }

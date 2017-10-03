@@ -48,4 +48,7 @@ public interface UserService {
 	
 	/** 회원 탈퇴*/
 	public void delete(int userNo);
+	
+	/** 등급변경*/
+	public void changeStatus(UserDTO user);
 }

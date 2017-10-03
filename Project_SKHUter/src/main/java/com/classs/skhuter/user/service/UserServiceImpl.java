@@ -81,4 +81,10 @@ public class UserServiceImpl implements UserService {
 		dao.delete(userNo);
 	}
 
+	@Override
+	public void changeStatus(UserDTO user) {
+		dao.changeStatus(user);
+		
+	}
+
 }

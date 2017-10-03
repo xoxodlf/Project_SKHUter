@@ -69,41 +69,53 @@ border:none;
 						<input type="hidden" id="item4Count" name="item4Count">
 						<input type="hidden" id="item5Count" name="item5Count">
 						<input type="hidden" id="item6Count" name="item6Count">
+                        <div>
                         <label id="item1" style="display:inline-block;"></label>
                         <div class="progress">
-                            <div id="item1bar" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                            <div  id="item1bar"  class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                                 <span class="sr-only">40% Excellent (success)</span>
                             </div>
                         </div>
+                        </div>
+                        <div>
                         <label id="item2" style="display:inline-block;"></label>
-                        <div class="progress">
+                        <div class="progress" >
                             <div id="item2bar" class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
                                 <span class="sr-only">20% Good (primary)</span>
                             </div>
                         </div>
+                        </div>
+                        <div id="itembox3">
                         <label id="item3" style="display:inline-block;"></label>
                         <div class="progress">
                             <div id="item3bar" class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                 <span class="sr-only">60% Can Be Improved (warning)</span>
                             </div>
                         </div>
+                        </div>
+                        <div id="item4bar">
                         <label id="item4" style="display:inline-block;"></label>
-                        <div class="progress">
-                            <div id="item4bar" class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" >
+                        <div class="progress" id="itembox4">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" >
                                 <span class="sr-only">80% Bad (danger)</span>
                             </div>
                         </div>
+                        </div>
+                        <div id="item5bar">
                         <label id="item5" style="display:inline-block;"></label>
-                        <div class="progress">
-                            <div id="item5bar" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress" id="itembox5">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">
                                 <span class="sr-only">80% No Comment (info)</span>
                             </div>
                         </div>
+                        </div>
+                        <div id="item6bar">
                         <label id="item6" style="display:inline-block;"></label>
-                        <div class="progress">
-                            <div id="item6bar" class="progress-bar progress-bar-success" >
+                        <div class="progress" id="itembox6">
+                            <div class="progress-bar progress-bar-success" >
                                 <span class="sr-only">35% Complete (success)</span>
                             </div>
+                        </div>
                         </div>
                     </div>
 					</div>
