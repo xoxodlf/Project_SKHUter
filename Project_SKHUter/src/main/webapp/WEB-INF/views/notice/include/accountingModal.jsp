@@ -73,7 +73,7 @@
 							</div>
 							<div class="clearfix"></div>
 						</div>
-
+						
 						<div class="form-group">
 							<div class="col-xs-3 col-sm-3 text-center">
 								<label for="repw" class="regist_label">금액</label>
@@ -86,6 +86,19 @@
 							</div>
 							<div class="clearfix"></div>
 						</div>
+						
+<!-- 						<div class="form-group"> -->
+<!-- 							<div class="col-xs-3 col-sm-3 text-center"> -->
+<!-- 								<label for="id" class="regist_label">사용 날짜</label> -->
+<!-- 							</div> -->
+<!-- 							<div class="col-xs-6 col-sm-6"> -->
+<!-- 								<div class="form-group" style="display: inline-block; width: 350px;"> -->
+<!--                   					<input type="date" id="sinputdate" class="form-control onlyNumber" style="display: inline-block; width: 45%;"> -->
+<!--         							<input type="hidden" id="accountDate" name="accountDate"> -->
+<!--         						</div> -->
+<!--         					</div> -->
+<!-- 							<div class="clearfix"></div> -->
+<!-- 						</div> -->
 						
 						<div class="row">
                   			<div class="col-xs-2 col-xs-offset-1"></div>
@@ -133,6 +146,15 @@
 </form>
 
 <script>
+
+// function throwDate(){
+//      var write =new Date();   //시작날짜
+//      write = document.getElementById("sinputdate");
+// 	 $('#accountDate').val(write);
+	 
+// 	 console.log(write);
+// }
+
 /** 파일선택 CSS*/
 $("#fileBtn").on('click', function(){
    event.preventDefault();
@@ -288,5 +310,4 @@ $(function() {
 	      return front + end;
 	   }
 	});
-	
 </script>

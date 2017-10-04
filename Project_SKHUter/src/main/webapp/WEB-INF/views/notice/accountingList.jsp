@@ -72,9 +72,9 @@ div.search-box input[type="search"] {
 	<div class="panel-body">
 		<div class="board-btns">
 			<!-- 삭제 버튼 -->
-			<div class="board-btn">
-				<button type="button" class="btn btn-danger">삭제</button>
-			</div>
+				<div class="board-btn">
+					<button type="button" class="btn btn-danger" id="removeBtn">삭제</button>
+				</div>
 			<!-- 글 등록 버튼 -->
 			<div class="board-btn">
 				<button type="button" data-toggle="modal"
@@ -83,6 +83,7 @@ div.search-box input[type="search"] {
 		</div>
 		<!-- div.board-btns -->
 		<br />
+		<form role="form"  id="checkForm" method="post" action="/notice/accountingList/remove">
 		<div class="table-responsive">
 			<c:choose>
 				<c:when test="${empty list }">
@@ -123,7 +124,7 @@ div.search-box input[type="search"] {
 							<input type="hidden" value="${AccountingDTO.status }" id="what">
 							<tbody>
 								<tr>
-									<td><input type="checkbox" name="check"/></td>
+									<td><input type="checkbox" name="check" value="${AccountingDTO.accountNo }"/></td>
 									<td>${AccountingDTO.accountNo }</td>
 									<td>${AccountingDTO.content }</td>
 									
@@ -170,6 +171,7 @@ div.search-box input[type="search"] {
 			</div>
 			<!-- div.paging-box -->
 		</div>
+		</form>
 		<!-- div.table-responsive -->
 	</div>
 	<!-- div.panel-body -->
@@ -192,6 +194,26 @@ $(document).ready(function(){
 	    })
 	})
 
+	$("#removeBtn").on('click',(function() {
+			var link = $("form#checkForm");
+			console.log(link);
+			 swal({
+	               title: '삭제 하시겠습니까?',
+	               text: "",
+	               type: 'warning',
+	               showCancelButton: true,
+	               confirmButtonColor: '#3085d6',
+	               cancelButtonColor: '#d33',
+	               confirmButtonText: 'YES',
+	               cancelButtonText: 'NO'
+	            }).then(function (){
+	            	var form = link;
+	    			var arr = [];
+	    			form.attr("action", "/notice/accountingList/remove");
+	    			form.submit();
+	    			link = '';
+	            })
+		}));
 </script>
 
 <jsp:include page="include/accountingModal.jsp" />

@@ -244,13 +244,15 @@ public class AccountingController {
 	    * @param rttr
 	    * @return
 	    */
-	   @RequestMapping(value = "/notice/accountingList/remove", method = RequestMethod.POST)
-	   public String remove(@RequestParam int accountingNo, RedirectAttributes rttr) {
+	 @RequestMapping(value = "/notice/accountingList/remove", method = RequestMethod.POST)
+	 public String remove(@RequestParam(value="check", required=true) List<String> checks, RedirectAttributes rttr) {
 	      
-	      accountingService.remove(accountingNo);
+		for (String accountingNo : checks) {
+			accountingService.remove(Integer.parseInt(accountingNo));
+		}
 	      
-	      rttr.addFlashAttribute("msg", "SUCCESS");
-	      
-	      return "redirect:/notice/accountingList";
-	   }
+	    rttr.addFlashAttribute("msg", "SUCCESS");
+	    
+	    return "redirect:/notice/accountingList";
+	 }
 }
