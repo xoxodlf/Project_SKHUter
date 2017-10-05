@@ -54,5 +54,7 @@ public interface UserDAO {
 	
 	/** 등급변경*/
 	public void changeStatus(UserDTO user);
-
+	
+	/** 인수인계*/
+	public void takeover(UserDTO takeoverCode);
 }

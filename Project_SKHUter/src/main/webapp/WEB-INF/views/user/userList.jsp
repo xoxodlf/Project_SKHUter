@@ -71,7 +71,7 @@
 		
 	</div>
 	<div class="board-btn">
-		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#doGiveAndTakeModal">인수인계</button>
+		<button id="takeoverBtn" type="button" class="btn btn-default" data-toggle="modal" >인수인계</button>
 	</div>
 	</div>
 	<!-- div.board-btns -->
@@ -146,6 +146,11 @@
 			</c:choose>
 		</table>
 		</form>
+		<form id="takeoverform" role="form" method="post" action="/user/userList/takeover">
+		<input type="hidden" name="giverNo" value="${login.userNo}">
+		<input type="hidden" name="takerNo" id="takerNo">
+		<input type="hidden" name="takeoverCode" id="takeoverCode">
+		</form>
 		<!-- end of table -->
 		
 		<!-- 검색창 -->
@@ -197,8 +202,9 @@ function throwStatus(){
 	var status = $("#selectStatus option:selected").val();
 	console.log(status);
 	$('input#Status').val(status);
+	
+}
 
-}	
 
 
 $('#changeStatusBtn').on('click',(function() {
@@ -221,4 +227,41 @@ $('#changeStatusBtn').on('click',(function() {
 	    			link = '';
 	            })
 		}));
+		
+$('#takeoverBtn').on('click',(function() {
+	var link = $("form#takeoverform");
+	console.log(link);
+	var takerNo= $("input[name=check]:checked").val();
+	$("input#takerNo").val(takerNo);
+	console.log(takerNo);
+	$('input#Status').val(status);
+	var code = Math.floor(Math.random()*100000000);
+	$("input#takeoverCode").val(code);
+	console.log(code);
+	
+	 swal({
+           title: '정말 인계를 진행하시겠습니까?',
+           text: "",
+           type: 'warning',
+           showCancelButton: true,
+           confirmButtonColor: '#3085d6',
+           cancelButtonColor: '#d33',
+           confirmButtonText: 'YES',
+           cancelButtonText: 'NO'
+        }).then(function (){
+        	 swal({
+        		    type: 'info',
+        		    title: 'code: '+code,
+        		    text: "인계자에게 코드를 알려주세요!"
+        	}).then(function (){
+            	var form = link;
+    			var arr = [];
+    			form.attr("action", "/user/userList/takeover");
+    			form.submit();
+    			link = '';
+            })
+        })
+}));
+		
+		
 </script>
