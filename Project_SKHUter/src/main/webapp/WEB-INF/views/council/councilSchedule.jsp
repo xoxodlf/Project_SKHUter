@@ -9,12 +9,24 @@ div.col-lg-12 {
 </style>
 
 <body>
+<input type="hidden" id="deletesuccess" value="${message}">
+<input type="hidden" id="createsuccess" value="${message}">
 	<div class="row">
 		<div class="col-lg-12">
 			<img src="/resources/images/title/council_schedule.png" class="page-header" style="width: 20%;">
 		</div>
 	</div>
 	<div class="col-lg-12">
+	<div style="margin-bottom: 10px;">
+	<div style="width:45%; text-align:left; display:inline-block;">
+	</div>
+	<div style="width:45%; text-align: right; display:inline-block;">
+	<c:if test="${login.status>=2}">
+	<a href="javascript:showModal();">일정등록</a>
+	</c:if>
+	</div>
+	</div>
+	
 		<div id="wrapper">
 			<div id="page-wrapper">
 				<div class="row">
@@ -28,27 +40,32 @@ div.col-lg-12 {
 								</div>
 							</div>
 							<ul class="timeline">
+								<c:forEach items="${scheduleList}" var="schedule">
+								<form role="form" id="deleteform" method="post" action="/councilSchedule/deleteSchedule">
+    							<input type='hidden' name='councilScheduleNo' value ="${schedule.councilScheduleNo}"> 
+    							</form>
 								<li>
 									<div class="timeline-badge">
 										<i class="fa fa-check"></i>
 									</div>
 									<div class="timeline-panel">
 										<div class="timeline-heading">
-											<h4 class="timeline-title">Lorem ipsum</h4>
 											<p>
 												<small class="text-muted"><i class="fa fa-clock-o"></i>
-													11 hours ago via Twitter</small>
+													${schedule.startDate}~${schedule.endDate}</small>
+													<c:if test="${login.status>=2}">
+                        								<button id="deleteBtn" class="btn btn-default btn-sm scremoveBtn" type="button">
+                        									<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
+                        								</button>
+                        							</c:if>
 											</p>
 										</div>
 										<div class="timeline-body">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Libero laboriosam dolor perspiciatis omnis
-												exercitationem. Beatae, officia pariatur? Est cum veniam
-												excepturi. Maiores praesentium, porro voluptas suscipit
-												facere rem dicta, debitis.</p>
+											<p>${schedule.content}</p>
 										</div>
 									</div>
 								</li>
+								</c:forEach>
 								<li class="timeline-inverted">
 									<div class="timeline-badge warning">
 										<i class="fa fa-credit-card"></i>
@@ -169,5 +186,77 @@ div.col-lg-12 {
 			</div>
 		</div>
 	</div>
+	<jsp:include page="include/stuScheduleModal.jsp" />
+<script>
+function showModal() {
+	$('div#stuScheduleModal').modal();
+	
+}
+
+function throwDate(){
+       var x = document.getElementById('sinputdate');	//시작날짜
+       var y = document.getElementById('einputdate');   //마감날짜
+       var start =x.value.replace(/T/g, ' ');
+       var end =y.value.replace(/T/g, ' ');
+	   $('input#startDate').val(start);
+	   $('input#endDate').val(end);
+	   console.log(start);
+	   console.log(end);
+	   
+}
+
+$('.scremoveBtn').on('click',(function() {
+	var link = $("form#deleteform");
+	console.log('link');
+	 swal({
+           title: '삭제 하시겠습니까?',
+           text: "",
+           type: 'warning',
+           showCancelButton: true,
+           confirmButtonColor: '#3085d6',
+           cancelButtonColor: '#d33',
+           confirmButtonText: 'YES',
+           cancelButtonText: 'NO'
+        }).then(function (){
+        	var form = link;
+			var arr = [];
+			form.attr("action", "/council/councilSchedule/deleteSchedule");
+			form.submit();
+			link = '';
+        })
+}));
+
+$('#registerBtn').on('click',(function() {	
+        	var form = $("form#scheduleForm");
+        	var arr = [];
+        	console.log(form);
+        	form.attr("action", "/council/councilSchedule/registSchedule");
+			form.submit();
+			link = '';
+    
+}));
+
+$(function(){
+	var message = $('#createsuccess').val();
+	if (message == 'createsuccess') {
+		swal(     
+	     		 '',
+	     	     '등록이 완료되었습니다.',
+	     	     'success'
+	     		)
+	}
+	});
+$(function(){
+	var message = $('#deletesuccess').val();
+	if (message == 'deletesuccess') {
+		swal(     
+	     		 '',
+	     	     '삭제가 완료되었습니다.',
+	     	     'success'
+	     		)
+	}
+	});
+</script>
+
 </body>
 

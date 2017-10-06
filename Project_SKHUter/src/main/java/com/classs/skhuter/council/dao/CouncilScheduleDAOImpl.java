@@ -1,5 +1,7 @@
 package com.classs.skhuter.council.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -22,5 +24,16 @@ public class CouncilScheduleDAOImpl implements CouncilScheduleDAO {
 	@Override
 	public void register(CouncilScheduleDTO councilSchedule) {
 		sqlSession.insert(namespace + ".insertCouncilSchedule", councilSchedule);
+	}
+
+	@Override
+	public List<CouncilScheduleDTO> listAllSchedule() {
+		return sqlSession.selectList(namespace+".listAllSchedule");
+	}
+
+	@Override
+	public void deleteSchedule(int councilScheduleNo) {
+		sqlSession.delete(namespace+".deleteSchedule", councilScheduleNo);
+		
 	}
 }

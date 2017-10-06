@@ -4,9 +4,23 @@
                         
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.classs.skhuter.mapper.CouncilMapper">
+
+<!-- 학생회 일정 등록 -->
 <insert id="insertCouncilSchedule">
-INSERT INTO Council_schedule (content,start_date,end_date) 
-VALUES (#{content},#{startDate},#{endDate});
+INSERT INTO Council_schedule (council_schedule_no, content,start_date,end_date) 
+VALUES (seq_Council_schedule.nextVal, #{content},TO_DATE(#{startDate},'yyyy-MM-dd
+		hh24:mi'),TO_DATE(#{endDate}, 'yyyy-MM-dd
+		hh24:mi'))
 </insert>
 
+<select id="listAllSchedule" resultType="CouncilSchedule">
+		SELECT council_schedule_no as councilScheduleNo, content, start_date as startDate, end_date as endDate
+		FROM Council_schedule
+</select>
+
+
+<delete id="deleteSchedule">
+		DELETE FROM Council_schedule
+		WHERE council_schedule_no = #{councilScheduleNo}
+</delete>
 </mapper>
