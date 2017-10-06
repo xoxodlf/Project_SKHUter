@@ -103,11 +103,12 @@ public class VoteDaoTest {
 	@Test
 	public void testcount2() {
 		VoteListDTO countVote = new VoteListDTO();
-		logger.info("시작");
 		countVote.setVoteNo(1);
-		countVote.setUserNo(1);
-		logger.info("값 넣었다");
+		countVote.setUserNo(2);
+		logger.info("시작");
 		int isVote=dao.getIsVoteNo(countVote);
+		
+		logger.info("값 넣었다");
 		logger.info(""+isVote);
 	}
 	
