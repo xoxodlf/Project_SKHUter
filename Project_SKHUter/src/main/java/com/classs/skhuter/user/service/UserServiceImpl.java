@@ -92,4 +92,10 @@ public class UserServiceImpl implements UserService {
 		dao.takeover(takeoverCode);		
 	}
 
+	@Override
+	public int searchGiver(int takeoverCode) {
+	
+		return dao.searchGiver(takeoverCode);
+	}
+
 }

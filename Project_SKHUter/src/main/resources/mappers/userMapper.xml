@@ -114,6 +114,10 @@
 	<update id="takeover">
 	update users set takeover_code = #{takeoverCode} where user_no=#{userNo}
 	</update>
+	
+	<select id="searchGiver" resultType="int">
+	select user_no from users where takeover_code = #{takeoverCode} 
+	</select>
 
 
 </mapper>

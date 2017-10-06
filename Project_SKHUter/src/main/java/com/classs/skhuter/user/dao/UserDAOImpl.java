@@ -129,4 +129,10 @@ public class UserDAOImpl implements UserDAO {
 		
 	}
 
+	@Override
+	public int searchGiver(int takeoverCode) {
+		return sqlSession.selectOne(namespace+".searchGiver",takeoverCode);
+		
+	}
+
 }

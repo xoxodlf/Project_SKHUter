@@ -57,7 +57,39 @@ $(function(){
             confirmButtonText: 'OK'
           });
 	}
-	
+	if(result == "takeover") {
+		var userNo=getUrlParams().userNo;
+		var takeoverCode=getUrlParams().takeoverCode+'';
+		$('input#toCode').val(takeoverCode);
+		$('input#takerNo').val(userNo);
+		var link = $("form#takeover");
+		swal({
+			  title: '인수인계 코드를 입력하세요.',
+			  input: 'text',
+			  inputPlaceholder: '코드를 입력하세요.',
+			  showCancelButton: true,
+			  inputValidator: function (value) {
+			    return new Promise(function (resolve, reject) {
+			      if (value==takeoverCode) {
+			        resolve()
+			      } else {
+			        reject('코드를 잘못 입력하셨습니다.')
+			      }
+			    })
+			  }
+			}).then(function (name) {
+			  swal({
+			    type: 'info',
+			    title: '인수인계가 진행됩니다.'
+			  }).then(function (){
+	            	var form = link;
+	    			var arr = [];
+	    			form.attr("action", "/user/takeover");
+	    			form.submit();
+	    			link = '';
+	            })
+			});
+	}
 	
 	if(result == "notAuth") {
 		swal({
@@ -111,6 +143,10 @@ function getUrlParams() {
 <input type="hidden" id="successMessage" value="${message}"/>
 <input type="hidden" id="statusMessage" value="${setStatus}"/>
 	
+<form id="takeover" method="post"">
+	<input type="hidden" id="toCode" name="takeoverCode">
+	<input type="hidden" id="takerNo" name="takerNo">
+</form>
 	<!-- Preloader -->
 	<div id="preloader">
 		<div id="loading-animation">&nbsp;</div>
