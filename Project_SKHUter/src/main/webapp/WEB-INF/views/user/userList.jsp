@@ -85,6 +85,7 @@
 				<col width="7%"/>
 				<col width="7%"/>
 				<col width="*"/>
+				<col width="7%"/>
 				<col width="15%"/>
 				<col width="15%"/>
 				<col width="15%"/>
@@ -93,8 +94,9 @@
 				<tr>
 				<th>전체<br/><input type="checkbox" id="checkall"/></th>
 				<th>No</th>
-				<th>학번</th>
-				<th>이름</th>
+				<th>학번　</th>
+				<th>학년　</th> 
+				<th>이름　</th>
 				<th>휴대폰 번호</th>
 				<th>등록일</th>
 				<th>등급</th>
