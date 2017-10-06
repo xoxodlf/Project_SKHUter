@@ -87,4 +87,9 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
+	@Override
+	public void takeover(UserDTO takeoverCode) {
+		dao.takeover(takeoverCode);		
+	}
+
 }

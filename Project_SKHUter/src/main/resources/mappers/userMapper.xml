@@ -109,6 +109,11 @@
 	
 	update users set status = #{status} where user_no=#{userNo}
 	</update>
+	
+	<!-- 인수인계코드 -->
+	<update id="takeover">
+	update users set takeover_code = #{takeoverCode} where user_no=#{userNo}
+	</update>
 
 
 </mapper>

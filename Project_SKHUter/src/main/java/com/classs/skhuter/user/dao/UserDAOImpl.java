@@ -123,4 +123,10 @@ public class UserDAOImpl implements UserDAO {
 		
 	}
 
+	@Override
+	public void takeover(UserDTO takeoverCode) {
+		sqlSession.update(namespace+".takeover",takeoverCode);
+		
+	}
+
 }
