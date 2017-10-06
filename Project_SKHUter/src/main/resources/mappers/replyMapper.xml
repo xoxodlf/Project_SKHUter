@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 네임스페이스(사용영역) 설정 -->
+
+<mapper namespace="com.classs.skhuter.mappers.ReplyMapper">
+	<!-- 댓글 쓰기 -->
+	<insert id="createReply">
+		INSERT INTO reply (reply_no, board_no, user_no, regdate, content)
+		VALUES
+		(seq_reply.nextVal, #{boardNo}, #{userNo}, sysdate, #{content})
+	</insert>
+
+	<!-- 댓글 읽기 -->
+	<select id="readReply" resultType="Reply">
+		reply_no as replyNo, board_no as boardNo, user_no as userNo, regdate, content
+	</select>
+
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply">
+		DELETE FROM reply WHERE reply_no = #{replyNo}
+	</delete>
+	
+	<!-- 댓글목록나열 -->
+	<select id="listAllReply" resultType="Reply">
+ 		SELECT
+ 			reply_no as replyNo, board_no as boardNo, user_no as userNo, regdate, content
+		FROM 
+			reply
+		where 
+			board_no=#{boardNo}
+		order by reply_no desc, regdate desc
+	</select>
+	
+	<!-- 댓글 페이징처리 -->
+</mapper>
