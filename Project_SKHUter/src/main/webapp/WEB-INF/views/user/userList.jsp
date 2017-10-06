@@ -95,7 +95,7 @@
 				<th>전체<br/><input type="checkbox" id="checkall"/></th>
 				<th>No</th>
 				<th>학번　</th>
-				<th>학년　</th>
+				<th>학년　</th> 
 				<th>이름　</th>
 				<th>휴대폰 번호</th>
 				<th>등록일</th>
@@ -185,10 +185,10 @@ function throwStatus(){
 }
 
 $('#changeStatusBtn').on('click',(function() {
-			var link = $("form#userForm");
+			var link = $("form#scheduleForm");
 			console.log(link);
 			 swal({
-	               title: '변경 하시겠습니까?',
+	               title: '등록 하시겠습니까?',
 	               text: "",
 	               type: 'warning',
 	               showCancelButton: true,
