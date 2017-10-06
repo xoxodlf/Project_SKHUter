@@ -16,5 +16,8 @@ public interface BoardService {
 	public void delete(int boardNo) throws Exception;
 
 	/**글 목록 모두 보이게 하기**/
-	public List<BoardDTO> listAll() ;
+	public List<BoardDTO> listAll();
+	
+	/**댓글 개수 세기**/
+	public int countReply(BoardDTO board) throws Exception;
 }

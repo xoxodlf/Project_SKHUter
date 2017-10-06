@@ -21,6 +21,7 @@ public class BoardDTO {
 	private String content;
 	private int likeCount;
 	private int hateCount;
+	private int replyCount;
 
 	public int getBoardNo() {
 		return boardNo;
@@ -77,11 +78,11 @@ public class BoardDTO {
 		this.content = content;
 	}
 
-	public int getLikecount() {
+	public int getLikeCount() {
 		return likeCount;
 	}
 
-	public void setLikecount(int likeCount) {
+	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
 	}
 
@@ -91,6 +92,13 @@ public class BoardDTO {
 
 	public void setHateCount(int hateCount) {
 		this.hateCount = hateCount;
+	}
+	public int getReplyCount() {
+		return replyCount;
+	}
+
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
 	}
 	@Override
 	public String toString() {

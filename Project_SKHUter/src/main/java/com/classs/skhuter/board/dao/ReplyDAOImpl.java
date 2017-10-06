@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
+import com.classs.skhuter.board.domain.BoardDTO;
 import com.classs.skhuter.board.domain.ReplyDTO;
 
 @Repository
@@ -35,4 +36,5 @@ public class ReplyDAOImpl implements ReplyDAO {
 
 	    return sqlSession.selectList(namespace + ".listAllReply", boardNo);
 	  }
+	 
 }

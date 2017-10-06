@@ -61,7 +61,7 @@ public class UserDaoTest {
 	@Test
 	public void TestSetStatus() {
 		
-		dao.setStatus("201434019");
+		dao.setStatus("201434025");
 		
 		logger.info("상태 변경 완료!");
 		

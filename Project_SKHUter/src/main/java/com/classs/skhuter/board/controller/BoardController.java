@@ -26,33 +26,42 @@ public class BoardController {
 	@Inject
 	private BoardService service;
 
-	/*게시물 등록 페이지*/
+	/*게시물 등록하기GET*/
 	@RequestMapping(value = "/boardForm", method = RequestMethod.GET)
 	public String boardForm(Model model) {
+		
 		return "board/boardForm.lay";
 	}
 	
-	/*게시물 등록*/
+	/*게시물 등록하기POST*/
 	@RequestMapping(value = "/boardForm", method = RequestMethod.POST)
 	public String registPOST(BoardDTO board, RedirectAttributes rttr) throws Exception {
-
-		logger.info("regist post ...........");
-		logger.info(board.toString());
-
+		
 		service.create(board);
-
-		rttr.addAttribute("msg", "success");
-
+		rttr.addAttribute("message", "createsuccess");
+		logger.info(board.toString());
+		
 		return "redirect:/board/boardList.lay";
 	}
 	 
 	/*게시판 목록 불러오기*/
 	 @RequestMapping(value = "/boardList", method = RequestMethod.GET)
-	  public String listAll(Model model){
+	  public String listAll(Model model) throws Exception{
+		 
 		 List<BoardDTO> list = service.listAll();
+		 BoardDTO tmp = new BoardDTO();
+		 
+		 for(BoardDTO board : list) {
+			 tmp.setBoardNo(board.getBoardNo());
+			 int replyCount = service.countReply(tmp);
+			 board.setReplyCount(replyCount);
+		 }
 			model.addAttribute("boardList", list);
+			logger.info("게시판 리스트 입장");
+			
 			return "board/boardList.lay";
 	 }
+	 
 	 /*게시글 불러오기*/
 	  @RequestMapping(value = "/boardDetail", method = RequestMethod.GET)
 	  public String read(@RequestParam("boardNo") int boardNo, Model model) throws Exception {
@@ -64,12 +73,13 @@ public class BoardController {
 	  /*게시글 삭제하기*/
 	  @RequestMapping(value = "boardDetail/delete", method = RequestMethod.POST)
 	  public String remove(@RequestParam("boardNo") int boardNo, RedirectAttributes rttr) throws Exception {
-
+		  logger.info("컨트롤러랍니다~");
 	    service.delete(boardNo);
 
 	    rttr.addFlashAttribute("msg", "SUCCESS");
 
 	    return "redirect:/board/boardList.lay";
 	  }
+	  
 	
 }

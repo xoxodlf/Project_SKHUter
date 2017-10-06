@@ -88,7 +88,7 @@
 			<thead>
 				<tr>
 				<th>제목</th>
-				<td colspan="7"> ${boardDTO.title} [13]</td>
+				<td colspan="7"> ${boardDTO.title}</td>
 				</tr>
 				<tr>
 				<th>조회</th>
@@ -104,7 +104,7 @@
 			<tbody>
 				<tr>
 					<td class="table-content" colspan="8">
-					<pre> d</pre>
+					<pre style="background-color: white;">${boardDTO.content}</pre>
 					</td>
 				</tr>
 				<tr>
@@ -116,9 +116,9 @@
 				<tr>
 					<td align=center>댓글</td> 
 					<td colspan="6">
-					<input type="text" name="replytext" id="newReplyText" size="100"/></td>
+					<input type="text" name="replytext" id="newReplyText" size="115"/></td>
 					<td colspan="2" align=center>
-						<button type="button" id="replyAddBtn" class="btn btn-default" size="30" style="margin-left:5;">등록</button>
+						<button type="button" id="replyAddBtn" class="btn btn-default" size="30" >등록</button>
 					</td>
 				</tr>
 			</tbody>
@@ -137,11 +137,16 @@
 <!-- div.col-lg-12 -->
   
 <script>
-//${boardDTO.password}
+
+var boardNo = $('#bn').val();
+console.log("boardNo : "+boardNo);
+
+/** 게시판 리스트로 이동**/
 $('.listBtn').on('click',(function() {
 	location.href = "/board/boardList.lay";
 }));
 
+/** 게시물 삭제 기능 구현 **/
 $('.removeBtn').on('click',(function() {
 	 var password= $('input#pw').val();
 	 var link = $(this).prev();
@@ -177,53 +182,56 @@ $('.removeBtn').on('click',(function() {
 		})
 }));
 
-var boardNo = $('#bn').val();
-console.log("boardNo : "+boardNo);
-
+/** 해당 게시물 댓글 목록 불러오기 **/
 $(document).ready(function(data){
 	$.getJSON("/replies/all/" + boardNo, function(data){
 		console.log(data.length);
 		var str = "";
+		var frontstr= "";
+		var countreply= 0;
 		$(data).each(function() {
 			str += "<tr><td data-replyNo='"+this.replyNo+"'align=center style='vertical-align: middle;'>" 
-				+ "<img src='/resources/images/anonymouscomment.png' style='width: 30%;'></td>"
-				+ "<td colspan='4' style=' vertical-align: middle;'>"
+				+ "<img src='/resources/images/anonymouscomment.png' style='width: 30px;'>　　:</td>"
+				+ "<td colspan='6' style=' vertical-align: middle; width: 10px; font-size: small;'>"
 				+ this.content
 				+ "</td>"
-				+ "<td colspan='2' style='font-size:15px; vertical-align: middle; text-align:right;'>"
+				+ "<td colspan='1' style='font-size: small; vertical-align: middle; text-align:center;'>"
 				+ this.regdate
-				+ "</td>"
-				+ "<td align=center style='vertical-align: middle;'>"
-				+ "<button id='deleteBtn' class='btn btn-default btn-sm removeBtn' type='button'>"
-				+ "<p class='glyphicon glyphicon-trash' aria-hidden='true'></p></button></td></tr>"
+				+ "</td>";
+			countreply += 1;
+			
 		});
-		$("#replies").html(str);
-	})
-})
+		frontstr="<tr align=center style='vertical-align: middle;'><td colspan='8'> ※ " + countreply + "개의 댓글이 있습니다. 댓글은 삭제가 불가능하니 신중히 생각하고 적도록 합시다!</td></tr>";
+		$("#replies").html(frontstr+str);
 
+	});
+});
 
+/** 댓글 등록시 목록 업데이트하기 **/
 function getAllList() {
-	
+
 	$.getJSON("/replies/all/" + boardNo, function(data){
 		console.log(data.length);
 		var str = "";
+		var frontstr= "";
+		var countreply= 0;
 		$(data).each(function() {
 			str += "<tr><td data-replyNo='"+this.replyNo+"'align=center style='vertical-align: middle;'>" 
-				+ "<img src='/resources/images/anonymouscomment.png' style='width: 30%;'></td>"
-				+ "<td colspan='4' style=' vertical-align: middle;'>"
+				+ "<img src='/resources/images/anonymouscomment.png' style='width: 30px;'>　　:</td>"
+				+ "<td colspan='6' style=' vertical-align: middle; width: 10px;font-size: small;'>"
 				+ this.content
 				+ "</td>"
-				+ "<td colspan='2' style='font-size:15px; vertical-align: middle; text-align:right;'>"
+				+ "<td colspan='1' style='font-size: small; vertical-align: middle; text-align:center;'>"
 				+ this.regdate
-				+ "</td>"
-				+ "<td align=center style='vertical-align: middle;'>"
-				+ "<button id='deleteBtn' class='btn btn-default btn-sm removeBtn' type='button'>"
-				+ "<p class='glyphicon glyphicon-trash' aria-hidden='true'></p></button></td></tr>"
-		});
-		$("#replies").html(str);
+				+ "</td>";
+			countreply += 1;
+		})
+		frontstr="<tr align=center style='vertical-align: middle;'><td colspan='8'> ※ " + countreply + "개의 댓글이 있습니다. 댓글은 삭제가 불가능하니 신중히 생각하고 적도록 합시다!</td></tr>";
+		$("#replies").html(frontstr+str);
 	})
 };
 
+/** 댓글 등록하기 **/
 $("#replyAddBtn").on("click", function() {
 	var userNo = $("#loguserno").val();
 	var content = $("#newReplyText").val();
@@ -242,37 +250,18 @@ $("#replyAddBtn").on("click", function() {
 		}),
 		success : function(result) {
 			if (result == 'SUCCESS') {
-				alert("등록 되었습니다.");
-				getAllList();
+				swal({
+				    type: 'success',
+				    title: '등록이 완료되었습니다.'
+				  }).then(function () {
+					  getAllList();
+					  newReplyText.value="";
+					  
+				  })
 			}
 		}
 	})
 });
-
-$('#replies').on('click','.replyLi button', function() {
-	var date=$(this).parent().prev().text();
-	var content=$(this).parent().prev().prev().text();
-	var replyNo=$(this).parent().prev().prev().prev().attr("data-replyNo");
-	console.log("date : "+date+", content : "+content+", replyNo : "+replyNo);
-	$.ajax({
-		type : 'delete',
-		url : '/replies/' + replyNo,
-		headers : {
-			"Content-Type" : "application/json",
-			"X-HTTP-Method-Override" : "DELETE"
-		},
-		dataType : 'text',
-		success : function(result) {
-			console.log("result: " + result);
-			if (result == 'SUCCESS') {
-				alert("삭제 되었습니다.");
-				getAllList();
-			}
-		}
-	})
-});
-
-
 
 </script>
 

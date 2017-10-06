@@ -10,8 +10,10 @@
 <!-- include summernote css/js-->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-<!-- include summernote-ko-KR -->
-<script src="lang/summernote-ko-KR.js"></script>
+
+<!-- include summernote-ko-KR 
+<script src="lang/summernote-ko-KR.js"></script>-->
+
 <script>
 	/* SummerNote */
 	/* SummerNote내용 value값으로 전달 */
@@ -29,6 +31,11 @@
         	placeholder: '내용을 입력해주세요.'
         });
     });
+	
+    $('.listBtn').on('click',(function() {
+    	location.href = "/board/boardList.lay";
+    }));
+
 </script>
 <style>
 /* 기타 */
@@ -103,7 +110,7 @@
 		<button type="submit" onmouseover="contentsend()" class="btn btn-default">글등록</button>
 	</div>
 	<div class="board-btn">
-		<button type="button" class="btn btn-default">목록</button>
+		<button type="button" class="btn btn-default listBtn">목록</button>
 	</div>
 	</div>
 	<!-- div.board-btns -->

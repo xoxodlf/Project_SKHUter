@@ -3,6 +3,7 @@ package com.classs.skhuter.board.dao;
 import java.sql.Date;
 import java.util.List;
 import com.classs.skhuter.board.domain.BoardDTO;
+import com.classs.skhuter.notice.domain.VoteListDTO;
 
 /**
  * 게시판 관련 DB에서 데이터를 가져와 모델 생성
@@ -27,7 +28,13 @@ public interface BoardDAO {
 	/**글 목록 모두 보이게 하기**/
 	public List<BoardDTO> listAll();
 
-//	public List<BoardDTO> listPage(int page) throws Exception;
-
+	/**게시물 목록 페이징 처리**/
+	public List<BoardDTO> listPage(int page) throws Exception;
+	
+	/**댓글 개수 세기**/
+	public int countReply(BoardDTO board) throws Exception;
+	
+	/**조회수 처리**/
+	public void updateHitCount(int boardNo) throws Exception;
 
 }
