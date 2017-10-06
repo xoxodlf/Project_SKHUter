@@ -152,30 +152,6 @@
 		<input type="hidden" name="takeoverCode" id="takeoverCode">
 		</form>
 		<!-- end of table -->
-		
-		<!-- 검색창 -->
-		<div class="search-box">
-			<input type="search" class="form-control input-sm">
-			<button class="btn btn-default">검색</button>
-		</div>
-		<!-- div.search-box -->
-		
-		<!-- 페이징 버튼들 -->
-		<div class="paging-box">
-			<ul class="pagination">
-				<li class="paginate_button previous disabled">
-					<a href="#">이전</a>
-				</li>
-				<li class="paginate_button active">
-					<a href="#">1</a>
-				</li>
-				<li class="paginate_button next">
-					<a href="#">다음</a>
-				</li>
-			</ul>
-		</div>
-		<!-- div.paging-box -->
-	
 	</div>
 	<!-- div.table-responsive -->
 </div>
