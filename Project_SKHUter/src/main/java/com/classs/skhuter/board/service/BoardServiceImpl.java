@@ -2,7 +2,11 @@ package com.classs.skhuter.board.service;
 
 import java.util.List;
 import javax.inject.Inject;
+
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import com.classs.skhuter.board.controller.BoardController;
 import com.classs.skhuter.board.dao.BoardDAO;
 import com.classs.skhuter.board.domain.BoardDTO;
 
@@ -18,6 +22,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardDTO read(int boardNo) throws Exception {
+		dao.updateHitCount(boardNo);
 		return dao.read(boardNo);
 	}
 
@@ -25,10 +30,20 @@ public class BoardServiceImpl implements BoardService {
 	public void delete(int boardNo) throws Exception {
 		dao.delete(boardNo);
 	}
-
+	
 	@Override
 	public List<BoardDTO> listAll() {
 		return dao.listAll();
 	}
 
+	@Override
+	public int countReply(BoardDTO board) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.countReply(board);
+	}
+	
+	
+	
+	
+	
 }

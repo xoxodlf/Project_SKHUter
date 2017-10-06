@@ -12,11 +12,6 @@
 		(seq_reply.nextVal, #{boardNo}, #{userNo}, sysdate, #{content})
 	</insert>
 
-	<!-- 댓글 읽기 -->
-	<select id="readReply" resultType="Reply">
-		reply_no as replyNo, board_no as boardNo, user_no as userNo, regdate, content
-	</select>
-
 	<!-- 댓글 삭제 -->
 	<delete id="deleteReply">
 		DELETE FROM reply WHERE reply_no = #{replyNo}

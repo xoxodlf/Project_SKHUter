@@ -24,14 +24,26 @@
 
 	<!-- 게시물 삭제 -->
 	<delete id="delete">
-		delete from board where board_no = #{board_no}
+		DELETE FROM board WHERE board_no = #{boardNo}
 	</delete>
 
 	<select id="listAll" resultType="board">
  		SELECT board_no as boardNo, user_no as userNo, title, regdate, hit_count as hitCount, password, content, like_count as likeCount, hate_count as hateCount
 		FROM 
 			Board
-		order by board_no desc
+		order by board_no desc, regdate desc
 	</select>
+	
+	<!-- 댓글 개수 세기 -->
+	<select id="countReply" parameterType="board" resultType="int">
+		select count(reply_no) from reply where board_no= #{boardNo}
+	</select>
+	
+	<!-- 조회수 세기 -->
+	<update id="updateHitCount">
+		update board set hit_count=hit_count+1 where board_no= #{boardNo}
+	</update>
+	
+	<!-- 게시물리스트 페이징처리 -->
 
 </mapper>
