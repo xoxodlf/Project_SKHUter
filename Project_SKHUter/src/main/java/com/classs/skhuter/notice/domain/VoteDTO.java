@@ -23,8 +23,15 @@ public class VoteDTO {
 	private int item4Count;
 	private int item5Count;
 	private int item6Count;
+	private int isVote;
 	
 	
+	public int getIsVote() {
+		return isVote;
+	}
+	public void setIsVote(int isVote) {
+		this.isVote = isVote;
+	}
 	public int getItem1Count() {
 		return item1Count;
 	}

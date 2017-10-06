@@ -4,7 +4,15 @@
 
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.classs.skhuter.mappers.NoticeMapper">
+	
 	<!-- 투표 -->
+	<select id="getIsVoteNo" parameterType="VoteList" resultType="int">
+	<![CDATA[
+		select count(select_item)
+		from VOTE_LIST
+		where VOTE_NO=#{voteNo} and USER_NO=#{userNo}
+	]]>
+	</select>
 	
 	<!-- 투표 불러오기 -->
 	<select id="readDoingVote" resultType="Vote">
@@ -33,10 +41,10 @@
 	
 	</update>
 	
-	<select id="countVote"  resultType="int">
-	SELECT COUNT(select_item)
-	from VOTE_LIST
-	where vote_no = #{voteNo} and select_item= #{selectItem}
+	<select id="countVote" parameterType="VoteList" resultType="int">
+	SELECT COUNT(select_item) 
+	from VOTE_LIST 
+	where vote_no = #{voteNo} and user_no= #{userNo}
 	</select>
 
 	

@@ -13,4 +13,5 @@ public interface VoteDAO {
 	public void doVote(VoteListDTO doVote);
 	public int countVote(VoteListDTO countVote);
 	public void upVote(VoteDTO upVote);
+	public int getIsVoteNo(VoteListDTO getIsVote);
 }

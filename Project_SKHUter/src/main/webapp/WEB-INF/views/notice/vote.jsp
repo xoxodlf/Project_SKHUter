@@ -98,7 +98,12 @@ div.board-btn button {
     							<input type='hidden' name='voteNo' value ="${vote.voteNo}"> 
     					</form>   
                         	<div class="alert alert-warning ">
+                        	<c:if test="${vote.isVote==0}">
                            		<a href="javascript:showModal('${vote.title}','${vote.item1}','${vote.item2}','${vote.item3}','${vote.item4}','${vote.item5}','${vote.item6}','${vote.voteNo}','${vote.content}','${vote.item1Count}','${vote.item2Count}','${vote.item3Count}','${vote.item4Count}','${vote.item5Count}','${vote.item6Count}');">${vote.title}</a>
+                        	</c:if>
+                        	<c:if test="${vote.isVote>0}">
+                           		<a href="javascript:didVote();">${vote.title}</a>
+                        	</c:if>	
                         		<div style="float: right;display:inline-block;">
                         		<c:if test="${login.status==3}">
                         		<button id="deleteBtn" class="btn btn-default btn-sm removeBtn" type="button">
@@ -152,8 +157,8 @@ div.board-btn button {
         
         <div class="board-btns">
         	<c:if test="${login.status>=2}">
-				<div class="board-btn" onclick="goVoteForm();" style="width:100%; text-align: center;">
-					<button type="button" class="btn btn-default">투표등록</button>
+				<div class="board-btn" style="width:100%; text-align: center;">
+					<button type="button"  onclick="goVoteForm();" class="btn btn-default">투표등록</button>
 				</div>
 			</c:if>
 	    </div>
@@ -183,7 +188,16 @@ div.board-btn button {
 			     		)
 			}
 			});
-		
+		function didVote(){
+			 swal({
+	               title: '이미 참여한 투표입니다.',
+	               text: "",
+	               type: 'warning',
+	               confirmButtonColor: '#3085d6',
+	               confirmButtonText: '확인',
+	              
+	            });
+		}
 	
 		function showModal(title,item1,item2,item3,item4,item5,item6,voteNo,content,item1Count,item2Count,item3Count,item4Count,item5Count,item6Count) {
 			$('div#doVoteModal').modal();

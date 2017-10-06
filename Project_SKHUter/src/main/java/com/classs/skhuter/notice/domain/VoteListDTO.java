@@ -5,6 +5,13 @@ public class VoteListDTO {
 	private int voteListNo;
 	private int voteNo;
 	private int userNo;
+	private int isVote;
+	public int getIsVote() {
+		return isVote;
+	}
+	public void setIsVote(int isVote) {
+		this.isVote = isVote;
+	}
 	private String selectItem;
 	public int getVoteListNo() {
 		return voteListNo;
