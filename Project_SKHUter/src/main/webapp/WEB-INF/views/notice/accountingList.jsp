@@ -70,6 +70,10 @@ div.search-box input[type="search"] {
 </div>
 <div class="col-lg-12">
 	<div class="panel-body">
+		<form id="jobForm" action="/notice/accountingList/setPageNum">
+				<input type='hidden' name="page" id="page" value="${pageMaker.cri.page}">
+				<input type='hidden' name="perPageNum" id="perPageNum" value="${pageMaker.cri.perPageNum}">
+		</form>
 		<div class="board-btns">
 			<!-- 삭제 버튼 -->
 				<div class="board-btn">
@@ -153,20 +157,30 @@ div.search-box input[type="search"] {
 			<div style="text-align:right;font-size:18px;style:bold">잔액:   ${money }</div>
 			<!-- end of table -->
 
-			<!-- 검색창 -->
-			<div class="search-box" style="margin-top: 15%">
-				<input type="search" class="form-control input-sm">
-				<button class="btn btn-default">검색</button>
-			</div>
 			<!-- div.search-box -->
 
-			<!-- 페이징 버튼들 -->
-			<div class="paging-box">
+<!-- 			<!-- 페이징 버튼들 -->
+<!-- 			<div class="paging-box"> -->
+<!-- 				<ul class="pagination"> -->
+<!-- 					<li class="paginate_button previous disabled"><a href="#">이전</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="paginate_button active"><a href="#">1</a></li> -->
+<!-- 					<li class="paginate_button next"><a href="#">다음</a></li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
+			<div class = "text-center">
 				<ul class="pagination">
-					<li class="paginate_button previous disabled"><a href="#">이전</a>
-					</li>
-					<li class="paginate_button active"><a href="#">1</a></li>
-					<li class="paginate_button next"><a href="#">다음</a></li>
+					<c:if test="${pageMaker.prev }">
+						<li><a href="/notice/accountingList?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
+					</c:if>
+					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+						<li <c:out value="${pageMaker.cri.page == idx?'class = active':'' }"/>>
+							<a href="/notice/accountingList?page=${idx}">${idx}</a>
+						</li>
+					</c:forEach>
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+						<li><a href="/notice/accountingList?page=${pageMaker.endPage+1 }">&raquo;</a></li>
+					</c:if>
 				</ul>
 			</div>
 			<!-- div.paging-box -->
@@ -214,6 +228,30 @@ $(document).ready(function(){
 	    			link = '';
 	            })
 		}));
+		
+	$(".pagination li a").on("click",function(event){
+		event.preventDefault();
+		
+		var targetPage = $("#stPage").val();
+// 		alert(targetPage);
+		
+		
+		var jobForm = $("#jobForm");
+		jobForm.attr("action","/notice/accountingList").attr("method","get");
+		jobForm.submit();
+	})
+	
+// 	$(".pagination li a").on("click",function(event){
+// 		event.preventDefault();
+		
+// 		var targetPage = $("#stPage").val();
+// // 		alert(targetPage);
+		
+		
+// 		var jobForm = $("#jobForm");
+// 		jobForm.attr("action","/notice/accountingList").attr("method","get");
+// 		jobForm.submit();
+// 	})
 </script>
 
 <jsp:include page="include/accountingModal.jsp" />

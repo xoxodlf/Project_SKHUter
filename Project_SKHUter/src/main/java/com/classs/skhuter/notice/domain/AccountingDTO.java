@@ -11,7 +11,7 @@ public class AccountingDTO {
 	private int price;
 	private String fileName;
 	private String uuidName;
-	
+
 	public AccountingDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -100,6 +100,5 @@ public class AccountingDTO {
 				+ ", content=" + content + ", status=" + status + ", price=" + price + ", fileName=" + fileName
 				+ ", uuidName=" + uuidName + "]";
 	}
-	
-	
+
 }

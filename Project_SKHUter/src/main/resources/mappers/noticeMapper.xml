@@ -5,16 +5,22 @@
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="com.classs.skhuter.mappers.NoticeMapper">
 	<!-- 투표 -->
-	
+
 	<!-- 투표 불러오기 -->
 	<select id="readDoingVote" resultType="Vote">
-		SELECT vote_no as voteNo ,user_no as userNo,enroll_date as
-		enrollDate,start_date as startDate,end_date as endDate, title,
-		content, item1, item2, item3, item4, item5, item6, item1_count as item1Count,item2_count as item2Count,item3_count as item3Count,item4_count as item4Count,item5_count as item5Count,item6_count as item6Count
-		FROM VOTE
+		SELECT vote_no as voteNo
+		,user_no as userNo,enroll_date as
+		enrollDate,start_date as
+		startDate,end_date as endDate, title,
+		content, item1, item2, item3,
+		item4, item5, item6, item1_count as item1Count,item2_count as
+		item2Count,item3_count as item3Count,item4_count as
+		item4Count,item5_count as item5Count,item6_count as item6Count
+		FROM
+		VOTE
 		WHERE end_date >= TO_CHAR(sysdate,'YYYY-MM-DD')
 	</select>
-	
+
 	<select id="readDoneVote" resultType="Vote">
 	<![CDATA[
 		SELECT vote_no as voteNo ,user_no as userNo,enroll_date as
@@ -24,28 +30,32 @@
 		WHERE end_date < TO_CHAR(sysdate,'YYYY-MM-DD')
 	]]>
 	</select>
-	
+
 	<update id="upVote">
-	
-	UPDATE vote
-	SET item1_count = #{item1Count}, item2_count = #{item2Count},item3_count = #{item3Count},item4_count = #{item4Count}, item5_count = #{item5Count}, item6_count = #{item6Count}
-	WHERE vote_no=#{voteNo}
-	
+
+		UPDATE vote
+		SET item1_count = #{item1Count}, item2_count = #{item2Count},item3_count
+		= #{item3Count},item4_count = #{item4Count}, item5_count =
+		#{item5Count}, item6_count = #{item6Count}
+		WHERE vote_no=#{voteNo}
+
 	</update>
-	
-	<select id="countVote"  resultType="int">
-	SELECT COUNT(select_item)
-	from VOTE_LIST
-	where vote_no = #{voteNo} and select_item= #{selectItem}
+
+	<select id="countVote" resultType="int">
+		SELECT COUNT(select_item)
+		from VOTE_LIST
+		where vote_no = #{voteNo} and select_item= #{selectItem}
 	</select>
 
-	
-	
+
+
 	<!-- 투표 등록 -->
 	<insert id="registVote">
 		INSERT INTO Vote
-		(vote_no, user_no, title, enroll_date, start_date, end_date, content, item1,
-		item2, item3, item4, item5, item6)
+		(vote_no, user_no, title,
+		enroll_date, start_date, end_date, content, item1,
+		item2, item3, item4,
+		item5, item6)
 		VALUES (seq_Vote.nextVal,
 		#{userNo},#{title},sysdate,TO_DATE(#{startDate},'yyyy-MM-dd
 		hh24:mi'),TO_DATE(#{endDate}, 'yyyy-MM-dd
@@ -59,39 +69,39 @@
 	</delete>
 
 	<!-- 투표 내역 -->
-	
+
 	<!-- 내역 등록 -->
 	<insert id="doVote">
 		INSERT INTO Vote_list
-		(vote_list_no, vote_no, user_no, select_item)
+		(vote_list_no, vote_no, user_no,
+		select_item)
 		VALUES
 		(seq_Vote_List.nextVal,#{voteNo},#{userNo},#{selectItem})
 	</insert>
 
 
 	<!-- 회계 내역 -->
-	
+
 	<!-- 회계 내역 등록 -->
 	<insert id="insertAccounting">
 		INSERT INTO Accounting
-		(account_no, user_no, account_date, content, status, price, file_name, uuid_name)
+		(account_no, user_no,
+		account_date, content, status, price, file_name, uuid_name)
 		VALUES
 		(seq_Accounting.nextVal,#{userNo},sysdate,#{content},#{status},#{price},#{fileName},#{uuidName})
 	</insert>
-	
+
 	<!-- 회계 내역 삭제 -->
 	<delete id="deleteAccounting">
 		DELETE FROM Accounting
 		WHERE Account_no = #{accountNo}
 	</delete>
-	
-	<!-- 회계 내역  전체 조회 -->
+
+	<!-- 	회계 내역 전체 조회 -->
 	<select id="accountingListAll" resultType="Accounting">
 		SELECT account_no as accountNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName
 		FROM Accounting
 		order by account_no desc, account_date desc
 	</select>
-	
-	
 	
 </mapper>

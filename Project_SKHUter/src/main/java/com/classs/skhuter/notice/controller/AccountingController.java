@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,66 +31,118 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.classs.skhuter.notice.domain.AccountingDTO;
 import com.classs.skhuter.notice.service.AccountingService;
+import com.classs.skhuter.util.Criteria;
 import com.classs.skhuter.util.MediaUtils;
+import com.classs.skhuter.util.PageMaker;
 import com.classs.skhuter.util.UploadFileUtils;
 
 @Controller
 public class AccountingController {
 	private static final Logger logger = LoggerFactory.getLogger(AccountingController.class);
-	
+
 	@Inject
 	private AccountingService accountingService;
-	
+
 	@Resource(name = "uploadPath")
 	private String uploadPath;
-	
-	@RequestMapping(value="/notice/accountingList", method=RequestMethod.GET)
-	public String accountingList(Model model) {
-		logger.info("여기는 회계내역 페이지!!!");
-		
-		int i =0;
+
+//	@RequestMapping(value = "/notice/accountingList", method = RequestMethod.GET)
+//	public String accountingList(Model model) {
+//		logger.info("여기는 회계내역 페이지!!!");
+//
+//		int i = 0;
+//		int Money = 0;
+//
+//		List<AccountingDTO> accountingList = accountingService.listAll();
+//
+//		for (int listsize = accountingList.size(); i < listsize; i++) {
+//			if (accountingList.get(i).getStatus() == 0) {
+//				Money += accountingList.get(i).getPrice();
+//			} else {
+//				Money -= accountingList.get(i).getPrice();
+//			}
+//		}
+//
+//		model.addAttribute("money", Money);
+//		model.addAttribute("list", accountingList);
+//
+//		return "notice/accountingList.lay";
+//	}
+
+	/**
+	 * 
+	 * 회계내역 리스트 페이징
+	 * 
+	 * 
+	 */
+	@RequestMapping(value = "/notice/accountingList", method = RequestMethod.GET)
+	public String listCriteria(@ModelAttribute("cri") Criteria cri, Model model) throws Exception {
+		logger.info(cri.toString());
+
+		int i = 0;
 		int Money = 0;
-		
-		List<AccountingDTO> accountingList = accountingService.listAll();
-		
-		for(int listsize = accountingList.size();i < listsize;i++) {
-			if(accountingList.get(i).getStatus() == 0) {
-				Money += accountingList.get(i).getPrice();
-			}
-			else {
-				Money -= accountingList.get(i).getPrice();
+
+		List<AccountingDTO> accountingList = accountingService.listCriteria(cri);
+		List<AccountingDTO> accountingMoney = accountingService.listAll();
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+
+		pageMaker.setTotalCount(accountingService.ListCountCriteria(cri));
+
+		for (int listsize = accountingMoney.size(); i < listsize; i++) {
+			if (accountingMoney.get(i).getStatus() == 0) {
+				Money += accountingMoney.get(i).getPrice();
+			} else {
+				Money -= accountingMoney.get(i).getPrice();
 			}
 		}
-		
-		model.addAttribute("money",Money);
-		model.addAttribute("list",accountingList);
+
+		model.addAttribute("money", Money);
+		model.addAttribute("list", accountingList);
+		model.addAttribute("pageMaker", pageMaker);
 		
 		return "notice/accountingList.lay";
 	}
 	
-	
-	/** 회계내역 등록
-	 * 
-	 * @param userNo 로그인한 사용자 번호
-	 * @param content 학생회비 사용 내역
-	 * @param status 지출or수입을 체크하는 변수
-	 * @param price 사용자가 입력한 값
-	 * @param file 영수증 사진
-	 * @return
-	 */
-	@RequestMapping(value="/notice/accountingList/accountingRegist", method=RequestMethod.POST)
-	public String accountingRegist(@RequestParam("file") MultipartFile file, RedirectAttributes rttr,AccountingDTO accounting) {
-		accounting.setFileName(file.getOriginalFilename());
+	@RequestMapping(value = "/notice/accountingList/setPageNum", method = RequestMethod.GET)
+	public String setPageNum(@ModelAttribute("cri") Criteria cri,int page,int perPageNum,RedirectAttributes rttr) {
 		
-		System.out.println("satus: "+accounting.getStatus());
-		
-		accountingService.register(accounting);
-		
-		rttr.addFlashAttribute("msg","success");
+		cri.setPage(page+10);
+		cri.setPerPageNum(perPageNum+10);
 		
 		return "redirect:/notice/accountingList";
 	}
-	
+
+	/**
+	 * 회계내역 등록
+	 * 
+	 * @param userNo
+	 *            로그인한 사용자 번호
+	 * @param content
+	 *            학생회비 사용 내역
+	 * @param status
+	 *            지출or수입을 체크하는 변수
+	 * @param price
+	 *            사용자가 입력한 값
+	 * @param file
+	 *            영수증 사진
+	 * @return
+	 */
+	@RequestMapping(value = "/notice/accountingList/accountingRegist", method = RequestMethod.POST)
+	public String accountingRegist(@RequestParam("file") MultipartFile file, RedirectAttributes rttr,
+			AccountingDTO accounting) {
+		accounting.setFileName(file.getOriginalFilename());
+
+		System.out.println("satus: " + accounting.getStatus());
+
+		accountingService.register(accounting);
+
+		rttr.addFlashAttribute("msg", "success");
+
+		return "redirect:/notice/accountingList";
+	}
+
 	/**
 	 * 
 	 * 파일 업로드 처리
@@ -174,7 +227,7 @@ public class AccountingController {
 
 				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM); // 이미지가 아닌 경우 MIME 타입을 다운로드용으로 지정
 				headers.add("Content-Disposition", "attachment; filename=\"" + realImage + "\"");
-//				headers.setContentType(mType);
+				// headers.setContentType(mType);
 			} else {
 				fileName = fileName.substring(fileName.indexOf("_") + 1);
 				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM); // 이미지가 아닌 경우 MIME 타입을 다운로드용으로 지정
@@ -208,51 +261,53 @@ public class AccountingController {
 	@ResponseBody
 	@RequestMapping(value = "/notice/accountingList/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
-		logger.info("originalName: "+file.getOriginalFilename());
+		logger.info("originalName: " + file.getOriginalFilename());
 		return new ResponseEntity<>(UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()),
 				HttpStatus.CREATED);
 	}
-	
+
 	/**
 	 * 업로드 파일 삭제 처리
 	 * 
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/notice/accountingList/deleteFile", method = RequestMethod.POST)
-	public ResponseEntity<String> deleteFile(String fileName){
-		logger.info("delete file: "+fileName);
-		
-		String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
-		
+	public ResponseEntity<String> deleteFile(String fileName) {
+		logger.info("delete file: " + fileName);
+
+		String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+
 		MediaType mType = MediaUtils.getMediaType(formatName);
-		
-		if(mType != null) {
+
+		if (mType != null) {
 			String front = fileName.substring(0, 9);
 			String end = fileName.substring(11);
-			new File(uploadPath+(front+end).replace('/', File.separatorChar)).delete();
+			new File(uploadPath + (front + end).replace('/', File.separatorChar)).delete();
 		}
-		
-		new File(uploadPath+fileName.replace('/', File.separatorChar)).delete();
-		
-		return new ResponseEntity<String>("deleted",HttpStatus.OK);
+
+		new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
+
+		return new ResponseEntity<String>("deleted", HttpStatus.OK);
 	}
-	   /**
-	    * 
-	    * 자료 내역 삭제
-	    * 
-	    * @param meetingNoteNo 삭제할 자료 내역 번호
-	    * @param rttr
-	    * @return
-	    */
-	 @RequestMapping(value = "/notice/accountingList/remove", method = RequestMethod.POST)
-	 public String remove(@RequestParam(value="check", required=true) List<String> checks, RedirectAttributes rttr) {
-	      
+
+	/**
+	 * 
+	 * 자료 내역 삭제
+	 * 
+	 * @param meetingNoteNo
+	 *            삭제할 자료 내역 번호
+	 * @param rttr
+	 * @return
+	 */
+	@RequestMapping(value = "/notice/accountingList/remove", method = RequestMethod.POST)
+	public String remove(@RequestParam(value = "check", required = true) List<String> checks, RedirectAttributes rttr) {
+
 		for (String accountingNo : checks) {
 			accountingService.remove(Integer.parseInt(accountingNo));
 		}
-	      
-	    rttr.addFlashAttribute("msg", "SUCCESS");
-	    
-	    return "redirect:/notice/accountingList";
-	 }
+
+		rttr.addFlashAttribute("msg", "SUCCESS");
+
+		return "redirect:/notice/accountingList";
+	}
 }

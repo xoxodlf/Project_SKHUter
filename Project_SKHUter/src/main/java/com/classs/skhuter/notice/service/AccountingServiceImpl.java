@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.classs.skhuter.notice.dao.AccountingDAO;
 import com.classs.skhuter.notice.domain.AccountingDTO;
+import com.classs.skhuter.util.Criteria;
 
 @Service
 public class AccountingServiceImpl implements AccountingService {
@@ -28,9 +29,27 @@ public class AccountingServiceImpl implements AccountingService {
 	}
 
 	@Override
+	public List<AccountingDTO> listPage(int page) throws Exception{
+		// TODO Auto-generated method stub
+		return dao.listPage(page);
+	}
+
+	@Override
 	public List<AccountingDTO> listAll() {
 		// TODO Auto-generated method stub
 		return dao.listAll();
+	}
+
+	@Override
+	public List<AccountingDTO> listCriteria(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listCriteria(cri);
+	}
+
+	@Override
+	public int ListCountCriteria(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.countPaging(cri);
 	}
 
 }
