@@ -74,6 +74,7 @@ div.search-box input[type="search"] {
 				<input type='hidden' name="page" id="page" value="${pageMaker.cri.page}">
 				<input type='hidden' name="perPageNum" id="perPageNum" value="${pageMaker.cri.perPageNum}">
 		</form>
+		<c:if test="${login.status>=2}">
 		<div class="board-btns">
 			<!-- 삭제 버튼 -->
 				<div class="board-btn">
@@ -85,6 +86,7 @@ div.search-box input[type="search"] {
 					data-target="#accountingModal" class="btn btn-default">등록</button>
 			</div>
 		</div>
+		</c:if>
 		<!-- div.board-btns -->
 		<br />
 		<form role="form"  id="checkForm" method="post" action="/notice/accountingList/remove">
@@ -94,7 +96,9 @@ div.search-box input[type="search"] {
 					<table class="table table-hover">
 						<thead style="text-align: left">
 							<tr>
+							<c:if test="${login.status>=2}">
 								<th>전체<br /> <input type="checkbox" id="checkall"/></th>
+							</c:if>
 								<th>No</th>
 								<th>거래 내역</th>
 								<th>지출</th>
@@ -114,7 +118,9 @@ div.search-box input[type="search"] {
 					<table class="table table-hover">
 						<thead style="text-align: left">
 							<tr>
+								<c:if test="${login.status>=2}">
 								<th>전체<br /> <input type="checkbox" id="checkall"/></th>
+								</c:if>
 								<th>No</th>
 								<th>거래 내역</th>
 								<th>지출</th>
@@ -128,7 +134,9 @@ div.search-box input[type="search"] {
 							<input type="hidden" value="${AccountingDTO.status }" id="what">
 							<tbody>
 								<tr>
+									<c:if test="${login.status>=2}">
 									<td><input type="checkbox" name="check" value="${AccountingDTO.accountNo }"/></td>
+									</c:if>
 									<td>${AccountingDTO.accountNo }</td>
 									<td>${AccountingDTO.content }</td>
 									
