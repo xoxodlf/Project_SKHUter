@@ -6,7 +6,9 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.classs.skhuter.board.dao.BoardDAO;
 import com.classs.skhuter.board.dao.ReplyDAO;
+import com.classs.skhuter.board.domain.BoardDTO;
 import com.classs.skhuter.board.domain.ReplyDTO;
 
 @Service
@@ -32,5 +34,4 @@ public class ReplyServiceImpl implements ReplyService {
 		// TODO Auto-generated method stub
 		return dao.listAllReply(boardNo);
 	}
-
 }

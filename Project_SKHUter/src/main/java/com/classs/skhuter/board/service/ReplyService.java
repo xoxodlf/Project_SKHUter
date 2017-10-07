@@ -12,5 +12,5 @@ public interface ReplyService {
 	
 	/**댓글 리스트 보여주기**/
 	public List<ReplyDTO> listAllReply(int boardNo) throws Exception;
-	
+
 }

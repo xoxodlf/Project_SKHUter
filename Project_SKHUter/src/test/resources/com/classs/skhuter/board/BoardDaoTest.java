@@ -1,6 +1,7 @@
 package com.classs.skhuter.board;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -30,7 +31,7 @@ public class BoardDaoTest {
 		board.setHitCount(10);
 		board.setPassword("123");
 		board.setContent("테스트5의 내용이다");
-		board.setLikecount(1);
+		board.setLikeCount(1);
 		board.setHateCount(2);
 
 		dao.create(board);
@@ -47,6 +48,18 @@ public class BoardDaoTest {
 
 	@Test
 	public void testDelete() throws Exception {
-		dao.delete(10);
+		dao.delete(29);
 	}
+	
+	  @Test
+	  public void testListPage() throws Exception {
+
+	    int page = 3;
+
+	    List<BoardDTO> list = dao.listPage(page);
+
+	    for (BoardDTO dao : list) {
+	      logger.info(dao.getBoardNo() + ":" + dao.getTitle());
+	    }
+	  }
 }

@@ -7,11 +7,9 @@
 	
 	<!-- 투표 -->
 	<select id="getIsVoteNo" parameterType="VoteList" resultType="int">
-	<![CDATA[
 		select count(select_item)
 		from VOTE_LIST
-		where VOTE_NO=#{voteNo} and USER_NO=#{userNo}
-	]]>
+		where VOTE_NO = #{voteNo} and USER_NO = #{userNo}
 	</select>
 	
 	<!-- 투표 불러오기 -->

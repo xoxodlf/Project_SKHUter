@@ -25,12 +25,11 @@ public class CouncilScheduleDaoTest {
 	/** 일정 등록 테스트 */
 	@Test
 	public void TestRegister() {
-		Date today = new Date();
 		
 		CouncilScheduleDTO councilSchedule = new CouncilScheduleDTO();
 		councilSchedule.setContent("한솥밥 튜터링");
-		councilSchedule.setStartDate(today);
-		councilSchedule.setEndDate(today);
+		councilSchedule.setStartDate("2017-10-07");
+		councilSchedule.setEndDate("2017-10-07");
 		
 		dao.register(councilSchedule);
 		
