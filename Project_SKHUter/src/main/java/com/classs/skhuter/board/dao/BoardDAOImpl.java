@@ -49,7 +49,7 @@ public class BoardDAOImpl implements BoardDAO {
 	    if (page <= 0) {
 	      page = 1;
 	    }
-	    page = page * 10;
+	    page = (page-1) * 10;
 
 	    return sqlSession.selectList(namespace + ".listPage", page);
 	  }
@@ -70,7 +70,12 @@ public class BoardDAOImpl implements BoardDAO {
 	public void updateHitCount(int boardNo) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.update(namespace+".updateHitCount", boardNo);
-		
 	}
+	
+	@Override
+	  public int countPaging(Criteria cri) throws Exception {
+
+	    return sqlSession.selectOne(namespace + ".countPaging", cri);
+	  }
 
 } 

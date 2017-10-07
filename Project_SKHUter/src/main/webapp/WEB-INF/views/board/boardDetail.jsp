@@ -64,6 +64,8 @@
 	<div class="board-btn">
 		 <form role="form" id="deleteform" method="post" action="/board/boardDetail/delete">
     			<input type='hidden' name='boardNo' id='bn' value ="${boardDTO.boardNo}">
+    			<input type="hidden" name="page" value="${cri.page}">
+<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
     	</form>   
 		<button type="button" class="btn btn-default removeBtn">삭제</button>
 	</div>
@@ -136,18 +138,28 @@
 <!-- div.panel-body -->
 </div>
 <!-- div.col-lg-12 -->
-  
-  
-  
- <script type="text/javascript" src="jquery.likebtn.js"></script>
+<form role="form" id="listForm">
+<input type="hidden" name="boardNo" value="${boardDTO.boardNo}">
+<input type="hidden" name="page" value="${cri.page}">
+<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
+</form>  
+
 <script>
 
 var boardNo = $('#bn').val();
 console.log("boardNo : "+boardNo);
 
+
+var formObj = $("form#listForm");
+
+console.log(formObj);
+
+
 /** 게시판 리스트로 이동**/
 $('.listBtn').on('click',(function() {
-	location.href = "/board/boardList.lay";
+	formObj.attr("action", "/board/boardList");
+	formObj.attr("method", "get");		
+	formObj.submit();
 }));
 
 /** 게시물 삭제 기능 구현 **/
@@ -175,14 +187,8 @@ $('.removeBtn').on('click',(function() {
 		    })
 		  }
 		}).then(function (answer) {
-			swal({
-			    type: 'success',
-			    title: '삭제가 완료되었습니다.'
-			  }).then(function (answer) {
 			form.submit();
 			link = '';
-			  })
-		  
 		})
 }));
 
@@ -266,16 +272,6 @@ $("#replyAddBtn").on("click", function() {
 		}
 	})
 });
-$(document).ready(function($) {
-	console.log(jQuery.fn.likebtn);
-	$(".like-button").likebtn();
-$("#like-button-x").likebtn({
-		identifier: "my_button",
-    theme: "github"
-});
-$("#like-button-y").likebtn({
-    theme: "disk"
-});
-});
+
 </script>
 

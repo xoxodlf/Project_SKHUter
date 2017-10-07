@@ -25,7 +25,7 @@ public class BoardDaoTest {
 	Logger logger = Logger.getLogger(BoardDaoTest.class);
 	@Test
 	public void TestCreate() {
-		for(int i=1; i<=51; i++) {
+		for(int i=201; i<=230; i++) {
 		BoardDTO board = new BoardDTO();
 		board.setUserNo(1);
 		board.setTitle("테스트"+i);
@@ -56,7 +56,7 @@ public class BoardDaoTest {
 	  @Test
 	  public void testListPage() throws Exception {
 
-	    int page = 5;
+	    int page = 4;
 
 	    List<BoardDTO> list = dao.listPage(page);
 
@@ -69,8 +69,8 @@ public class BoardDaoTest {
 	  public void testListCriteria() throws Exception {
 
 	    Criteria cri = new Criteria();
-	    cri.setPage(1);
-	    cri.setPerPageNum(20);
+	    cri.setPage(2);
+	    cri.setPerPageNum(10);
 
 	    List<BoardDTO> list = dao.listCriteria(cri);
 
@@ -78,4 +78,6 @@ public class BoardDaoTest {
 	      logger.info(dao.getBoardNo() + ":" + dao.getTitle());
 	    }
 	  }
+	  
+	  
 }
