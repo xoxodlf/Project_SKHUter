@@ -74,6 +74,7 @@ div.search-box input[type="search"] {
 				<input type='hidden' name="page" id="page" value="${pageMaker.cri.page}">
 				<input type='hidden' name="perPageNum" id="perPageNum" value="${pageMaker.cri.perPageNum}">
 		</form>
+		<c:if test="${login.status>=2}">
 		<div class="board-btns">
 			<!-- 삭제 버튼 -->
 				<div class="board-btn">
@@ -85,6 +86,7 @@ div.search-box input[type="search"] {
 					data-target="#accountingModal" class="btn btn-default">등록</button>
 			</div>
 		</div>
+		</c:if>
 		<!-- div.board-btns -->
 		<br />
 		<form role="form"  id="checkForm" method="post" action="/notice/accountingList/remove">
@@ -94,7 +96,9 @@ div.search-box input[type="search"] {
 					<table class="table table-hover">
 						<thead style="text-align: left">
 							<tr>
+							<c:if test="${login.status>=2}">
 								<th>전체<br /> <input type="checkbox" id="checkall"/></th>
+							</c:if>
 								<th>No</th>
 								<th>거래 내역</th>
 								<th>지출</th>
@@ -114,7 +118,9 @@ div.search-box input[type="search"] {
 					<table class="table table-hover">
 						<thead style="text-align: left">
 							<tr>
+								<c:if test="${login.status>=2}">
 								<th>전체<br /> <input type="checkbox" id="checkall"/></th>
+								</c:if>
 								<th>No</th>
 								<th>거래 내역</th>
 								<th>지출</th>
@@ -128,7 +134,9 @@ div.search-box input[type="search"] {
 							<input type="hidden" value="${AccountingDTO.status }" id="what">
 							<tbody>
 								<tr>
+									<c:if test="${login.status>=2}">
 									<td><input type="checkbox" name="check" value="${AccountingDTO.accountNo }"/></td>
+									</c:if>
 									<td>${AccountingDTO.accountNo }</td>
 									<td>${AccountingDTO.content }</td>
 									
@@ -168,28 +176,28 @@ div.search-box input[type="search"] {
 <!-- 					<li class="paginate_button next"><a href="#">다음</a></li> -->
 <!-- 				</ul> -->
 <!-- 			</div> -->
+		</div>
+	</form>
 			<div class = "text-center">
-				<ul class="pagination">
-					<c:if test="${pageMaker.prev }">
-						<li><a href="/notice/accountingList?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
-					</c:if>
-					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-						<li <c:out value="${pageMaker.cri.page == idx?'class = active':'' }"/>>
-							<a href="/notice/accountingList?page=${idx}">${idx}</a>
-						</li>
-					</c:forEach>
-					<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
-						<li><a href="/notice/accountingList?page=${pageMaker.endPage+1 }">&raquo;</a></li>
-					</c:if>
-				</ul>
+					<ul class="pagination">
+						<c:if test="${pageMaker.prev }">
+							<li><a href="/notice/accountingList?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
+						</c:if>
+						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+							<li <c:out value="${pageMaker.cri.page == idx?'class = active':'' }"/>>
+								<a href="/notice/accountingList/listNo?idx=${idx}">${idx}</a>
+							</li>
+						</c:forEach>
+						<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+							<li><a href="/notice/accountingList?page=${pageMaker.endPage+1 }">&raquo;</a></li>
+						</c:if>
+					</ul>
 			</div>
 			<!-- div.paging-box -->
 		</div>
-		</form>
 		<!-- div.table-responsive -->
 	</div>
 	<!-- div.panel-body -->
-</div>
 <!-- div.col-lg-12 -->
 <script type="text/javascript">
 
@@ -232,15 +240,16 @@ $(document).ready(function(){
 	$(".pagination li a").on("click",function(event){
 		event.preventDefault();
 		
-		var targetPage = $("#stPage").val();
+		var targetPage = $("#page").val();
 // 		alert(targetPage);
 		
 		
 		var jobForm = $("#jobForm");
 		
-		alert(jobForm);
+// 		alert(page);
+		alert(targetPage);
 		
-		jobForm.attr("action","/notice/accountingList/setPageNum").attr("method","get");
+		jobForm.attr("action","/notice/accountingList/listNo").attr("method","get");
 		jobForm.submit();
 	})
 	
