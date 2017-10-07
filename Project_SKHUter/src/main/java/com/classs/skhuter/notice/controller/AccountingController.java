@@ -78,8 +78,13 @@ public class AccountingController {
 	 * 
 	 */
 	@RequestMapping(value = "/notice/accountingList", method = RequestMethod.GET)
-	public String listCriteria(Model model) throws Exception {
+	public String listCriteria(Model model, String page) throws Exception {
 		logger.info(cri.toString());
+		
+		if (page == null) {
+			page = "1";
+			cri.setPage(Integer.parseInt(page));
+		}
 
 		int i = 0;
 		int Money = 0;
@@ -111,7 +116,7 @@ public class AccountingController {
 	public String setPageNum(int page,int perPageNum,RedirectAttributes rttr) {
 		
 		cri.setPage(page+1);
-		cri.setPerPageNum(perPageNum+10);
+		cri.setPerPageNum(perPageNum);
 		
 		return "redirect:/notice/accountingList";
 	}
