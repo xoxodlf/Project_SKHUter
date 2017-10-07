@@ -4,7 +4,7 @@ import java.sql.Date;
 
 /**
  * 게시판 관련 객체 선언 및 getter(), setter() 메소드 정의
- *  
+ * 
  * @패키지 : com.classs.skhuter.Board.domain
  * @파일명 : BoardDTO.java
  * @작성자 : 이겨레
@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class BoardDTO {
 	private int boardNo;
-	private int userNo; 
+	private int userNo;
 	private String title;
 	private Date regdate;
 	private int hitCount;
@@ -30,6 +30,7 @@ public class BoardDTO {
 	public void setBoardNo(int boardNo) {
 		this.boardNo = boardNo;
 	}
+
 	public int getUserNo() {
 		return userNo;
 	}
@@ -93,6 +94,7 @@ public class BoardDTO {
 	public void setHateCount(int hateCount) {
 		this.hateCount = hateCount;
 	}
+
 	public int getReplyCount() {
 		return replyCount;
 	}
@@ -100,12 +102,12 @@ public class BoardDTO {
 	public void setReplyCount(int replyCount) {
 		this.replyCount = replyCount;
 	}
+
 	@Override
 	public String toString() {
 		return "BoardDTO [boardNo=" + boardNo + ", userNo=" + userNo + ", title=" + title + ", regdate=" + regdate
 				+ ", hitCount=" + hitCount + ", password=" + password + ", content=" + content + ", likeCount="
 				+ likeCount + ", hateCount=" + hateCount + "]";
 	}
-	
-	
+
 }
