@@ -170,6 +170,7 @@ div.search-box input[type="search"] {
 		}
 	}
 	
+	
 	function checkImageType(fileName) {
 		  var pattern = /jpg|gif|png|jpeg/i;   // i는 대소문자 구분 없음을 의미
 	      

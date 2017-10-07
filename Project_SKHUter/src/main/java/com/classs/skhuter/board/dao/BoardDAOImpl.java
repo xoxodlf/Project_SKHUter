@@ -41,6 +41,7 @@ public class BoardDAOImpl implements BoardDAO {
 	    return sqlSession.selectList(namespace + ".listAll");
 	  }
 	  
+	  /**게시물 목록 페이징 처리**/
 	  @Override
 	  public List<BoardDTO> listPage(int page) throws Exception {
 

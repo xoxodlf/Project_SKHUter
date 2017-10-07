@@ -45,7 +45,7 @@ public class BoardDaoTest {
 
 		logger.info(dao.read(1).toString());
 	}
-
+	
 	@Test
 	public void testDelete() throws Exception {
 		dao.delete(29);

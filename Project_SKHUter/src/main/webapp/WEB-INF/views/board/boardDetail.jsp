@@ -109,6 +109,7 @@
 				</tr>
 				<tr>
 					<td colspan="8" style="text-align: center;" >
+					 
 					<button type="button" class="btn btn-default"><i class="fa fa-thumbs-o-up "></i> ${boardDTO.likeCount}</button>
 					<button type="button" class="btn btn-default"><i class="fa fa-thumbs-o-down"></i> ${boardDTO.hateCount}</button>
 					</td>
@@ -136,6 +137,9 @@
 </div>
 <!-- div.col-lg-12 -->
   
+  
+  
+ <script type="text/javascript" src="jquery.likebtn.js"></script>
 <script>
 
 var boardNo = $('#bn').val();
@@ -262,6 +266,16 @@ $("#replyAddBtn").on("click", function() {
 		}
 	})
 });
-
+$(document).ready(function($) {
+	console.log(jQuery.fn.likebtn);
+	$(".like-button").likebtn();
+$("#like-button-x").likebtn({
+		identifier: "my_button",
+    theme: "github"
+});
+$("#like-button-y").likebtn({
+    theme: "disk"
+});
+});
 </script>
 
