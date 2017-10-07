@@ -24,8 +24,15 @@ public class VoteDTO {
 	private int item5Count;
 	private int item6Count;
 	private int isVote;
+	private int joinCount;
 	
 	
+	public int getJoinCount() {
+		return joinCount;
+	}
+	public void setJoinCount(int joinCount) {
+		this.joinCount = joinCount;
+	}
 	public int getIsVote() {
 		return isVote;
 	}
