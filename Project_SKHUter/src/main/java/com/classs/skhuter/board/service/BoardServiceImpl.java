@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.classs.skhuter.board.controller.BoardController;
 import com.classs.skhuter.board.dao.BoardDAO;
 import com.classs.skhuter.board.domain.BoardDTO;
+import com.classs.skhuter.util.Criteria;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -37,13 +38,17 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public List<BoardDTO> listCriteria(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listCriteria(cri);
+	}
+	
+	@Override
 	public int countReply(BoardDTO board) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.countReply(board);
 	}
-	
-	
-	
-	
+
+
 	
 }

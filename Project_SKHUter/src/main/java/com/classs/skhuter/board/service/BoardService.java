@@ -3,6 +3,7 @@ package com.classs.skhuter.board.service;
 import java.util.List;
 
 import com.classs.skhuter.board.domain.BoardDTO;
+import com.classs.skhuter.util.Criteria;
 
 public interface BoardService {
 
@@ -17,6 +18,9 @@ public interface BoardService {
 
 	/**글 목록 모두 보이게 하기**/
 	public List<BoardDTO> listAll();
+	
+	/**페이징으로 글 목록 모두 보이게 하기**/
+	 public List<BoardDTO> listCriteria(Criteria cri) throws Exception;
 	
 	/**댓글 개수 세기**/
 	public int countReply(BoardDTO board) throws Exception;

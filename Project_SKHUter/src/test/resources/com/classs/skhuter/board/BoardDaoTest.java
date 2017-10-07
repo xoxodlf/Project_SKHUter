@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.classs.skhuter.board.dao.BoardDAO;
 import com.classs.skhuter.board.domain.BoardDTO;
+import com.classs.skhuter.util.Criteria;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/root-context.xml" })
@@ -22,15 +23,15 @@ public class BoardDaoTest {
 	private BoardDAO dao;
 
 	Logger logger = Logger.getLogger(BoardDaoTest.class);
-
 	@Test
 	public void TestCreate() {
+		for(int i=1; i<=51; i++) {
 		BoardDTO board = new BoardDTO();
 		board.setUserNo(1);
-		board.setTitle("테스트12");
+		board.setTitle("테스트"+i);
 		board.setHitCount(10);
 		board.setPassword("123");
-		board.setContent("테스트5의 내용이다");
+		board.setContent("테스트의 내용이다");
 		board.setLikeCount(1);
 		board.setHateCount(2);
 
@@ -38,6 +39,7 @@ public class BoardDaoTest {
 
 		logger.info("신규게시 완료~~~~");
 		logger.info(board.toString());
+		}
 	}
 
 	@Test
@@ -54,9 +56,23 @@ public class BoardDaoTest {
 	  @Test
 	  public void testListPage() throws Exception {
 
-	    int page = 3;
+	    int page = 5;
 
 	    List<BoardDTO> list = dao.listPage(page);
+
+	    for (BoardDTO dao : list) {
+	      logger.info(dao.getBoardNo() + ":" + dao.getTitle());
+	    }
+	  }
+	  
+	  @Test
+	  public void testListCriteria() throws Exception {
+
+	    Criteria cri = new Criteria();
+	    cri.setPage(1);
+	    cri.setPerPageNum(20);
+
+	    List<BoardDTO> list = dao.listCriteria(cri);
 
 	    for (BoardDTO dao : list) {
 	      logger.info(dao.getBoardNo() + ":" + dao.getTitle());

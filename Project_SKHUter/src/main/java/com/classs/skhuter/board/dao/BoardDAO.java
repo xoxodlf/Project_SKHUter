@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 import com.classs.skhuter.board.domain.BoardDTO;
 import com.classs.skhuter.notice.domain.VoteListDTO;
+import com.classs.skhuter.util.Criteria;
 
 /**
  * 게시판 관련 DB에서 데이터를 가져와 모델 생성
@@ -30,6 +31,9 @@ public interface BoardDAO {
 
 	/**게시물 목록 페이징 처리**/
 	public List<BoardDTO> listPage(int page) throws Exception;
+	
+	/**페이징 후 게시물 목록 출력**/
+	public List<BoardDTO> listCriteria(Criteria cri) throws Exception;
 	
 	/**댓글 개수 세기**/
 	public int countReply(BoardDTO board) throws Exception;

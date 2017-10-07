@@ -35,19 +35,37 @@
 	</select>
 	
 	<!-- 게시물리스트 페이징처리 -->
-	<select id="listPage" resultType="board">
+	 <select id="listPage" resultType="board">
+ 	<![CDATA[
+		SELECT boardNo1 as boardNo, userNo1 as userNo, title, regdate, hitCount1 as hitCount, password, content, likeCount1 as likeCount, hateCount1 as hateCount 
+    from 
+    (select
+      rownum rn, board_no as boardNo1, user_no as userNo1, title, regdate, hit_count as hitCount1, password, content, like_count as likeCount1, hate_count as hateCount1
+		FROM 
+			Board
+      where board_no > 0
+      and rownum <= #{page}
+      order by rn desc)
+      where rn >= (#{page}-9)
+	]]>
+ 	</select>
+ 	
+	<!-- 게시물리스트 페이징처리 -->
+	<select id="listCriteria" resultType="board">
  		<![CDATA[
- 		SELECT boardNo1 as boardNo, userNo1 as userNo, title, regdate, hitCount1 as hitCount, password, content, likeCount1 as likeCount, as hateCount1 as hateCount
-		FROM(
-				SELECT a.board_no as boardNo1, a.user_no as userNo1, a.title as 
-			title, a.regdate as regdate, a.hit_count as hitCount1, a.password as password, a.content as content, a.like_count as likeCount1, hate_count as hateCount1
-    		,row_number() over (order by board_no desc, regdate desc) as num
-    		FROM Board a
-    	)
-		WHERE num between #{pageStart} and #{perPageNum}
-		]]>
+		SELECT boardNo1 as boardNo, userNo1 as userNo, title, regdate, hitCount1 as hitCount, password, content, likeCount1 as likeCount, hateCount1 as hateCount 
+    from 
+    (select
+      rownum rn, board_no as boardNo1, user_no as userNo1, title, regdate, hit_count as hitCount1, password, content, like_count as likeCount1, hate_count as hateCount1
+		FROM 
+			Board
+      where board_no > 0
+      and rownum <= #{pageStart}
+      order by rn desc)
+      where rn >= (#{pageStart}-#{perPageNum}+1)
+	]]>
 	</select>
-	
+
 	<!-- 댓글 개수 세기 -->
 	<select id="countReply" parameterType="board" resultType="int">
 		select count(reply_no) from reply where board_no= #{boardNo}

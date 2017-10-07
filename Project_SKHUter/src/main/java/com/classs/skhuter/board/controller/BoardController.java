@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.classs.skhuter.board.domain.BoardDTO;
 import com.classs.skhuter.board.service.BoardService;
 import com.classs.skhuter.notice.domain.VoteDTO;
+import com.classs.skhuter.util.Criteria;
 
 @Controller
 @RequestMapping("/board")
@@ -44,7 +45,7 @@ public class BoardController {
 		return "redirect:/board/boardList.lay";
 	}
 	 
-	/*게시판 목록 불러오기*/
+	/*게시판 목록 불러오기
 	 @RequestMapping(value = "/boardList", method = RequestMethod.GET)
 	  public String listAll(Model model) throws Exception{
 		 
@@ -61,7 +62,7 @@ public class BoardController {
 			
 			return "board/boardList.lay";
 	 }
-	 
+	 */
 	 /*게시글 불러오기*/
 	  @RequestMapping(value = "/boardDetail", method = RequestMethod.GET)
 	  public String read(@RequestParam("boardNo") int boardNo, Model model) throws Exception {
@@ -79,6 +80,25 @@ public class BoardController {
 	    rttr.addFlashAttribute("msg", "SUCCESS");
 	    
 	    return "redirect:/board/boardList.lay";
+	  }
+	  
+	  /*게시글 페이징처리*/
+	  @RequestMapping(value = "/boardList", method = RequestMethod.GET)
+	  public String listAll(Criteria cri, Model model) throws Exception {
+		  
+		  List<BoardDTO> list = service.listCriteria(cri);
+		  BoardDTO tmp = new BoardDTO();
+			 
+			 for(BoardDTO board : list) {
+				 tmp.setBoardNo(board.getBoardNo());
+				 int replyCount = service.countReply(tmp);
+				 board.setReplyCount(replyCount);
+				 logger.info( board.toString());
+			 }
+
+	    model.addAttribute("boardList", list);
+	    
+	    return "board/boardList.lay";
 	  }
 	  
 	
