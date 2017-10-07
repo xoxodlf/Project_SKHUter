@@ -39,7 +39,7 @@ public class VoteController {
 		List<VoteDTO> doingvote = service.readDoingVote();
 		List<VoteDTO> donevote = service.readDoneVote();
 		VoteListDTO tmp= new VoteListDTO();
-		 UserDTO user = (UserDTO)req.getSession().getAttribute("login");
+		UserDTO user = (UserDTO)req.getSession().getAttribute("login");
 		 
 		for(VoteDTO vote : doingvote) {
 			
