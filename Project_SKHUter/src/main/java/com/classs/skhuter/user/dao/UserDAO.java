@@ -57,4 +57,7 @@ public interface UserDAO {
 	
 	/** 인수인계*/
 	public void takeover(UserDTO takeoverCode);
+	
+	/** 인계자찾기*/
+	public int searchGiver(int takeoverCode);
 }

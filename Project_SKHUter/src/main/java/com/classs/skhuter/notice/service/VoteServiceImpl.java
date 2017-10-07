@@ -51,7 +51,11 @@ public class VoteServiceImpl implements VoteService {
 	@Override
 	public void upVote(VoteDTO upVote) {
 		dao.upVote(upVote);
-		
+	}
+
+	@Override
+	public int getIsVoteNo(VoteListDTO getIsVote) {
+		return dao.getIsVoteNo(getIsVote);
 	}
 
 	

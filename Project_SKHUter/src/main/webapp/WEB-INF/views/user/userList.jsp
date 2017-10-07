@@ -67,7 +67,7 @@
         					<option value="3">회장단</option>
       					</select>
 	<button id="changeStatusBtn" type="button" class="btn btn-default" onmouseover="throwStatus()">등급 변경</button>
-		<button type="button" class="btn btn-danger">삭제</button>
+
 		
 	</div>
 	<div class="board-btn">
@@ -85,6 +85,7 @@
 				<col width="7%"/>
 				<col width="7%"/>
 				<col width="*"/>
+				<col width="7%"/>
 				<col width="15%"/>
 				<col width="15%"/>
 				<col width="15%"/>
@@ -93,8 +94,9 @@
 				<tr>
 				<th>전체<br/><input type="checkbox" id="checkall"/></th>
 				<th>No</th>
-				<th>학번</th>
-				<th>이름</th>
+				<th>학번　</th>
+				<th>학년　</th> 
+				<th>이름　</th>
 				<th>휴대폰 번호</th>
 				<th>등록일</th>
 				<th>등급</th>
@@ -114,6 +116,7 @@
 								<td><input type="checkbox" name="check" value="${userList.userNo }" /></td>
 								<td>${userList.userNo }</td>
 								<td>${userList.id}</td>
+								<td>${userList.grade}</td>
 								<td>${userList.name }</td>
 								<td>${userList.phone }</td>
 								<td>${userList.recentLogin }</td>
@@ -180,8 +183,6 @@ function throwStatus(){
 	$('input#Status').val(status);
 	
 }
-
-
 
 $('#changeStatusBtn').on('click',(function() {
 			var link = $("form#userForm");

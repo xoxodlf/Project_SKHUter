@@ -53,6 +53,11 @@ public class VoteDAOImpl implements VoteDAO {
 		session.update(namespace+".upVote",upVote);
 		
 	}
+	@Override
+	public int getIsVoteNo(VoteListDTO getIsVote) {
+		System.out.println(1);
+		return session.selectOne(namespace+".getIsVoteNo",getIsVote);
+	}
 	  
 	 
 

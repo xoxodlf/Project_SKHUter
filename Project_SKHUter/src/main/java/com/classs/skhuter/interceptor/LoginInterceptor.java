@@ -87,7 +87,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				logger.info("탈퇴맨");
 			} else {
 				logger.info("탈퇴 ㄴㄴ");
-				if (userInfo.getStatus() != 0) {
+				if(userInfo.getTakeoverCode()!=0&&userInfo.getStatus()!=3) {
+					
+					response.sendRedirect("/?result=takeover&userNo="+userInfo.getUserNo()+"&takeoverCode="+userInfo.getTakeoverCode());
+				}else if (userInfo.getStatus() != 0) {
 
 					logger.info("로그인 가능 데스");
 

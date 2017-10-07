@@ -42,6 +42,8 @@ public class AccountingController {
 
 	@Inject
 	private AccountingService accountingService;
+	
+	Criteria cri = new Criteria();
 
 	@Resource(name = "uploadPath")
 	private String uploadPath;
@@ -76,7 +78,7 @@ public class AccountingController {
 	 * 
 	 */
 	@RequestMapping(value = "/notice/accountingList", method = RequestMethod.GET)
-	public String listCriteria(@ModelAttribute("cri") Criteria cri, Model model) throws Exception {
+	public String listCriteria(Model model) throws Exception {
 		logger.info(cri.toString());
 
 		int i = 0;
@@ -106,9 +108,9 @@ public class AccountingController {
 	}
 	
 	@RequestMapping(value = "/notice/accountingList/setPageNum", method = RequestMethod.GET)
-	public String setPageNum(@ModelAttribute("cri") Criteria cri,int page,int perPageNum,RedirectAttributes rttr) {
+	public String setPageNum(int page,int perPageNum,RedirectAttributes rttr) {
 		
-		cri.setPage(page+10);
+		cri.setPage(page+1);
 		cri.setPerPageNum(perPageNum+10);
 		
 		return "redirect:/notice/accountingList";

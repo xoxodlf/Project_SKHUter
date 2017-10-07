@@ -82,7 +82,7 @@ div.search-box input[type="search"] {
 					<c:when test="${empty list }">
 						<div style="margin-top: 10%">
 							<p style="text-align: center; font-size: 20px">
-								<mark>자료실 내역이 존재하지 않습니당</mark>
+								<mark>회의록 내역이 존재하지 않습니당</mark>
 							</p>
 						</div>
 					</c:when>

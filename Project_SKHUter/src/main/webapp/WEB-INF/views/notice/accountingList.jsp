@@ -237,7 +237,10 @@ $(document).ready(function(){
 		
 		
 		var jobForm = $("#jobForm");
-		jobForm.attr("action","/notice/accountingList").attr("method","get");
+		
+		alert(jobForm);
+		
+		jobForm.attr("action","/notice/accountingList/setPageNum").attr("method","get");
 		jobForm.submit();
 	})
 	

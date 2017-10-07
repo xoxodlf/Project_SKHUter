@@ -1,6 +1,7 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <style>
 /* 기타 */
 	/* 페이지 제목 : 익명게시판 : 가운데 정렬 + 굵게 */
@@ -62,12 +63,12 @@
 	<div class="board-btns">
 	<div class="board-btn">
 		 <form role="form" id="deleteform" method="post" action="/board/boardDetail/delete">
-    			<input type='hidden' name='boardNo' value ="${boardDTO.boardNo}"> 
+    			<input type='hidden' name='boardNo' id='bn' value ="${boardDTO.boardNo}">
     	</form>   
-		<button class="btn btn-default removeBtn" type="button">삭제</button>
+		<button type="button" class="btn btn-default removeBtn">삭제</button>
 	</div>
 	<div class="board-btn">
-		<button type="button" class="btn btn-default btn-primary">목록</button>
+		<button type="button" class="btn btn-default listBtn">목록</button>
 	</div>
 	</div>
 	<!-- div.board-btns -->
@@ -87,7 +88,7 @@
 			<thead>
 				<tr>
 				<th>제목</th>
-				<td colspan="7"> ${boardDTO.title} [13]</td>
+				<td colspan="7"> ${boardDTO.title}</td>
 				</tr>
 				<tr>
 				<th>조회</th>
@@ -103,80 +104,164 @@
 			<tbody>
 				<tr>
 					<td class="table-content" colspan="8">
-					<pre>${boardDTO.content}</pre>
+					<pre style="background-color: white;">${boardDTO.content}</pre>
 					</td>
 				</tr>
-			</tbody>
-			<tfoot>
 				<tr>
 					<td colspan="8" style="text-align: center;" >
-					<button type="button" class="btn btn-default"><i class="fa fa-thumbs-o-up "></i> 23</button>
+					<button type="button" class="btn btn-default"><i class="fa fa-thumbs-o-up "></i> ${boardDTO.likeCount}</button>
 					<button type="button" class="btn btn-default"><i class="fa fa-thumbs-o-down"></i> ${boardDTO.hateCount}</button>
 					</td>
 				</tr>
 				<tr>
 					<td align=center>댓글</td> 
 					<td colspan="6">
-					<input type="text" name="comment" class="comment" size="100"/></td>
-					<td align=center>
-						<button type="button" class="btn btn-default" size="30" style="margin-left:5;">등록</button>
+					<input type="text" name="replytext" id="newReplyText" size="115"/></td>
+					<td colspan="2" align=center>
+						<button type="button" id="replyAddBtn" class="btn btn-default" size="30" >등록</button>
 					</td>
 				</tr>
-			
-				<tr> 
-					<td align=center> <img src="/resources/images/anonymouscomment.png" style="width: 30%;"></td>
-				   	<td colspan="5" style=" vertical-align: middle;"><b>이렇게 하면 정말 좋겠다! 공감공감~ 추천꾸욱~!!! </b></td>
-				   	<td colspan="2" style="font-size:15px; vertical-align: middle; text-align:right;"> 2017-09-16 18:06 </td>
-				</tr>
+			</tbody>
+			<tfoot id='replies'>
 			</tfoot>
 		</table>
+		<input type="hidden" id="pw" value="${boardDTO.password}">
+		<input type="hidden" id="loguserno" value="${login.userNo}">
+		<input type="hidden" id="writeruser" value="${replyDTO.userNo}">
 		<!-- end of table -->
-		
 	</div>
 	<!-- div.table-responsive -->
 </div>
 <!-- div.panel-body -->
 </div>
 <!-- div.col-lg-12 -->
+  
 <script>
-$('.removeBtn').on('click',(function() {
-	var link = $(this).prev();
-	console.log('link');
-	 swal({
-           title: '삭제 하시겠습니까?',
-           text: "",
-           type: 'warning',
-           showCancelButton: true,
-           confirmButtonColor: '#3085d6',
-           cancelButtonColor: '#d33',
-           confirmButtonText: 'YES',
-           cancelButtonText: 'NO'
-        }).then(function (){
-        	var form = link;
-			var arr = [];
-			form.attr("action", "/board/boardDetail/delete");
-			form.submit();
-			link = '';
-        })
+
+var boardNo = $('#bn').val();
+console.log("boardNo : "+boardNo);
+
+/** 게시판 리스트로 이동**/
+$('.listBtn').on('click',(function() {
+	location.href = "/board/boardList.lay";
 }));
 
-$(document).ready(function(){
-	
-	var formObj = $("form[role='form']");
-$(".btn-primary").on("click", function(){
-	self.location = "/board/boardList";
-});
+/** 게시물 삭제 기능 구현 **/
+$('.removeBtn').on('click',(function() {
+	 var password= $('input#pw').val();
+	 var link = $(this).prev();
+		var form = link;
+		var arr = [];
+		form.attr("action", "/board/boardDetail/delete");
+	 console.log("password : " + password);
+	swal({
+		  title: '정말 삭제 하시겠습니까? ',
+		  text: "글 작성 시 입력한 비밀번호를 입력해주세요.",
+		  input: 'text',
+		  inputPlaceholder: 'Enter your password.',
+		  showCancelButton: true,
+		  inputValidator: function (value) {
+		    return new Promise(function (resolve, reject) {
+		      if (value) {
+		    	if(value==password) resolve()
+		        else reject("비밀번호가 틀렸습니다. 정확하게 입력해주세요.")
+		      } else {
+		        reject("값을 입력해주세요.")
+		      }
+		    })
+		  }
+		}).then(function (answer) {
+			swal({
+			    type: 'success',
+			    title: '삭제가 완료되었습니다.'
+			  }).then(function (answer) {
+			form.submit();
+			link = '';
+			  })
+		  
+		})
+}));
+
+/** 해당 게시물 댓글 목록 불러오기 **/
+$(document).ready(function(data){
+	$.getJSON("/replies/all/" + boardNo, function(data){
+		console.log(data.length);
+		var str = "";
+		var frontstr= "";
+		var countreply= 0;
+		$(data).each(function() {
+			str += "<tr><td data-replyNo='"+this.replyNo+"'align=center style='vertical-align: middle;'>" 
+				+ "<img src='/resources/images/anonymouscomment.png' style='width: 30px;'>　　:</td>"
+				+ "<td colspan='6' style=' vertical-align: middle; width: 10px; font-size: small;'>"
+				+ this.content
+				+ "</td>"
+				+ "<td colspan='1' style='font-size: small; vertical-align: middle; text-align:center;'>"
+				+ this.regdate
+				+ "</td>";
+			countreply += 1;
+			
+		});
+		frontstr="<tr align=center style='vertical-align: middle;'><td colspan='8'> ※ " + countreply + "개의 댓글이 있습니다. 댓글은 삭제가 불가능하니 신중히 생각하고 적도록 합시다!</td></tr>";
+		$("#replies").html(frontstr+str);
+
+	});
 });
 
-$(function(){
-	var msg = $('#SUCCESS').val();
-	if (msg == 'SUCCESS') {
-		swal(     
-	     		 '',
-	     	     '삭제가 완료되었습니다.',
-	     	     'SUCCESS'
-	     		)
-	}
-	});
+/** 댓글 등록시 목록 업데이트하기 **/
+function getAllList() {
+
+	$.getJSON("/replies/all/" + boardNo, function(data){
+		console.log(data.length);
+		var str = "";
+		var frontstr= "";
+		var countreply= 0;
+		$(data).each(function() {
+			str += "<tr><td data-replyNo='"+this.replyNo+"'align=center style='vertical-align: middle;'>" 
+				+ "<img src='/resources/images/anonymouscomment.png' style='width: 30px;'>　　:</td>"
+				+ "<td colspan='6' style=' vertical-align: middle; width: 10px;font-size: small;'>"
+				+ this.content
+				+ "</td>"
+				+ "<td colspan='1' style='font-size: small; vertical-align: middle; text-align:center;'>"
+				+ this.regdate
+				+ "</td>";
+			countreply += 1;
+		})
+		frontstr="<tr align=center style='vertical-align: middle;'><td colspan='8'> ※ " + countreply + "개의 댓글이 있습니다. 댓글은 삭제가 불가능하니 신중히 생각하고 적도록 합시다!</td></tr>";
+		$("#replies").html(frontstr+str);
+	})
+};
+
+/** 댓글 등록하기 **/
+$("#replyAddBtn").on("click", function() {
+	var userNo = $("#loguserno").val();
+	var content = $("#newReplyText").val();
+	$.ajax({
+		type : 'post',
+		url : '/replies',
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "POST"
+		},
+		dataType : 'text',
+		data : JSON.stringify({
+			boardNo : boardNo,
+			userNo : userNo,
+			content : content
+		}),
+		success : function(result) {
+			if (result == 'SUCCESS') {
+				swal({
+				    type: 'success',
+				    title: '등록이 완료되었습니다.'
+				  }).then(function () {
+					  getAllList();
+					  newReplyText.value="";
+					  
+				  })
+			}
+		}
+	})
+});
 
 </script>
+

@@ -80,7 +80,7 @@ public class VoteDaoTest {
 		VoteListDTO countVote = new VoteListDTO();
 		int countNum;
 		countVote.setVoteNo(101);
-		countVote.setSelectItem("wefwef");
+		countVote.setUserNo(2);
 		countNum=dao.countVote(countVote);
 		logger.info(countNum);
 	}
@@ -98,6 +98,18 @@ public class VoteDaoTest {
 		
 		dao.upVote(upvote);
 		logger.info("정보 수정 완료!");
+	}
+	
+	@Test
+	public void testcount2() {
+		VoteListDTO countVote = new VoteListDTO();
+		countVote.setVoteNo(1);
+		countVote.setUserNo(2);
+		logger.info("시작");
+		int isVote=dao.getIsVoteNo(countVote);
+		
+		logger.info("값 넣었다");
+		logger.info(""+isVote);
 	}
 	
 }

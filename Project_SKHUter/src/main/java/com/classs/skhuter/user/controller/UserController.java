@@ -70,6 +70,23 @@ public class UserController {
 		return "redirect:/user/userList";
 	}
 	
+	@RequestMapping(value="takeover", method = RequestMethod.POST)
+	public String takeover(@RequestParam(value="takerNo", required=true) String takerNo,@RequestParam(value="takeoverCode", required=true) String takeoverCode){
+		
+		UserDTO users= new UserDTO();
+		users.setUserNo(Integer.parseInt(takerNo));
+		users.setStatus(3);
+		service.changeStatus(users);
+		users.setTakeoverCode(0);
+		service.takeover(users);
+		int giverNo =service.searchGiver(Integer.parseInt(takeoverCode+'0'));
+		users.setUserNo(giverNo);
+		users.setStatus(1);
+		service.takeover(users);
+		service.changeStatus(users);
+		return "redirect:/";
+	}
+	
 	@RequestMapping(value="userList/takeover", method = RequestMethod.POST)
 	public String takeover(@RequestParam(value="giverNo", required=true) String giverNo,@RequestParam(value="takerNo", required=true) String takerNo,@RequestParam(value="takeoverCode", required=true) String takeoverCode){
 		logger.info(giverNo);
