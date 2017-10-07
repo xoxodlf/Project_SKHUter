@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -77,27 +76,66 @@
 
 
 	<!-- 회계 내역 -->
-	
+
 	<!-- 회계 내역 등록 -->
 	<insert id="insertAccounting">
 		INSERT INTO Accounting
-		(account_no, user_no, account_date, content, status, price, file_name, uuid_name)
+		(account_no, user_no,
+		account_date, content, status, price, file_name, uuid_name)
 		VALUES
 		(seq_Accounting.nextVal,#{userNo},sysdate,#{content},#{status},#{price},#{fileName},#{uuidName})
 	</insert>
-	
+
 	<!-- 회계 내역 삭제 -->
 	<delete id="deleteAccounting">
 		DELETE FROM Accounting
 		WHERE Account_no = #{accountNo}
 	</delete>
-	
-	<!-- 회계 내역  전체 조회 -->
+
+	<!-- 	회계 내역 전체 조회 -->
 	<select id="accountingListAll" resultType="Accounting">
 		SELECT account_no as accountNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName
 		FROM Accounting
 		order by account_no desc, account_date desc
 	</select>
+
+	<select id="accountingListPage" resultType="Accounting">
+		<![CDATA[
+		select accountNo1 as accountNo, userNo1 as userNo, accountDate1 as accountDate, content1 as content, status1 as status, price1 as price, fileName1 as fileName, uuidName1 as uuidName
+		FROM(
+    		SELECT a.account_no as accountNo1, a.user_no as userNo1, a.account_date as 
+			accountDate1, a.content as content1, a.status as status1, a.price as price1, a.file_name as fileName1, a.uuid_name as uuidName1
+    		,row_number() over (order by account_no desc) as num
+    		FROM Accounting a
+    	)
+		WHERE num between #{page} and 10
+		]]>
+	</select>
+	
+	<select id="accountingListCriteria" resultType="Accounting">
+		<![CDATA[
+		select accountNo1 as accountNo, userNo1 as userNo, accountDate1 as accountDate, content1 as content, status1 as status, price1 as price, fileName1 as fileName, uuidName1 as uuidName
+		FROM(
+    		SELECT a.account_no as accountNo1, a.user_no as userNo1, a.account_date as 
+			accountDate1, a.content as content1, a.status as status1, a.price as price1, a.file_name as fileName1, a.uuid_name as uuidName1
+    		,row_number() over (order by account_no desc, account_date desc) as num
+    		FROM Accounting a
+    	)
+		WHERE num between #{pageStart} and #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="accountingListCountPaging" resultType="int">
+		<![CDATA[
+		select
+			count(account_no)
+		from
+			Accounting
+		where
+			account_no > 0
+		]]>
+	</select>
 	
 	
 	
+</mapper>
