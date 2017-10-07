@@ -25,7 +25,7 @@ public class BoardController {
 
 	@Inject
 	private BoardService service;
-
+	
 	/*게시물 등록하기GET*/
 	@RequestMapping(value = "/boardForm", method = RequestMethod.GET)
 	public String boardForm(Model model) {
@@ -75,9 +75,9 @@ public class BoardController {
 	  public String remove(@RequestParam("boardNo") int boardNo, RedirectAttributes rttr) throws Exception {
 		  logger.info("컨트롤러랍니다~");
 	    service.delete(boardNo);
-
+	    
 	    rttr.addFlashAttribute("msg", "SUCCESS");
-
+	    
 	    return "redirect:/board/boardList.lay";
 	  }
 	  
