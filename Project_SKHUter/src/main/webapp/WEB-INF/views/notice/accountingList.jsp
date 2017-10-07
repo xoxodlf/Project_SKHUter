@@ -176,28 +176,28 @@ div.search-box input[type="search"] {
 <!-- 					<li class="paginate_button next"><a href="#">다음</a></li> -->
 <!-- 				</ul> -->
 <!-- 			</div> -->
+		</div>
+	</form>
 			<div class = "text-center">
-				<ul class="pagination">
-					<c:if test="${pageMaker.prev }">
-						<li><a href="/notice/accountingList?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
-					</c:if>
-					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-						<li <c:out value="${pageMaker.cri.page == idx?'class = active':'' }"/>>
-							<a href="/notice/accountingList?page=${idx}">${idx}</a>
-						</li>
-					</c:forEach>
-					<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
-						<li><a href="/notice/accountingList?page=${pageMaker.endPage+1 }">&raquo;</a></li>
-					</c:if>
-				</ul>
+					<ul class="pagination">
+						<c:if test="${pageMaker.prev }">
+							<li><a href="/notice/accountingList?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
+						</c:if>
+						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+							<li <c:out value="${pageMaker.cri.page == idx?'class = active':'' }"/>>
+								<a href="/notice/accountingList/listNo?idx=${idx}">${idx}</a>
+							</li>
+						</c:forEach>
+						<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+							<li><a href="/notice/accountingList?page=${pageMaker.endPage+1 }">&raquo;</a></li>
+						</c:if>
+					</ul>
 			</div>
 			<!-- div.paging-box -->
 		</div>
-		</form>
 		<!-- div.table-responsive -->
 	</div>
 	<!-- div.panel-body -->
-</div>
 <!-- div.col-lg-12 -->
 <script type="text/javascript">
 
@@ -240,15 +240,16 @@ $(document).ready(function(){
 	$(".pagination li a").on("click",function(event){
 		event.preventDefault();
 		
-		var targetPage = $("#stPage").val();
+		var targetPage = $("#page").val();
 // 		alert(targetPage);
 		
 		
 		var jobForm = $("#jobForm");
 		
-		alert(jobForm);
+// 		alert(page);
+		alert(targetPage);
 		
-		jobForm.attr("action","/notice/accountingList/setPageNum").attr("method","get");
+		jobForm.attr("action","/notice/accountingList/listNo").attr("method","get");
 		jobForm.submit();
 	})
 	
