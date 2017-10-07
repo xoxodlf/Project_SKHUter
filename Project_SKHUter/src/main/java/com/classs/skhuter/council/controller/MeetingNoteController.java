@@ -42,6 +42,7 @@ public class MeetingNoteController {
 	@Inject
 	private MeetingNoteService noteService;
 
+	
 	@Inject
 	private UserService userService;
 

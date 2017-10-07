@@ -8,6 +8,7 @@ h1.page-header {
 	font-weight: bold;
 }
 
+
 /* 글쓰기+삭제 버튼 한 줄 차지 */
 div.board-btn {
 	display: inline-block;
