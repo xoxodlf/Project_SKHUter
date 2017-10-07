@@ -93,26 +93,26 @@ border:none;
                             </div>
                         </div>
                         </div>
-                        <div id="item4bar">
+                        <div id="itembox4">
                         <label id="item4" style="display:inline-block;"></label>
-                        <div class="progress" id="itembox4">
-                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" >
+                        <div class="progress">
+                            <div id="item4bar" class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" >
                                 <span class="sr-only">80% Bad (danger)</span>
                             </div>
                         </div>
                         </div>
-                        <div id="item5bar">
+                        <div id="itembox5">
                         <label id="item5" style="display:inline-block;"></label>
-                        <div class="progress" id="itembox5">
-                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress">
+                            <div id="item5bar" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">
                                 <span class="sr-only">80% No Comment (info)</span>
                             </div>
                         </div>
                         </div>
-                        <div id="item6bar">
+                        <div id="itembox6">
                         <label id="item6" style="display:inline-block;"></label>
-                        <div class="progress" id="itembox6">
-                            <div class="progress-bar progress-bar-success" >
+                        <div class="progress">
+                            <div id="item66bar" class="progress-bar progress-bar-success" >
                                 <span class="sr-only">35% Complete (success)</span>
                             </div>
                         </div>

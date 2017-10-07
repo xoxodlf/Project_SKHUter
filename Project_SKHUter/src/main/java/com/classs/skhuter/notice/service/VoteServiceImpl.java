@@ -58,5 +58,10 @@ public class VoteServiceImpl implements VoteService {
 		return dao.getIsVoteNo(getIsVote);
 	}
 
+	@Override
+	public int getJoinCount(VoteListDTO getJoinCount) {
+		return dao.getJoinCount(getJoinCount);
+	}
+
 	
 }
