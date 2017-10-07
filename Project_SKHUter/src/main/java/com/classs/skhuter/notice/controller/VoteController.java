@@ -46,9 +46,12 @@ public class VoteController {
 			tmp.setUserNo(user.getUserNo());
 			tmp.setVoteNo(vote.getVoteNo());
 			logger.info(tmp.toString());
+			int joinCount = service.getJoinCount(tmp);
 			int isVote = service.getIsVoteNo(tmp);
 			vote.setIsVote(isVote);
+			vote.setJoinCount(joinCount);
 			logger.info(""+isVote);
+			logger.info(""+joinCount);
 		}
 		model.addAttribute("doingVoteList", doingvote);
 		model.addAttribute("doneVoteList", donevote);

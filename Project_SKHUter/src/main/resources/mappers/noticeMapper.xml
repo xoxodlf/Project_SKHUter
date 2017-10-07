@@ -44,7 +44,12 @@
 	from VOTE_LIST 
 	where vote_no = #{voteNo} and user_no= #{userNo}
 	</select>
-
+	
+	<select id="getJoinCount" parameterType="VoteList" resultType="int">
+	select count(user_no)
+	from VOTE_LIST
+	where vote_no=#{voteNo}
+	</select>
 	
 	
 	<!-- 투표 등록 -->
@@ -73,7 +78,7 @@
 		VALUES
 		(seq_Vote_List.nextVal,#{voteNo},#{userNo},#{selectItem})
 	</insert>
-
+	
 
 	<!-- 회계 내역 -->
 
