@@ -2,6 +2,10 @@ package com.classs.skhuter.board.domain;
 
 import java.sql.Date;
 
+/**
+ ** 게시판 댓글 관련 객체 선언 및 getter(), setter() 메소드 정의
+ */
+
 public class ReplyDTO {
 	private int replyNo;
 	private int boardNo;

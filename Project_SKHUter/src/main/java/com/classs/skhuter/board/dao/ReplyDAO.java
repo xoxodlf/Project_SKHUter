@@ -5,6 +5,10 @@ import java.util.List;
 import com.classs.skhuter.board.domain.BoardDTO;
 import com.classs.skhuter.board.domain.ReplyDTO;
 
+/**
+ ** 게시판 댓글 관련 DB에서 데이터를 가져와 모델 생성
+ **/
+
 public interface ReplyDAO {
 
 	/** 댓글 리스트 보여주기 **/
@@ -15,5 +19,5 @@ public interface ReplyDAO {
 
 	/** 댓글 삭제 **/
 	public void deleteReply(int replyNo) throws Exception;
-	
+
 }

@@ -5,6 +5,10 @@ import java.util.List;
 import com.classs.skhuter.board.domain.BoardDTO;
 import com.classs.skhuter.util.Criteria;
 
+/**
+ ** 게시판 관련 인터페이스 정의
+ */
+
 public interface BoardService {
 
 	/**게시물 등록**/
@@ -25,6 +29,7 @@ public interface BoardService {
 	/**댓글 개수 세기**/
 	public int countReply(BoardDTO board) throws Exception;
 	
+	/** 조회수 처리 **/
 	public int listCountCriteria(Criteria cri) throws Exception;
 	
 }
