@@ -79,13 +79,17 @@ public class BoardController {
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
 	public String listPage(@ModelAttribute("cri") Criteria cri, Model model) throws Exception {
 
-		logger.info(cri.toString());
-		
 		List<BoardDTO> list;
-		if(cri.getSearchType()=="t") list = service.listSearch_t(cri);
-		else if(cri.getSearchType()=="c") list = service.listSearch_c(cri);
-		else if(cri.getSearchType()=="tc")list = service.listSearch_tc(cri);
-		else list = service.listCriteria(cri);
+		if(cri.getSearchType()!=null) {
+		if(cri.getSearchType().equals("t")) {
+			list = service.listSearch_t(cri);
+		}
+		else if(cri.getSearchType().equals("c")) list = service.listSearch_c(cri);
+		else if(cri.getSearchType().equals("tc"))list = service.listSearch_tc(cri);
+		else {
+			list = service.listCriteria(cri);
+		}
+		}else list = service.listCriteria(cri);
 
 		BoardDTO tmp = new BoardDTO();
 
@@ -100,7 +104,6 @@ public class BoardController {
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		
 		
 		if(cri.getSearchType()=="t") pageMaker.setTotalCount(service.listSearchCount_t(cri));
 		else if(cri.getSearchType()=="c") pageMaker.setTotalCount(service.listSearchCount_c(cri));
@@ -128,7 +131,6 @@ public class BoardController {
 			tmp.setBoardNo(board.getBoardNo());
 			int replyCount = service.countReply(tmp);
 			board.setReplyCount(replyCount);
-			logger.info(board.toString());
 		}
 
 		model.addAttribute("boardList", list);

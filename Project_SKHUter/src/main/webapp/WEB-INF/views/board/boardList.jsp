@@ -263,7 +263,6 @@ div.search-box input[type="search"] {
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
-
 				</tbody>
 			</table>
 			<!-- end of table -->
