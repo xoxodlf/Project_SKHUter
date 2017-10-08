@@ -142,6 +142,8 @@
 <input type="hidden" name="boardNo" value="${boardDTO.boardNo}">
 <input type="hidden" name="page" value="${cri.page}">
 <input type="hidden" name="perPageNum" value="${cri.perPageNum}">
+<input type="hidden" name="keyword" value="${cri.keyword}">
+<input type="hidden" name="searchType" value="${cri.searchType}">
 </form>  
 
 <script>
@@ -173,7 +175,7 @@ $('.removeBtn').on('click',(function() {
 	swal({
 		  title: '정말 삭제 하시겠습니까? ',
 		  text: "글 작성 시 입력한 비밀번호를 입력해주세요.",
-		  input: 'text',
+		  input: 'password',
 		  inputPlaceholder: 'Enter your password.',
 		  showCancelButton: true,
 		  inputValidator: function (value) {

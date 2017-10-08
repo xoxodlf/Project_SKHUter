@@ -79,5 +79,26 @@ public class BoardDaoTest {
 	    }
 	  }
 	  
+	  @Test
+	  public void testDynamic1() throws Exception {
+
+	    Criteria cri = new Criteria();
+	    cri.setPage(1);
+	    cri.setKeyword("글");
+	    cri.setSearchType("t");
+
+	    logger.info("=====================================");
+
+	    List<BoardDTO> list = dao.listSearch(cri);
+
+	    for (BoardDTO BoardDTO : list) {
+	      logger.info(BoardDTO.getBoardNo() + ": " + BoardDTO.getTitle());
+	    }
+
+	    logger.info("=====================================");
+
+	    logger.info("COUNT: " + dao.listSearchCount(cri));
+	  }
+	  
 	  
 }

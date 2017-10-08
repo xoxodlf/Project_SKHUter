@@ -95,4 +95,33 @@
 			board_no > 0 
 	 ]]>
 	</select>
+	
+	<select id="listSearch" resultType="board">
+<![CDATA[  
+ SELECT boardNo1 as boardNo, userNo1 as userNo, title, regdate, hitCount1 as hitCount, password, content, likeCount1 as likeCount, hateCount1 as hateCount 
+    from 
+    (select
+      rownum rn, board_no as boardNo1, user_no as userNo1, title, regdate, hit_count as hitCount1, password, content, like_count as likeCount1, hate_count as hateCount1
+		FROM 
+			Board
+      where board_no > 0
+      )
+      where rn>(select count(board_no) from board)-(#{pageStart}+#{perPageNum}) and rn<=(select count(board_no) from board)-(#{pageStart})
+      order by rn desc
+]]> 
+</select>
+
+<select id="listSearchCount" resultType="int">
+<![CDATA[  
+  select 
+   			count(board_no) 
+		from 
+			board 
+		where 
+			board_no > 0 
+]]>
+</select>  
+	
+	
+	
 </mapper>
