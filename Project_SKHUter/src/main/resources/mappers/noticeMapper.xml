@@ -142,5 +142,26 @@
 	</select>
 	
 	
+	<!-- 스튜스케줄 -->
+	
+	<insert id="insertStuSchedule">
+INSERT INTO School_schedule (school_schedule_no, content,start_date,end_date) 
+VALUES (seq_School_schedule.nextVal, #{content},TO_DATE(#{startDate},'yyyy-MM-dd
+		hh24:mi'),TO_DATE(#{endDate}, 'yyyy-MM-dd
+		hh24:mi'))
+</insert>
+
+<select id="listAllSchedule" resultType="StuSchedule">
+		SELECT school_schedule_no as schoolScheduleNo, content, start_date as startDate, end_date as endDate
+		FROM School_schedule
+</select>
+
+
+<delete id="deleteSchedule">
+		DELETE FROM School_schedule
+		WHERE school_schedule_no = #{schoolScheduleNo}
+</delete>
+	
+	
 	
 </mapper>
