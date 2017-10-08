@@ -31,18 +31,20 @@ div.col-lg-12 {
 				<div class="row">
 					<div id="top" class="panel panel-default">
 						<div class="panel-body">
-						<form id="changeDay">
+						<form id="changeDay" action="/council/councilSchedule/changeDate" method="post">
 							<div class="row">
 								<div style="text-align: center;">
 									<button type="button" class="btn btn-default btn-circle" id="yearPrev">＜</button>
-									<span style="font-size:15px"><label id="getYear"></label><label style="display:inline-block">년</label></span>
+									<span style="font-size:15px"><label>${currentY }</label><label style="display:inline-block">년</label></span>
+									<input type="hidden" id="changeYear" name="changeYear">
 									<button type="button" class="btn btn-default btn-circle" id="yearNext">＞</button>
 								</div>
 							</div>
 							<div class="row">
 								<div style="text-align: center;">
 									<button type="button" class="btn btn-default btn-circle" id="monthPrev">＜</button>
-									<span class="huge"> <label id="getMonth"></label><label style="display:inline-block">월</label></span>
+									<span class="huge"> <label>${currentM }</label><label style="display:inline-block">월</label></span>
+									<input type="hidden" id="changeMonth" name="changeMonth">
 									<button type="button" class="btn btn-default btn-circle" id="monthNext">＞</button>
 								</div>
 							</div>
@@ -50,148 +52,63 @@ div.col-lg-12 {
 							<ul class="timeline">
 								<c:forEach items="${scheduleList}" var="schedule">
 <%-- 								<input type="hidden" id="endDate" value="<fmt: formatDate pattern="yyyy" value="${scheduleList.endDate }"/>"/> --%>
-								<form role="form" id="deleteform" method="post" action="/notice/stuSchedule/deleteSchedule">
-    								<input type='hidden' name='schoolScheduleNo' value ="${schedule.schoolScheduleNo}">
+								<form role="form" id="deleteform" method="post" action="/councilSchedule/deleteSchedule">
+    								<input type='hidden' name='councilScheduleNo' value ="${schedule.schoolScheduleNo}">
     							</form>
-    							<form role="form" id="countForm" method="post">
-    								<input type='hidden' name='councilEndDate' id='councilEndDate' value="${schedule.endDate }">
-    								<input type='hidden' name='councilNowDate' id='councilNowDate'>
-    							</form>
-								<li>
-									<div class="timeline-badge">
-										<!-- 타임라인 중앙에 날짜 표시 -->
-										<i class="fa fa-check"></i>
-									</div>
-									<div class="timeline-panel">
-										<div class="timeline-heading">
-											<p>
-												<small class="text-muted"><i class="fa fa-clock-o"></i>
-													${schedule.startDate}~${schedule.endDate}</small>
-													<c:if test="${login.status>=2}">
-                        								<button id="deleteBtn" class="btn btn-default btn-sm scremoveBtn" type="button">
-                        									<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
-                        								</button>
-                        							</c:if>
-											</p>
-										</div>
-										<div class="timeline-body">
-											<p>${schedule.content}</p>
-										</div>
-									</div>
-								</li>
+    							<!-- 진행중인 공지를 판단하는 연산. -->
+								<c:if test="${schedule.startDate <= nextMonth && ((schedule.startDate >= thisMonth && schedule.startDate < nextMonth) ||
+								(schedule.startDate < thisMonth && schedule.endDate > nextMonth) || (schedule.endDate >= thisMonth || schedule.endDate < nextMonth))
+								 }">
+									<c:if test="${schedule.endDate >= thisMonth }">
+										<c:if test="${schedule.endDate > currentDate }">
+											<!-- 오른쪽에 게시글 넣기 -->
+											<li>
+												<div class="timeline-badge" style="background: #67A6D2">
+												</div>
+												<div class="timeline-panel">
+													<div class="timeline-heading">
+														<p>
+															<small class="text-muted" style="font-size:15px"><i class="fa fa-clock-o"></i>
+																${schedule.startDate}~${schedule.endDate}</small>
+																<c:if test="${login.status>=2}">
+                        											<button id="deleteBtn" class="btn btn-default btn-sm scremoveBtn" type="button">
+                        												<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
+                       	 											</button>
+                        										</c:if>
+														</p>
+													</div>
+													<div class="timeline-body">
+														<p>${schedule.content}</p>
+													</div>
+												</div>
+											</li>
+										</c:if>
+										<c:if test="${schedule.endDate <= currentDate }">
+											<li class="timeline-inverted">
+												<div class="timeline-badge" style="background: #ff7058">
+												</div>
+												<div class="timeline-panel">
+													<div class="timeline-heading">
+														<p>
+															<small class="text-muted" style="font-size:15px"><i class="fa fa-clock-o"></i>
+															${schedule.startDate}~${schedule.endDate}
+															</small>
+															<c:if test="${login.status>=2}">
+                        										<button id="deleteBtn" class="btn btn-default btn-sm scremoveBtn" type="button">
+                        											<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
+                       											</button>
+                       										</c:if>
+														</p>
+													</div>
+													<div class="timeline-body">
+														<p>${schedule.content}</p>
+													</div>
+												</div>
+											</li>
+										</c:if>
+									</c:if>
+								</c:if>
 								</c:forEach>
-								
-								<li class="timeline-inverted">
-									<div class="timeline-badge warning">
-										<i class="fa fa-credit-card"></i>
-									</div>
-									<div class="timeline-panel">
-										<div class="timeline-heading">
-											<h4 class="timeline-title">Lorem ipsum dolor</h4>
-										</div>
-										<div class="timeline-body">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Autem dolorem quibusdam, tenetur commodi provident
-												cumque magni voluptatem libero, quis rerum. Fugiat esse
-												debitis optio, tempore. Animi officiis alias, officia
-												repellendus.</p>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Laudantium maiores odit qui est tempora eos, nostrum
-												provident explicabo dignissimos debitis vel! Adipisci eius
-												voluptates, ad aut recusandae minus eaque facere.</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="timeline-badge danger">
-										<i class="fa fa-bomb"></i>
-									</div>
-									<div class="timeline-panel">
-										<div class="timeline-heading">
-											<h4 class="timeline-title">Lorem ipsum dolor</h4>
-										</div>
-										<div class="timeline-body">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Repellendus numquam facilis enim eaque, tenetur nam id
-												qui vel velit similique nihil iure molestias aliquam,
-												voluptatem totam quaerat, magni commodi quisquam.</p>
-										</div>
-									</div>
-								</li>
-								<li class="timeline-inverted">
-									<div class="timeline-panel">
-										<div class="timeline-heading">
-											<h4 class="timeline-title">Lorem ipsum dolor</h4>
-										</div>
-										<div class="timeline-body">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Voluptates est quaerat asperiores sapiente, eligendi,
-												nihil. Itaque quos, alias sapiente rerum quas odit! Aperiam
-												officiis quidem delectus libero, omnis ut debitis!</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="timeline-badge info">
-										<i class="fa fa-save"></i>
-									</div>
-									<div class="timeline-panel">
-										<div class="timeline-heading">
-											<h4 class="timeline-title">Lorem ipsum dolor</h4>
-										</div>
-										<div class="timeline-body">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Nobis minus modi quam ipsum alias at est molestiae
-												excepturi delectus nesciunt, quibusdam debitis amet, beatae
-												consequuntur impedit nulla qui! Laborum, atque.</p>
-											<hr>
-											<div class="btn-group">
-												<button type="button"
-													class="btn btn-primary btn-sm dropdown-toggle"
-													data-toggle="dropdown">
-													<i class="fa fa-gear"></i> <span class="caret"></span>
-												</button>
-												<ul class="dropdown-menu" role="menu">
-													<li><a href="#">Action</a></li>
-													<li><a href="#">Another action</a></li>
-													<li><a href="#">Something else here</a></li>
-													<li class="divider"></li>
-													<li><a href="#">Separated link</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="timeline-panel">
-										<div class="timeline-heading">
-											<h4 class="timeline-title">Lorem ipsum dolor</h4>
-										</div>
-										<div class="timeline-body">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Sequi fuga odio quibusdam. Iure expedita, incidunt
-												unde quis nam! Quod, quisquam. Officia quam qui adipisci
-												quas consequuntur nostrum sequi. Consequuntur, commodi.</p>
-										</div>
-									</div>
-								</li>
-								<li class="timeline-inverted">
-									<div class="timeline-badge success">
-										<i class="fa fa-graduation-cap"></i>
-									</div>
-									<div class="timeline-panel">
-										<div class="timeline-heading">
-											<h4 class="timeline-title">Lorem ipsum dolor</h4>
-										</div>
-										<div class="timeline-body">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Deserunt obcaecati, quaerat tempore officia voluptas
-												debitis consectetur culpa amet, accusamus dolorum fugiat,
-												animi dicta aperiam, enim incidunt quisquam maxime neque
-												eaque.</p>
-										</div>
-									</div>
-								</li>
 							</ul>
 						</div>
 						<!-- /.panel-body -->
@@ -205,10 +122,8 @@ div.col-lg-12 {
 <jsp:include page="include/stuScheduleModal.jsp" />
 <script>
 var now = new Date();
-var year;
-var mon;
-var endDate;
-var nowDate;
+var year = ${currentY};
+var mon = ${currentM};
 
 function showModal() {
 	$('div#stuScheduleModal').modal();
@@ -228,48 +143,74 @@ function throwDate(){
 }
 
 //리스트 달력 연도,월 바꾸기
-$(document).ready(function() {
-    year= now.getFullYear();
-    mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
-    console.log(year);
-    console.log(mon);
-    
-    $('label#getYear').text(year);
-    $("label#getMonth").text(mon);
-    
+$(document).ready(function() { 
     $('#yearPrev').on('click',function(){ //이전 연도 계산 버튼
+    	var form= $("form#changeDay");
+    
     	year -= 1;
-    	$('label#getYear').text(year);
+    	
+    	$("input#changeYear").val(year);
+	    $("input#changeMonth").val(mon);
+         
+        form.attr("action", "/notice/stuSchedule/changeDate");
+        form.submit();
     });
     
     $('#yearNext').on('click',function(){ //다음 연도 계산 버튼
+    	var form= $("form#changeDay");
+    
     	year += 1;
-    	$('label#getYear').text(year);
+    	
+    	$("input#changeYear").val(year);
+	    $("input#changeMonth").val(mon);
+        
+        form.attr("action", "/notice/stuSchedule/changeDate");
+        form.submit();
     });
     
     $('#monthPrev').on('click',function(){ //이전 달 계산 버튼
+    	var form= $("form#changeDay");
+    
     	mon -= 1;
     	if(mon == 0){
     		mon = 12;
     		year -= 1;
-    		$('label#getYear').text(year);
-    		$('label#getMonth').text(mon);
+    		
+    		$("input#changeYear").val(year);
+    	    $("input#changeMonth").val(mon);
+    	    
+    	    form.attr("action", "/notice/stuSchedule/changeDate");
+    	    form.submit();
     	}
     	else{
-    		$('label#getMonth').text(mon);
+    		$("input#changeYear").val(year);
+    	    $("input#changeMonth").val(mon);
+    	    
+    	    form.attr("action", "/notice/stuSchedule/changeDate");
+    	    form.submit();
     	}
     });
     
     $('#monthNext').on('click',function(){ //다음 달 계산 버튼
+    	var form= $("form#changeDay");
+    
     	mon += 1;
     	if(mon > 12){
     		mon = 1;
     		year += 1;
-    		$('label#getYear').text(year);
-    		$('label#getMonth').text(mon);
+    		
+    		$("input#changeYear").val(year);
+    	    $("input#changeMonth").val(mon);
+    	    
+    	    form.attr("action", "/notice/stuSchedule/changeDate");
+    	    form.submit();
     	}
     	else{
-    		$('label#getMonth').text(mon);
+    		$("input#changeYear").val(year);
+    	    $("input#changeMonth").val(mon);
+    	     
+    	    form.attr("action", "/notice/stuSchedule/changeDate");
+    	    form.submit();
     	}
     });
 });

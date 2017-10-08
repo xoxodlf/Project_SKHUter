@@ -122,11 +122,8 @@ div.col-lg-12 {
 	<jsp:include page="include/stuScheduleModal.jsp" />
 <script>
 var now = new Date();
-var nowChange;
 var year = ${currentY};
 var mon = ${currentM};
-var endDate;
-var nowDate;
 
 function showModal() {
 	$('div#stuScheduleModal').modal();
@@ -155,7 +152,7 @@ $(document).ready(function() {
     	$("input#changeYear").val(year);
 	    $("input#changeMonth").val(mon);
          
-        form.attr("action", "/council//councilSchedule/changeDate");
+        form.attr("action", "/council/councilSchedule/changeDate");
         form.submit();
     });
     
@@ -167,7 +164,7 @@ $(document).ready(function() {
     	$("input#changeYear").val(year);
 	    $("input#changeMonth").val(mon);
         
-        form.attr("action", "/council//councilSchedule/changeDate");
+        form.attr("action", "/council/councilSchedule/changeDate");
         form.submit();
     });
     
@@ -182,14 +179,14 @@ $(document).ready(function() {
     		$("input#changeYear").val(year);
     	    $("input#changeMonth").val(mon);
     	    
-    	    form.attr("action", "/council//councilSchedule/changeDate");
+    	    form.attr("action", "/council/councilSchedule/changeDate");
     	    form.submit();
     	}
     	else{
     		$("input#changeYear").val(year);
     	    $("input#changeMonth").val(mon);
     	    
-    	    form.attr("action", "/council//councilSchedule/changeDate");
+    	    form.attr("action", "/council/councilSchedule/changeDate");
     	    form.submit();
     	}
     });
@@ -205,14 +202,14 @@ $(document).ready(function() {
     		$("input#changeYear").val(year);
     	    $("input#changeMonth").val(mon);
     	    
-    	    form.attr("action", "/council//councilSchedule/changeDate");
+    	    form.attr("action", "/council/councilSchedule/changeDate");
     	    form.submit();
     	}
     	else{
     		$("input#changeYear").val(year);
     	    $("input#changeMonth").val(mon);
     	     
-    	    form.attr("action", "/council//councilSchedule/changeDate");
+    	    form.attr("action", "/council/councilSchedule/changeDate");
     	    form.submit();
     	}
     });
