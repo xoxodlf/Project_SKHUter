@@ -1,7 +1,51 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!-- 파비콘 설정 -->
+	<link rel="shortcut icon" type="image/x-icon" href="/resources/images/skhuter.ico" />
+	
+	
+	<!-- CSS -->
+	
+	<!-- Bootstrap Core CSS -->
+	<link rel="stylesheet" href="/resources/css/bootstrap.css">
+	<link href="/resources/css/bootstrap.vertical-tabs.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
+	
+    <!-- SweetAlert CSS -->
+    <link href="/resources/css/sweetalert2.min.css" rel="stylesheet">
+    
+    <!-- MetisMenu CSS -->
+    <link href="/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
+    <!-- Custom CSS -->
+    <link href="/resources/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="/resources/vendor/morrisjs/morris.css" rel="stylesheet">
+    
+    <link href="/resources/css/metisMenu.css" rel="stylesheet">
+    
+    
+	<!-- JavaScript -->
+    
+	<!-- jQuery JavaScript -->
+	<script src="/resources/js/jquery.js"></script>
+<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
+	
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/resources/js/bootstrap.min.js"></script>
+
+    <!-- SweetAlert JavaScript -->
+    <script src="/resources/js/sweetalert2.min.js"></script>
+    <script src="/resources/js/metisMenu.js"></script>
+    <script src="/resources/js/bootstrap-datetimepicker.js"></script>
+    <script src="/resources/js/bootstrap-datetimepicker.ko.js"></script>
+    <script src="/resources/js/sb-admin-2.js"></script>
+    <script src="/resources/js/jquery.flexslider.js"></script>
+    
+    <!-- Custom Fonts -->
+    <link href="/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 <style>
 /* 기타 */
@@ -134,25 +178,6 @@ div.search-box input[type="search"] {
 		})
 	}));
 
-	/*등록 삭제 처리 완료시 뜨는 창*/
-	$(function() {
-		var message = $('#createsuccess').val();
-		if (message == 'createsuccess') {
-			swal({
-				type: 'success',
-			    title: '등록이 완료되었습니다.'
-			    })
-		}
-	});
-	$(function() {
-		var message = $('#deletesuccess').val();
-		if (message == 'deletesuccess') {
-			swal({
-				type: 'success',
-			    title: '삭제가 완료되었습니다.'
-			    })
-		}
-	});
 </script>
 
 <input type="hidden" id="deletesuccess" value="${message}">
@@ -239,7 +264,7 @@ div.search-box input[type="search"] {
 			<!-- end of table -->
 
 			<!-- 검색창 -->
-			<div class="search-box">
+			<div class="search-box" style="margin-top:10%;">
 				<input type="search" class="form-control input-sm">
 				<button class="btn btn-default">검색</button>
 			</div>
@@ -250,10 +275,6 @@ div.search-box input[type="search"] {
 			<div class="paging-box">
 				<ul class="pagination">
 						
-<!-- 					<li class="paginate_button previous disabled"><a href="/board/boardList?page=${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="paginate_button active"><a href="#">1</a></li> -->
-<!-- 					<li class="paginate_button next"><a href="#">다음</a></li> -->
 							<c:if test="${pageMaker.prev}">
 								<li class="paginate_button previous"><a
 									href="/board/boardList${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
@@ -281,4 +302,3 @@ div.search-box input[type="search"] {
 	<!-- div.panel-body -->
 </div>
 <!-- div.col-lg-12 -->
-</form>

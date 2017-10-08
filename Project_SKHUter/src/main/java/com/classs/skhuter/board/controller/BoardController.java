@@ -103,5 +103,33 @@ public class BoardController {
 		return "board/boardList.lay";
 
 	}
+	
+	@RequestMapping(value = "/boardListWV", method = RequestMethod.GET)
+	public String listPageMV(@ModelAttribute("cri") Criteria cri, Model model) throws Exception {
+
+		logger.info(cri.toString());
+		List<BoardDTO> list = service.listCriteria(cri);
+
+		BoardDTO tmp = new BoardDTO();
+
+		for (BoardDTO board : list) {
+			tmp.setBoardNo(board.getBoardNo());
+			int replyCount = service.countReply(tmp);
+			board.setReplyCount(replyCount);
+			logger.info(board.toString());
+		}
+
+		model.addAttribute("boardList", list);
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+
+		pageMaker.setTotalCount(service.listCountCriteria(cri));
+
+		model.addAttribute("pageMaker", pageMaker);
+
+		return "board/boardListM";
+
+	}
 
 }
