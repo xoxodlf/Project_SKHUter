@@ -21,6 +21,7 @@
 		WHERE end_date >= TO_CHAR(sysdate,'YYYY-MM-DD hh24:mi')
 	</select>
 	
+	<!-- 완료된 투표 불러오기 -->
 	<select id="readDoneVote" resultType="Vote">
 	<![CDATA[
 		SELECT vote_no as voteNo ,user_no as userNo,enroll_date as
@@ -31,6 +32,8 @@
 	]]>
 	</select>
 	
+	
+	<!-- 투표 숫자 올리기 -->
 	<update id="upVote">
 	
 	UPDATE vote
@@ -39,12 +42,14 @@
 	
 	</update>
 	
+	<!-- 투표 몇개 했는지 세기 -->
 	<select id="countVote" parameterType="VoteList" resultType="int">
 	SELECT COUNT(select_item) 
 	from VOTE_LIST 
 	where vote_no = #{voteNo} and user_no= #{userNo}
 	</select>
 	
+	<!-- 몇명 투표했는지 세기 -->
 	<select id="getJoinCount" parameterType="VoteList" resultType="int">
 	select count(user_no)
 	from VOTE_LIST
@@ -143,20 +148,20 @@
 	
 	
 	<!-- 스튜스케줄 -->
-	
+	<!-- 스케줄등록 -->
 	<insert id="insertStuSchedule">
 INSERT INTO School_schedule (school_schedule_no, content,start_date,end_date) 
 VALUES (seq_School_schedule.nextVal, #{content},TO_DATE(#{startDate},'yyyy-MM-dd
 		hh24:mi'),TO_DATE(#{endDate}, 'yyyy-MM-dd
 		hh24:mi'))
 </insert>
-
+<!-- 스케줄 불러오기 -->
 <select id="listAllSchedule" resultType="StuSchedule">
 		SELECT school_schedule_no as schoolScheduleNo, content, start_date as startDate, end_date as endDate
 		FROM School_schedule
 </select>
 
-
+<!-- 스케줄삭제하기 -->
 <delete id="deleteSchedule">
 		DELETE FROM School_schedule
 		WHERE school_schedule_no = #{schoolScheduleNo}

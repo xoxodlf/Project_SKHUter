@@ -23,7 +23,10 @@ public class StuScheduleController {
 	
 	@Inject
 	private StuScheduleService service;
-	
+	/**
+	 * 
+	 * 스케쥴 목록 불러오기
+	 */
 	@RequestMapping("/stuSchedule")
 	public String TimeLine(Model model) {
 		logger.info("학사 일정");
@@ -33,6 +36,10 @@ public class StuScheduleController {
 		return "notice/stuSchedule.lay";
 	}
 	
+	/**
+	 * 
+	 * 스케쥴 등록
+	 */
 	@RequestMapping(value="/stuSchedule/registSchedule", method = RequestMethod.POST)
 	public String registSchedule(StuScheduleDTO registeredSchedule,RedirectAttributes rttr) {
 		logger.info(registeredSchedule.toString());
@@ -42,6 +49,10 @@ public class StuScheduleController {
 		return "redirect:/notice/stuSchedule";	
 	}
 	
+	/**
+	 * 
+	 * 스케쥴 삭제
+	 */
 	@RequestMapping(value="/stuSchedule/deleteSchedule", method = RequestMethod.POST)
 	public String deleteSchedule(@RequestParam("schoolScheduleNo") int schoolScheduleNo,RedirectAttributes rttr) {
 		logger.info(schoolScheduleNo+"");
