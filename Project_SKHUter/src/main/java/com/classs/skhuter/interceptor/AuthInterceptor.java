@@ -13,6 +13,9 @@ import org.springframework.web.util.WebUtils;
 import com.classs.skhuter.user.domain.UserDTO;
 import com.classs.skhuter.user.service.UserService;
 
+import org.springframework.mobile.device.Device;
+import org.springframework.mobile.device.DeviceUtils;
+
 
 /**
  * 로그인 유지를 위한 필터역할을 해주는 인터셉터
@@ -34,6 +37,13 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
 		
 		HttpSession session = request.getSession();
+		
+		Device device = DeviceUtils.getCurrentDevice(request); 
+
+		/** 모바일 or 태블릿 기기일 경우 인터셉터 적용 안함 */
+		if (!device.isNormal()) {
+			return true;
+		}
 		
 		if (session.getAttribute("login") == null) {
 			

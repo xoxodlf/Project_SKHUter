@@ -1,9 +1,11 @@
-package com.classs.skhuter.user.controller;
+ package com.classs.skhuter.user.controller;
 
 import java.net.URLEncoder;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
@@ -48,7 +50,7 @@ public class UserController {
 	UserDTO user;
 
 	@RequestMapping(value = "/userList", method = RequestMethod.GET)
-	public String noticeList(Model model) {
+	public String getUserList(Model model) {
 		List<UserDTO> userList = service.UserListAll();
 		
 		model.addAttribute("list", userList);
@@ -378,6 +380,22 @@ public class UserController {
 	}
 	
 	
+	/** 모바일 전용 컨트롤러 */
 	
-	
+	/**
+	 * 모바일용 회원 목록 조회
+	 *
+	 * @Method Name : getUserListMobile
+	 * @return
+	 */
+	@RequestMapping(value = "/userListMobile", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getUserListMobile () {
+		Map<String, Object> userMap = new HashMap<String, Object>();
+		List<UserDTO> userList = service.UserListAll();
+		
+		userMap.put("list", userList);
+		
+		return userMap;
+	}
 }

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.mobile.device.Device;
+import org.springframework.mobile.device.DeviceUtils;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -67,6 +69,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 
+		Device device = DeviceUtils.getCurrentDevice(request); 
+
+		/** 모바일 or 태블릿 기기일 경우 인터셉터 적용 안함 */
+		if (!device.isNormal()) {
+			return ;
+		}
+		
 		HttpSession session = request.getSession();
 
 		ModelMap modelMap = modelAndView.getModelMap();

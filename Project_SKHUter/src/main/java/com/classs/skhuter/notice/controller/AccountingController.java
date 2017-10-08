@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -29,8 +32,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.classs.skhuter.council.domain.MeetingNoteDTO;
 import com.classs.skhuter.notice.domain.AccountingDTO;
 import com.classs.skhuter.notice.service.AccountingService;
+import com.classs.skhuter.user.domain.UserDTO;
 import com.classs.skhuter.util.Criteria;
 import com.classs.skhuter.util.MediaUtils;
 import com.classs.skhuter.util.PageMaker;
@@ -316,5 +321,40 @@ public class AccountingController {
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
 		return "redirect:/notice/accountingList";
+	}
+	
+	
+	/** 모바일 전용 컨트롤러 */
+	
+	   
+	/**
+	 * 모바일용 회계 내역 목록 조회
+	 *
+	 * @Method Name : getmeetingNoteMobile
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/notice/accountingListMobile", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getaccountingListMobile () {
+		Map<String, Object> accountingMap = new HashMap<String, Object>();
+		
+		int i = 0;
+		int money = 0;
+
+		List<AccountingDTO> accountingList = accountingService.listAll();
+
+		for (int listsize = accountingList.size(); i < listsize; i++) {
+			if (accountingList.get(i).getStatus() == 0) {
+				money += accountingList.get(i).getPrice();
+			} else {
+				money -= accountingList.get(i).getPrice();
+			}
+		}
+
+		accountingMap.put("money", money);
+		accountingMap.put("list", accountingList);
+		
+		return accountingMap;
 	}
 }
