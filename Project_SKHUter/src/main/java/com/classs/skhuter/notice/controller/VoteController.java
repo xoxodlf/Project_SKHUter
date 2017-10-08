@@ -152,24 +152,24 @@ public class VoteController {
 	 * 모바일용 투표 목록 조회
 	 *
 	 * @Method Name : getvoteListMobile
-	 * @param req
 	 * @return
 	 */
 	@RequestMapping(value = "/voteListMobile", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> getvoteListMobile (HttpServletRequest req) {
+	public Map<String, Object> getvoteListMobile (UserDTO user) {
 		Map<String, Object> voteMap = new HashMap<String, Object>();
 		
 		List<VoteDTO> doingvote = service.readDoingVote();
 		List<VoteDTO> donevote = service.readDoneVote();
 		
+		System.out.println("VOTE MOBILE - userNo = "+user.getUserNo()+" / name = "+user.getName()+" / id = "+user.getId());
 		VoteListDTO tmp= new VoteListDTO();
-		UserDTO user = (UserDTO)req.getSession().getAttribute("login");
 		 
 		for(VoteDTO vote : doingvote) {
 			
 			tmp.setUserNo(user.getUserNo());
 			tmp.setVoteNo(vote.getVoteNo());
+			
 			
 			int joinCount = service.getJoinCount(tmp);
 			int isVote = service.getIsVoteNo(tmp);

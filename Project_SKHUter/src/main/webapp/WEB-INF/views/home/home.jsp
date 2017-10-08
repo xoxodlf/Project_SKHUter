@@ -38,7 +38,7 @@
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-xs-12 text-center">
-								<div class="huge">오늘의 일정</div>
+								<div>오늘의 일정</div>
 							</div>
 						</div>
 					</div>
@@ -55,7 +55,7 @@
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-xs-12 text-center">
-								<div class="huge">공지사항</div>
+								<div>공지사항</div>
 							</div>
 
 						</div>
