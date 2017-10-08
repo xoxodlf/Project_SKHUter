@@ -235,7 +235,7 @@ div.search-box input[type="search"] {
 									<td>${boardDTO.boardNo}</td>
 									<td></td>
 									<td><a
-										href="/board/boardDetail?boardNo=${boardDTO.boardNo}">${boardDTO.title}<span style="display:inline;">　[${boardDTO.replyCount}]</span> </a></td>
+										href="/board/boardDetail?page=${pageMaker.cri.page}&${pageMaker.cri.perPageNum}&boardNo=${boardDTO.boardNo}">${boardDTO.title}<span style="display:inline;">　[${boardDTO.replyCount}]</span> </a></td>
 									<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 											value="${boardDTO.regdate}" /></td>
 									<td>${boardDTO.hitCount}</td>

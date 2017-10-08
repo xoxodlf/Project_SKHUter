@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -271,4 +273,32 @@ public class MeetingNoteController {
 	      
 	      return "redirect:/council/meetingNote";
 	   }
+	   
+	   
+		/** 모바일 전용 컨트롤러 */
+		
+	   
+	   	/**
+	   	 * 모바일용 회의록 목록 조회
+	   	 *
+	   	 * @Method Name : getmeetingNoteMobile
+	   	 * @return
+	   	 */
+		@RequestMapping(value = "/council/meetingNoteMobile", method = RequestMethod.GET)
+		@ResponseBody
+		public Map<String, Object> getmeetingNoteMobile () {
+			Map<String, Object> noteMap = new HashMap<String, Object>();
+			
+			List<MeetingNoteDTO> NoteList = noteService.listAll();
+			List<UserDTO> name = new ArrayList<UserDTO>();
+
+			for (MeetingNoteDTO meetingNote : NoteList) {
+				name.add(userService.get(meetingNote.getUserNo()));
+			}
+
+			noteMap.put("list", NoteList);
+			noteMap.put("name", name);
+			
+			return noteMap;
+		}
 }

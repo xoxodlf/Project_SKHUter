@@ -2,23 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 네임스페이스(사용영역) 설정 -->
+<!-- 게시판 네임스페이스(사용영역) 설정 -->
 
 <mapper namespace="com.classs.skhuter.mappers.BoardMapper">
+
 	<!-- 글쓰기 -->
 	<insert id="create">
 		INSERT INTO Board (board_no, user_no, title, regdate,
 		hit_count, password, content, like_count, hate_count)
 		VALUES
-		(seq_board.nextVal, #{userNo}, #{title}, sysdate, 0, #{password}, #{content},
+		(seq_board.nextVal, #{userNo}, #{title}, sysdate, 0, #{password},
+		#{content},
 		0, 0)
 	</insert>
 
 	<!-- 게시글 읽기 -->
 	<select id="read" resultType="board">
-		SELECT board_no as boardNo, user_no as userNo, title, regdate, hit_count as hitCount, password, content, like_count as likeCount, hate_count as hateCount
-		FROM 
-		Board 
+		SELECT board_no as boardNo, user_no
+		as userNo, title, regdate, hit_count as hitCount, password, content,
+		like_count as likeCount, hate_count as hateCount
+		FROM
+		Board
 		where board_no = #{boardNo}
 	</select>
 
@@ -27,15 +31,18 @@
 		DELETE FROM board WHERE board_no = #{boardNo}
 	</delete>
 
+	<!-- 게시물 전체 목록 불러오기 -->
 	<select id="listAll" resultType="board">
- 		SELECT board_no as boardNo, user_no as userNo, title, regdate, hit_count as hitCount, password, content, like_count as likeCount, hate_count as hateCount
-		FROM 
-			Board
+		SELECT board_no as boardNo, user_no as userNo, title, regdate, hit_count as
+		hitCount, password, content, like_count as likeCount, hate_count as
+		hateCount
+		FROM
+		Board
 		order by board_no desc, regdate desc
 	</select>
-	
+
 	<!-- 게시물리스트 페이징처리 -->
-	 <select id="listPage" resultType="board">
+	<select id="listPage" resultType="board">
  	<![CDATA[
 		SELECT boardNo1 as boardNo, userNo1 as userNo, title, regdate, hitCount1 as hitCount, password, content, likeCount1 as likeCount, hateCount1 as hateCount 
     from 
@@ -48,8 +55,8 @@
       order by rn desc)
       where rn >= (#{page}-9)
 	]]>
- 	</select>
- 	
+	</select>
+
 	<!-- 게시물리스트 페이징처리 -->
 	<select id="listCriteria" resultType="board">
  		<![CDATA[
@@ -68,26 +75,24 @@
 
 	<!-- 댓글 개수 세기 -->
 	<select id="countReply" parameterType="board" resultType="int">
-		select count(reply_no) from reply where board_no= #{boardNo}
+		select
+		count(reply_no) from reply where board_no= #{boardNo}
 	</select>
-	
+
 	<!-- 조회수 세기 -->
 	<update id="updateHitCount">
-		update board set hit_count=hit_count+1 where board_no= #{boardNo}
+		update board set hit_count=hit_count+1 where
+		board_no= #{boardNo}
 	</update>
-	
-	<select id="countPaging" resultType="int">
- <![CDATA[
- select 
-   count(board_no) 
- from 
-   board 
- where 
-   board_no > 0 
- ]]>
- </select>
-	
-	
-	
 
+	<select id="countPaging" resultType="int">
+	 <![CDATA[
+ 		select 
+   			count(board_no) 
+		from 
+			board 
+		where 
+			board_no > 0 
+	 ]]>
+	</select>
 </mapper>

@@ -21,6 +21,10 @@ import com.classs.skhuter.notice.domain.VoteDTO;
 import com.classs.skhuter.util.Criteria;
 import com.classs.skhuter.util.PageMaker;
 
+/**
+ ** 익명게시판 관련 프로젝트 Controller @RequestMapping("/board") URI 매칭
+ **/
+
 @Controller
 @RequestMapping("/board")
 public class BoardController {
@@ -28,112 +32,77 @@ public class BoardController {
 
 	@Inject
 	private BoardService service;
-	
-	/*게시물 등록하기GET*/
+
+	/** 게시글 등록 GET방식 **/
 	@RequestMapping(value = "/boardForm", method = RequestMethod.GET)
 	public String boardForm(Model model) {
-		
+
 		return "board/boardForm.lay";
 	}
-	
-	/*게시물 등록하기POST*/
+
+	/** 게시글 등록 POST방식 **/
 	@RequestMapping(value = "/boardForm", method = RequestMethod.POST)
 	public String registPOST(BoardDTO board, RedirectAttributes rttr) throws Exception {
-		
+
 		service.create(board);
 		rttr.addFlashAttribute("message", "createsuccess");
 		logger.info(board.toString());
-		
+
 		return "redirect:/board/boardList";
 	}
-	 
-	/*게시판 목록 불러오기
-	 @RequestMapping(value = "/boardList", method = RequestMethod.GET)
-	  public String listAll(Model model) throws Exception{
-		 
-		 List<BoardDTO> list = service.listAll();
-		 BoardDTO tmp = new BoardDTO();
-		 
-		 for(BoardDTO board : list) {
-			 tmp.setBoardNo(board.getBoardNo());
-			 int replyCount = service.countReply(tmp);
-			 board.setReplyCount(replyCount);
-		 }
-			model.addAttribute("boardList", list);
-			logger.info("게시판 리스트 입장");
-			
-			return "board/boardList.lay";
-	 }
-	 */
-	 /*게시글 불러오기*/
-	  @RequestMapping(value = "/boardDetail", method = RequestMethod.GET)
-	  public String read(@RequestParam("boardNo") int boardNo, @ModelAttribute("cri") Criteria cri, Model model) throws Exception {
 
-	    model.addAttribute(service.read(boardNo));
-	    return "board/boardDetail.lay";
-	  }
-	  
-	  /*게시글 삭제하기*/
-	  @RequestMapping(value = "boardDetail/delete", method = RequestMethod.POST)
-	  public String remove(@RequestParam("boardNo") int boardNo, RedirectAttributes rttr) throws Exception {
-		  logger.info("컨트롤러랍니다~");
-	    service.delete(boardNo);
-	    
-	    rttr.addFlashAttribute("message", "deletesuccess");
-	    
-	    return "redirect:/board/boardList";
-	  }
-	  
-	  /*게시글 페이징처리
-	  @RequestMapping(value = "/boardList", method = RequestMethod.GET)
-	  public String listAll(Criteria cri, Model model) throws Exception {
-		  
-		  List<BoardDTO> list = service.listCriteria(cri);
-		  BoardDTO tmp = new BoardDTO();
-			 
-			 for(BoardDTO board : list) {
-				 tmp.setBoardNo(board.getBoardNo());
-				 int replyCount = service.countReply(tmp);
-				 board.setReplyCount(replyCount);
-				 logger.info( board.toString());
-			 }
+	/** 게시글 불러오기 **/
+	@RequestMapping(value = "/boardDetail", method = RequestMethod.GET)
+	public String read(@RequestParam("boardNo") int boardNo, @ModelAttribute("cri") Criteria cri, Model model)
+			throws Exception {
+		model.addAttribute(cri);
+		model.addAttribute(service.read(boardNo));
+		return "board/boardDetail.lay";
+	}
 
-	    model.addAttribute("boardList", list);
-	    
-	    return "board/boardList.lay";
-	  }
-	  */
-	  
-	  /**pageMaker이용 페이징처리**/
-	  @RequestMapping(value = "/boardList", method = RequestMethod.GET)
-	  public String listPage(@ModelAttribute("cri") Criteria cri, Model model) throws Exception {
+	/** 게시글 삭제하기 **/
+	@RequestMapping(value = "boardDetail/delete", method = RequestMethod.POST)
+	public String remove(@RequestParam("boardNo") int boardNo, Criteria cri, RedirectAttributes rttr) throws Exception {
+		logger.info("컨트롤러랍니다~");
+		service.delete(boardNo);
 
-		  
-	    logger.info(cri.toString());
-	    List<BoardDTO> list = service.listCriteria(cri);
-	    
-	    BoardDTO tmp = new BoardDTO();
-		 
-		 for(BoardDTO board : list) {
-			 tmp.setBoardNo(board.getBoardNo());
-			 int replyCount = service.countReply(tmp);
-			 board.setReplyCount(replyCount);
-			 logger.info( board.toString());
-		 }
-		 
-		 model.addAttribute("boardList", list);
-		    
-		 PageMaker pageMaker = new PageMaker();
-		    pageMaker.setCri(cri);
-		    //pageMaker.setTotalCount(151);
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addFlashAttribute("message", "deletesuccess");
 
-		    pageMaker.setTotalCount(service.listCountCriteria(cri));
+		return "redirect:/board/boardList";
+	}
 
-		    model.addAttribute("pageMaker", pageMaker);
-		    
-		    return "board/boardList.lay";
-		    
-	  }
-	  
-	
+	/**
+	 * 게시판 리스트 구현 페이징 기능 검색 기능
+	 **/
+	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
+	public String listPage(@ModelAttribute("cri") Criteria cri, Model model) throws Exception {
+
+		logger.info(cri.toString());
+		List<BoardDTO> list = service.listCriteria(cri);
+
+		BoardDTO tmp = new BoardDTO();
+
+		for (BoardDTO board : list) {
+			tmp.setBoardNo(board.getBoardNo());
+			int replyCount = service.countReply(tmp);
+			board.setReplyCount(replyCount);
+			logger.info(board.toString());
+		}
+
+		model.addAttribute("boardList", list);
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		// pageMaker.setTotalCount(151);
+
+		pageMaker.setTotalCount(service.listCountCriteria(cri));
+
+		model.addAttribute("pageMaker", pageMaker);
+
+		return "board/boardList.lay";
+
+	}
+
 }
