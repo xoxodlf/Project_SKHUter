@@ -39,4 +39,9 @@ public interface BoardDAO {
 	/** 조회수 처리 **/
 	public void updateHitCount(int boardNo) throws Exception;
 
+	
+	 //use for dynamic sql
+	  public List<BoardDTO> listSearch(Criteria cri)throws Exception;
+	  
+	  public int listSearchCount(Criteria cri)throws Exception;
 }
