@@ -1,25 +1,27 @@
 package com.classs.skhuter.notice.domain;
 
-import java.util.Date;
-
+/**
+ * 회계 내역 관련 객체 선언 및 getter(), setter() 메소드 정의
+ * 
+ * @패키지 : com.classs.skhuter.notice.domain
+ * @파일명 : AccountingDTO.java
+ * @작성자 : 나상연
+ * @작성일 : 2017. 9. 18. 
+ *
+ */
 public class AccountingDTO {
 	private int accountNo;
 	private int userNo;
-	private Date accountDate;
+	private String accountDate;
 	private String content;
 	private int status;
 	private int price;
 	private String fileName;
 	private String uuidName;
 
-	public AccountingDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public AccountingDTO() {}
 
-	public AccountingDTO(int accountNo, int userNo, Date accountDate, String content, int status, int price,
-			String fileName, String uuidName) {
-		super();
+	public AccountingDTO(int accountNo, int userNo, String accountDate, String content, int status, int price, String fileName, String uuidName) {
 		this.accountNo = accountNo;
 		this.userNo = userNo;
 		this.accountDate = accountDate;
@@ -46,11 +48,11 @@ public class AccountingDTO {
 		this.userNo = userNo;
 	}
 
-	public Date getAccountDate() {
+	public String getAccountDate() {
 		return accountDate;
 	}
 
-	public void setAccountDate(Date accountDate) {
+	public void setAccountDate(String accountDate) {
 		this.accountDate = accountDate;
 	}
 
@@ -100,5 +102,4 @@ public class AccountingDTO {
 				+ ", content=" + content + ", status=" + status + ", price=" + price + ", fileName=" + fileName
 				+ ", uuidName=" + uuidName + "]";
 	}
-
 }
