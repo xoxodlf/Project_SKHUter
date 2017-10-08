@@ -138,13 +138,19 @@ div.search-box input[type="search"] {
 	$(function() {
 		var message = $('#createsuccess').val();
 		if (message == 'createsuccess') {
-			swal('', '등록이 완료되었습니다.', 'success')
+			swal({
+				type: 'success',
+			    title: '등록이 완료되었습니다.'
+			    })
 		}
 	});
 	$(function() {
 		var message = $('#deletesuccess').val();
 		if (message == 'deletesuccess') {
-			swal('', '삭제가 완료되었습니다.', 'success')
+			swal({
+				type: 'success',
+			    title: '삭제가 완료되었습니다.'
+			    })
 		}
 	});
 </script>
@@ -255,10 +261,27 @@ div.search-box input[type="search"] {
 			<!-- 페이징 버튼들 -->
 			<div class="paging-box">
 				<ul class="pagination">
-					<li class="paginate_button previous disabled"><a href="#">이전</a>
-					</li>
-					<li class="paginate_button active"><a href="#">1</a></li>
-					<li class="paginate_button next"><a href="#">다음</a></li>
+						
+<!-- 					<li class="paginate_button previous disabled"><a href="/board/boardList?page=${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="paginate_button active"><a href="#">1</a></li> -->
+<!-- 					<li class="paginate_button next"><a href="#">다음</a></li> -->
+							<c:if test="${pageMaker.prev}">
+								<li class="paginate_button previous"><a
+									href="/board/boardList${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+								<li  class="paginate_button <c:out value="${pageMaker.cri.page == idx? 'active' :''}"/>">
+									<a href="/board/boardList${pageMaker.makeQuery(idx)}">${idx}</a>
+								</li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li  class="paginate_button next"><a
+									href="/board/boardList${pageMaker.makeQuery(pageMaker.endPage +1) }">다음</a></li>
+							</c:if>
+					
 				</ul>
 			</div>
 			<!-- div.paging-box -->

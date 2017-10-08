@@ -35,6 +35,9 @@ public interface BoardDAO {
 	/**페이징 후 게시물 목록 출력**/
 	public List<BoardDTO> listCriteria(Criteria cri) throws Exception;
 	
+	/**totalCount 변환 기능**/
+	public int countPaging(Criteria cri) throws Exception;
+	
 	/**댓글 개수 세기**/
 	public int countReply(BoardDTO board) throws Exception;
 	

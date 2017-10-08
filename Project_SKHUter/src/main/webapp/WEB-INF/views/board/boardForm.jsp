@@ -33,7 +33,7 @@
     });
 	
     $('.listBtn').on('click',(function() {
-    	location.href = "/board/boardList.lay";
+    	location.href = "/board/boardList";
     }));
 
 </script>
@@ -96,7 +96,7 @@
 	}
 	
 </style>
-<form role="form" id="form" action="/board/boardForm" method="post">
+<form role="form" id="form" action="boardForm" method="POST">
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">익명 게시판</h1>
