@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.classs.skhuter.notice.domain.StuScheduleDTO;
 import com.classs.skhuter.notice.domain.VoteDTO;
 import com.classs.skhuter.notice.domain.VoteListDTO;
 import com.classs.skhuter.notice.service.VoteService;
@@ -34,6 +35,10 @@ public class VoteController {
 	@Inject
 	private VoteService service;
 	
+	/**
+	 * 
+	 * 투표 목록불러오기
+	 */
 	@RequestMapping(value="/voteList", method=RequestMethod.GET)
 	public String vote(Locale locale, Model model, HttpServletRequest req) {
 		List<VoteDTO> doingvote = service.readDoingVote();
@@ -62,6 +67,10 @@ public class VoteController {
 		return "notice/vote.lay";
 	}
 	
+	/**
+	 * 
+	 * 투표 삭제
+	 */
 	 @RequestMapping(value = "/vote/delete", method = RequestMethod.POST)
 	  public String remove(@RequestParam("voteNo") int voteNo, RedirectAttributes rttr) throws Exception {
 		
@@ -76,7 +85,10 @@ public class VoteController {
 	  }
 	
 	 
-	 
+	 /**
+	 * 
+	 * 투표했을때 투표수올리기
+	 */
 	@RequestMapping(value="/voteList/upVote", method = RequestMethod.POST)
 	public String doVote(VoteDTO upVote,RedirectAttributes rttr) {
 		
@@ -91,6 +103,11 @@ public class VoteController {
 		rttr.addFlashAttribute("message", "success");
 		return "redirect:/notice/voteList";	
 	}
+	
+	/**
+	 * 
+	 * 투표 등록하기
+	 */
 	@RequestMapping(value="/voteList/registVote", method = RequestMethod.POST)
 	public String registVote(VoteDTO registeredVote,RedirectAttributes rttr) {
 		logger.info(registeredVote.toString());
@@ -100,6 +117,10 @@ public class VoteController {
 		return "redirect:/notice/voteList";	
 	}
 	
+	/**
+	 * 
+	 * 투표 투표등록창 불러오기
+	 */
 	@RequestMapping(value="/voteForm", method=RequestMethod.GET)
 	public String boardList(Model model) {
 		return "notice/voteForm.lay";

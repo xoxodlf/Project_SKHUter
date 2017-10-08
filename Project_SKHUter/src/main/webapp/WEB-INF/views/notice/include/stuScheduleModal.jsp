@@ -33,7 +33,7 @@ border:none;
 
 
 <!-- Modal -->
-<form action="/stuSchedule/" method="post" enctype="multipart/form-data" onsubmit="">
+<form id="scheduleForm"  action="/stuSchedule/" method="post" enctype="multipart/form-data" onsubmit="">
 <div class="modal fade" id="stuScheduleModal" role="dialog">
 	<div class="modal-dialog" style="width: 35%">
 
@@ -52,7 +52,7 @@ border:none;
 							<label for="id" class="stuSchedule_label">내용</label>
 						</div>
 						<div class="col-xs-7 col-sm-7">
-							<textarea rows="45px" class="form-control onlyNumber" placeholder="내용을 입력하세욥" maxlength="255" onkeyup="idCheck()" style="width: 275px; height: 100px;"></textarea>
+							<textarea rows="45px" name="content" class="form-control onlyNumber" placeholder="내용을 입력하세욥" maxlength="255" style="width: 275px; height: 100px;"></textarea>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -63,9 +63,9 @@ border:none;
 						</div>
 						<div class="col-xs-9 col-sm-9 ">
 							<div class="form-group">
-                            	<input type="date" class="form-control onlyNumber" style="display: inline-block; width: 150px;">
-                            	<input type="time" class="form-control onlyNumber" style="display: inline-block; width: 100px; margin-left: 21px;">
-                            </div>
+                            	<input type="datetime-local" id="sinputdate" class="form-control onlyNumber" style="display: inline-block; width: 85%;">
+                            	<input type="hidden" id="startDate" name="startDate">
+                            	</div>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -75,8 +75,8 @@ border:none;
 						</div>
 						<div class="col-xs-9 col-sm-9 ">
 							<div class="form-group">
-                            	<input type="date" class="form-control onlyNumber" style="display: inline-block; width: 150px;">
-                            	<input type="time" class="form-control onlyNumber" style="display: inline-block; width: 100px; margin-left: 21px;">
+                            	<input type="datetime-local" id="einputdate" class="form-control onlyNumber" style="display: inline-block; width: 85%;">
+                            	<input type="hidden" id="endDate" name="endDate">
                             </div>
 						</div>
 						<div class="clearfix"></div>
@@ -87,7 +87,7 @@ border:none;
 			<div class="modal-footer">
 				<div class="row">
 					<div class="col-xs-2 col-xs-offset-4">
-						<button id="registerBtn" type="button" class="btn btn-warning" style="width: 100%; font-size: 15px; font-weight: bold;">등록</button>
+						<button id="registerBtn" onmouseover="throwDate()" type="button" class="btn btn-warning" style="width: 100%; font-size: 15px; font-weight: bold;">등록</button>
 					</div>
 					<div class="col-xs-2">
 						<button type="button" class="btn btn-default" data-dismiss="modal" style="width: 100%; font-size: 15px; font-weight: bold; background-color: #333; color: #ffffff;">취소</button>

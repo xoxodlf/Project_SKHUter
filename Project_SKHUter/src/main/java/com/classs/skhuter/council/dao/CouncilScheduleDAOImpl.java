@@ -19,7 +19,7 @@ public class CouncilScheduleDAOImpl implements CouncilScheduleDAO {
 	
 	private static String namespace = "com.classs.skhuter.mapper.CouncilMapper";
 	
-	Logger logger = Logger.getLogger(UserDAOImpl.class);
+	Logger logger = Logger.getLogger(CouncilScheduleDAOImpl.class);
 
 	@Override
 	public void register(CouncilScheduleDTO councilSchedule) {
