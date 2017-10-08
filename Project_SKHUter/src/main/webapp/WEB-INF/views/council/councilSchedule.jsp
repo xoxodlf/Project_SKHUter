@@ -31,18 +31,20 @@ div.col-lg-12 {
 				<div class="row">
 					<div id="top" class="panel panel-default">
 						<div class="panel-body">
-						<form id="changeDay">
+						<form id="changeDay" action="/council/councilSchedule/changeDate" method="post">
 							<div class="row">
 								<div style="text-align: center;">
 									<button type="button" class="btn btn-default btn-circle" id="yearPrev">＜</button>
-									<span style="font-size:15px"><label id="getYear"></label><label style="display:inline-block">년</label></span>
+									<span style="font-size:15px"><label>${currentY }</label><label style="display:inline-block">년</label></span>
+									<input type="hidden" id="changeYear" name="changeYear">
 									<button type="button" class="btn btn-default btn-circle" id="yearNext">＞</button>
 								</div>
 							</div>
 							<div class="row">
 								<div style="text-align: center;">
 									<button type="button" class="btn btn-default btn-circle" id="monthPrev">＜</button>
-									<span class="huge"> <label id="getMonth"></label><label style="display:inline-block">월</label></span>
+									<span class="huge"> <label>${currentM }</label><label style="display:inline-block">월</label></span>
+									<input type="hidden" id="changeMonth" name="changeMonth">
 									<button type="button" class="btn btn-default btn-circle" id="monthNext">＞</button>
 								</div>
 							</div>
@@ -54,10 +56,16 @@ div.col-lg-12 {
 								<form role="form" id="deleteform" method="post" action="/councilSchedule/deleteSchedule">
     								<input type='hidden' name='councilScheduleNo' value ="${schedule.councilScheduleNo}">
     							</form>
-    							<form role="form" id="countForm" method="post">
-    								<input type='hidden' name='councilEndDate' id='councilEndDate' value="${schedule.endDate }">
-    								<input type='hidden' name='councilNowDate' id='councilNowDate'>
-    							</form>
+    							${schedule.endDate >= thisMonth && schedule.endDate < nextMonth}
+    							${schedule.endDate }
+    							${thisMonth }
+    							${nextMonth }
+    							${schedule.endDate >= thisMonth}
+    							${schedule.endDate < nextMonth}
+    							<c:if test="${schedule.endDate >= thisMonth && schedule.endDate < nextMonth}">
+								<c:choose>
+								<c:when test="${schedule.endDate <= currentDate }">
+								<!-- 오른쪽에 게시글 넣기 -->
 								<li>
 									<div class="timeline-badge">
 										<!-- 타임라인 중앙에 날짜 표시 -->
@@ -80,6 +88,33 @@ div.col-lg-12 {
 										</div>
 									</div>
 								</li>
+								</c:when>
+								<c:otherwise>
+								<li class="timeline-inverted">
+									<div class="timeline-badge">
+										<!-- 타임라인 중앙에 날짜 표시 -->
+										<i class="fa fa-check"></i>
+									</div>
+									<div class="timeline-panel">
+										<div class="timeline-heading">
+											<p>
+												<small class="text-muted"><i class="fa fa-clock-o"></i>
+													${schedule.startDate}~${schedule.endDate}</small>
+													<c:if test="${login.status>=2}">
+                        								<button id="deleteBtn" class="btn btn-default btn-sm scremoveBtn" type="button">
+                        									<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
+                        								</button>
+                        							</c:if>
+											</p>
+										</div>
+										<div class="timeline-body">
+											<p>${schedule.content}</p>
+										</div>
+									</div>
+								</li>
+								</c:otherwise>
+								</c:choose>
+								</c:if>
 								</c:forEach>
 							</ul>
 						</div>
@@ -93,8 +128,9 @@ div.col-lg-12 {
 	<jsp:include page="include/stuScheduleModal.jsp" />
 <script>
 var now = new Date();
-var year;
-var mon;
+var nowChange;
+var year = ${currentY};
+var mon = ${currentM};
 var endDate;
 var nowDate;
 
@@ -117,47 +153,102 @@ function throwDate(){
 
 //리스트 달력 연도,월 바꾸기
 $(document).ready(function() {
-    year= now.getFullYear();
-    mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
+	
     console.log(year);
     console.log(mon);
     
+    nowChange = year+"-"+mon;
+    
     $('label#getYear').text(year);
     $("label#getMonth").text(mon);
+    $('#councilNowDate').val(nowChange);
+    
+    console.log("changeYear:"+$("#changeYear").val());
+    console.log("changeMonth:"+$("#changeMonth").val());
     
     $('#yearPrev').on('click',function(){ //이전 연도 계산 버튼
+    	var form= $("form#changeDay");
+    
     	year -= 1;
-    	$('label#getYear').text(year);
+    	
+    	$("input#changeYear").val(year);
+        
+        console.log("changeYear:"+$("#changeYear").val());
+        console.log("changeMonth:"+$("#changeMonth").val());
+        
+        form.attr("action", "/council//councilSchedule/changeDate");
+        form.submit();
     });
     
     $('#yearNext').on('click',function(){ //다음 연도 계산 버튼
+    	var form= $("form#changeDay");
+    
     	year += 1;
-    	$('label#getYear').text(year);
+    	
+    	$("input#changeYear").val(year);
+        
+        console.log("changeYear:"+$("#changeYear").val());
+        console.log("changeMonth:"+$("#changeMonth").val());
+        
+        form.attr("action", "/council//councilSchedule/changeDate");
+        form.submit();
     });
     
     $('#monthPrev').on('click',function(){ //이전 달 계산 버튼
+    	var form= $("form#changeDay");
+    
     	mon -= 1;
     	if(mon == 0){
     		mon = 12;
     		year -= 1;
-    		$('label#getYear').text(year);
-    		$('label#getMonth').text(mon);
+    		
+    		$("input#changeYear").val(year);
+    	    $("input#changeMonth").val(mon);
+    	    
+    	    console.log("changeYear:"+$("#changeYear").val());
+    	    console.log("changeMonth:"+$("#changeMonth").val());
+    	    
+    	    form.attr("action", "/council//councilSchedule/changeDate");
+    	    form.submit();
     	}
     	else{
-    		$('label#getMonth').text(mon);
+    		$("input#changeYear").val(year);
+    	    $("input#changeMonth").val(mon);
+    	    
+    	    console.log("changeYear:"+$("#changeYear").val());
+    	    console.log("changeMonth:"+$("#changeMonth").val());
+    	    
+    	    form.attr("action", "/council//councilSchedule/changeDate");
+    	    form.submit();
     	}
     });
     
     $('#monthNext').on('click',function(){ //다음 달 계산 버튼
+    	var form= $("form#changeDay");
+    
     	mon += 1;
     	if(mon > 12){
     		mon = 1;
     		year += 1;
-    		$('label#getYear').text(year);
-    		$('label#getMonth').text(mon);
+    		
+    		$("input#changeYear").val(year);
+    	    $("input#changeMonth").val(mon);
+    	    
+    	    console.log("changeYear:"+$("#changeYear").val());
+    	    console.log("changeMonth:"+$("#changeMonth").val());
+    	    
+    	    form.attr("action", "/council//councilSchedule/changeDate");
+    	    form.submit();
     	}
     	else{
-    		$('label#getMonth').text(mon);
+    		$("input#changeYear").val(year);
+    	    $("input#changeMonth").val(mon);
+    	    
+    	    console.log("changeYear:"+$("#changeYear").val());
+    	    console.log("changeMonth:"+$("#changeMonth").val());
+    	    
+    	    form.attr("action", "/council//councilSchedule/changeDate");
+    	    form.submit();
     	}
     });
 });
