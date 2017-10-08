@@ -16,7 +16,7 @@ VALUES (seq_Council_schedule.nextVal, #{content},TO_DATE(#{startDate},'yyyy-MM-d
 <select id="listAllSchedule" resultType="CouncilSchedule">
 		SELECT council_schedule_no as councilScheduleNo, content, start_date as startDate, end_date as endDate
 		FROM Council_schedule
-		order by start_date asc
+		order by start_date asc, end_date asc
 </select>
 
 <delete id="deleteSchedule">

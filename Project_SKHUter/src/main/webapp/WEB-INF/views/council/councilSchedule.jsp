@@ -56,64 +56,58 @@ div.col-lg-12 {
 								<form role="form" id="deleteform" method="post" action="/councilSchedule/deleteSchedule">
     								<input type='hidden' name='councilScheduleNo' value ="${schedule.councilScheduleNo}">
     							</form>
-    							${schedule.endDate >= thisMonth && schedule.endDate < nextMonth}
-    							${schedule.endDate }
-    							${thisMonth }
-    							${nextMonth }
-    							${schedule.endDate >= thisMonth}
-    							${schedule.endDate < nextMonth}
-    							<c:if test="${schedule.endDate >= thisMonth && schedule.endDate < nextMonth}">
-								<c:choose>
-								<c:when test="${schedule.endDate <= currentDate }">
-								<!-- 오른쪽에 게시글 넣기 -->
-								<li>
-									<div class="timeline-badge">
-										<!-- 타임라인 중앙에 날짜 표시 -->
-										<i class="fa fa-check"></i>
-									</div>
-									<div class="timeline-panel">
-										<div class="timeline-heading">
-											<p>
-												<small class="text-muted"><i class="fa fa-clock-o"></i>
-													${schedule.startDate}~${schedule.endDate}</small>
-													<c:if test="${login.status>=2}">
-                        								<button id="deleteBtn" class="btn btn-default btn-sm scremoveBtn" type="button">
-                        									<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
-                        								</button>
-                        							</c:if>
-											</p>
-										</div>
-										<div class="timeline-body">
-											<p>${schedule.content}</p>
-										</div>
-									</div>
-								</li>
-								</c:when>
-								<c:otherwise>
-								<li class="timeline-inverted">
-									<div class="timeline-badge">
-										<!-- 타임라인 중앙에 날짜 표시 -->
-										<i class="fa fa-check"></i>
-									</div>
-									<div class="timeline-panel">
-										<div class="timeline-heading">
-											<p>
-												<small class="text-muted"><i class="fa fa-clock-o"></i>
-													${schedule.startDate}~${schedule.endDate}</small>
-													<c:if test="${login.status>=2}">
-                        								<button id="deleteBtn" class="btn btn-default btn-sm scremoveBtn" type="button">
-                        									<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
-                        								</button>
-                        							</c:if>
-											</p>
-										</div>
-										<div class="timeline-body">
-											<p>${schedule.content}</p>
-										</div>
-									</div>
-								</li>
-								</c:otherwise>
-								</c:choose>
+    							<!-- 진행중인 공지를 판단하는 연산. -->
+								<c:if test="${schedule.startDate <= nextMonth && ((schedule.startDate >= thisMonth && schedule.startDate < nextMonth) ||
+								(schedule.startDate < thisMonth && schedule.endDate > nextMonth) || (schedule.endDate >= thisMonth || schedule.endDate < nextMonth))
+								 }">
+									<c:if test="${schedule.endDate >= thisMonth }">
+										<c:if test="${schedule.endDate > currentDate }">
+											<!-- 오른쪽에 게시글 넣기 -->
+											<li>
+												<div class="timeline-badge" style="background: #67A6D2">
+												</div>
+												<div class="timeline-panel">
+													<div class="timeline-heading">
+														<p>
+															<small class="text-muted" style="font-size:15px"><i class="fa fa-clock-o"></i>
+																${schedule.startDate}~${schedule.endDate}</small>
+																<c:if test="${login.status>=2}">
+                        											<button id="deleteBtn" class="btn btn-default btn-sm scremoveBtn" type="button">
+                        												<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
+                       	 											</button>
+                        										</c:if>
+														</p>
+													</div>
+													<div class="timeline-body">
+														<p>${schedule.content}</p>
+													</div>
+												</div>
+											</li>
+										</c:if>
+										<c:if test="${schedule.endDate <= currentDate }">
+											<li class="timeline-inverted">
+												<div class="timeline-badge" style="background: #ff7058">
+												</div>
+												<div class="timeline-panel">
+													<div class="timeline-heading">
+														<p>
+															<small class="text-muted" style="font-size:15px"><i class="fa fa-clock-o"></i>
+															${schedule.startDate}~${schedule.endDate}
+															</small>
+															<c:if test="${login.status>=2}">
+                        										<button id="deleteBtn" class="btn btn-default btn-sm scremoveBtn" type="button">
+                        											<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
+                       											</button>
+                       										</c:if>
+														</p>
+													</div>
+													<div class="timeline-body">
+														<p>${schedule.content}</p>
+													</div>
+												</div>
+											</li>
+										</c:if>
+									</c:if>
 								</c:if>
 								</c:forEach>
 							</ul>
@@ -128,11 +122,8 @@ div.col-lg-12 {
 	<jsp:include page="include/stuScheduleModal.jsp" />
 <script>
 var now = new Date();
-var nowChange;
 var year = ${currentY};
 var mon = ${currentM};
-var endDate;
-var nowDate;
 
 function showModal() {
 	$('div#stuScheduleModal').modal();
@@ -152,31 +143,16 @@ function throwDate(){
 }
 
 //리스트 달력 연도,월 바꾸기
-$(document).ready(function() {
-	
-    console.log(year);
-    console.log(mon);
-    
-    nowChange = year+"-"+mon;
-    
-    $('label#getYear').text(year);
-    $("label#getMonth").text(mon);
-    $('#councilNowDate').val(nowChange);
-    
-    console.log("changeYear:"+$("#changeYear").val());
-    console.log("changeMonth:"+$("#changeMonth").val());
-    
+$(document).ready(function() { 
     $('#yearPrev').on('click',function(){ //이전 연도 계산 버튼
     	var form= $("form#changeDay");
     
     	year -= 1;
     	
     	$("input#changeYear").val(year);
-        
-        console.log("changeYear:"+$("#changeYear").val());
-        console.log("changeMonth:"+$("#changeMonth").val());
-        
-        form.attr("action", "/council//councilSchedule/changeDate");
+	    $("input#changeMonth").val(mon);
+         
+        form.attr("action", "/council/councilSchedule/changeDate");
         form.submit();
     });
     
@@ -186,11 +162,9 @@ $(document).ready(function() {
     	year += 1;
     	
     	$("input#changeYear").val(year);
+	    $("input#changeMonth").val(mon);
         
-        console.log("changeYear:"+$("#changeYear").val());
-        console.log("changeMonth:"+$("#changeMonth").val());
-        
-        form.attr("action", "/council//councilSchedule/changeDate");
+        form.attr("action", "/council/councilSchedule/changeDate");
         form.submit();
     });
     
@@ -205,20 +179,14 @@ $(document).ready(function() {
     		$("input#changeYear").val(year);
     	    $("input#changeMonth").val(mon);
     	    
-    	    console.log("changeYear:"+$("#changeYear").val());
-    	    console.log("changeMonth:"+$("#changeMonth").val());
-    	    
-    	    form.attr("action", "/council//councilSchedule/changeDate");
+    	    form.attr("action", "/council/councilSchedule/changeDate");
     	    form.submit();
     	}
     	else{
     		$("input#changeYear").val(year);
     	    $("input#changeMonth").val(mon);
     	    
-    	    console.log("changeYear:"+$("#changeYear").val());
-    	    console.log("changeMonth:"+$("#changeMonth").val());
-    	    
-    	    form.attr("action", "/council//councilSchedule/changeDate");
+    	    form.attr("action", "/council/councilSchedule/changeDate");
     	    form.submit();
     	}
     });
@@ -234,20 +202,14 @@ $(document).ready(function() {
     		$("input#changeYear").val(year);
     	    $("input#changeMonth").val(mon);
     	    
-    	    console.log("changeYear:"+$("#changeYear").val());
-    	    console.log("changeMonth:"+$("#changeMonth").val());
-    	    
-    	    form.attr("action", "/council//councilSchedule/changeDate");
+    	    form.attr("action", "/council/councilSchedule/changeDate");
     	    form.submit();
     	}
     	else{
     		$("input#changeYear").val(year);
     	    $("input#changeMonth").val(mon);
-    	    
-    	    console.log("changeYear:"+$("#changeYear").val());
-    	    console.log("changeMonth:"+$("#changeMonth").val());
-    	    
-    	    form.attr("action", "/council//councilSchedule/changeDate");
+    	     
+    	    form.attr("action", "/council/councilSchedule/changeDate");
     	    form.submit();
     	}
     });

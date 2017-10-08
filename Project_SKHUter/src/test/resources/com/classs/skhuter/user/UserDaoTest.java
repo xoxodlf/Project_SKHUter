@@ -28,13 +28,13 @@ public class UserDaoTest {
 	public void TestRegister() {
 		
 		UserDTO user = new UserDTO();
-		user.setId("201434025");
+		user.setId("201334005");
 		user.setPassword("1111");
-		user.setName("이종윤");
+		user.setName("김민주");
 		user.setPhone("010-1111-2222");
-		user.setGrade(4);
+		user.setGrade(1);
 		user.setIsLeave(0);
-		user.setStatus(1);
+		user.setStatus(2);
 		user.setSecession(0);
 		
 		dao.register(user);
