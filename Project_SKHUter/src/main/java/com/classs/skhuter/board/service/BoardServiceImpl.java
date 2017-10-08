@@ -66,6 +66,42 @@ public class BoardServiceImpl implements BoardService {
 
 	    return dao.countPaging(cri);
 	  }
+	
+	
+	//use for dynamic sql
+		 @Override
+		  public List<BoardDTO> listSearch_t(Criteria cri) throws Exception {
+
+		    return dao.listSearch_t(cri);
+		  }
+		  @Override
+		  public int listSearchCount_t(Criteria cri) throws Exception {
+
+			  return dao.listSearchCount_t(cri);
+		  }
+		  
+		  @Override
+		  public List<BoardDTO> listSearch_c(Criteria cri) throws Exception {
+
+			  return dao.listSearch_c(cri);
+		  }
+		  @Override
+		  public int listSearchCount_c(Criteria cri) throws Exception {
+
+			  return dao.listSearchCount_c(cri);
+		  }
+		  
+		  @Override
+		  public List<BoardDTO> listSearch_tc(Criteria cri) throws Exception {
+
+			  return dao.listSearch_tc(cri);
+		  }
+		  @Override
+		  public int listSearchCount_tc(Criteria cri) throws Exception {
+
+			  return dao.listSearchCount_tc(cri);
+		  }
+	
 
 	
 }

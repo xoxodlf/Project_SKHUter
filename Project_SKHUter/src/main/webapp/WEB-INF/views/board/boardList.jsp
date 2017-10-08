@@ -105,13 +105,12 @@ div.search-box input[type="search"] {
 			});
 		});
 	});
-
+	
 	/* 글쓰기 페이지로 이동 */
 	function goboardForm() {
 		location.href = "/board/boardForm";
 	}
 
-	
 	/* 삭제여부 alert 대체 모달 */
 	$('.removeBtn').on('click', (function() {
 		var link = $(this).parent().parent().parent().prev();
@@ -162,7 +161,7 @@ div.search-box input[type="search"] {
 							self.location.href = "boardList"
 									+ '${pageMaker.makeQuery(1)}'
 									+ "&searchType="
-									+ $("select option:selected").val()
+									+ $("#searchType option:selected").val()
 									+ "&keyword=" + $('#keywordInput').val();
 						});
 			});
@@ -271,7 +270,7 @@ div.search-box input[type="search"] {
 
 			<!-- 검색창 -->
 			<div class="search-box">
-				<select name="searchType" class="form-control input-sm" style="display:inline; width: 9%">
+				<select name="searchType" id="searchType" class="form-control input-sm" style="display:inline; width: 9%">
 					<option value="t"
 							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
 							제목</option>
@@ -294,11 +293,7 @@ div.search-box input[type="search"] {
 			<!-- 페이징 버튼들 -->
 			<div class="paging-box">
 				<ul class="pagination">
-						
-<!-- 					<li class="paginate_button previous disabled"><a href="/board/boardList?page=${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a> -->
-<!-- 					</li> -->
-<!-- 					<li class="paginate_button active"><a href="#">1</a></li> -->
-<!-- 					<li class="paginate_button next"><a href="#">다음</a></li> -->
+
 							<c:if test="${pageMaker.prev}">
 								<li class="paginate_button previous"><a
 									href="/board/boardList${pageMaker.makeSearch(pageMaker.startPage - 1) }">이전</a></li>

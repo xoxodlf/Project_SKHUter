@@ -41,7 +41,12 @@ public interface BoardDAO {
 
 	
 	 //use for dynamic sql
-	  public List<BoardDTO> listSearch(Criteria cri)throws Exception;
+	  public List<BoardDTO> listSearch_t(Criteria cri)throws Exception;
+	  public int listSearchCount_t(Criteria cri)throws Exception;
 	  
-	  public int listSearchCount(Criteria cri)throws Exception;
+	  public List<BoardDTO> listSearch_c(Criteria cri)throws Exception;
+	  public int listSearchCount_c(Criteria cri)throws Exception;
+	  
+	  public List<BoardDTO> listSearch_tc(Criteria cri)throws Exception;
+	  public int listSearchCount_tc(Criteria cri)throws Exception;
 }

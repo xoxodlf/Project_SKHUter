@@ -96,32 +96,105 @@
 	 ]]>
 	</select>
 	
-	<select id="listSearch" resultType="board">
-<![CDATA[  
- SELECT boardNo1 as boardNo, userNo1 as userNo, title, regdate, hitCount1 as hitCount, password, content, likeCount1 as likeCount, hateCount1 as hateCount 
+	<select id="listSearch_t" resultType="board">
+	<![CDATA[
+	  SELECT boardNo1 as boardNo, userNo1 as userNo, title, regdate, hitCount1 as hitCount, password, content, likeCount1 as likeCount, hateCount1 as hateCount 
     from 
-    (select
-      rownum rn, board_no as boardNo1, user_no as userNo1, title, regdate, hit_count as hitCount1, password, content, like_count as likeCount1, hate_count as hateCount1
-		FROM 
-			Board
-      where board_no > 0
+    (SELECT rownum rn, board_no as boardNo1, user_no as userNo1, title, regdate, hit_count as hitCount1, 
+  password, content, like_count as likeCount1, hate_count as hateCount1
+ FROM Board
+   where 
+   title like concat(concat('%',#{keyword}),'%')
       )
-      where rn>(select count(board_no) from board)-(#{pageStart}+#{perPageNum}) and rn<=(select count(board_no) from board)-(#{pageStart})
+      where rn>(select count(boardNo) from (SELECT board_no as boardNo, user_no as userNo, title, regdate, hit_count as hitCount, 
+  password, content, like_count as likeCount, hate_count as hateCount
+ FROM Board
+   where 
+   title like concat(concat('%',#{keyword}),'%')))-(#{pageStart}+#{perPageNum}) and rn<=(select count(boardNo) from (SELECT board_no as boardNo, user_no as userNo, title, regdate, hit_count as hitCount, 
+  password, content, like_count as likeCount, hate_count as hateCount
+ FROM Board
+   where 
+   title like concat(concat('%',#{keyword}),'%')))-(#{pageStart})
       order by rn desc
-]]> 
+        ]]>
 </select>
 
-<select id="listSearchCount" resultType="int">
+<select id="listSearchCount_t" resultType="int">
 <![CDATA[  
-  select 
-   			count(board_no) 
-		from 
-			board 
-		where 
-			board_no > 0 
+select count(boardNo) from (SELECT board_no as boardNo, user_no as userNo, title, regdate, hit_count as hitCount, 
+  password, content, like_count as likeCount, hate_count as hateCount
+ FROM Board
+   where 
+   title like concat(concat('%',#{keyword}),'%'))
 ]]>
-</select>  
+</select>
+	
+	<select id="listSearch_c" resultType="board">
+	<![CDATA[
+	  SELECT boardNo1 as boardNo, userNo1 as userNo, title, regdate, hitCount1 as hitCount, password, content, likeCount1 as likeCount, hateCount1 as hateCount 
+    from 
+    (SELECT rownum rn, board_no as boardNo1, user_no as userNo1, title, regdate, hit_count as hitCount1, 
+  password, content, like_count as likeCount1, hate_count as hateCount1
+ FROM Board
+   where 
+   content like concat(concat('%',#{keyword}),'%')
+      )
+      where rn>(select count(boardNo) from (SELECT board_no as boardNo, user_no as userNo, title, regdate, hit_count as hitCount, 
+  password, content, like_count as likeCount, hate_count as hateCount
+ FROM Board
+   where 
+   content like concat(concat('%',#{keyword}),'%')))-(#{pageStart}+#{perPageNum}) and rn<=(select count(boardNo) from (SELECT board_no as boardNo, user_no as userNo, title, regdate, hit_count as hitCount, 
+  password, content, like_count as likeCount, hate_count as hateCount
+ FROM Board
+   where 
+   content like concat(concat('%',#{keyword}),'%')))-(#{pageStart})
+      order by rn desc
+        ]]>
+</select>
+
+<select id="listSearchCount_c" resultType="int">
+<![CDATA[  
+select count(boardNo) from (SELECT board_no as boardNo, user_no as userNo, title, regdate, hit_count as hitCount, 
+  password, content, like_count as likeCount, hate_count as hateCount
+ FROM Board
+   where 
+   content like concat(concat('%',#{keyword}),'%'))
+]]>
+</select>
 	
 	
+	
+	<select id="listSearch_tc" resultType="board">
+	<![CDATA[
+	  SELECT boardNo1 as boardNo, userNo1 as userNo, title, regdate, hitCount1 as hitCount, password, content, likeCount1 as likeCount, hateCount1 as hateCount 
+    from 
+    (SELECT rownum rn, board_no as boardNo1, user_no as userNo1, title, regdate, hit_count as hitCount1, 
+  password, content, like_count as likeCount1, hate_count as hateCount1
+ FROM Board
+   where 
+   title like concat(concat('%',#{keyword}),'%') or content like concat(concat('%',#{keyword}),'%')
+      )
+      where rn>(select count(boardNo) from (SELECT board_no as boardNo, user_no as userNo, title, regdate, hit_count as hitCount, 
+  password, content, like_count as likeCount, hate_count as hateCount
+ FROM Board
+   where 
+   title like concat(concat('%',#{keyword}),'%') or content like concat(concat('%',#{keyword}),'%')))-(#{pageStart}+#{perPageNum}) and rn<=(select count(boardNo) from (SELECT board_no as boardNo, user_no as userNo, title, regdate, hit_count as hitCount, 
+  password, content, like_count as likeCount, hate_count as hateCount
+ FROM Board
+   where 
+   title like concat(concat('%',#{keyword}),'%') or content like concat(concat('%',#{keyword}),'%')))-(#{pageStart})
+      order by rn desc
+        ]]>
+</select>
+
+<select id="listSearchCount_tc" resultType="int">
+<![CDATA[  
+select count(boardNo) from (SELECT board_no as boardNo, user_no as userNo, title, regdate, hit_count as hitCount, 
+  password, content, like_count as likeCount, hate_count as hateCount
+ FROM Board
+   where 
+   title like concat(concat('%',#{keyword}),'%') or content like concat(concat('%',#{keyword}),'%'))
+]]>
+</select>
 	
 </mapper>

@@ -90,16 +90,38 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne(namespace + ".countPaging", cri);
 	}
 	
+	//use for dynamic sql
 	 @Override
-	  public List<BoardDTO> listSearch(Criteria cri) throws Exception {
+	  public List<BoardDTO> listSearch_t(Criteria cri) throws Exception {
 
-	    return sqlSession.selectList(namespace + ".listSearch", cri);
+	    return sqlSession.selectList(namespace + ".listSearch_t", cri);
 	  }
-
 	  @Override
-	  public int listSearchCount(Criteria cri) throws Exception {
+	  public int listSearchCount_t(Criteria cri) throws Exception {
 
-	    return sqlSession.selectOne(namespace + ".listSearchCount", cri);
+	    return sqlSession.selectOne(namespace + ".listSearchCount_t", cri);
+	  }
+	  
+	  @Override
+	  public List<BoardDTO> listSearch_c(Criteria cri) throws Exception {
+
+	    return sqlSession.selectList(namespace + ".listSearch_c", cri);
+	  }
+	  @Override
+	  public int listSearchCount_c(Criteria cri) throws Exception {
+
+	    return sqlSession.selectOne(namespace + ".listSearchCount_c", cri);
+	  }
+	  
+	  @Override
+	  public List<BoardDTO> listSearch_tc(Criteria cri) throws Exception {
+
+	    return sqlSession.selectList(namespace + ".listSearch_tc", cri);
+	  }
+	  @Override
+	  public int listSearchCount_tc(Criteria cri) throws Exception {
+
+	    return sqlSession.selectOne(namespace + ".listSearchCount_tc", cri);
 	  }
 
 }

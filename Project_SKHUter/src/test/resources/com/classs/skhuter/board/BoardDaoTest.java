@@ -25,13 +25,13 @@ public class BoardDaoTest {
 	Logger logger = Logger.getLogger(BoardDaoTest.class);
 	@Test
 	public void TestCreate() {
-		for(int i=201; i<=230; i++) {
+		//for(int i=201; i<=230; i++) {
 		BoardDTO board = new BoardDTO();
 		board.setUserNo(1);
-		board.setTitle("테스트"+i);
+		board.setTitle("테스트231");
 		board.setHitCount(10);
 		board.setPassword("123");
-		board.setContent("테스트의 내용이다");
+		board.setContent("9");
 		board.setLikeCount(1);
 		board.setHateCount(2);
 
@@ -39,7 +39,7 @@ public class BoardDaoTest {
 
 		logger.info("신규게시 완료~~~~");
 		logger.info(board.toString());
-		}
+		//}
 	}
 
 	@Test
@@ -84,12 +84,12 @@ public class BoardDaoTest {
 
 	    Criteria cri = new Criteria();
 	    cri.setPage(1);
-	    cri.setKeyword("글");
-	    cri.setSearchType("t");
-
+	    cri.setKeyword("9");
+	    cri.setSearchType("tc");
+	    
 	    logger.info("=====================================");
-
-	    List<BoardDTO> list = dao.listSearch(cri);
+	    
+	    List<BoardDTO> list = dao.listSearch_tc(cri);
 
 	    for (BoardDTO BoardDTO : list) {
 	      logger.info(BoardDTO.getBoardNo() + ": " + BoardDTO.getTitle());
@@ -97,7 +97,7 @@ public class BoardDaoTest {
 
 	    logger.info("=====================================");
 
-	    logger.info("COUNT: " + dao.listSearchCount(cri));
+	    logger.info("COUNT: " + dao.listSearchCount_tc(cri));
 	  }
 	  
 	  

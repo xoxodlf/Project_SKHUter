@@ -80,7 +80,12 @@ public class BoardController {
 	public String listPage(@ModelAttribute("cri") Criteria cri, Model model) throws Exception {
 
 		logger.info(cri.toString());
-		List<BoardDTO> list = service.listCriteria(cri);
+		
+		List<BoardDTO> list;
+		if(cri.getSearchType()=="t") list = service.listSearch_t(cri);
+		else if(cri.getSearchType()=="c") list = service.listSearch_c(cri);
+		else if(cri.getSearchType()=="tc")list = service.listSearch_tc(cri);
+		else list = service.listCriteria(cri);
 
 		BoardDTO tmp = new BoardDTO();
 
@@ -88,15 +93,19 @@ public class BoardController {
 			tmp.setBoardNo(board.getBoardNo());
 			int replyCount = service.countReply(tmp);
 			board.setReplyCount(replyCount);
-			logger.info(board.toString());
+			//logger.info(board.toString());
 		}
 
 		model.addAttribute("boardList", list);
-
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-
-		pageMaker.setTotalCount(service.listCountCriteria(cri));
+		
+		
+		if(cri.getSearchType()=="t") pageMaker.setTotalCount(service.listSearchCount_t(cri));
+		else if(cri.getSearchType()=="c") pageMaker.setTotalCount(service.listSearchCount_c(cri));
+		else if(cri.getSearchType()=="tc")pageMaker.setTotalCount(service.listSearchCount_tc(cri));
+		else pageMaker.setTotalCount(service.listCountCriteria(cri));
 
 		model.addAttribute("pageMaker", pageMaker);
 
@@ -104,6 +113,9 @@ public class BoardController {
 
 	}
 	
+	/**
+	 * (모바일 웹)게시판 리스트 구현 페이징 기능 검색 기능
+	 **/
 	@RequestMapping(value = "/boardListWV", method = RequestMethod.GET)
 	public String listPageMV(@ModelAttribute("cri") Criteria cri, Model model) throws Exception {
 

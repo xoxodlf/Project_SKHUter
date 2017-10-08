@@ -32,4 +32,16 @@ public interface BoardService {
 	/** 조회수 처리 **/
 	public int listCountCriteria(Criteria cri) throws Exception;
 	
+	
+	 //use for dynamic sql
+	  public List<BoardDTO> listSearch_t(Criteria cri)throws Exception;
+	  public int listSearchCount_t(Criteria cri)throws Exception;
+	  
+	  public List<BoardDTO> listSearch_c(Criteria cri)throws Exception;
+	  public int listSearchCount_c(Criteria cri)throws Exception;
+	  
+	  public List<BoardDTO> listSearch_tc(Criteria cri)throws Exception;
+	  public int listSearchCount_tc(Criteria cri)throws Exception;
+	  
+	
 }
