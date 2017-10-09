@@ -73,6 +73,14 @@ public class UserController {
 		return "user/userList.lay";
 	}
 	
+	/**
+	 * 회원 상태 변경
+	 *
+	 * @Method Name : changeStatus
+	 * @param checks
+	 * @param Status
+	 * @return
+	 */
 	@RequestMapping(value="userList/changeStatus", method = RequestMethod.POST)
 	public String changeStatus(@RequestParam(value="check", required=true) List<String> checks, @RequestParam(value="Status", required=true) String Status){
 		logger.info(Status);
@@ -87,6 +95,14 @@ public class UserController {
 		return "redirect:/user/userList";
 	}
 	
+	/**
+	 * 인수인계 (인수 받기)
+	 *
+	 * @Method Name : takeover
+	 * @param takerNo
+	 * @param takeoverCode
+	 * @return
+	 */
 	@RequestMapping(value="takeover", method = RequestMethod.POST)
 	public String takeover(@RequestParam(value="takerNo", required=true) String takerNo,@RequestParam(value="takeoverCode", required=true) String takeoverCode){
 		
@@ -104,6 +120,15 @@ public class UserController {
 		return "redirect:/";
 	}
 	
+	/**
+	 * 인수인계 (인계하기)
+	 *
+	 * @Method Name : takeover
+	 * @param giverNo
+	 * @param takerNo
+	 * @param takeoverCode
+	 * @return
+	 */
 	@RequestMapping(value="userList/takeover", method = RequestMethod.POST)
 	public String takeover(@RequestParam(value="giverNo", required=true) String giverNo,@RequestParam(value="takerNo", required=true) String takerNo,@RequestParam(value="takeoverCode", required=true) String takeoverCode){
 		logger.info(giverNo);
@@ -120,7 +145,6 @@ public class UserController {
 
 		return "redirect:/user/userList";
 	}
-	
 	
 	
 	
@@ -413,6 +437,48 @@ public class UserController {
 		List<UserDTO> userList = service.UserListAll();
 		
 		userMap.put("list", userList);
+		
+		return userMap;
+	}
+	
+	/**
+	 * 모바일용 회원가입
+	 *
+	 * @Method Name : registerMobile
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/registerMobile", method = RequestMethod.GET)
+	public Map<String, Object> registerMobile (UserDTO user) {
+		Map<String, Object> userMap = new HashMap<String, Object>();
+		
+		System.out.println("User MOBILE - name = "+user.getName()+" / id = "+user.getId());
+
+		service.register(user);
+		
+		userMap.put ("message", "success");
+
+		return userMap;
+	}
+
+	/**
+	 * 모바일용 로그인
+	 *
+	 * @Method Name : loginMobile
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/loginMobile", method = RequestMethod.GET)
+	public Map<String, Object> loginMobile (UserDTO user) {
+		Map<String, Object> userMap = new HashMap<String, Object>();
+
+		UserDTO loginCheck = service.login(user);
+
+		if (loginCheck == null) {
+			return userMap;
+		}
+		
+		userMap.put("user", loginCheck);
 		
 		return userMap;
 	}
