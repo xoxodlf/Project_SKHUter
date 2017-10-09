@@ -262,11 +262,14 @@ public class UserController {
 
 		UserDTO loginUser = service.get(userNo);
 		String userPw = loginUser.getPassword();
+		int status = loginUser.getStatus();
+		
 		try {
 			// 회원 비밀번호와 입력한 비번이 다르면
 			if (!password.equals(userPw)) {
 				result = "fail";
-
+			} else if (status == 3) {
+				result = "statusFail";
 			} else {
 				result = "success";
 

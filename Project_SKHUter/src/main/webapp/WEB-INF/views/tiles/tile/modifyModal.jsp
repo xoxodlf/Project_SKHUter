@@ -71,7 +71,6 @@ if (message == 'votesuccess') {
 						</div>
 						<div class="col-xs-6 col-sm-6">
 							<input type="text" class="form-control onlyNumber" id="modifyId" name="id" value="${login.id}"  readonly>
-							<input type="hidden" id="status" value="${login.status}">
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -290,7 +289,6 @@ $(function() {
 	    $('#password').val("");
 	    var repassword = $('#repassword').val();
 	    $('#repassword').val("");
-	    var status = $('#status').val();
 	    
         if (password < 1 || repassword < 1) {
              swal({
@@ -341,7 +339,7 @@ $(function() {
                   	  swal('', '가입한 비밀번호가 아닙니다!', 'warning')
                         return false;
                   	  
-                    } else if(status == 3) {
+                    } else if(request == 'statusFail') {
                     	swal('', '회장단은 탈퇴할 수 없습니다!', 'warning')
                         return false;
                     } else{

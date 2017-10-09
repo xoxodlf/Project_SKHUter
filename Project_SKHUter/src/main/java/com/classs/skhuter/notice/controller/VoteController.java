@@ -104,12 +104,16 @@ public class VoteController {
 		logger.info(upVote.toString());
 		service.upVote(upVote);
 		VoteListDTO doVote = new VoteListDTO();
+		
 		doVote.setVoteNo(upVote.getVoteNo());
 		doVote.setUserNo(upVote.getUserNo());
 		doVote.setSelectItem("투표했다이사람");
+		
 		service.doVote(doVote);
+		
 		logger.info(doVote.toString());
 		rttr.addFlashAttribute("message", "success");
+		
 		return "redirect:/notice/voteList";	
 	}
 	
@@ -180,6 +184,33 @@ public class VoteController {
 		
 		voteMap.put("doingVoteList", doingvote);
 		voteMap.put("doneVoteList", donevote);
+		
+		return voteMap;
+	}
+	
+	/**
+	 * 모바일용 투표 참여
+	 *
+	 * @Method Name : doVoteMobile
+	 * @param upVote
+	 * @return
+	 */
+	@RequestMapping(value = "/doVoteMobile", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> doVoteMobile (VoteDTO upVote) {
+		Map<String, Object> voteMap = new HashMap<String, Object>();
+		
+		service.upVote(upVote);
+		
+		VoteListDTO doVote = new VoteListDTO();
+		
+		doVote.setVoteNo(upVote.getVoteNo());
+		doVote.setUserNo(upVote.getUserNo());
+		doVote.setSelectItem("투표했다 이 사람");
+		
+		service.doVote(doVote);
+		
+		voteMap.put("message", "success");
 		
 		return voteMap;
 	}
