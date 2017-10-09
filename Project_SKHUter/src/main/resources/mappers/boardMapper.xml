@@ -220,13 +220,37 @@ SELECT rownum rn, boardNo1 as boardNo, userNo1 as userNo, title, regdate, hitCou
       or content like concat(concat('%',#{keyword}),'%')
 ]]>
 </select>
-
-<!-- likeboard게시물 전체 목록 불러오기 -->
+	
+	<!-- likeboard게시물 전체 목록 불러오기 -->
 	<select id="LikeCountlistAll" resultType="likeBoard">
 		SELECT board_no as boardNo, user_no as userNo
 		FROM
 		BOARD_LIKE
 	</select>
+	
+	<!-- 해당 게시물의 좋아요 개수 세기 -->
+	<select id="countLike" parameterType="board" resultType="int">
+		SELECT count(user_no)
+		from 
+			BOARD_LIKE
+		where 
+			board_no =#{boardNo}
+	</select>
+	
+	<!-- 
+	<select id="isLike" parameterType="board" resultType="int">
+	
+		SELECT count(rn)
+		from 
+			(SELECT rownum rn, user_no as userNo
+		FROM
+		BOARD_LIKE where
+			board_no =#{boardNo})
+    where 
+      user_no=#{userNo}
+			
+	</select>
+	좋아요 버튼을 눌렀는지 아닌지 검사 -->
 	
 	<!-- 좋아요 등록 -->
 	<insert id="createlike">
@@ -235,4 +259,9 @@ SELECT rownum rn, boardNo1 as boardNo, userNo1 as userNo, title, regdate, hitCou
 		(#{boardNo}, #{userNo})
 	</insert>
 	
+	<!-- 좋아요  + 1 -->
+	<update id="uplikeCount">
+		update board set like_count=like_count+1 where
+		board_no= #{boardNo}
+	</update>
 </mapper>

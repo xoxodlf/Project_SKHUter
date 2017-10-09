@@ -108,6 +108,18 @@ public class BoardServiceImpl implements BoardService {
 			// TODO Auto-generated method stub
 			return dao.LikeCountlistAll(boardNo);
 		}
+		
+		/**좋아요 개수 세기**/
+		@Override
+		public int countLike(BoardDTO board) throws Exception{
+			// TODO Auto-generated method stub
+			return dao.countLike(board);
+		}
+		
+		/** 좋아요 했는지 여부 **/
+		public int isLike(BoardDTO board) {
+			return dao.isLike(board);
+		}
 
 		
 	

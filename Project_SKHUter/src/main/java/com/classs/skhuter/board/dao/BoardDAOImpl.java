@@ -90,53 +90,69 @@ public class BoardDAOImpl implements BoardDAO {
 
 		return sqlSession.selectOne(namespace + ".countPaging", cri);
 	}
-	
-	//use for dynamic sql
-	 @Override
-	  public List<BoardDTO> listSearch_t(Criteria cri) throws Exception {
 
-	    return sqlSession.selectList(namespace + ".listSearch_t", cri);
-	  }
-	  @Override
-	  public int listSearchCount_t(Criteria cri) throws Exception {
+	// use for dynamic sql
+	@Override
+	public List<BoardDTO> listSearch_t(Criteria cri) throws Exception {
 
-	    return sqlSession.selectOne(namespace + ".listSearchCount_t", cri);
-	  }
-	  
-	  @Override
-	  public List<BoardDTO> listSearch_c(Criteria cri) throws Exception {
+		return sqlSession.selectList(namespace + ".listSearch_t", cri);
+	}
 
-	    return sqlSession.selectList(namespace + ".listSearch_c", cri);
-	  }
-	  @Override
-	  public int listSearchCount_c(Criteria cri) throws Exception {
+	@Override
+	public int listSearchCount_t(Criteria cri) throws Exception {
 
-	    return sqlSession.selectOne(namespace + ".listSearchCount_c", cri);
-	  }
-	  
-	  @Override
-	  public List<BoardDTO> listSearch_tc(Criteria cri) throws Exception {
+		return sqlSession.selectOne(namespace + ".listSearchCount_t", cri);
+	}
 
-	    return sqlSession.selectList(namespace + ".listSearch_tc", cri);
-	  }
-	  @Override
-	  public int listSearchCount_tc(Criteria cri) throws Exception {
+	@Override
+	public List<BoardDTO> listSearch_c(Criteria cri) throws Exception {
 
-	    return sqlSession.selectOne(namespace + ".listSearchCount_tc", cri);
-	  }
+		return sqlSession.selectList(namespace + ".listSearch_c", cri);
+	}
 
-	  /** **/
+	@Override
+	public int listSearchCount_c(Criteria cri) throws Exception {
+
+		return sqlSession.selectOne(namespace + ".listSearchCount_c", cri);
+	}
+
+	@Override
+	public List<BoardDTO> listSearch_tc(Criteria cri) throws Exception {
+
+		return sqlSession.selectList(namespace + ".listSearch_tc", cri);
+	}
+
+	@Override
+	public int listSearchCount_tc(Criteria cri) throws Exception {
+
+		return sqlSession.selectOne(namespace + ".listSearchCount_tc", cri);
+	}
+
+	/** 좋아요리스트 불러오기 **/
 	@Override
 	public List<BoardLikeDTO> LikeCountlistAll(int boardNo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + ".LikeCountlistAll", boardNo);
 	}
 
-	
 	/** 좋아요 등록 **/
 	@Override
 	public void createlike(BoardLikeDTO board) {
 		// TODO Auto-generated method stub
 		sqlSession.insert(namespace + ".createlike", board);
 	}
+	
+	/** 해당 보드의 좋아요 개수**/
+	@Override
+	public int countLike(BoardDTO board){
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".countLike", board);
+	}
+	/** 좋아요 했는지 여부 **/
+	public int isLike(BoardDTO board) {
+		return sqlSession.selectOne(namespace + ".isLike", board);
+	}
+	
+	
+	
 }
