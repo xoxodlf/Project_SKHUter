@@ -55,9 +55,26 @@ public class AccountingController {
 		logger.info("여기는 회계내역 페이지!!!");
 
 		List<AccountingDTO> accountingList = accountingService.listAll();
+		
+		String[] listFileName = new String[accountingList.size()];
+		
 		int count = accountingList.size();
 		int i = 0;
 		int Money = 0;
+		
+		for (int listsize = accountingList.size(); i < listsize; i++) {
+			int length = accountingList.get(i).getUuidName().length();
+			
+			String front = accountingList.get(i).getUuidName().substring(0, 9);
+			String end = accountingList.get(i).getUuidName().substring(11, length);
+			String realName = front + end;
+			
+			listFileName[i] = realName;
+			
+			System.out.println(listFileName[i]);
+		}
+		
+		i = 0;
 		
 		for (int listsize = accountingList.size(); i < listsize; i++) {
 			if (accountingList.get(i).getStatus() == 0) {
@@ -66,7 +83,8 @@ public class AccountingController {
 				Money -= accountingList.get(i).getPrice();
 			}
 		}
-
+		
+		model.addAttribute("listFileName", listFileName);
 		model.addAttribute("money", Money);
 		model.addAttribute("size", count);
 		model.addAttribute("list", accountingList);

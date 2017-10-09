@@ -154,7 +154,7 @@ div.search-box input[type="search"] {
 										</c:otherwise>
 									</c:choose>
 									<td>${AccountingDTO.accountDate}</td>
-									<td><a href="/resources/upload${AccountingDTO.uuidName }" rel="lightbox" data-lightbox="image-${status.index}">${AccountingDTO.fileName }</a></td>
+									<td><a href="/resources/upload${listFileName[status.index] }" rel="lightbox" data-lightbox="image-${status.index}">${AccountingDTO.fileName }</a></td>
 								</tr>
 							</tbody>
 						</c:forEach>
