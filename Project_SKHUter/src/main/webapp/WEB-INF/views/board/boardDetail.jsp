@@ -111,9 +111,22 @@
 				</tr>
 				<tr>
 					<td colspan="8" style="text-align: center;" >
+					
+					<!-- 
+					<ul class="pagination">
+					<li  class="paginate_button" onclick="change();">
+						<a href="#"><i class="fa fa-thumbs-o-up"></i>좋아요</a>
+					</li>
+					<li  class="paginate_button active" onclick="change();">
+						<a href="#"><i class="fa fa-thumbs-o-down"></i>싫어요</a>
+					</li>
+					</ul>
+					 -->
+					<button type="button" id="likeBtn" class="btn btn-default
+					 <c:out value="${pageMaker.cri.page == idx? 'active' :''}"/>"><i class="fa fa-thumbs-o-up "></i> 좋아요 ${boardDTO.likeCount}</button>
+					<button type="button" id="hateBtn" class="btn btn-default
+					<c:out value="${pageMaker.cri.page == idx? 'active' :''}"/>"><i class="fa fa-thumbs-o-down"></i> 싫어요 ${boardDTO.hateCount}</button>
 					 
-					<button type="button" class="btn btn-default"><i class="fa fa-thumbs-o-up "></i> ${boardDTO.likeCount}</button>
-					<button type="button" class="btn btn-default"><i class="fa fa-thumbs-o-down"></i> ${boardDTO.hateCount}</button>
 					</td>
 				</tr>
 				<tr>
@@ -131,6 +144,7 @@
 		<input type="hidden" id="pw" value="${boardDTO.password}">
 		<input type="hidden" id="loguserno" value="${login.userNo}">
 		<input type="hidden" id="writeruser" value="${replyDTO.userNo}">
+		
 		<!-- end of table -->
 	</div>
 	<!-- div.table-responsive -->
@@ -147,11 +161,106 @@
 </form>  
 
 <script>
+$('#likeBtn').on('click',(function() {
+	var likeclass=document.getElementById('likeBtn').className;
+	var hateclass=document.getElementById('hateBtn').className;
+	var select="";
+	
+	if(likeclass!='btn btn-default active'){
+		//좋아요 버튼이 눌리지 않은 상태
+		
+		if(hateclass!='btn btn-default active'){
+			select="Lplfhf";
+			//싫어요 버튼도 눌리지 않았다면
+			
+			//좋아요버튼 누르는 과정
+			//like_table에 board_no와 user_no를 보내 insert
+			//board에서 해당 board_no의 likecount를 +1
+			
+			//좋아요 버튼을 누르셨습니다.
+			//likeBtn의 클래스name을 btn btn-default active로 변경
+			document.getElementById('likeBtn').className='btn btn-default active';
+		}else{
+			select="Lplfht";
+			//싫어요 버튼이 눌려있다면
+			
+			//싫어요 버튼 취소 과정
+			//hate_table에서 board_no와 user_no를 보내 삭제
+			//board_no의 hatecount를 -1
+			
+			//좋아요버튼 누르는 과정
+			//like_table에 board_no와 user_no를 보내 insert
+			//board에서 해당 board_no의 likecount를 +1
+			
+			//좋아요 버튼을 누르셨습니다.
+			//likeBtn의 클래스name을 btn btn-default active로 변경
+			//hateBtn의 클래스name을 btn btn-default로 변경
+			document.getElementById('likeBtn').className='btn btn-default active';
+			document.getElementById('hateBtn').className='btn btn-default';
+		}
+	}else{
+		select="Lplt";
+		//좋아요 버튼이 눌린상태
+		
+		//좋아요 버튼 취소 과정
+		//like_table에서 board_no와 user_no를 보내 삭제
+		//board_no의 likecount를 -1
+		
+		document.getElementById('likeBtn').className='btn btn-default';
+	}
+	
+}));
+
+$('#hateBtn').on('click',(function() {
+	var likeclass=document.getElementById('likeBtn').className;
+	var hateclass=document.getElementById('hateBtn').className;
+	
+	if(hateclass!='btn btn-default active'){
+		//싫어요 버튼이 눌리지 않은 상태
+		
+		if(likeclass!='btn btn-default active'){
+			//싫어요 버튼도 눌리지 않았다면
+			
+			//like_table에 board_no와 user_no를 보내 insert
+			//board에서 해당 board_no의 likecount를 +1
+			
+			//좋아요 버튼을 누르셨습니다.
+			//likeBtn의 클래스name을 btn btn-default active로 변경
+			document.getElementById('hateBtn').className='btn btn-default active';
+		}else{
+			//싫어요 버튼이 눌려있다면
+			
+			//싫어요 버튼 취소 과정
+			//hate_table에서 board_no와 user_no를 보내 삭제
+			//board_no의 hatecount를 -1
+			
+			//좋아요버튼 누르는 과정
+			//like_table에 board_no와 user_no를 보내 insert
+			//board에서 해당 board_no의 likecount를 +1
+			
+			//좋아요 버튼을 누르셨습니다.
+			//likeBtn의 클래스name을 btn btn-default active로 변경
+			//hateBtn의 클래스name을 btn btn-default로 변경
+			document.getElementById('hateBtn').className='btn btn-default active';
+			document.getElementById('likeBtn').className='btn btn-default';
+		}
+	}else{
+		//좋아요 버튼이 눌린상태
+		document.getElementById('hateBtn').className='btn btn-default';
+	}	
+}));
+
+
+
+
+/** 버튼의 색을 바꿔보자 **/
+$('.paginate_button').on('click',(function() {
+	formObj.attr("action", "/board/boardList");
+	formObj.attr("method", "get");		
+	formObj.submit();
+}));
 
 var boardNo = $('#bn').val();
-console.log("boardNo : "+boardNo);
-
-
 var formObj = $("form#listForm");
 
 console.log(formObj);
@@ -211,7 +320,6 @@ $(document).ready(function(data){
 				+ this.regdate
 				+ "</td>";
 			countreply += 1;
-			
 		});
 		frontstr="<tr align=center style='vertical-align: middle;'><td colspan='8'> ※ " + countreply + "개의 댓글이 있습니다. 댓글은 삭제가 불가능하니 신중히 생각하고 적도록 합시다!</td></tr>";
 		$("#replies").html(frontstr+str);
@@ -221,7 +329,6 @@ $(document).ready(function(data){
 
 /** 댓글 등록시 목록 업데이트하기 **/
 function getAllList() {
-
 	$.getJSON("/replies/all/" + boardNo, function(data){
 		console.log(data.length);
 		var str = "";

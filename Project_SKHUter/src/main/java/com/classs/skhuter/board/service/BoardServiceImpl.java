@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.classs.skhuter.board.controller.BoardController;
 import com.classs.skhuter.board.dao.BoardDAO;
 import com.classs.skhuter.board.domain.BoardDTO;
+import com.classs.skhuter.board.domain.BoardLikeDTO;
 import com.classs.skhuter.util.Criteria;
 
 /**
@@ -101,7 +102,13 @@ public class BoardServiceImpl implements BoardService {
 
 			  return dao.listSearchCount_tc(cri);
 		  }
-	
 
+		@Override
+		public List<BoardLikeDTO> LikeCountlistAll(int boardNo) {
+			// TODO Auto-generated method stub
+			return dao.LikeCountlistAll(boardNo);
+		}
+
+		
 	
 }

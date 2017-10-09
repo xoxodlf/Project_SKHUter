@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.classs.skhuter.board.domain.BoardDTO;
+import com.classs.skhuter.board.domain.BoardLikeDTO;
 import com.classs.skhuter.board.service.BoardService;
 import com.classs.skhuter.notice.domain.VoteDTO;
 import com.classs.skhuter.util.Criteria;
@@ -57,6 +58,15 @@ public class BoardController {
 			throws Exception {
 		model.addAttribute(cri);
 		model.addAttribute(service.read(boardNo));
+		
+		List<BoardLikeDTO> list=service.LikeCountlistAll(boardNo);
+		
+		//BoardDTO tmp = new BoardDTO();
+
+		for (BoardLikeDTO board : list) {
+		logger.info(board.toString());
+		}
+		
 		return "board/boardDetail.lay";
 	}
 
@@ -145,5 +155,7 @@ public class BoardController {
 		return "board/boardListM";
 
 	}
+	
+	
 
 }

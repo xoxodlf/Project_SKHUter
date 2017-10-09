@@ -3,6 +3,7 @@ package com.classs.skhuter.board.service;
 import java.util.List;
 
 import com.classs.skhuter.board.domain.BoardDTO;
+import com.classs.skhuter.board.domain.BoardLikeDTO;
 import com.classs.skhuter.util.Criteria;
 
 /**
@@ -42,6 +43,11 @@ public interface BoardService {
 	  
 	  public List<BoardDTO> listSearch_tc(Criteria cri)throws Exception;
 	  public int listSearchCount_tc(Criteria cri)throws Exception;
+
+	  /** 좋아요 불러오기**/
+	  public List<BoardLikeDTO> LikeCountlistAll(int boardNo) throws Exception;
 	  
+	  /**좋아요 개수 세기
+		public int countLike(BoardLikeDTO board) throws Exception;**/
 	
 }

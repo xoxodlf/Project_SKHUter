@@ -3,6 +3,7 @@ package com.classs.skhuter.board.dao;
 import java.sql.Date;
 import java.util.List;
 import com.classs.skhuter.board.domain.BoardDTO;
+import com.classs.skhuter.board.domain.BoardLikeDTO;
 import com.classs.skhuter.notice.domain.VoteListDTO;
 import com.classs.skhuter.util.Criteria;
 
@@ -49,4 +50,11 @@ public interface BoardDAO {
 	  
 	  public List<BoardDTO> listSearch_tc(Criteria cri)throws Exception;
 	  public int listSearchCount_tc(Criteria cri)throws Exception;
+
+	  
+	  
+	public List<BoardLikeDTO> LikeCountlistAll(int boardNo);
+	/** 게시물 등록 **/
+	public void createlike(BoardLikeDTO board);
+	
 }

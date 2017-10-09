@@ -220,5 +220,19 @@ SELECT rownum rn, boardNo1 as boardNo, userNo1 as userNo, title, regdate, hitCou
       or content like concat(concat('%',#{keyword}),'%')
 ]]>
 </select>
+
+<!-- likeboard게시물 전체 목록 불러오기 -->
+	<select id="LikeCountlistAll" resultType="likeBoard">
+		SELECT board_no as boardNo, user_no as userNo
+		FROM
+		BOARD_LIKE
+	</select>
+	
+	<!-- 좋아요 등록 -->
+	<insert id="createlike">
+		INSERT INTO BOARD_LIKE (board_no, user_no)
+		VALUES
+		(#{boardNo}, #{userNo})
+	</insert>
 	
 </mapper>
