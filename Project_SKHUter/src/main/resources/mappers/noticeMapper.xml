@@ -126,14 +126,18 @@
 	
 	<select id="accountingListCriteria" resultType="Accounting">
 		<![CDATA[
-		select accountNo1 as accountNo, userNo1 as userNo, accountDate1 as accountDate, content1 as content, status1 as status, price1 as price, fileName1 as fileName, uuidName1 as uuidName
-		FROM(
-    		SELECT a.account_no as accountNo1, a.user_no as userNo1, a.account_date as 
-			accountDate1, a.content as content1, a.status as status1, a.price as price1, a.file_name as fileName1, a.uuid_name as uuidName1
-    		,row_number() over (order by account_no desc, account_date desc) as num
-    		FROM Accounting a
-    	)
-		WHERE num between #{pageStart} and #{perPageNum}
+		select rn,accountNo, userNo, accountDate, content, status, price, fileName, uuidName from(
+SELECT rownum rn, accountNo, userNo, accountDate, content, status, price, fileName, uuidName
+    from 
+    (select
+    account_no as accountNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName
+		FROM 
+			Accounting
+      order by accountNo desc
+      )
+      order by rownum asc
+      )
+      where rn>=#{pageStart}+1 and rn<=#{pageStart}+10
 		]]>
 	</select>
 	

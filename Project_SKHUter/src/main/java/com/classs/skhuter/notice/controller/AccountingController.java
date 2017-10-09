@@ -24,6 +24,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +37,7 @@ import com.classs.skhuter.notice.service.AccountingService;
 import com.classs.skhuter.user.domain.UserDTO;
 import com.classs.skhuter.util.Criteria;
 import com.classs.skhuter.util.MediaUtils;
+import com.classs.skhuter.util.PageMaker;
 import com.classs.skhuter.util.UploadFileUtils;
 
 @Controller
@@ -51,10 +53,11 @@ public class AccountingController {
 	private String uploadPath;
 
 	@RequestMapping(value = "/notice/accountingList", method = RequestMethod.GET)
-	public String accountingList(Model model) {
+	public String accountingList(@ModelAttribute("cri") Criteria cri,Model model) throws Exception {
 		logger.info("여기는 회계내역 페이지!!!");
 
 		List<AccountingDTO> accountingList = accountingService.listAll();
+		List<AccountingDTO> accountingPagedList = accountingService.listCriteria(cri);
 		
 		String[] listFileName = new String[accountingList.size()];
 		
@@ -84,10 +87,19 @@ public class AccountingController {
 			}
 		}
 		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(accountingService.ListCountCriteria(cri));
+		
+
+
+		model.addAttribute("pageMaker", pageMaker);
+		
 		model.addAttribute("listFileName", listFileName);
 		model.addAttribute("money", Money);
 		model.addAttribute("size", count);
 		model.addAttribute("list", accountingList);
+		model.addAttribute("listpaged",accountingPagedList);
 
 		return "notice/accountingList.lay";
 	}
