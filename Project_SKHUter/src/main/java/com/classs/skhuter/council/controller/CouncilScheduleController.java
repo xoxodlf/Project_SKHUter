@@ -105,9 +105,13 @@ public class CouncilScheduleController {
 	 * @return
 	 */
 	@RequestMapping(value="/councilSchedule/deleteSchedule", method = RequestMethod.POST)
-	public String deleteSchedule(@RequestParam("councilScheduleNo") int councilScheduleNo,RedirectAttributes rttr) {
+	public String deleteSchedule(int deleteNo,RedirectAttributes rttr) {
 		
-		service.deleteSchedule(councilScheduleNo);
+		logger.info("받은 번호: "+deleteNo);
+		
+		service.deleteSchedule(deleteNo);
+		
+		
 		
 		rttr.addFlashAttribute("message", "deletesuccess");
 		

@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.classs.skhuter.user.domain.UserDTO;
+import com.classs.skhuter.util.Criteria;
 
 /**
  * 유저 관련 DB에서 데이터를 가져와 모델 생성
@@ -60,4 +61,10 @@ public interface UserDAO {
 	
 	/** 인계자찾기*/
 	public int searchGiver(int takeoverCode);
+	
+	public List<UserDTO> searchName(Criteria cri);
+	
+	public List<UserDTO> searchId(Criteria cri);
+	
+	public List<UserDTO> searchGrade(Criteria cri);
 }

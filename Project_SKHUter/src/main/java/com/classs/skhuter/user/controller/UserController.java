@@ -19,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,13 +29,14 @@ import org.springframework.web.util.WebUtils;
 
 import com.classs.skhuter.user.domain.UserDTO;
 import com.classs.skhuter.user.service.UserService;
+import com.classs.skhuter.util.Criteria;
 
 /**
  * 회원 관련 프로젝트 Controller @RequestMapping("/user") URI 매칭
  * 
  * @패키지 : com.classs.skhuter.user.controller
  * @파일명 : UserController.java
- * @작성자 : 이종윤
+ * @작성자 : 이종윤,양태일
  * @작성일 : 2017. 9. 20.
  *
  */
@@ -57,12 +59,16 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/userList", method = RequestMethod.GET)
-	public String getUserList(Model model) {
-		List<UserDTO> userList = service.UserListAll();
-		int count = userList.size();
-		
+	public String getUserList(@ModelAttribute("cri") Criteria cri,Model model) {
+		List<UserDTO> userList;
+		userList=service.UserListAll();
+		if(cri.getSearchType()!=null) {
+		if(cri.getSearchType().equals("t"))userList=service.searchName(cri);
+		else if(cri.getSearchType().equals("c"))userList=service.searchId(cri);
+		else if(cri.getSearchType().equals("g"))userList=service.searchGrade(cri);
+		}
 		model.addAttribute("list", userList);
-		model.addAttribute("size", count);
+		
 		
 		return "user/userList.lay";
 	}

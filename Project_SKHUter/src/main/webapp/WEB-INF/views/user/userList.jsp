@@ -116,7 +116,7 @@
 						<tbody>
 							<tr>
 								<td><input type="checkbox" name="check" value="${userList.userNo }" /></td>
-								<td>${size - status.index }</td>
+								<td>${status.count }</td>
 								<td>${userList.id}</td>
 								<td>${userList.grade}</td>
 								<td>${userList.name }</td>
@@ -171,6 +171,24 @@
 <!-- div.panel-body -->
 </div>
 <!-- div.col-lg-12 -->
+
+<div class="search-box" style="text-align:center">
+				<select name="searchType" id="searchType" class="form-control input-sm" style="display:inline; width: 9%">
+					<option value="t"
+							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
+							이름</option>
+					<option value="c"
+							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
+							학번</option>
+					<option value="g"
+							<c:out value="${cri.searchType eq 'g'?'selected':''}"/>>
+							학년</option>
+				</select> 
+				
+				<input type="search" class="form-control input-sm" name='keyword' 
+				id="keywordInput" value='${cri.keyword}' style="display:inline;">
+				<button class="btn btn-default" id="searchBtn">검색</button>
+			</div>
 
 <script>
 $(document).ready(function(){
@@ -249,6 +267,18 @@ $('#takeoverBtn').on('click',(function() {
             })
         })
 }));
-		
+
+$(document).ready(
+		function() {
+			$('#searchBtn').on(
+					"click",
+					function(event) {
+						self.location.href = "userList"
+								+ '${pageMaker.makeQuery(1)}'
+								+ "?searchType="
+								+ $("#searchType option:selected").val()
+								+ "&keyword=" + $('#keywordInput').val();
+					});
+		});
 		
 </script>

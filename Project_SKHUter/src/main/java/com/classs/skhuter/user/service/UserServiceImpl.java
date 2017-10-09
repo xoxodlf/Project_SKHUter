@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.classs.skhuter.user.dao.UserDAO;
 import com.classs.skhuter.user.domain.UserDTO;
+import com.classs.skhuter.util.Criteria;
 
 /**
  * UserService 인터페이스 구현 클래스
@@ -96,6 +97,21 @@ public class UserServiceImpl implements UserService {
 	public int searchGiver(int takeoverCode) {
 	
 		return dao.searchGiver(takeoverCode);
+	}
+
+	@Override
+	public List<UserDTO> searchName(Criteria cri) {
+		return dao.searchName(cri);
+	}
+
+	@Override
+	public List<UserDTO> searchId(Criteria cri) {
+		return dao.searchId(cri);
+	}
+
+	@Override
+	public List<UserDTO> searchGrade(Criteria cri) {
+		return dao.searchGrade(cri);
 	}
 
 }
