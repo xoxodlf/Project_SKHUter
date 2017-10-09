@@ -74,8 +74,10 @@ div.search-box input[type="search"] {
 			<div class="board-btns">
 				<div class="board-btn"></div>
 				<div class="board-btn">
-					<button type="button" data-toggle="modal"
+					<c:if test="${login.status>=2}">
+						<button type="button" data-toggle="modal"
 						data-target="#doMeetingModal" class="btn btn-default">등록</button>
+					</c:if>
 				</div>
 			</div>
 			<div class="row" style="margin-top: 20px">
@@ -97,10 +99,12 @@ div.search-box input[type="search"] {
 								<div class="panel panel-info">
 									<div class="panel-heading">
 										${MeetingNoteDTO.title}
+										<c:if test="${login.status>=2}">
 										<button class="btn btn-default btn-sm removeBtn"
 											id="removeBtn" style="float: right; padding: 2px 9px;">
 											<i class="fa fa-trash-o fa-sm"></i>
 										</button>
+										</c:if>
 									</div>
 									<div class="panel-body" style="height: 90px">
 										<div class="libraryList">${MeetingNoteDTO.fileName }</div>
@@ -161,7 +165,7 @@ div.search-box input[type="search"] {
 		var url = "";
 
 		if (checkImageType(data)) {
-			var front = data.substring(0, 9); // /asc 경로 추출
+			var front = data.substring(0, 9); // /skhuter 경로 추출
 			var end = data.substring(11); // s_ 제거
 
 			location.href = "/council/meetingNote/displayFile?fileName=" + front
