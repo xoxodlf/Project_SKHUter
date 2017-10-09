@@ -138,6 +138,34 @@ public class BoardController {
 
 	}
 	
+	 /**
+	  * 좋아요했을 때 좋아요 수 올리기
+	 
+	@RequestMapping(value="/boardList/uplikeCount", method = RequestMethod.POST)
+	public String doVote(VoteDTO upVote,RedirectAttributes rttr) {
+		
+		logger.info(upVote.toString());
+		service.upVote(upVote);
+		VoteListDTO doVote = new VoteListDTO();
+		
+		doVote.setVoteNo(upVote.getVoteNo());
+		doVote.setUserNo(upVote.getUserNo());
+		doVote.setSelectItem("투표했다이사람");
+		
+		service.doVote(doVote);
+		
+		logger.info(doVote.toString());
+		rttr.addFlashAttribute("message", "success");
+		
+		return "redirect:/notice/voteList";	
+	}
+	
+	uplike
+	
+	 */
+	
+	
+	
 	/**
 	 * (모바일 웹)게시판 리스트 구현 페이징 기능 검색 기능
 	 **/
