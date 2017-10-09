@@ -204,13 +204,15 @@ div.board-btn button {
 	
 		function showModal(title,item1,item2,item3,item4,item5,item6,voteNo,content,item1Count,item2Count,item3Count,item4Count,item5Count,item6Count,startDate) {
 			var now = new Date();
-	        console.log('now');
+	       
 	        var year= now.getFullYear();
 	        var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
 	        var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
 	        var hours = now.getHours()>9 ?''+now.getHours():'0'+now.getHours();
 	        var min = now.getMinutes()>9 ?''+now.getMinutes():'0'+now.getMinutes();
-	        var current_date = year + '-' + mon + '-' + day+' '+hours+':'+min;
+	        var sec = now.getSeconds()>9 ?''+now.getSeconds():'0'+now.getSeconds();
+	        console.log(sec);
+	        var current_date = year + '-' + mon + '-' + day+' '+hours+':'+min+':'+sec;
 			if(startDate>current_date){
 				swal({
 		               title: '투표가 아직 시작하지 않았습니다.',
