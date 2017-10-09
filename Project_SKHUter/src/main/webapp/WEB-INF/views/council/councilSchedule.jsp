@@ -49,8 +49,8 @@ div.col-lg-12 {
 								</div>
 							</div>
 						</form>
+						<ul class="timeline">
 							<!-- 타임라인 리스트 조회 시작 -->
-							<ul class="timeline">
 								<c:forEach items="${scheduleList}" var="schedule">
 <%-- 								<input type="hidden" id="endDate" value="<fmt: formatDate pattern="yyyy" value="${scheduleList.endDate }"/>"/> --%>
 								<form role="form" id="deleteform" method="post" action="/councilSchedule/deleteSchedule">
@@ -110,7 +110,7 @@ div.col-lg-12 {
 									</c:if>
 								</c:if>
 								</c:forEach>
-							</ul>
+								</ul>
 						</div>
 						<!-- /.panel-body -->
 					</div>

@@ -125,7 +125,7 @@ div.search-box input[type="search"] {
 								<th>거래 내역</th>
 								<th>지출</th>
 								<th>수입</th>
-								<th>작성일</th>
+								<th>사용 날짜</th>
 								<th>영수증</th>
 							</tr>
 						</thead>
@@ -137,7 +137,7 @@ div.search-box input[type="search"] {
 									<c:if test="${login.status>=2}">
 									<td><input type="checkbox" name="check" value="${AccountingDTO.accountNo }"/></td>
 									</c:if>
-									<td>${AccountingDTO.accountNo }</td>
+									<td>${size - status.index }</td>
 									<td>${AccountingDTO.content }</td>
 									
 									<!-- 현재 루프가 처음이라면 잔액 계산을 위해 초기값 저장 -->
@@ -241,12 +241,10 @@ $(document).ready(function(){
 		event.preventDefault();
 		
 		var targetPage = $("#page").val();
-// 		alert(targetPage);
 		
 		
 		var jobForm = $("#jobForm");
 		
-// 		alert(page);
 		alert(targetPage);
 		
 		jobForm.attr("action","/notice/accountingList/listNo").attr("method","get");
@@ -264,6 +262,29 @@ $(document).ready(function(){
 // 		jobForm.attr("action","/notice/accountingList").attr("method","get");
 // 		jobForm.submit();
 // 	})
+   function getFileInfo(fullName) {
+      var fileName, imgsrc, getLink;
+      
+      var fileLink;
+      
+      if (checkImageType(fullName)) {
+         imgsrc = "/displayFile?fileName=" + fullName;
+         fileLink = fullName.substr(7);
+         
+         var front = fileName.substr(0, 5);   // /asc 경로 추출
+         var end = fileName.substr(7);    // s_ 제거
+         
+         getLink = "/displayFile?fileName=" + front + end;
+      } else {
+         imgsrc = "resources/images/file.png";
+         fileLink = fullName.substr(7);
+         getLink = "/displayFile?fileName=" + fullName;
+      }
+      
+      fileName = fileLink.substr(fileLink.indexOf("_")+1);
+      
+      return {fileName:fileName, imgsrc:imgsrc, getLink:getLink, fullName:fullName};
+   }
 </script>
 
 <jsp:include page="include/accountingModal.jsp" />

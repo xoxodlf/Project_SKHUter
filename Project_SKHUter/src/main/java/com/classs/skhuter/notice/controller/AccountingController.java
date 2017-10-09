@@ -54,11 +54,11 @@ public class AccountingController {
 	public String accountingList(Model model) {
 		logger.info("여기는 회계내역 페이지!!!");
 
+		List<AccountingDTO> accountingList = accountingService.listAll();
+		int count = accountingList.size();
 		int i = 0;
 		int Money = 0;
-
-		List<AccountingDTO> accountingList = accountingService.listAll();
-
+		
 		for (int listsize = accountingList.size(); i < listsize; i++) {
 			if (accountingList.get(i).getStatus() == 0) {
 				Money += accountingList.get(i).getPrice();
@@ -68,6 +68,7 @@ public class AccountingController {
 		}
 
 		model.addAttribute("money", Money);
+		model.addAttribute("size", count);
 		model.addAttribute("list", accountingList);
 
 		return "notice/accountingList.lay";

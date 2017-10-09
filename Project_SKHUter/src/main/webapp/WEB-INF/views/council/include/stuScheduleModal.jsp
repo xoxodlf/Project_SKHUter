@@ -52,7 +52,7 @@ border:none;
 							<label for="id" class="stuSchedule_label">내용</label>
 						</div>
 						<div class="col-xs-7 col-sm-7">
-							<textarea rows="45px" name="content" class="form-control onlyNumber" placeholder="내용을 입력하세욥" maxlength="255" style="width: 275px; height: 100px;"></textarea>
+							<textarea rows="45px" id="title" name="content" class="form-control onlyNumber" placeholder="내용을 입력하세욥" maxlength="255" style="width: 275px; height: 100px;"></textarea>
 						</div>
 						<div class="clearfix"></div>
 					</div>
