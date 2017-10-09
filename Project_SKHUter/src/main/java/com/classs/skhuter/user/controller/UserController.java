@@ -469,14 +469,12 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/loginMobile", method = RequestMethod.GET)
-	@ResponseBody
 	public Map<String, Object> loginMobile (UserDTO user) {
 		Map<String, Object> userMap = new HashMap<String, Object>();
 
 		UserDTO loginCheck = service.login(user);
 
 		if (loginCheck == null) {
-			userMap.put("user", null);
 			return userMap;
 		}
 		

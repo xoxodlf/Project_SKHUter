@@ -49,7 +49,7 @@
 							<label for="id" class="regist_label">아이디</label>
 						</div>
 						<div class="col-xs-6 col-sm-6">
-							<input type="number" class="form-control onlyNumber" id="registerId" name="id" placeholder="학번" maxlength="9" onkeyup="idCheck()">
+							<input type="text" class="form-control onlyNumber" id="registerId" name="id" placeholder="학번" maxlength="9" onkeyup="idCheck()">
 						</div>
                         <div class="col-xs-3 col-sm-3" style="font-size:small">
                           <label id="display">(학번)</label>
@@ -65,7 +65,7 @@
 							<input type="password" class="form-control" id="registerPassword" name="password" placeholder="비밀번호를 입력하세요" >
 						</div>
                         <div class="col-xs-3 col-sm-3" style="font-size:small; color: black;">
-                          <label id="">(8자 이상)</label>
+                          <label id="">(8 ~ 12자)</label>
                         </div>            
 						<div class="clearfix"></div>
 					</div>
@@ -157,7 +157,7 @@
    function idCheck() {
       var registerId = $('#registerId').val();
       
-      if (registerId.length > 8) {
+      if (registerId.length > 3) {
 
          $.ajax({
             type : 'GET',
@@ -209,8 +209,7 @@ $(function(){
                   })
               return false;
             }
-          
-          
+    
           if (registerId.length != 9) {
               swal({
                  title : '',
@@ -221,7 +220,6 @@ $(function(){
               $('#registerId').focus();
               return false;
            }	
-          
         
           
           if ($('#display').text() == "이미 사용 중입니다.") {
@@ -263,10 +261,10 @@ $(function(){
             }
             
             
-            if ($('#registerPassword').val().length < 8) {
+            if ($('#registerPassword').val().length < 4) {
                 swal({
                    title : '',
-                   text : '비밀번호는 8자 이상이여야합니다.',
+                   text : '비밀번호는 4자 이상이여야합니다.',
                    type : 'warning',
                    confirmButtonText : '닫기'
                 })

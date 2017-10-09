@@ -40,29 +40,21 @@ public interface BoardDAO {
 	/** 조회수 처리 **/
 	public void updateHitCount(int boardNo) throws Exception;
 
-	// use for dynamic sql
-	public List<BoardDTO> listSearch_t(Criteria cri) throws Exception;
+	
+	 //use for dynamic sql
+	  public List<BoardDTO> listSearch_t(Criteria cri)throws Exception;
+	  public int listSearchCount_t(Criteria cri)throws Exception;
+	  
+	  public List<BoardDTO> listSearch_c(Criteria cri)throws Exception;
+	  public int listSearchCount_c(Criteria cri)throws Exception;
+	  
+	  public List<BoardDTO> listSearch_tc(Criteria cri)throws Exception;
+	  public int listSearchCount_tc(Criteria cri)throws Exception;
 
-	public int listSearchCount_t(Criteria cri) throws Exception;
-
-	public List<BoardDTO> listSearch_c(Criteria cri) throws Exception;
-
-	public int listSearchCount_c(Criteria cri) throws Exception;
-
-	public List<BoardDTO> listSearch_tc(Criteria cri) throws Exception;
-
-	public int listSearchCount_tc(Criteria cri) throws Exception;
-
-	/** 좋아요 리스트 전체 불러오기 **/
+	  
+	  
 	public List<BoardLikeDTO> LikeCountlistAll(int boardNo);
-
 	/** 게시물 등록 **/
 	public void createlike(BoardLikeDTO board);
 	
-	/** 게시물의 좋아요 갯수 **/
-	public int countLike(BoardDTO board);
-	
-	/** 좋아요 여부 **/
-	public int isLike(BoardDTO board);
-
 }
