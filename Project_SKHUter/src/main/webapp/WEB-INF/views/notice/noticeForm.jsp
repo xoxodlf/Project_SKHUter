@@ -10,28 +10,27 @@
 <!-- include summernote css/js-->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-<!-- include summernote-ko-KR -->
-<script src="lang/summernote-ko-KR.js"></script>
 <script>
-	/* SummerNote */
-	function contentsend(){
-			var markupStr = $('.summernote').summernote('code');
-			$('input#content').val(markupStr);
-	}
-	
-	/* SummerNote 내용 받아오기 */
-	var markupStr = $('#summernote').summernote('code');
-    $(document).ready(function() {
-        $('#summernote').summernote({
-        	lang: 'ko-KR',
-        	height: 300,
-        	focus: false,
-        	placeholder: '공지사항을 입력해주세요'
-        });
+/* SummerNote */
+/* SummerNote내용 value값으로 전달 */
+function contentsend(){
+		var markupStr = $('.summernote').summernote('code');
+		$('input#content').val(markupStr);
+}
+
+/* SummerNote 내용 받아오기 */
+$(document).ready(function() {
+    $('.summernote').summernote({
+    	lang: 'ko-KR',
+    	height: 300,
+    	focus: false,
+    	placeholder: '내용을 입력해주세요.'
     });
-    $('.listBtn').on('click',(function() {
-    	location.href = "/notice/noticeList";
-    }));
+});
+
+$('.listBtn').on('click',(function() {
+	location.href = "/board/boardList";
+}));
     
 </script>
 <style>
