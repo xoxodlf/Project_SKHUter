@@ -161,8 +161,7 @@ div.search-box input[type="search"] {
 					</table>
 				</c:otherwise>
 			</c:choose>
-			
-			<div style="text-align:right;font-size:18px;style:bold">잔액:   ${money }</div>
+			<div style="text-align:right;font-size:18px;style:bold">잔액:    <fmt:formatNumber value="${money }" pattern="#,###" /> 원</div>
 			<!-- end of table -->
 
 			<!-- div.search-box -->
