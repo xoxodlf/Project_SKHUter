@@ -52,10 +52,9 @@ div.col-lg-12 {
 						<ul class="timeline">
 							<!-- 타임라인 리스트 조회 시작 -->
 								<c:forEach items="${scheduleList}" var="schedule">
-<%-- 								<input type="hidden" id="endDate" value="<fmt: formatDate pattern="yyyy" value="${scheduleList.endDate }"/>"/> --%>
-								<form role="form" id="deleteform" method="post" action="/councilSchedule/deleteSchedule">
-    								<input type='hidden' name='councilScheduleNo' value ="${schedule.councilScheduleNo}">
-    							</form>
+									<form id="deleteForm" method="POST">
+                       	 				<input type='hidden' id="deleteNo" name="deleteNo" value ="${schedule.councilScheduleNo}">
+                        			</form>
     							<!-- 진행중인 공지를 판단하는 연산. -->
 								<c:if test="${schedule.startDate <= nextMonth && ((schedule.startDate >= thisMonth && schedule.startDate < nextMonth) ||
 								(schedule.startDate < thisMonth && schedule.endDate > nextMonth) || (schedule.endDate >= thisMonth || schedule.endDate < nextMonth))
@@ -72,7 +71,7 @@ div.col-lg-12 {
 															<small class="text-muted" style="font-size:15px"><i class="fa fa-clock-o"></i>
 																${schedule.startDate}~${schedule.endDate}</small>
 																<c:if test="${login.status>=2}">
-                        											<button id="deleteBtn" class="btn btn-default btn-sm scremoveBtn" type="button">
+                        											<button id="deleteBtn" class="btn btn-default btn-sm scremoveBtn" type="submit">
                         												<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
                        	 											</button>
                         										</c:if>
@@ -131,14 +130,14 @@ function showModal() {
 }
 
 function throwDate(){
-       var x = document.getElementById('sinputdate');	//시작날짜
-       var y = document.getElementById('einputdate');   //마감날짜
-       var start =x.value.replace(/T/g, ' ');
-       var end =y.value.replace(/T/g, ' ');
-	   $('input#startDate').val(start);
-	   $('input#endDate').val(end);
-	   console.log(start);
-	   console.log(end);
+   var x = document.getElementById('sinputdate');	//시작날짜
+   var y = document.getElementById('einputdate');   //마감날짜
+   var start =x.value.replace(/T/g, ' ');
+   var end =y.value.replace(/T/g, ' ');
+   $('input#startDate').val(start);
+   $('input#endDate').val(end);
+   console.log(start);
+   console.log(end);
 	   
 }
 
@@ -215,26 +214,25 @@ $(document).ready(function() {
     });
 });
 
-$('.scremoveBtn').on('click',(function() {
-	var link = $("form#deleteform");
-	console.log('link');
-	 swal({
-           title: '삭제 하시겠습니까?',
-           text: "",
-           type: 'warning',
-           showCancelButton: true,
-           confirmButtonColor: '#3085d6',
-           cancelButtonColor: '#d33',
-           confirmButtonText: 'YES',
-           cancelButtonText: 'NO'
-        }).then(function (){
-        	var form = link;
-			var arr = [];
-			form.attr("action", "/council/councilSchedule/deleteSchedule");
-			form.submit();
-			link = '';
-        })
-}));
+$(".scremoveBtn").on("click", function() {
+	var link = $(this).parent().parent().parent().parent().prev();
+	swal({
+		title : '자료를 삭제하시겠습니까?',
+		text : "",
+		type : 'question',
+		showCancelButton : true,
+		confirmButtonColor : '#3085d6',
+		cancelButtonColor : '#d33',
+		confirmButtonText : 'Yes',
+		cancelButtonText : 'No',
+	}).then(function() {
+		var formObj = link;
+		var arr = [];
+		formObj.attr("action", "/council//councilSchedule/deleteSchedule");
+		formObj.submit();
+		link = '';
+	})
+});
 
 $('#registerBtn').on('click',(function() {	
         	var form = $("form#scheduleForm");
