@@ -19,6 +19,7 @@ import com.classs.skhuter.board.domain.BoardDTO;
 import com.classs.skhuter.board.domain.BoardLikeDTO;
 import com.classs.skhuter.board.service.BoardService;
 import com.classs.skhuter.notice.domain.VoteDTO;
+import com.classs.skhuter.notice.domain.VoteListDTO;
 import com.classs.skhuter.util.Criteria;
 import com.classs.skhuter.util.PageMaker;
 
@@ -56,16 +57,22 @@ public class BoardController {
 	@RequestMapping(value = "/boardDetail", method = RequestMethod.GET)
 	public String read(@RequestParam("boardNo") int boardNo, @ModelAttribute("cri") Criteria cri, Model model)
 			throws Exception {
-		model.addAttribute(cri);
-		model.addAttribute(service.read(boardNo));
 		
 		List<BoardLikeDTO> list=service.LikeCountlistAll(boardNo);
-		
-		//BoardDTO tmp = new BoardDTO();
-
+		int likeCount=0, islike=0;
+		BoardDTO tmp = new BoardDTO();
+		tmp.setBoardNo(boardNo);
+		tmp.setUserNo(userNo);
 		for (BoardLikeDTO board : list) {
 		logger.info(board.toString());
+		//islike=service.isLike(tmp);
+		//likeCount=service.countLike(boardNo);
 		}
+		//logger.info(Integer.toString(islike));
+		logger.info(Integer.toString(likeCount));
+		
+		model.addAttribute(cri);
+		model.addAttribute(service.read(boardNo));
 		
 		return "board/boardDetail.lay";
 	}
@@ -90,6 +97,7 @@ public class BoardController {
 	public String listPage(@ModelAttribute("cri") Criteria cri, Model model) throws Exception {
 
 		List<BoardDTO> list;
+		
 		if(cri.getSearchType()!=null) {
 		if(cri.getSearchType().equals("t")) {
 			list = service.listSearch_t(cri);
@@ -101,13 +109,17 @@ public class BoardController {
 		}
 		}else list = service.listCriteria(cri);
 
+		
 		BoardDTO tmp = new BoardDTO();
-
 		for (BoardDTO board : list) {
 			tmp.setBoardNo(board.getBoardNo());
+			//댓글수
 			int replyCount = service.countReply(tmp);
 			board.setReplyCount(replyCount);
-			//logger.info(board.toString());
+			//좋아요 갯수
+			int likeCount=service.countLike(tmp);
+			board.setLikeCount(likeCount);
+			logger.info(board.toString());
 		}
 
 		model.addAttribute("boardList", list);
