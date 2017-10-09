@@ -133,7 +133,7 @@ SELECT rownum rn, accountNo, userNo, accountDate, content, status, price, fileNa
     account_no as accountNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName
 		FROM 
 			Accounting
-      order by accountNo desc
+      order by accountDate desc
       )
       order by rownum asc
       )
