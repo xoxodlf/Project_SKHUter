@@ -19,6 +19,7 @@
 		content, item1, item2, item3, item4, item5, item6, item1_count as item1Count,item2_count as item2Count,item3_count as item3Count,item4_count as item4Count,item5_count as item5Count,item6_count as item6Count
 		FROM VOTE
 		WHERE end_date >= TO_CHAR(sysdate,'YYYY-MM-DD hh24:mi')
+		order by start_date desc
 	</select>
 	
 	<!-- 완료된 투표 불러오기 -->
@@ -29,6 +30,7 @@
 		content, item1, item2, item3, item4, item5, item6, item1_count as item1Count,item2_count as item2Count,item3_count as item3Count,item4_count as item4Count,item5_count as item5Count,item6_count as item6Count
 		FROM VOTE
 		WHERE end_date < TO_CHAR(sysdate,'YYYY-MM-DD hh24:mi')
+		order by start_date desc
 	]]>
 	</select>
 	
