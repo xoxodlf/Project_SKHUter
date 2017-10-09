@@ -144,13 +144,13 @@ div.search-box input[type="search"] {
 									<c:choose>
 										<c:when test="${AccountingDTO.status eq 1 }">
 											<input type="hidden" value="${AccountingDTO.status }" id="status">
-											<td style="color: RED">-${AccountingDTO.price } </td>
+											<td style="color: RED">-<fmt:formatNumber value="${AccountingDTO.price }" pattern="#,###" /> 원 </td>
 											<td></td>
 										</c:when>
 										<c:otherwise>
 											<input type="hidden" value="${AccountingDTO.status }" id="status">
 											<td></td>
-											<td style="color: BLUE">+${AccountingDTO.price } </td>
+											<td style="color: BLUE">+<fmt:formatNumber value="${AccountingDTO.price }" pattern="#,###" /> 원</td>
 										</c:otherwise>
 									</c:choose>
 									<td>${AccountingDTO.accountDate}</td>
@@ -161,7 +161,7 @@ div.search-box input[type="search"] {
 					</table>
 				</c:otherwise>
 			</c:choose>
-			<div style="text-align:right;font-size:18px;style:bold">잔액:    <fmt:formatNumber value="${money }" pattern="#,###" /> 원</div>
+			<div style="text-align:right;font-size:25px;style:bold">잔액:    <fmt:formatNumber value="${money }" pattern="#,###" /> 원</div>
 			<!-- end of table -->
 
 			<!-- div.search-box -->
