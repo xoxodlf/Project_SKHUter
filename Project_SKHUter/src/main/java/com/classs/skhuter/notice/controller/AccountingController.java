@@ -291,7 +291,13 @@ public class AccountingController {
 	 */
 	@RequestMapping(value = "/notice/accountingList/remove", method = RequestMethod.POST)
 	public String remove(@RequestParam(value = "check", required = true) List<String> checks, RedirectAttributes rttr) {
-
+		
+		for(String checksCheck : checks) {
+			if(checksCheck == null) {
+				return "redirect:/notice/accountingList";
+			}
+		}
+		
 		for (String accountingNo : checks) {
 			accountingService.remove(Integer.parseInt(accountingNo));
 		}

@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
 /* 기타 */
 /* 페이지 제목 : 공지사항 : 가운데 정렬 + 굵게 */
@@ -57,6 +58,9 @@ div.search-box input[type="search"] {
 	width: 20%;
 }
 </style>
+
+<input type="hidden" id="deletesuccess" value="${message}">
+<input type="hidden" id="createsuccess" value="${message}">
 <div class="row">
 	<div class="col-lg-12">
 		<img src="/resources/images/title/notice.png" class="page-header"
@@ -67,7 +71,7 @@ div.search-box input[type="search"] {
 	<div class="panel-body">
 		<div class="board-btns">
 			<div class="board-btn">
-				<button type="button" class="btn btn-danger">삭제</button>
+				<button type="button" class="btn btn-danger" onmouseover="throwBoardNo()">삭제</button>
 			</div>
 			<div class="board-btn">
 				<a href="/notice/noticeForm" class="btn btn-default"> 글쓰기 </a>
@@ -83,47 +87,88 @@ div.search-box input[type="search"] {
 					<col width="7%" />
 					<col width="*" />
 					<col width="15%" />
-					<col width="15%" />
 					<col width="7%" />
 				</colgroup>
 				<thead>
 					<tr>
 						<th>전체<br />
-						<input type="checkbox" /></th>
+						<input type="checkbox" id="checkall"/></th>
 						<th>No</th>
 						<th>제목</th>
-						<th>작성자</th>
 						<th>작성일</th>
 						<th>조회수</th>
 					</tr>
 				</thead>
 				<tbody>
+				<c:choose>
+						<c:when test="${empty noticeList}">
+						<td colspan="5" style="background-color: white; text-align: center; font-size: 20px;">
+						공지사항이 존재하지 않습니다
+						</td>
+						
+						
+						
+						</c:when>
+						<c:otherwise>
+						<c:forEach items="${noticeList}" var="noitceDTO">
+						<form role="form" id="deleteform"
+									action="/board/boardList/delete" method="post">
+									<input type='hidden' name='noticeNo' value="${noitceDTO.noticeNo}">
+						</form>
 					<tr>
-						<td><input type="checkbox" /></td>
-						<td>1</td>
-						<td><a href="/notice/noticeDetail">[공지] 게시글입니다</a></td>
-						<td>관리자1</td>
-						<td>2017-09-16</td>
-						<td>32</td>
+						<td><input type="checkbox"  name="check"  value="${noitceDTO.noticeNo}" /></td>
+						<td>${noitceDTO.noticeNo}</td>
+						<td><a href="/notice/noticeDetail${pageMaker.makeSearch(pageMaker.cri.page)}&noticeNo=${noitceDTO.noticeNo}">${noitceDTO.title}</a></td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${noitceDTO.regdate}" /></td>
+						<td>${noitceDTO.hitCount}</td>
 					</tr>
+					</c:forEach>
+					</c:otherwise>
+					</c:choose>
 				</tbody>
 			</table>
 			<!-- end of table -->
 
 			<!-- 검색창 -->
 			<div class="search-box">
-				<input type="search" class="form-control input-sm">
-				<button class="btn btn-default">검색</button>
+				<select name="searchType" id="searchType" class="form-control input-sm" style="display:inline; width: 9%">
+					<option value="t"
+							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
+							제목</option>
+					<option value="c"
+							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
+							내용</option>
+					<option value="tc"
+							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
+							제목 OR 내용</option>
+				</select>
+				<input type="search" class="form-control input-sm" name='keyword' 
+				id="keywordInput" value='${cri.keyword}' style="display:inline;">
+				<button class="btn btn-default" id="searchBtn">검색</button>
 			</div>
 			<!-- div.search-box -->
+			
 
 			<!-- 페이징 버튼들 -->
 			<div class="paging-box">
 				<ul class="pagination">
-					<li class="paginate_button previous disabled"><a href="#">이전</a>
-					</li>
-					<li class="paginate_button active"><a href="#">1</a></li>
-					<li class="paginate_button next"><a href="#">다음</a></li>
+
+							<c:if test="${pageMaker.prev}">
+								<li class="paginate_button previous"><a
+									href="/notice/noticeList${pageMaker.makeSearch(pageMaker.startPage - 1) }">이전</a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+								<li  class="paginate_button <c:out value="${pageMaker.cri.page == idx? 'active' :''}"/>">
+									<a href="/notice/noticeList${pageMaker.makeSearch(idx)}">${idx}</a>
+								</li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li  class="paginate_button next"><a
+									href="/notice/noticeList${pageMaker.makeSearch(pageMaker.endPage +1) }">다음</a></li>
+							</c:if>
+					
 				</ul>
 			</div>
 			<!-- div.paging-box -->
@@ -134,4 +179,89 @@ div.search-box input[type="search"] {
 	<!-- div.panel-body -->
 </div>
 <!-- div.col-lg-12 -->
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	    //최상단 체크박스 클릭
+	    $("#checkall").click(function(){
+	        //클릭되었으면
+	        if($("#checkall").prop("checked")){
+	            //input태그의 class이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+	            $("input[name=check]").prop("checked",true);
+	            //클릭이 안되있으면
+	        }else{
+	            //input태그의 class이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+	            $("input[name=check]").prop("checked",false);
+	        }
+	    })
+	})
+	
+	function throwBoardNo(){
+	var boardNo = $("#selectStatus option:selected").val();
+	$('input#boardNo').val(boardNo);
+}
+	
+	/* 글쓰기 페이지로 이동 */
+	function goboardForm() {
+		location.href = "/notice/noticeForm";
+	}
+
+	/* 삭제여부 alert 대체 모달 */
+	$('.removeBtn').on('click', (function() {
+		var link = $(this).parent().parent().parent().prev();
+		console.log('link');
+		swal({
+			title : '삭제 하시겠습니까?',
+			text : "",
+			type : 'warning',
+			showCancelButton : true,
+			confirmButtonColor : '#3085d6',
+			cancelButtonColor : '#d33',
+			confirmButtonText : 'YES',
+			cancelButtonText : 'NO'
+		}).then(function() {
+			var form = link;
+			var arr = [];
+			form.attr("action", "/notice/noticeList/delete");
+			form.submit();
+			link = '';
+		})
+	}));
+
+	/*등록 삭제 처리 완료시 뜨는 창*/
+	$(function() {
+		var message = $('#createsuccess').val();
+		if (message == 'createsuccess') {
+			swal({
+				type: 'success',
+			    title: '등록이 완료되었습니다.'
+			    })
+		}
+	});
+	$(function() {
+		var message = $('#deletesuccess').val();
+		if (message == 'deletesuccess') {
+			swal({
+				type: 'success',
+			    title: '삭제가 완료되었습니다.'
+			    })
+		}
+	});
+	
+	$(document).ready(
+			function() {
+				$('#searchBtn').on(
+						"click",
+						function(event) {
+							self.location.href = "noticeList"
+									+ '${pageMaker.makeQuery(1)}'
+									+ "&searchType="
+									+ $("#searchType option:selected").val()
+									+ "&keyword=" + $('#keywordInput').val();
+						});
+			});
+
+</script>
 

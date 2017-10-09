@@ -228,7 +228,7 @@ $(".scremoveBtn").on("click", function() {
 	}).then(function() {
 		var formObj = link;
 		var arr = [];
-		formObj.attr("action", "/council//councilSchedule/deleteSchedule");
+		formObj.attr("action", "/council/councilSchedule/deleteSchedule");
 		formObj.submit();
 		link = '';
 	})

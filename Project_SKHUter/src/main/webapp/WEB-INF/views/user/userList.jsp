@@ -124,10 +124,10 @@
 								<td>${userList.recentLogin }</td>
 								<td>
 								<c:if test="${0 eq userList.isLeave}">
-											<font color="#FF8328"> 휴학 </font>
+											<font color="#FF8328"> 재학 </font>
 								</c:if>
 								<c:if test="${1 eq userList.isLeave}">
-											<font color="#40596b"> 재학 </font>
+											<font color="#40596b"> 휴학 </font>
 										</c:if>
 								</td>
 								<td> 

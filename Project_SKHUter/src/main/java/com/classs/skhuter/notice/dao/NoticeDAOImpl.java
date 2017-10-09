@@ -33,50 +33,49 @@ public class NoticeDAOImpl implements NoticeDAO {
 
 	@Override
 	public List<NoticeDTO> listCriteria(Criteria cri) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace + ".listCriteria", cri);
 	}
 
 	@Override
 	public int countPaging(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(namespace + ".countPaging", cri);
 	}
 
 	@Override
 	public List<NoticeDTO> listSearch_t(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace + ".listSearch_t", cri);
 	}
 
 	@Override
 	public int listSearchCount_t(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(namespace + ".listSearchCount_t", cri);
 	}
 
 	@Override
 	public List<NoticeDTO> listSearch_c(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace + ".listSearch_c", cri);
 	}
 
 	@Override
 	public int listSearchCount_c(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(namespace + ".listSearchCount_c", cri);
 	}
 
 	@Override
 	public List<NoticeDTO> listSearch_tc(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace + ".listSearch_tc", cri);
 	}
 
 	@Override
 	public int listSearchCount_tc(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(namespace + ".listSearchCount_tc", cri);
 	}
 
 }
