@@ -82,4 +82,12 @@ public class NoticeController {
 		return "redirect:/notice/noticeList";
 	}
 	
+	@RequestMapping(value = "/noticeList/delete", method = RequestMethod.POST)
+	public String deleteNotice(@RequestParam(value="check", required=true) List<String> checks) throws Exception {
+		for(String check:checks) {
+			service.delete(Integer.parseInt(check));
+		}
+		return "redirect:/notice/noticeList";
+	}	
+	
 }

@@ -71,7 +71,7 @@ div.search-box input[type="search"] {
 	<div class="panel-body">
 		<div class="board-btns">
 			<div class="board-btn">
-				<button type="button" class="btn btn-danger" onmouseover="throwBoardNo()">삭제</button>
+				<button type="button" id="deletebutton" class="btn btn-danger">삭제</button>
 			</div>
 			<div class="board-btn">
 				<a href="/notice/noticeForm" class="btn btn-default"> 글쓰기 </a>
@@ -79,8 +79,9 @@ div.search-box input[type="search"] {
 		</div>
 		<!-- div.board-btns -->
 		<br />
-
+	
 		<div class="table-responsive">
+		<form role="form" id="deleteForm" action="/notice/noticeList/delete" method="post">
 			<table class="table table-hover">
 				<colgroup>
 					<col width="7%" />
@@ -100,21 +101,15 @@ div.search-box input[type="search"] {
 					</tr>
 				</thead>
 				<tbody>
+			
 				<c:choose>
 						<c:when test="${empty noticeList}">
 						<td colspan="5" style="background-color: white; text-align: center; font-size: 20px;">
 						공지사항이 존재하지 않습니다
 						</td>
-						
-						
-						
 						</c:when>
 						<c:otherwise>
 						<c:forEach items="${noticeList}" var="noitceDTO">
-						<form role="form" id="deleteform"
-									action="/board/boardList/delete" method="post">
-									<input type='hidden' name='noticeNo' value="${noitceDTO.noticeNo}">
-						</form>
 					<tr>
 						<td><input type="checkbox"  name="check"  value="${noitceDTO.noticeNo}" /></td>
 						<td>${noitceDTO.noticeNo}</td>
@@ -127,6 +122,7 @@ div.search-box input[type="search"] {
 					</c:choose>
 				</tbody>
 			</table>
+		</form>
 			<!-- end of table -->
 
 			<!-- 검색창 -->
@@ -183,7 +179,7 @@ div.search-box input[type="search"] {
 
 
 <script type="text/javascript">
-$(document).ready(function(){
+	$(document).ready(function(){
 	    //최상단 체크박스 클릭
 	    $("#checkall").click(function(){
 	        //클릭되었으면
@@ -198,20 +194,15 @@ $(document).ready(function(){
 	    })
 	})
 	
-	function throwBoardNo(){
-	var boardNo = $("#selectStatus option:selected").val();
-	$('input#boardNo').val(boardNo);
-}
-	
 	/* 글쓰기 페이지로 이동 */
 	function goboardForm() {
 		location.href = "/notice/noticeForm";
 	}
 
 	/* 삭제여부 alert 대체 모달 */
-	$('.removeBtn').on('click', (function() {
-		var link = $(this).parent().parent().parent().prev();
-		console.log('link');
+	$('#deletebutton').on('click', (function() {
+		var link = $("form#deleteForm");
+		console.log(link);
 		swal({
 			title : '삭제 하시겠습니까?',
 			text : "",
