@@ -122,11 +122,14 @@
 					</li>
 					</ul>
 					 -->
+					 <form role="form" id="updatelikehateform" method="post" action="/board/boardDetail/delete">
+					<input type='hidden' name='boardNo' id='bn' value ="${boardDTO.boardNo}">
+					<input type="hidden" id="loguserno" value="${login.userNo}">
 					<button type="button" id="likeBtn" class="btn btn-default
-					 <c:out value="${pageMaker.cri.page == idx? 'active' :''}"/>"><i class="fa fa-thumbs-o-up "></i> 좋아요 ${boardDTO.likeCount}</button>
+					 <c:out value="${pageMaker.cri.page == idx? 'active' :''}"/>"><i class="fa fa-thumbs-o-up "></i> 좋아요 </button>
 					<button type="button" id="hateBtn" class="btn btn-default
 					<c:out value="${pageMaker.cri.page == idx? 'active' :''}"/>"><i class="fa fa-thumbs-o-down"></i> 싫어요 ${boardDTO.hateCount}</button>
-					 
+					 </form>
 					</td>
 				</tr>
 				<tr>
@@ -164,90 +167,40 @@
 $('#likeBtn').on('click',(function() {
 	var likeclass=document.getElementById('likeBtn').className;
 	var hateclass=document.getElementById('hateBtn').className;
-	var select="";
 	
-	if(likeclass!='btn btn-default active'){
-		//좋아요 버튼이 눌리지 않은 상태
-		
-		if(hateclass!='btn btn-default active'){
-			select="Lplfhf";
-			//싫어요 버튼도 눌리지 않았다면
-			
-			//좋아요버튼 누르는 과정
-			//like_table에 board_no와 user_no를 보내 insert
-			//board에서 해당 board_no의 likecount를 +1
-			
-			//좋아요 버튼을 누르셨습니다.
-			//likeBtn의 클래스name을 btn btn-default active로 변경
-			document.getElementById('likeBtn').className='btn btn-default active';
-		}else{
-			select="Lplfht";
-			//싫어요 버튼이 눌려있다면
-			
-			//싫어요 버튼 취소 과정
-			//hate_table에서 board_no와 user_no를 보내 삭제
-			//board_no의 hatecount를 -1
-			
-			//좋아요버튼 누르는 과정
-			//like_table에 board_no와 user_no를 보내 insert
-			//board에서 해당 board_no의 likecount를 +1
-			
-			//좋아요 버튼을 누르셨습니다.
-			//likeBtn의 클래스name을 btn btn-default active로 변경
-			//hateBtn의 클래스name을 btn btn-default로 변경
-			document.getElementById('likeBtn').className='btn btn-default active';
-			document.getElementById('hateBtn').className='btn btn-default';
-		}
+	if(likeclass=='btn btn-default active'){
+		//좋아요 버튼이 이미 눌려있으면
+		swal({
+		    type: 'warning',
+		    title: '이미 좋아한 게시물입니다.'
+		  })
 	}else{
-		select="Lplt";
-		//좋아요 버튼이 눌린상태
+		//아무 버튼도 눌려있지 않은 상태
+		document.getElementById('hateBtn').disabled = true;
+		document.getElementById('likeBtn').className='btn btn-default active';
+		//board에서 해당 board_no의 likecount를 +1
+		//like_table에 board_no와 user_no를 보내 insert
 		
-		//좋아요 버튼 취소 과정
-		//like_table에서 board_no와 user_no를 보내 삭제
-		//board_no의 likecount를 -1
-		
-		document.getElementById('likeBtn').className='btn btn-default';
 	}
-	
 }));
 
 $('#hateBtn').on('click',(function() {
 	var likeclass=document.getElementById('likeBtn').className;
 	var hateclass=document.getElementById('hateBtn').className;
 	
-	if(hateclass!='btn btn-default active'){
-		//싫어요 버튼이 눌리지 않은 상태
-		
-		if(likeclass!='btn btn-default active'){
-			//싫어요 버튼도 눌리지 않았다면
-			
-			//like_table에 board_no와 user_no를 보내 insert
-			//board에서 해당 board_no의 likecount를 +1
-			
-			//좋아요 버튼을 누르셨습니다.
-			//likeBtn의 클래스name을 btn btn-default active로 변경
-			document.getElementById('hateBtn').className='btn btn-default active';
-		}else{
-			//싫어요 버튼이 눌려있다면
-			
-			//싫어요 버튼 취소 과정
-			//hate_table에서 board_no와 user_no를 보내 삭제
-			//board_no의 hatecount를 -1
-			
-			//좋아요버튼 누르는 과정
-			//like_table에 board_no와 user_no를 보내 insert
-			//board에서 해당 board_no의 likecount를 +1
-			
-			//좋아요 버튼을 누르셨습니다.
-			//likeBtn의 클래스name을 btn btn-default active로 변경
-			//hateBtn의 클래스name을 btn btn-default로 변경
-			document.getElementById('hateBtn').className='btn btn-default active';
-			document.getElementById('likeBtn').className='btn btn-default';
-		}
+	if(hateclass=='btn btn-default active'){
+		//싫어요 버튼이 이미 눌려있으면
+		swal({
+		    type: 'warning',
+		    title: '이미 싫어한 게시물입니다.'
+		  })
 	}else{
-		//좋아요 버튼이 눌린상태
-		document.getElementById('hateBtn').className='btn btn-default';
-	}	
+		//아무 버튼도 눌려있지 않은 상태
+		document.getElementById('likeBtn').disabled = true;
+		document.getElementById('hateBtn').className='btn btn-default active';
+		//board에서 해당 board_no의 likecount를 +1
+		//like_table에 board_no와 user_no를 보내 insert
+	}
 }));
 
 

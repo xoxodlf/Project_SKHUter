@@ -102,9 +102,8 @@ public class BoardDaoTest {
 	  }
 	  @Test
 		public void Testlike() {
-			//for(int i=201; i<=230; i++) {
 			BoardLikeDTO board = new BoardLikeDTO();
-			board.setBoardNo(244);
+			board.setBoardNo(245);
 			board.setUserNo(4);
 			dao.createlike(board);
 

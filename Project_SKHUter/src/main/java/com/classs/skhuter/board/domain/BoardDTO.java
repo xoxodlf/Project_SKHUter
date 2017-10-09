@@ -17,6 +17,7 @@ public class BoardDTO {
 	private int likeCount;
 	private int hateCount;
 	private int replyCount;
+	private int isVote;
 
 	public int getBoardNo() {
 		return boardNo;
@@ -98,6 +99,14 @@ public class BoardDTO {
 		this.replyCount = replyCount;
 	}
 
+	public int getIsVote() {
+		return isVote;
+	}
+
+	public void setIsVote(int isVote) {
+		this.isVote = isVote;
+	}
+	
 	@Override
 	public String toString() {
 		return "BoardDTO [boardNo=" + boardNo + ", userNo=" + userNo + ", title=" + title + ", regdate=" + regdate

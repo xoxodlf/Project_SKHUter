@@ -19,6 +19,7 @@ import com.classs.skhuter.board.domain.BoardDTO;
 import com.classs.skhuter.board.domain.BoardLikeDTO;
 import com.classs.skhuter.board.service.BoardService;
 import com.classs.skhuter.notice.domain.VoteDTO;
+import com.classs.skhuter.notice.domain.VoteListDTO;
 import com.classs.skhuter.util.Criteria;
 import com.classs.skhuter.util.PageMaker;
 
@@ -54,22 +55,28 @@ public class BoardController {
 
 	/** 게시글 불러오기 **/
 	@RequestMapping(value = "/boardDetail", method = RequestMethod.GET)
-	public String read(@RequestParam("boardNo") int boardNo, @ModelAttribute("cri") Criteria cri, Model model)
+	public String read(@RequestParam("userNo") int userNo, @RequestParam("boardNo") int boardNo, @ModelAttribute("cri") Criteria cri, Model model)
 			throws Exception {
+		
+		List<BoardLikeDTO> list=service.LikeCountlistAll(boardNo);
+		int likeCount=0, islike=0;
+		BoardDTO tmp = new BoardDTO();
+		tmp.setBoardNo(boardNo);
+		tmp.setUserNo(userNo);
+		for (BoardLikeDTO board : list) {
+		logger.info(board.toString());
+		//islike=service.isLike(tmp);
+		//likeCount=service.countLike(boardNo);
+		}
+		//logger.info(Integer.toString(islike));
+		logger.info(Integer.toString(likeCount));
+		
 		model.addAttribute(cri);
 		model.addAttribute(service.read(boardNo));
 		
-		List<BoardLikeDTO> list=service.LikeCountlistAll(boardNo);
-		
-		//BoardDTO tmp = new BoardDTO();
-
-		for (BoardLikeDTO board : list) {
-		logger.info(board.toString());
-		}
-		
 		return "board/boardDetail.lay";
 	}
-
+	
 	/** 게시글 삭제하기 **/
 	@RequestMapping(value = "boardDetail/delete", method = RequestMethod.POST)
 	public String remove(@RequestParam("boardNo") int boardNo, Criteria cri, RedirectAttributes rttr) throws Exception {
@@ -90,6 +97,7 @@ public class BoardController {
 	public String listPage(@ModelAttribute("cri") Criteria cri, Model model) throws Exception {
 
 		List<BoardDTO> list;
+		
 		if(cri.getSearchType()!=null) {
 		if(cri.getSearchType().equals("t")) {
 			list = service.listSearch_t(cri);
@@ -101,13 +109,17 @@ public class BoardController {
 		}
 		}else list = service.listCriteria(cri);
 
+		
 		BoardDTO tmp = new BoardDTO();
-
 		for (BoardDTO board : list) {
 			tmp.setBoardNo(board.getBoardNo());
+			//댓글수
 			int replyCount = service.countReply(tmp);
 			board.setReplyCount(replyCount);
-			//logger.info(board.toString());
+			//좋아요 갯수
+			int likeCount=service.countLike(tmp);
+			board.setLikeCount(likeCount);
+			logger.info(board.toString());
 		}
 
 		model.addAttribute("boardList", list);
@@ -125,6 +137,34 @@ public class BoardController {
 		return "board/boardList.lay";
 
 	}
+	
+	 /**
+	  * 좋아요했을 때 좋아요 수 올리기
+	 
+	@RequestMapping(value="/boardList/uplikeCount", method = RequestMethod.POST)
+	public String doVote(VoteDTO upVote,RedirectAttributes rttr) {
+		
+		logger.info(upVote.toString());
+		service.upVote(upVote);
+		VoteListDTO doVote = new VoteListDTO();
+		
+		doVote.setVoteNo(upVote.getVoteNo());
+		doVote.setUserNo(upVote.getUserNo());
+		doVote.setSelectItem("투표했다이사람");
+		
+		service.doVote(doVote);
+		
+		logger.info(doVote.toString());
+		rttr.addFlashAttribute("message", "success");
+		
+		return "redirect:/notice/voteList";	
+	}
+	
+	uplike
+	
+	 */
+	
+	
 	
 	/**
 	 * (모바일 웹)게시판 리스트 구현 페이징 기능 검색 기능
