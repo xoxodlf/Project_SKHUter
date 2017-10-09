@@ -53,7 +53,7 @@ div.col-lg-12 {
 								<c:forEach items="${scheduleList}" var="schedule">
 <%-- 								<input type="hidden" id="endDate" value="<fmt: formatDate pattern="yyyy" value="${scheduleList.endDate }"/>"/> --%>
 								<form role="form" id="deleteform" method="post" action="/councilSchedule/deleteSchedule">
-    								<input type='hidden' name='councilScheduleNo' value ="${schedule.schoolScheduleNo}">
+    								<input type='hidden' name='schoolScheduleNo' value ="${schedule.schoolScheduleNo}">
     							</form>
     							<!-- 진행중인 공지를 판단하는 연산. -->
 								<c:if test="${schedule.startDate <= nextMonth && ((schedule.startDate >= thisMonth && schedule.startDate < nextMonth) ||
