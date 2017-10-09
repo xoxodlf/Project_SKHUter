@@ -70,7 +70,7 @@
 					<div class="col-xs-6 col-sm-6 ">
 						<div class="form-group">
                             <button id="fileBtn" class="btn btn-primary" style="background-color:#40596b; margin:-4px 2px; border:#354555; width:35%">파일 선택</button>
-                     		<input type="file" class="fileSelect" style="display:none;" id="fileSelect" name="file" style="width: 100%" accept="">
+                     		<input type="file" class="fileSelect" style="display:none;" id="fileSelect" name="file" style="width: 100%" accept=".txt, .hwp, .doc, .pptx">
                             <input type="hidden" id="uuidName" name="uuidName">
                            	<input type="hidden" id="originName" name="originName">
                            	<input type="hidden"  id="displayName"  name="displayName">
@@ -228,7 +228,7 @@ $(function() {
 	   
 	   /** 파일의 확장자가 존재하는지 검사 */
 	   function checkImageType(fileName) {
-		  var pattern = /jpg|gif|png|jpeg/i;   // i는 대소문자 구분 없음을 의미
+		  var pattern = /text|doc|hwp|ppt/i;   // i는 대소문자 구분 없음을 의미
 	      
 	      return fileName.match(pattern);
 	   }
