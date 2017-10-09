@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.classs.skhuter.board.dao.BoardDAO;
 import com.classs.skhuter.board.domain.BoardDTO;
+import com.classs.skhuter.board.domain.BoardLikeDTO;
 import com.classs.skhuter.util.Criteria;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -99,6 +100,17 @@ public class BoardDaoTest {
 
 	    logger.info("COUNT: " + dao.listSearchCount_tc(cri));
 	  }
-	  
+	  @Test
+		public void Testlike() {
+			//for(int i=201; i<=230; i++) {
+			BoardLikeDTO board = new BoardLikeDTO();
+			board.setBoardNo(244);
+			board.setUserNo(4);
+			dao.createlike(board);
+
+			logger.info("좋아요 등록 완료~~~~");
+			logger.info(board.toString());
+			//}
+		}
 	  
 }

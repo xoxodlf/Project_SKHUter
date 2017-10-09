@@ -247,10 +247,6 @@ div.search-box input[type="search"] {
 									</td> -->
 									<td>${boardDTO.boardNo}</td>
 									<td></td>
-									<!--<td><a
-										href="/board/boardDetail?page=${pageMaker.cri.page}&${pageMaker.cri.perPageNum}&boardNo=${boardDTO.boardNo}">${boardDTO.title}
-										<span style="display:inline;">　[${boardDTO.replyCount}]</span> </a></td>
-									 /board/boardList${pageMaker.makeSearch(idx)}-->
 									 <td><a
 										href="/board/boardDetail${pageMaker.makeSearch(pageMaker.cri.page)}&boardNo=${boardDTO.boardNo}">${boardDTO.title}
 										<span style="display:inline;">　[${boardDTO.replyCount}]</span> </a></td>
@@ -279,15 +275,13 @@ div.search-box input[type="search"] {
 					<option value="tc"
 							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
 							제목 OR 내용</option>
-				</select> 
-				<!-- <input type="text" name='keyword' id="keywordInput" value='${cri.keyword}'>
-				-->
+				</select>
 				<input type="search" class="form-control input-sm" name='keyword' 
 				id="keywordInput" value='${cri.keyword}' style="display:inline;">
 				<button class="btn btn-default" id="searchBtn">검색</button>
 			</div>
 			<!-- div.search-box -->
-
+			
 
 			<!-- 페이징 버튼들 -->
 			<div class="paging-box">
@@ -320,4 +314,3 @@ div.search-box input[type="search"] {
 	<!-- div.panel-body -->
 </div>
 <!-- div.col-lg-12 -->
-</form>

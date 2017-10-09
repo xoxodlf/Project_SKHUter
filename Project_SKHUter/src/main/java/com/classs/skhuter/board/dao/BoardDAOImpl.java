@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import com.classs.skhuter.board.domain.BoardDTO;
+import com.classs.skhuter.board.domain.BoardLikeDTO;
 import com.classs.skhuter.util.Criteria;
 
 /**
@@ -124,4 +125,18 @@ public class BoardDAOImpl implements BoardDAO {
 	    return sqlSession.selectOne(namespace + ".listSearchCount_tc", cri);
 	  }
 
+	  /** **/
+	@Override
+	public List<BoardLikeDTO> LikeCountlistAll(int boardNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + ".LikeCountlistAll", boardNo);
+	}
+
+	
+	/** 좋아요 등록 **/
+	@Override
+	public void createlike(BoardLikeDTO board) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(namespace + ".createlike", board);
+	}
 }
