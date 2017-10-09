@@ -222,18 +222,7 @@ $(document).ready(function(){
 	    			link = '';
 	            })
 		}));
-	
-// 	$(".pagination li a").on("click",function(event){
-// 		event.preventDefault();
-		
-// 		var targetPage = $("#stPage").val();
-// // 		alert(targetPage);
-		
-		
-// 		var jobForm = $("#jobForm");
-// 		jobForm.attr("action","/notice/accountingList").attr("method","get");
-// 		jobForm.submit();
-// 	})
+
    function getFileInfo(fullName) {
       var fileName, imgsrc, getLink;
       
@@ -243,8 +232,8 @@ $(document).ready(function(){
          imgsrc = "/displayFile?fileName=" + fullName;
          fileLink = fullName.substr(7);
          
-         var front = fileName.substr(0, 5);   // /asc 경로 추출
-         var end = fileName.substr(7);    // s_ 제거
+         var front = fileName.substr(0, 9);   // /asc 경로 추출
+         var end = fileName.substr(11);    // s_ 제거
          
          getLink = "/displayFile?fileName=" + front + end;
       } else {
