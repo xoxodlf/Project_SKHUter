@@ -1,5 +1,7 @@
 package com.classs.skhuter.notice.domain;
 
+import java.util.Date;
+
 /**
  * 회계 내역 관련 객체 선언 및 getter(), setter() 메소드 정의
  * 

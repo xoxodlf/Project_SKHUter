@@ -24,7 +24,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,13 +31,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.classs.skhuter.council.domain.MeetingNoteDTO;
 import com.classs.skhuter.notice.domain.AccountingDTO;
 import com.classs.skhuter.notice.service.AccountingService;
 import com.classs.skhuter.user.domain.UserDTO;
 import com.classs.skhuter.util.Criteria;
 import com.classs.skhuter.util.MediaUtils;
-import com.classs.skhuter.util.PageMaker;
 import com.classs.skhuter.util.UploadFileUtils;
 
 @Controller
@@ -53,78 +50,78 @@ public class AccountingController {
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 
-//	@RequestMapping(value = "/notice/accountingList", method = RequestMethod.GET)
-//	public String accountingList(Model model) {
-//		logger.info("여기는 회계내역 페이지!!!");
-//
-//		int i = 0;
-//		int Money = 0;
-//
-//		List<AccountingDTO> accountingList = accountingService.listAll();
-//
-//		for (int listsize = accountingList.size(); i < listsize; i++) {
-//			if (accountingList.get(i).getStatus() == 0) {
-//				Money += accountingList.get(i).getPrice();
-//			} else {
-//				Money -= accountingList.get(i).getPrice();
-//			}
-//		}
-//
-//		model.addAttribute("money", Money);
-//		model.addAttribute("list", accountingList);
-//
-//		return "notice/accountingList.lay";
-//	}
-
-	/**
-	 * 
-	 * 회계내역 리스트 페이징
-	 * 
-	 * 
-	 */
 	@RequestMapping(value = "/notice/accountingList", method = RequestMethod.GET)
-	public String listCriteria(Model model, String page) throws Exception {
-		logger.info(cri.toString());
-		
-		if (page == null) {
-			page = "1";
-			cri.setPage(Integer.parseInt(page));
-		}
+	public String accountingList(Model model) {
+		logger.info("여기는 회계내역 페이지!!!");
 
 		int i = 0;
 		int Money = 0;
 
-		List<AccountingDTO> accountingList = accountingService.listCriteria(cri);
-		List<AccountingDTO> accountingMoney = accountingService.listAll();
+		List<AccountingDTO> accountingList = accountingService.listAll();
 
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-
-		pageMaker.setTotalCount(accountingService.ListCountCriteria(cri));
-
-		for (int listsize = accountingMoney.size(); i < listsize; i++) {
-			if (accountingMoney.get(i).getStatus() == 0) {
-				Money += accountingMoney.get(i).getPrice();
+		for (int listsize = accountingList.size(); i < listsize; i++) {
+			if (accountingList.get(i).getStatus() == 0) {
+				Money += accountingList.get(i).getPrice();
 			} else {
-				Money -= accountingMoney.get(i).getPrice();
+				Money -= accountingList.get(i).getPrice();
 			}
 		}
 
 		model.addAttribute("money", Money);
 		model.addAttribute("list", accountingList);
-		model.addAttribute("pageMaker", pageMaker);
-		
+
 		return "notice/accountingList.lay";
 	}
-	
-	@RequestMapping(value = "/notice/accountingList/setPageNum", method = RequestMethod.GET)
-	public String setPageNum(int page,int perPageNum,RedirectAttributes rttr) {
-		
-		cri.setPage(page+1);
-		cri.setPerPageNum(perPageNum);
-		
-		return "redirect:/notice/accountingList";
-	}
+
+//	/**
+//	 * 
+//	 * 회계내역 리스트 페이징
+//	 * 
+//	 * 
+//	 */
+//	@RequestMapping(value = "/notice/accountingList", method = RequestMethod.GET)
+//	public String listCriteria(Model model, String page) throws Exception {
+//		logger.info(cri.toString());
+//		
+//		if (page == null) {
+//			page = "1";
+//			cri.setPage(Integer.parseInt(page));
+//		}
+//
+//		int i = 0;
+//		int Money = 0;
+//
+//		List<AccountingDTO> accountingList = accountingService.listCriteria(cri);
+//		List<AccountingDTO> accountingMoney = accountingService.listAll();
+//
+//		PageMaker pageMaker = new PageMaker();
+//		pageMaker.setCri(cri);
+//
+//		pageMaker.setTotalCount(accountingService.ListCountCriteria(cri));
+//
+//		for (int listsize = accountingMoney.size(); i < listsize; i++) {
+//			if (accountingMoney.get(i).getStatus() == 0) {
+//				Money += accountingMoney.get(i).getPrice();
+//			} else {
+//				Money -= accountingMoney.get(i).getPrice();
+//			}
+//		}
+//
+//		model.addAttribute("money", Money);
+//		model.addAttribute("list", accountingList);
+//		model.addAttribute("pageMaker", pageMaker);
+//		
+//		return "notice/accountingList.lay";
+//	}
+//	
+//	@RequestMapping(value = "/notice/accountingList/setPageNum", method = RequestMethod.GET)
+//	public String setPageNum(int page,int perPageNum,RedirectAttributes rttr) {
+//		
+//		cri.setPage(page+1);
+//		cri.setPerPageNum(perPageNum);
+//		
+//		return "redirect:/notice/accountingList";
+//	}
 
 	/**
 	 * 회계내역 등록

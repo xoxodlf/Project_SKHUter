@@ -70,10 +70,10 @@ div.search-box input[type="search"] {
 </div>
 <div class="col-lg-12">
 	<div class="panel-body">
-		<form id="jobForm" action="/notice/accountingList/setPageNum">
-				<input type='hidden' name="page" id="page" value="${pageMaker.cri.page}">
-				<input type='hidden' name="perPageNum" id="perPageNum" value="${pageMaker.cri.perPageNum}">
-		</form>
+<!-- 		<form id="jobForm" action="/notice/accountingList/setPageNum"> -->
+<%-- 				<input type='hidden' name="page" id="page" value="${pageMaker.cri.page}"> --%>
+<%-- 				<input type='hidden' name="perPageNum" id="perPageNum" value="${pageMaker.cri.perPageNum}"> --%>
+<!-- 		</form> -->
 		<c:if test="${login.status>=2}">
 		<div class="board-btns">
 			<!-- 삭제 버튼 -->
@@ -153,7 +153,7 @@ div.search-box input[type="search"] {
 											<td style="color: BLUE">+${AccountingDTO.price } </td>
 										</c:otherwise>
 									</c:choose>
-									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${AccountingDTO.accountDate}" /></td>
+									<td>${AccountingDTO.accountDate}</td>
 									<td><a href="/resources/upload${AccountingDTO.uuidName }" rel="lightbox" data-lightbox="image-${status.index}">${AccountingDTO.fileName }</a></td>
 								</tr>
 							</tbody>
@@ -178,21 +178,21 @@ div.search-box input[type="search"] {
 <!-- 			</div> -->
 		</div>
 	</form>
-			<div class = "text-center">
-					<ul class="pagination">
-						<c:if test="${pageMaker.prev }">
-							<li><a href="/notice/accountingList?page=${pageMaker.startPage - 1 }">&laquo;</a></li>
-						</c:if>
-						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
-							<li <c:out value="${pageMaker.cri.page == idx?'class = active':'' }"/>>
-								<a href="/notice/accountingList/listNo?idx=${idx}">${idx}</a>
-							</li>
-						</c:forEach>
-						<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
-							<li><a href="/notice/accountingList?page=${pageMaker.endPage+1 }">&raquo;</a></li>
-						</c:if>
-					</ul>
-			</div>
+<!-- 			<div class = "text-center"> -->
+<!-- 					<ul class="pagination"> -->
+<%-- 						<c:if test="${pageMaker.prev }"> --%>
+<%-- 							<li><a href="/notice/accountingList?page=${pageMaker.startPage - 1 }">&laquo;</a></li> --%>
+<%-- 						</c:if> --%>
+<%-- 						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx"> --%>
+<%-- 							<li <c:out value="${pageMaker.cri.page == idx?'class = active':'' }"/>> --%>
+<%-- 								<a href="/notice/accountingList/listNo?idx=${idx}">${idx}</a> --%>
+<!-- 							</li> -->
+<%-- 						</c:forEach> --%>
+<%-- 						<c:if test="${pageMaker.next && pageMaker.endPage > 0 }"> --%>
+<%-- 							<li><a href="/notice/accountingList?page=${pageMaker.endPage+1 }">&raquo;</a></li> --%>
+<%-- 						</c:if> --%>
+<!-- 					</ul> -->
+<!-- 			</div> -->
 			<!-- div.paging-box -->
 		</div>
 		<!-- div.table-responsive -->

@@ -87,18 +87,18 @@
 							<div class="clearfix"></div>
 						</div>
 						
-<!-- 						<div class="form-group"> -->
-<!-- 							<div class="col-xs-3 col-sm-3 text-center"> -->
-<!-- 								<label for="id" class="regist_label">사용 날짜</label> -->
-<!-- 							</div> -->
-<!-- 							<div class="col-xs-6 col-sm-6"> -->
-<!-- 								<div class="form-group" style="display: inline-block; width: 350px;"> -->
-<!--                   					<input type="date" id="sinputdate" class="form-control onlyNumber" style="display: inline-block; width: 45%;"> -->
-<!--         							<input type="hidden" id="accountDate" name="accountDate"> -->
-<!--         						</div> -->
-<!--         					</div> -->
-<!-- 							<div class="clearfix"></div> -->
-<!-- 						</div> -->
+						<div class="form-group">
+							<div class="col-xs-3 col-sm-3 text-center">
+								<label for="id" class="regist_label">사용 날짜</label>
+							</div>
+							<div class="col-xs-6 col-sm-6">
+								<div class="form-group" style="display: inline-block; width: 350px;">
+                  					<input type="date" id="sinputdate" class="form-control onlyNumber" style="display: inline-block; width: 45%;">
+        							<input type="hidden" id="accountDate" name="accountDate">
+        						</div>
+        					</div>
+							<div class="clearfix"></div>
+						</div>
 						
 						<div class="row">
                   			<div class="col-xs-2 col-xs-offset-1"></div>
@@ -133,7 +133,7 @@
 				<div class="modal-footer">
 			<div class="row">
 				<div class="col-xs-2 col-xs-offset-4">
-					<button type="submit" class="btn btn-warning" style="width: 100%; font-size: 15px; font-weight: bold;">등록</button>
+					<button type="submit" class="btn btn-warning" style="width: 100%; font-size: 15px; font-weight: bold;" onmouseover="throwDate()">등록</button>
 				</div>
 				<div class="col-xs-2">
 					<button type="button" id="cancelBtn" class="btn btn-default" data-dismiss="modal" style="width: 100%; font-size: 15px; font-weight: bold; background-color: #40596b; color: #ffffff;">취소</button>
@@ -147,13 +147,13 @@
 
 <script>
 
-// function throwDate(){
-//      var write =new Date();   //시작날짜
-//      write = document.getElementById("sinputdate");
-// 	 $('#accountDate').val(write);
+function throwDate(){
+     var write =new Date();   //시작날짜
+     write = $('#sinputdate').val();
+	 $('#accountDate').val(write);
 	 
-// 	 console.log(write);
-// }
+	 console.log(write);
+}
 
 /** 파일선택 CSS*/
 $("#fileBtn").on('click', function(){

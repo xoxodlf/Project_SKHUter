@@ -93,7 +93,7 @@
 		(account_no, user_no,
 		account_date, content, status, price, file_name, uuid_name)
 		VALUES
-		(seq_Accounting.nextVal,#{userNo},sysdate,#{content},#{status},#{price},#{fileName},#{uuidName})
+		(seq_Accounting.nextVal,#{userNo},TO_DATE(#{accountDate},'yyyy-MM-dd'),#{content},#{status},#{price},#{fileName},#{uuidName})
 	</insert>
 
 	<!-- 회계 내역 삭제 -->
@@ -104,7 +104,7 @@
 
 	<!-- 	회계 내역 전체 조회 -->
 	<select id="accountingListAll" resultType="Accounting">
-		SELECT account_no as accountNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName
+		SELECT account_no as accountNo, user_no as userNo, TO_CHAR(account_date,'yyyy-MM-dd') as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName
 		FROM Accounting
 		order by account_no desc, account_date desc
 	</select>
