@@ -114,7 +114,7 @@
 						<tbody>
 							<tr>
 								<td><input type="checkbox" name="check" value="${userList.userNo }" /></td>
-								<td>${userList.userNo }</td>
+								<td>${size - status.index }</td>
 								<td>${userList.id}</td>
 								<td>${userList.grade}</td>
 								<td>${userList.name }</td>

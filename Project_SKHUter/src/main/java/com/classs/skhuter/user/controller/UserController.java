@@ -49,11 +49,20 @@ public class UserController {
 
 	UserDTO user;
 
+	/**
+	 * 회원 목록 뿌려주기
+	 *
+	 * @Method Name : getUserList
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/userList", method = RequestMethod.GET)
 	public String getUserList(Model model) {
 		List<UserDTO> userList = service.UserListAll();
+		int count = userList.size();
 		
 		model.addAttribute("list", userList);
+		model.addAttribute("size", count);
 		
 		return "user/userList.lay";
 	}
