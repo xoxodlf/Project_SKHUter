@@ -131,9 +131,9 @@ div.search-box input[type="search"] {
 							<tbody>
 								<tr>
 									<c:if test="${login.status>=2}">
-									<td><input type="checkbox" name="check" value="${AccountingDTO.accountNo }"/></td>
+									<td><input type="checkbox" name="check" id="check" value="${AccountingDTO.accountNo }"/></td>
 									</c:if>
-									<td>${AccountingDTO.accountNo }</td>
+									<td>${size - status.index}</td>
 									<td>${AccountingDTO.content }</td>
 									
 									<!-- 현재 루프가 처음이라면 잔액 계산을 위해 초기값 저장 -->

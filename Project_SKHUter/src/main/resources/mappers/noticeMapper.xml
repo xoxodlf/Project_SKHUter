@@ -108,7 +108,7 @@
 	<select id="accountingListAll" resultType="Accounting">
 		SELECT account_no as accountNo, user_no as userNo, TO_CHAR(account_date,'yyyy-MM-dd') as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName
 		FROM Accounting
-		order by account_date desc
+		order by account_date desc, account_no desc
 	</select>
 
 	<select id="accountingListPage" resultType="Accounting">
@@ -133,7 +133,7 @@ SELECT rownum rn, accountNo, userNo, accountDate, content, status, price, fileNa
     account_no as accountNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName
 		FROM 
 			Accounting
-      order by accountDate desc
+      order by accountDate desc, accountNo desc
       )
       order by rownum asc
       )
