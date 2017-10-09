@@ -68,6 +68,7 @@ div.board-btn button {
 <body>
 <input type="hidden" id="deletesuccess" value="${message}">
 <input type="hidden" id="createsuccess" value="${message}">
+
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
@@ -96,10 +97,11 @@ div.board-btn button {
                         <c:forEach items="${doingVoteList}" var="vote">
                         <form role="form" id="deleteform" method="post" action="/notice/vote/delete">
     							<input type='hidden' name='voteNo' value ="${vote.voteNo}"> 
-    					</form>   
+    					</form>  
                         	<div class="alert alert-warning ">
+      
                         	<c:if test="${vote.isVote==0}">
-                           		<a href="javascript:showModal('${vote.title}','${vote.item1}','${vote.item2}','${vote.item3}','${vote.item4}','${vote.item5}','${vote.item6}','${vote.voteNo}','${vote.content}','${vote.item1Count}','${vote.item2Count}','${vote.item3Count}','${vote.item4Count}','${vote.item5Count}','${vote.item6Count}');">${vote.title}</a>
+                           		<a href="javascript:showModal('${vote.title}','${vote.item1}','${vote.item2}','${vote.item3}','${vote.item4}','${vote.item5}','${vote.item6}','${vote.voteNo}','${vote.content}','${vote.item1Count}','${vote.item2Count}','${vote.item3Count}','${vote.item4Count}','${vote.item5Count}','${vote.item6Count}','${vote.startDate}');">${vote.title}</a>
                         	</c:if>
                         	<c:if test="${vote.isVote>0}">
                            		<a href="javascript:didVote();">${vote.title}</a>
@@ -188,6 +190,7 @@ div.board-btn button {
 			     		)
 			}
 			});
+		
 		function didVote(){
 			 swal({
 	               title: '이미 참여한 투표입니다.',
@@ -199,7 +202,25 @@ div.board-btn button {
 	            });
 		}
 	
-		function showModal(title,item1,item2,item3,item4,item5,item6,voteNo,content,item1Count,item2Count,item3Count,item4Count,item5Count,item6Count) {
+		function showModal(title,item1,item2,item3,item4,item5,item6,voteNo,content,item1Count,item2Count,item3Count,item4Count,item5Count,item6Count,startDate) {
+			var now = new Date();
+	        console.log('now');
+	        var year= now.getFullYear();
+	        var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
+	        var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
+	        var hours = now.getHours()>9 ?''+now.getHours():'0'+now.getHours();
+	        var min = now.getMinutes();
+	        var current_date = year + '-' + mon + '-' + day+' '+hours+':'+min;
+			if(startDate>current_date){
+				swal({
+		               title: '투표가 아직 시작하지 않았습니다.',
+		               text: "",
+		               type: 'warning',
+		               confirmButtonColor: '#3085d6',
+		               confirmButtonText: '확인',
+		              
+		            });
+			}else{
 			$('div#doVoteModal').modal();
 			$('label#title').text(title);
 			$('label#item1').text(item1);
@@ -242,6 +263,7 @@ div.board-btn button {
 			$('input#item4Count').val(item4Count);
 			$('input#item5Count').val(item5Count);
 			$('input#item6Count').val(item6Count);
+			}
 		}
 		
 		
