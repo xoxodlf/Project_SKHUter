@@ -73,8 +73,6 @@ public class AccountingController {
 			String realName = front + end;
 			
 			listFileName[i] = realName;
-			
-			System.out.println(listFileName[i]);
 		}
 		
 		i = 0;
@@ -104,55 +102,6 @@ public class AccountingController {
 		return "notice/accountingList.lay";
 	}
 
-//	/**
-//	 * 
-//	 * 회계내역 리스트 페이징
-//	 * 
-//	 * 
-//	 */
-//	@RequestMapping(value = "/notice/accountingList", method = RequestMethod.GET)
-//	public String listCriteria(Model model, String page) throws Exception {
-//		logger.info(cri.toString());
-//		
-//		if (page == null) {
-//			page = "1";
-//			cri.setPage(Integer.parseInt(page));
-//		}
-//
-//		int i = 0;
-//		int Money = 0;
-//
-//		List<AccountingDTO> accountingList = accountingService.listCriteria(cri);
-//		List<AccountingDTO> accountingMoney = accountingService.listAll();
-//
-//		PageMaker pageMaker = new PageMaker();
-//		pageMaker.setCri(cri);
-//
-//		pageMaker.setTotalCount(accountingService.ListCountCriteria(cri));
-//
-//		for (int listsize = accountingMoney.size(); i < listsize; i++) {
-//			if (accountingMoney.get(i).getStatus() == 0) {
-//				Money += accountingMoney.get(i).getPrice();
-//			} else {
-//				Money -= accountingMoney.get(i).getPrice();
-//			}
-//		}
-//
-//		model.addAttribute("money", Money);
-//		model.addAttribute("list", accountingList);
-//		model.addAttribute("pageMaker", pageMaker);
-//		
-//		return "notice/accountingList.lay";
-//	}
-//	
-//	@RequestMapping(value = "/notice/accountingList/setPageNum", method = RequestMethod.GET)
-//	public String setPageNum(int page,int perPageNum,RedirectAttributes rttr) {
-//		
-//		cri.setPage(page+1);
-//		cri.setPerPageNum(perPageNum);
-//		
-//		return "redirect:/notice/accountingList";
-//	}
 
 	/**
 	 * 회계내역 등록
@@ -172,6 +121,7 @@ public class AccountingController {
 	@RequestMapping(value = "/notice/accountingList/accountingRegist", method = RequestMethod.POST)
 	public String accountingRegist(@RequestParam("file") MultipartFile file, RedirectAttributes rttr,
 			AccountingDTO accounting) {
+		logger.info("이름:  "+file.getName());
 		accounting.setFileName(file.getOriginalFilename());
 
 		System.out.println("satus: " + accounting.getStatus());
