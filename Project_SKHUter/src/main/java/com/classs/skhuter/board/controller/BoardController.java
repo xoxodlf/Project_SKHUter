@@ -141,10 +141,17 @@ public class BoardController {
 	 /**
 	  * 좋아요했을 때 좋아요 수 올리기
 	 
-	@RequestMapping(value="/boardList/uplikeCount", method = RequestMethod.POST)
-	public String doVote(VoteDTO upVote,RedirectAttributes rttr) {
+	uplike
+	
+	 */
+	@RequestMapping(value="/boardDetail/uplikeCount", method = RequestMethod.POST)
+	public String uplikeCount(@RequestParam("userNo") int userNo, @RequestParam("boardNo") int boardNo, RedirectAttributes rttr) {
+		BoardDTO board=new BoardDTO();
 		
-		logger.info(upVote.toString());
+		board.setBoardNo(boardNo);
+		board.setUserNo(userNo);
+		logger.info(board.toString());
+		/*
 		service.upVote(upVote);
 		VoteListDTO doVote = new VoteListDTO();
 		
@@ -156,15 +163,10 @@ public class BoardController {
 		
 		logger.info(doVote.toString());
 		rttr.addFlashAttribute("message", "success");
-		
-		return "redirect:/notice/voteList";	
+		*/
+		return "redirect:/board/boardDetail";	
 	}
-	
-	uplike
-	
-	 */
-	
-	
+
 	
 	/**
 	 * (모바일 웹)게시판 리스트 구현 페이징 기능 검색 기능

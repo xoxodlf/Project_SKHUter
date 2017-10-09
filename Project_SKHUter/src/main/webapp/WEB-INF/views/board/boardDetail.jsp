@@ -111,25 +111,14 @@
 				</tr>
 				<tr>
 					<td colspan="8" style="text-align: center;" >
-					
-					<!-- 
-					<ul class="pagination">
-					<li  class="paginate_button" onclick="change();">
-						<a href="#"><i class="fa fa-thumbs-o-up"></i>좋아요</a>
-					</li>
-					<li  class="paginate_button active" onclick="change();">
-						<a href="#"><i class="fa fa-thumbs-o-down"></i>싫어요</a>
-					</li>
-					</ul>
-					 -->
-					 <form role="form" id="updatelikehateform" method="post" action="/board/boardDetail/delete">
-					<input type='hidden' name='boardNo' id='bn' value ="${boardDTO.boardNo}">
-					<input type="hidden" id="loguserno" value="${login.userNo}">
-					<button type="button" id="likeBtn" class="btn btn-default
-					 <c:out value="${pageMaker.cri.page == idx? 'active' :''}"/>"><i class="fa fa-thumbs-o-up "></i> 좋아요 </button>
-					<button type="button" id="hateBtn" class="btn btn-default
-					<c:out value="${pageMaker.cri.page == idx? 'active' :''}"/>"><i class="fa fa-thumbs-o-down"></i> 싫어요 ${boardDTO.hateCount}</button>
-					 </form>
+					 <form role="form" id="updatelikehateform" method="post" action="/board/boardDetail/uplikecount">
+						<input type='hidden' name='boardNo' id='bn' value ="${boardDTO.boardNo}">
+						<input type="hidden" name='userNo' id="loguserno" value="${login.userNo}">
+						<button type="button" id="likeBtn" class="btn btn-default
+							 <c:out value="${pageMaker.cri.page == idx? 'active' :''}"/>"><i class="fa fa-thumbs-o-up "></i> 좋아요 </button>
+						<button type="button" id="hateBtn" class="btn btn-default
+							<c:out value="${pageMaker.cri.page == idx? 'active' :''}"/>"><i class="fa fa-thumbs-o-down"></i> 싫어요 ${boardDTO.hateCount}</button>
+						 </form>
 					</td>
 				</tr>
 				<tr>
@@ -180,6 +169,12 @@ $('#likeBtn').on('click',(function() {
 		document.getElementById('likeBtn').className='btn btn-default active';
 		//board에서 해당 board_no의 likecount를 +1
 		//like_table에 board_no와 user_no를 보내 insert
+		var formObj = $('#updatelikehateform');
+		console.log(formObj);
+		formObj.attr("action", "/board/boardDetail/uplikeCount");
+		formObj.attr("method", "POST");		
+		formObj.submit();
+		link = '';
 		
 	}
 }));
