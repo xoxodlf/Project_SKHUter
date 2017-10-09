@@ -28,9 +28,9 @@ $(document).ready(function() {
     });
 });
 
-$('.listBtn').on('click',(function() {
-	location.href = "/board/boardList";
-}));
+function goList() { 
+	location.href = "/notice/noticeList";
+}
     
 </script>
 <style>
@@ -101,7 +101,7 @@ $('.listBtn').on('click',(function() {
 		<button type="submit" onmouseover="contentsend()" class="btn btn-default">글등록</button>
 	</div>
 	<div class="board-btn">
-		<button type="button" class="btn btn-default listBtn">목록</button>
+		<button type="button" id="listBtn" class="btn btn-default listBtn" onclick="goList()">목록</button>
 	</div>
 	</div>
 	<!-- div.board-btns -->

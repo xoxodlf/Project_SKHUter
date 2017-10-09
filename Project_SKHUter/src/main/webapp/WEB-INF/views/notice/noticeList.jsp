@@ -81,7 +81,7 @@ div.search-box input[type="search"] {
 		<br />
 	
 		<div class="table-responsive">
-		<form role="form" id="deleteForm" action="/notice/noticeList/delete" method="post">
+		<form role="form" id="deleteForm" action="/notice/noticeList/deleteList" method="post">
 			<table class="table table-hover">
 				<colgroup>
 					<col width="7%" />
@@ -215,7 +215,7 @@ div.search-box input[type="search"] {
 		}).then(function() {
 			var form = link;
 			var arr = [];
-			form.attr("action", "/notice/noticeList/delete");
+			form.attr("action", "/notice/noticeList/deleteList");
 			form.submit();
 			link = '';
 		})
