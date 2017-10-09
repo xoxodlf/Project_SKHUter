@@ -266,4 +266,39 @@ $(function(){
 	     		)
 	}
 	});
+	
+$('#scheduleForm').submit(function(form) {
+
+	  var scheduleForm = $(form)[0].target;
+	  
+	  if(scheduleForm.title.value.trim().length == 0){
+	     swal({
+	            title : '일정 내용을 입력해주세요!',
+	            type : 'warning',
+	            confirmButtonText : '닫기'
+	             });
+	     return false;
+	  }
+	  
+	  
+	  if(scheduleForm.startDate.value > scheduleForm.endDate.value){
+	     swal({
+	            title : '일정 기간을 확인해주세요!',
+	            type : 'warning',
+	            confirmButtonText : '닫기'
+	             });
+	     return false;
+	  }
+	  
+	  if(scheduleForm.startDate.value == scheduleForm.endDate.value){
+	     swal({
+	            title : '일정 기간을 확인해주세요!',
+	            type : 'warning',
+	            confirmButtonText : '닫기'
+	             });
+	     return false;
+	  }
+	  
+	  return true;
+	});
 </script>
