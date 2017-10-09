@@ -108,7 +108,7 @@
 	<select id="accountingListAll" resultType="Accounting">
 		SELECT account_no as accountNo, user_no as userNo, TO_CHAR(account_date,'yyyy-MM-dd') as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName
 		FROM Accounting
-		order by account_no desc, account_date desc
+		order by account_date desc
 	</select>
 
 	<select id="accountingListPage" resultType="Accounting">
@@ -172,7 +172,160 @@ VALUES (seq_School_schedule.nextVal, #{content},TO_DATE(#{startDate},'yyyy-MM-dd
 		DELETE FROM School_schedule
 		WHERE school_schedule_no = #{schoolScheduleNo}
 </delete>
+
+
+<!-- 공지사항부분 -->
+
+<!-- 공지 읽기 -->
+	<select id="read" resultType="Notice">
+		SELECT notice_no as noticeNo, user_no as userNo, title, regdate, hit_count as hitCount, content, modify_date as modifyDate, exposure 
+  		FROM Notice
+  		where notice_no=#{noticeNo}
+	</select>	
+
+<!-- 게시물 삭제 -->
+	<delete id="delete">
+		DELETE FROM Notice WHERE notice_no=#{noticeNo}
+	</delete>
 	
+	<select id="listCriteria" resultType="Notice">
+	<![CDATA[
+	select rn, noticeNo, userNo, title, regdate, hitCount, content,modifyDate,exposure
+	from(
+	select rownum rn, noticeNo, userNo, title, regdate, hitCount, content,modifyDate,exposure
+	from(
+	SELECT notice_no as noticeNo, user_no as userNo, title, regdate, hit_count as hitCount, content, modify_date as modifyDate, exposure
+	FROM notice
+	order by notice_no desc
+ 	 )
+  	order by rownum asc
+  	)
+	 where rn>=#{pageStart}+1 and rn<=#{pageStart}+10
+ 	]]>
+	</select>
 	
+	<select id="countPaging" resultType="int">
+	 <![CDATA[
+ 		select 
+   			count(notice_no) 
+		from 
+			notice 
+		where 
+			notice_no > 0 
+	 ]]>
+	</select>
 	
+	<select id="listSearch_t" resultType="Notice">
+	<![CDATA[
+	select rn, noticeNo, userNo, title, regdate, hitCount, content,modifyDate,exposure
+	from(
+	select rn, noticeNo, userNo, title, regdate, hitCount, content,modifyDate,exposure
+	from(
+	select rownum rn, noticeNo, userNo, title, regdate, hitCount, content,modifyDate,exposure
+	from(
+	SELECT notice_no as noticeNo, user_no as userNo, title, regdate, hit_count as hitCount, content, modify_date as modifyDate, exposure
+	FROM notice
+	order by notice_no desc
+ 	 )
+  	order by rownum asc
+  	)
+  	where title like concat(concat('%',#{keyword}),'%')
+  	)
+	 where rn>=#{pageStart}+1 and rn<=#{pageStart}+10
+ 	]]>
+	</select>
+	
+	<select id="listSearchCount_t" resultType="int">
+<![CDATA[  
+    
+     	select count(noticeNo)
+      	from(
+        select rownum rn, noticeNo, userNo, title, regdate, hitCount, content,modifyDate,exposure
+        from(
+          SELECT notice_no as noticeNo, user_no as userNo, title, regdate, hit_count as hitCount, content, modify_date as modifyDate, exposure
+          FROM notice
+          order by noticeNo desc
+        )
+        order by rownum asc
+  		)
+  		where title like concat(concat('%','#{keyword}'),'%')
+]]>
+</select>
+<select id="listSearch_c" resultType="Notice">
+	<![CDATA[
+	select rn, noticeNo, userNo, title, regdate, hitCount, content,modifyDate,exposure
+	from(
+	select rn, noticeNo, userNo, title, regdate, hitCount, content,modifyDate,exposure
+	from(
+	select rownum rn, noticeNo, userNo, title, regdate, hitCount, content,modifyDate,exposure
+	from(
+	SELECT notice_no as noticeNo, user_no as userNo, title, regdate, hit_count as hitCount, content, modify_date as modifyDate, exposure
+	FROM notice
+	order by notice_no desc
+ 	 )
+  	order by rownum asc
+  	)
+  	where content like concat(concat('%',#{keyword}),'%')
+  	)
+	 where rn>=#{pageStart}+1 and rn<=#{pageStart}+10
+ 	]]>
+	</select>
+	
+	<select id="listSearchCount_c" resultType="int">
+<![CDATA[  
+    
+     	select count(noticeNo)
+      	from(
+        select rownum rn, noticeNo, userNo, title, regdate, hitCount, content,modifyDate,exposure
+        from(
+          SELECT notice_no as noticeNo, user_no as userNo, title, regdate, hit_count as hitCount, content, modify_date as modifyDate, exposure
+          FROM notice
+          order by noticeNo desc
+        )
+        order by rownum asc
+  		)
+  		where content like concat(concat('%','#{keyword}'),'%')
+]]>
+</select>
+
+<select id="listSearch_tc" resultType="Notice">
+	<![CDATA[
+	select rn, noticeNo, userNo, title, regdate, hitCount, content,modifyDate,exposure
+	from(
+	select rn, noticeNo, userNo, title, regdate, hitCount, content,modifyDate,exposure
+	from(
+	select rownum rn, noticeNo, userNo, title, regdate, hitCount, content,modifyDate,exposure
+	from(
+	SELECT notice_no as noticeNo, user_no as userNo, title, regdate, hit_count as hitCount, content, modify_date as modifyDate, exposure
+	FROM notice
+	order by notice_no desc
+ 	 )
+  	order by rownum asc
+  	)
+  	where title like concat(concat('%',#{keyword}),'%')
+  	 or content like concat(concat('%',#{keyword}),'%')
+  	)
+	 where rn>=#{pageStart}+1 and rn<=#{pageStart}+10
+ 	]]>
+	</select>
+	
+	<select id="listSearchCount_tc" resultType="int">
+<![CDATA[  
+    
+     	select count(noticeNo)
+      	from(
+        select rownum rn, noticeNo, userNo, title, regdate, hitCount, content,modifyDate,exposure
+        from(
+          SELECT notice_no as noticeNo, user_no as userNo, title, regdate, hit_count as hitCount, content, modify_date as modifyDate, exposure
+          FROM notice
+          order by noticeNo desc
+        )
+        order by rownum asc
+  		)
+  		where title like concat(concat('%','#{keyword}'),'%')
+  		 or content like concat(concat('%',#{keyword}),'%')
+]]>
+</select>
+
+
 </mapper>

@@ -6,13 +6,13 @@ import com.classs.skhuter.notice.domain.NoticeDTO;
 import com.classs.skhuter.util.Criteria;
  
 public interface NoticeDAO {
-	/** 게시물 등록 **/
+	/** 공지 등록 **/
 	public void create(NoticeDTO notice);
 
-	/** 게시물 불러오기 **/
+	/** 공지 불러오기 **/
 	public NoticeDTO read(int noticeNo) throws Exception;
 
-	/** 게시물 삭제 **/
+	/** 공지 삭제 **/
 	public void delete(int noticeNo) throws Exception;
 	
 	/**페이징 공지사항 출력**/
