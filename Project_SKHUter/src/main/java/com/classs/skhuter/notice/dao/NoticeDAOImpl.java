@@ -23,14 +23,12 @@ public class NoticeDAOImpl implements NoticeDAO {
 
 	@Override
 	public NoticeDTO read(int noticeNo) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + ".read", noticeNo);
 	}
 
 	@Override
 	public void delete(int noticeNo) throws Exception {
-		// TODO Auto-generated method stub
-		
+		sqlSession.delete(namespace + ".delete", noticeNo);
 	}
 
 	@Override
