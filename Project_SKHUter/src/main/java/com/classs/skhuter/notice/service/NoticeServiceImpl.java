@@ -2,6 +2,8 @@ package com.classs.skhuter.notice.service;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
 
 import com.classs.skhuter.notice.dao.NoticeDAO;
@@ -10,6 +12,7 @@ import com.classs.skhuter.util.Criteria;
 
 @Service
 public class NoticeServiceImpl implements NoticeService {
+	@Inject
 	private NoticeDAO dao;
 
 	@Override

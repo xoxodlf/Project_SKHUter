@@ -184,6 +184,13 @@ VALUES (seq_School_schedule.nextVal, #{content},TO_DATE(#{startDate},'yyyy-MM-dd
 	</select>	
 
 <!-- 게시물 삭제 -->
+<!-- 글쓰기 -->
+	<insert id="create">
+		INSERT INTO Notice (notice_no, user_no, title, regdate, hit_count, content, exposure) 
+		VALUES (seq_Notice.nextVal, #{userNo}, #{title}, sysdate, 0, #{content}, 0)
+	
+	</insert>
+
 	<delete id="delete">
 		DELETE FROM Notice WHERE notice_no=#{noticeNo}
 	</delete>

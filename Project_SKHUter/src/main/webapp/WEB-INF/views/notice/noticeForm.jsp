@@ -14,6 +14,11 @@
 <script src="lang/summernote-ko-KR.js"></script>
 <script>
 	/* SummerNote */
+	function contentsend(){
+			var markupStr = $('.summernote').summernote('code');
+			$('input#content').val(markupStr);
+	}
+	
 	/* SummerNote 내용 받아오기 */
 	var markupStr = $('#summernote').summernote('code');
     $(document).ready(function() {
@@ -24,6 +29,10 @@
         	placeholder: '공지사항을 입력해주세요'
         });
     });
+    $('.listBtn').on('click',(function() {
+    	location.href = "/notice/noticeList";
+    }));
+    
 </script>
 <style>
 /* 기타 */
@@ -79,6 +88,7 @@
 	}
 	
 </style>
+<form role="form" id="form" action="noticeForm" method="POST">
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">공지사항 글쓰기</h1>
@@ -86,12 +96,13 @@
 </div>
 <div class="col-lg-12">
 <div class="panel-body">
+<input type="hidden" name="userNo" value="${login.userNo}">
 	<div class="board-btns">
 	<div class="board-btn">
-		<a href="/board/boardList" class="btn btn-default"> 등록 </a>
+		<button type="submit" onmouseover="contentsend()" class="btn btn-default">글등록</button>
 	</div>
 	<div class="board-btn">
-		<a href="/board/boardList" class="btn btn-default"> 목록으로 </a>
+		<button type="button" class="btn btn-default listBtn">목록</button>
 	</div>
 	</div>
 	<!-- div.board-btns -->
@@ -108,23 +119,16 @@
 				<tr>
 				<th>제목</th>
 				<td colspan="3">
-				<input type="text" name="title" class="title"/>
+				<input type="text" name="title" class="title" style="width:820;"/>
 				</td>
-				</tr>
-				<tr>
-				<th>작성자</th>
-				<!-- 현재 세션 ID의 회원이름 -->
-				<td>뿡뿡이</td>
-				<th>작성일</th>
-				<!-- 지금 날짜 -->
-				<td>2017-09-16</td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td class="table-content" colspan="4">
 					<!-- SummerNote Editer -->
-					<div id="summernote"></div>
+					<textarea class="summernote" name="content"></textarea>
+					<input type="hidden" name="content" id="content">
 					</td>
 				</tr>
 			</tbody>
@@ -136,5 +140,5 @@
 <!-- div.panel-body -->
 </div>
 <!-- div.col-lg-12 -->
-
+</form>
 

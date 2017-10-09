@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.classs.skhuter.board.domain.BoardDTO;
 import com.classs.skhuter.notice.domain.NoticeDTO;
 import com.classs.skhuter.notice.service.NoticeService;
 import com.classs.skhuter.util.Criteria;
@@ -30,6 +32,7 @@ public class NoticeController {
 	
 	@RequestMapping(value="/noticeList", method=RequestMethod.GET)
 	public String noticeList(@ModelAttribute("cri") Criteria cri,Model model) throws Exception {
+		
 		List<NoticeDTO> list;
 		if(cri.getSearchType()!=null) {
 			if(cri.getSearchType().equals("t")) {
@@ -40,9 +43,12 @@ public class NoticeController {
 			else {
 				list = service.listCriteria(cri);
 			}
-			}else list = service.listCriteria(cri);
+			}else {
+				logger.info(cri.toString());
+				list = service.listCriteria(cri);
+			}
 		
-		model.addAttribute(list);
+		model.addAttribute("noticeList",list);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		if(cri.getSearchType()=="t") pageMaker.setTotalCount(service.listSearchCount_t(cri));
@@ -55,7 +61,10 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="/noticeDetail", method=RequestMethod.GET)
-	public String noticeDetail(@RequestParam("boardNo") int boardNo, @ModelAttribute("cri") Criteria cri, Model model) {
+	public String noticeDetail(@RequestParam("noticeNo") int noticeNo, @ModelAttribute("cri") Criteria cri, Model model) throws Exception {
+		model.addAttribute(cri);
+		model.addAttribute(service.read(noticeNo));
+		
 		return "notice/noticeDetail.lay";
 	}
 	
@@ -63,4 +72,14 @@ public class NoticeController {
 	public String noticeForm(Model model) {
 		return "notice/noticeForm.lay";
 	}
+	@RequestMapping(value = "/noticeForm", method = RequestMethod.POST)
+	public String registPOST(NoticeDTO notice, RedirectAttributes rttr) throws Exception {
+
+		service.create(notice);
+		rttr.addFlashAttribute("message", "createsuccess");
+		logger.info(notice.toString());
+
+		return "redirect:/notice/noticeList";
+	}
+	
 }
