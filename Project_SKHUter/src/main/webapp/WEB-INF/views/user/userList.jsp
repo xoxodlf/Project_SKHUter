@@ -88,6 +88,7 @@
 				<col width="7%"/>
 				<col width="15%"/>
 				<col width="15%"/>
+				<col width="10%"/>
 				<col width="15%"/>
 			</colgroup>
 			<thead>
@@ -99,6 +100,7 @@
 				<th>이름　</th>
 				<th>휴대폰 번호</th>
 				<th>등록일</th>
+				<th>학적</th>
 				<th>등급</th>
 				</tr>
 			</thead>
@@ -120,6 +122,14 @@
 								<td>${userList.name }</td>
 								<td>${userList.phone }</td>
 								<td>${userList.recentLogin }</td>
+								<td>
+								<c:if test="${0 eq userList.isLeave}">
+											<font color="#FF8328"> 휴학 </font>
+								</c:if>
+								<c:if test="${1 eq userList.isLeave}">
+											<font color="#40596b"> 재학 </font>
+										</c:if>
+								</td>
 								<td> 
 								<c:choose>
 									<c:when test="${1 eq userList.secession }">
