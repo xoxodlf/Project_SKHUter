@@ -209,7 +209,7 @@ div.board-btn button {
 	        var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
 	        var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
 	        var hours = now.getHours()>9 ?''+now.getHours():'0'+now.getHours();
-	        var min = now.getMinutes();
+	        var min = now.getMinutes()>9 ?''+now.getMinutes():'0'+now.getMinutes();
 	        var current_date = year + '-' + mon + '-' + day+' '+hours+':'+min;
 			if(startDate>current_date){
 				swal({
