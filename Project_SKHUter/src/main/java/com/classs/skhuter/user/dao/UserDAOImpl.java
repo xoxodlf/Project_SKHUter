@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import com.classs.skhuter.user.domain.UserDTO;
+import com.classs.skhuter.util.Criteria;
 
 import oracle.net.aso.i;
 
@@ -133,6 +134,22 @@ public class UserDAOImpl implements UserDAO {
 	public int searchGiver(int takeoverCode) {
 		return sqlSession.selectOne(namespace+".searchGiver",takeoverCode);
 		
+	}
+
+	@Override
+	public List<UserDTO> searchName(Criteria cri) {
+		return sqlSession.selectList(namespace+".listsearch_name",cri);
+	}
+
+	@Override
+	public List<UserDTO> searchId(Criteria cri) {
+		return sqlSession.selectList(namespace+".listsearch_id",cri);
+	}
+
+	@Override
+	public List<UserDTO> searchGrade(Criteria cri) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".listsearch_grade",cri);
 	}
 
 }

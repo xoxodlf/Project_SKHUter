@@ -119,5 +119,43 @@
 	select user_no from users where takeover_code = #{takeoverCode} 
 	</select>
 
+	<select id="listsearch_name" resultType="User">
+	<![CDATA[  
+	select rn, UserNo, id, password, name, phone, grade,isLeave,status,takeoverCode,recentLogin,sessionKey,sessionLimit,secession
+	from(
+	SELECT rownum rn, user_no as UserNo, id, password, name, phone, grade, is_leave as isLeave, status, takeover_code as takeoverCode, 
+		   recent_login as recentLogin, session_key as sessionKey, session_limit as sessionLimit, secession
+	FROM Users
+	order by name asc
+ 	 )
+ 	where name like concat(concat('%',#{keyword}),'%')
+ ]]>
+	</select>
+	<select id="listsearch_id" resultType="User">
+	<![CDATA[  
+	select rn, UserNo, id, password, name, phone, grade,isLeave,status,takeoverCode,recentLogin,sessionKey,sessionLimit,secession
+	from(
+	SELECT rownum rn, user_no as UserNo, id, password, name, phone, grade, is_leave as isLeave, status, takeover_code as takeoverCode, 
+		   recent_login as recentLogin, session_key as sessionKey, session_limit as sessionLimit, secession
+	FROM Users
+	order by name asc
+ 	 )
+ 	where id like concat(concat('%',#{keyword}),'%')
+ ]]>
+	</select>
+	
+	<select id="listsearch_grade" resultType="User">
+	<![CDATA[  
+	select rn, UserNo, id, password, name, phone, grade,isLeave,status,takeoverCode,recentLogin,sessionKey,sessionLimit,secession
+	from(
+	SELECT rownum rn, user_no as UserNo, id, password, name, phone, grade, is_leave as isLeave, status, takeover_code as takeoverCode, 
+		   recent_login as recentLogin, session_key as sessionKey, session_limit as sessionLimit, secession
+	FROM Users
+	order by name asc
+ 	 )
+ 	where grade like concat(concat('%',#{keyword}),'%')
+ ]]>
+	</select>
+	
 
 </mapper>
