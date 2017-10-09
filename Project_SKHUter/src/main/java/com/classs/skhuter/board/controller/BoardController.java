@@ -64,7 +64,7 @@ public class BoardController {
       for (BoardLikeDTO board : list) {
       logger.info("board.toString() : " + board.toString());
       //islike=service.isLike(tmp);
-      //likeCount=service.countLike(boardNo);
+      likeCount=service.countLike(tmp);
       }
       //logger.info(Integer.toString(islike));
       logger.info("Integer.toString(likeCount) : " + Integer.toString(likeCount));
