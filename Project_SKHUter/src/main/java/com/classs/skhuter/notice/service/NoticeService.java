@@ -29,4 +29,7 @@ public interface NoticeService {
 	  
 	public List<NoticeDTO> listSearch_tc(Criteria cri)throws Exception;
 	public int listSearchCount_tc(Criteria cri)throws Exception;
+	
+	/** 조회수 처리 **/
+	public void updateHitCount(int noticeNo) throws Exception;
 }

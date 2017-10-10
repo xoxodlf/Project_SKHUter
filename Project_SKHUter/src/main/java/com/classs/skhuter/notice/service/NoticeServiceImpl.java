@@ -70,4 +70,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return dao.listSearchCount_tc(cri);
 	}
 
+	@Override
+	public void updateHitCount(int noticeNo) throws Exception {
+		dao.updateHitCount(noticeNo);
+	}
+
 }

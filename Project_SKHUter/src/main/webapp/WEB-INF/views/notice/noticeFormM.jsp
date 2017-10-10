@@ -1,11 +1,50 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- 파비콘 설정 -->
+	<link rel="shortcut icon" type="image/x-icon" href="/resources/images/skhuter.ico" />
+	
+	
+	<!-- CSS -->
+	
+	<!-- Bootstrap Core CSS -->
+	<link rel="stylesheet" href="/resources/css/bootstrap.css">
+	<link href="/resources/css/bootstrap.vertical-tabs.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
+	
+    <!-- SweetAlert CSS -->
+    <link href="/resources/css/sweetalert2.min.css" rel="stylesheet">
+    
+    <!-- MetisMenu CSS -->
+    <link href="/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
-<!-- SummerNote -->
-<!-- include libraries(jQuery, bootstrap) -->
-<!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> -->
-<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>  -->
-<!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>  -->
+    <!-- Custom CSS -->
+    <link href="/resources/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="/resources/vendor/morrisjs/morris.css" rel="stylesheet">
+    
+    <link href="/resources/css/metisMenu.css" rel="stylesheet">
+    
+    
+	<!-- JavaScript -->
+    
+	<!-- jQuery JavaScript -->
+	<script src="/resources/js/jquery.js"></script>
+<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
+	
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/resources/js/bootstrap.min.js"></script>
+
+    <!-- SweetAlert JavaScript -->
+    <script src="/resources/js/sweetalert2.min.js"></script>
+    <script src="/resources/js/metisMenu.js"></script>
+    <script src="/resources/js/bootstrap-datetimepicker.js"></script>
+    <script src="/resources/js/bootstrap-datetimepicker.ko.js"></script>
+    <script src="/resources/js/sb-admin-2.js"></script>
+    <script src="/resources/js/jquery.flexslider.js"></script>
+    
+    <!-- Custom Fonts -->
+    <link href="/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 <!-- include summernote css/js-->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
@@ -16,6 +55,11 @@
 function contentsend(){
 		var markupStr = $('.summernote').summernote('code');
 		$('input#content').val(markupStr);
+		
+		// test : + button type=submit -> button
+		//		  + button onmouseover -> onclick
+		var form = document.forms["form"];
+		form.submit();
 }
 
 /* SummerNote 내용 받아오기 */
@@ -29,7 +73,7 @@ $(document).ready(function() {
 });
 
 function goList() { 
-	location.href = "/notice/noticeList";
+	location.href = "/notice/noticeListM";
 }
     
 </script>
@@ -87,7 +131,7 @@ function goList() {
 	}
 	
 </style>
-<form role="form" id="form" action="noticeForm" method="POST">
+<form role="form" id="form" action="noticeFormM" method="POST">
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">공지사항 글쓰기</h1>
@@ -98,7 +142,7 @@ function goList() {
 <input type="hidden" name="userNo" value="${login.userNo}">
 	<div class="board-btns">
 	<div class="board-btn">
-		<button type="submit" onmouseover="contentsend()" class="btn btn-default">글등록</button>
+		<button type="button" onclick="javascript:contentsend();" class="btn btn-default">글등록</button>
 	</div>
 	<div class="board-btn">
 		<button type="button" id="listBtn" class="btn btn-default listBtn" onclick="goList()">목록</button>
@@ -109,16 +153,16 @@ function goList() {
 	<div class="table-responsive table-bordered">
 		<table class="table">
 			<colgroup>
-				<col width="15%"/>
+				<col width="10%"/>
 				<col width="35%"/>
-				<col width="15%"/>
+				<col width="*%"/>
 				<col width="35%"/>
 			</colgroup>
 			<thead>
 				<tr>
 				<th>제목</th>
 				<td colspan="3">
-				<input type="text" name="title" class="title" style="width:820;"/>
+				<input type="text" name="title" class="title" style="width:100%;"/>
 				</td>
 				</tr>
 			</thead>

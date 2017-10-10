@@ -133,7 +133,7 @@ div.search-box input[type="search"] {
 									<c:if test="${login.status>=2}">
 									<td><input type="checkbox" name="check" id="check" value="${AccountingDTO.accountNo }"/></td>
 									</c:if>
-									<td>${size - status.index}</td>
+									<td>${size - ((pageMaker.cri.page - 1)*10+status.index) }</td>
 									<td>${AccountingDTO.content }</td>
 									
 									<!-- 현재 루프가 처음이라면 잔액 계산을 위해 초기값 저장 -->
@@ -149,15 +149,15 @@ div.search-box input[type="search"] {
 											<td style="color: BLUE">+<fmt:formatNumber value="${AccountingDTO.price }" pattern="#,###" /> 원</td>
 										</c:otherwise>
 									</c:choose>
-									<td>${AccountingDTO.accountDate}</td>
-									<td><a href="/resources/upload${listFileName[status.index] }" rel="lightbox" data-lightbox="image-${status.index}">${AccountingDTO.fileName }</a></td>
+									<td>${Date[size - ((pageMaker.cri.page - 1)*10+status.index)-1]}</td>
+									<td><a href="/resources/upload${listFileName[status.index]}" rel="lightbox" data-lightbox="image-${status.index}">${AccountingDTO.fileName }</a></td>
 								</tr>
 							</tbody>
 						</c:forEach>
 					</table>
 				</c:otherwise>
 			</c:choose>
-			<div style="text-align:right;font-size:25px;style:bold">잔액:    <fmt:formatNumber value="${money }" pattern="#,###" /> 원</div>
+			<div style="text-align:center;font-size:25px;style:bold">잔액:    <fmt:formatNumber value="${money }" pattern="#,###" /> 원</div>
 			
 			<div class="paging-box">
 				<ul class="pagination">

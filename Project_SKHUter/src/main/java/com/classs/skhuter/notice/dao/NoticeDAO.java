@@ -10,7 +10,7 @@ public interface NoticeDAO {
 	public void create(NoticeDTO notice);
 
 	/** 공지 불러오기 **/
-	public NoticeDTO read(int noticeNo) throws Exception;
+	public NoticeDTO read(int noticeNo) throws Exception; 
 
 	/** 공지 삭제 **/
 	public void delete(int noticeNo) throws Exception;
@@ -29,4 +29,7 @@ public interface NoticeDAO {
 	  
 	public List<NoticeDTO> listSearch_tc(Criteria cri)throws Exception;
 	public int listSearchCount_tc(Criteria cri)throws Exception;
+	
+	/** 조회수 처리 **/
+	public void updateHitCount(int noticeNo) throws Exception;
 }

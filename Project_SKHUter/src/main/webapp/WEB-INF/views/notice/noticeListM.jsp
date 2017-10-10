@@ -1,6 +1,53 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<!-- 파비콘 설정 -->
+	<link rel="shortcut icon" type="image/x-icon" href="/resources/images/skhuter.ico" />
+	
+	
+	<!-- CSS -->
+	
+	<!-- Bootstrap Core CSS -->
+	<link rel="stylesheet" href="/resources/css/bootstrap.css">
+	<link href="/resources/css/bootstrap.vertical-tabs.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
+	
+    <!-- SweetAlert CSS -->
+    <link href="/resources/css/sweetalert2.min.css" rel="stylesheet">
+    
+    <!-- MetisMenu CSS -->
+    <link href="/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/resources/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="/resources/vendor/morrisjs/morris.css" rel="stylesheet">
+    
+    <link href="/resources/css/metisMenu.css" rel="stylesheet">
+    
+    
+	<!-- JavaScript -->
+    
+	<!-- jQuery JavaScript -->
+	<script src="/resources/js/jquery.js"></script>
+<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
+	
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/resources/js/bootstrap.min.js"></script>
+
+    <!-- SweetAlert JavaScript -->
+    <script src="/resources/js/sweetalert2.min.js"></script>
+    <script src="/resources/js/metisMenu.js"></script>
+    <script src="/resources/js/bootstrap-datetimepicker.js"></script>
+    <script src="/resources/js/bootstrap-datetimepicker.ko.js"></script>
+    <script src="/resources/js/sb-admin-2.js"></script>
+    <script src="/resources/js/jquery.flexslider.js"></script>
+    
+    <!-- Custom Fonts -->
+    <link href="/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
 <style>
 /* 기타 */
 /* 페이지 제목 : 공지사항 : 가운데 정렬 + 굵게 */
@@ -64,7 +111,7 @@ div.search-box input[type="search"] {
 <div class="row">
 	<div class="col-lg-12">
 		<img src="/resources/images/title/notice.png" class="page-header"
-			style="width: 20%;">
+			style="width: 40%;">
 	</div>
 </div>
 <div class="col-lg-12">
@@ -78,7 +125,7 @@ div.search-box input[type="search"] {
 			</div>
 			
 			<div class="board-btn">
-				<a href="/notice/noticeForm" class="btn btn-default"> 글쓰기 </a>
+				<a href="/notice/noticeFormM" class="btn btn-default"> 글쓰기 </a>
 			</div>
 		</div>
 		<!-- div.board-btns -->
@@ -94,7 +141,7 @@ div.search-box input[type="search"] {
 					<col width="7%" />
 					<col width="*" />
 					<col width="20%" />
-					<col width="7%" />
+					<col width="15%" />
 				</colgroup>
 				<thead>
 					<tr>
@@ -119,7 +166,7 @@ div.search-box input[type="search"] {
 					<tr>
 						<c:if test="${login.status>=3}"><td><input type="checkbox"  name="check"  value="${noitceDTO.noticeNo}" /></td></c:if>
 						<td>${noitceDTO.noticeNo}</td>
-						<td><a href="/notice/noticeDetail${pageMaker.makeSearch(pageMaker.cri.page)}&noticeNo=${noitceDTO.noticeNo}">${noitceDTO.title}</a></td>
+						<td><a href="/notice/noticeDetailM${pageMaker.makeSearch(pageMaker.cri.page)}&noticeNo=${noitceDTO.noticeNo}">${noitceDTO.title}</a></td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${noitceDTO.regdate}" /></td>
 						<td>${noitceDTO.hitCount}　</td>
 					</tr>
@@ -157,18 +204,18 @@ div.search-box input[type="search"] {
 
 							<c:if test="${pageMaker.prev}">
 								<li class="paginate_button previous"><a
-									href="/notice/noticeList${pageMaker.makeSearch(pageMaker.startPage - 1) }">이전</a></li>
+									href="/notice/noticeListM${pageMaker.makeSearch(pageMaker.startPage - 1) }">이전</a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
 								<li  class="paginate_button <c:out value="${pageMaker.cri.page == idx? 'active' :''}"/>">
-									<a href="/notice/noticeList${pageMaker.makeSearch(idx)}">${idx}</a>
+									<a href="/notice/noticeListM${pageMaker.makeSearch(idx)}">${idx}</a>
 								</li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li  class="paginate_button next"><a
-									href="/notice/noticeList${pageMaker.makeSearch(pageMaker.endPage +1) }">다음</a></li>
+									href="/notice/noticeListM${pageMaker.makeSearch(pageMaker.endPage +1) }">다음</a></li>
 							</c:if>
 					
 				</ul>
@@ -202,7 +249,7 @@ div.search-box input[type="search"] {
 	
 	/* 글쓰기 페이지로 이동 */
 	function goboardForm() {
-		location.href = "/notice/noticeForm";
+		location.href = "/notice/noticeFormM";
 	}
 
 	/* 삭제여부 alert 대체 모달 */
