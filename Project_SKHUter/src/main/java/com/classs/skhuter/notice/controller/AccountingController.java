@@ -64,6 +64,8 @@ public class AccountingController {
 		int count = accountingList.size();
 		int i = 0;
 		int Money = 0;
+		int size = accountingList.size();
+		String[] DateName = new String[accountingList.size()];
 		
 		for (int listsize = accountingList.size(); i < listsize; i++) {
 			int length = accountingList.get(i).getUuidName().length();
@@ -73,6 +75,7 @@ public class AccountingController {
 			String realName = front + end;
 			
 			listFileName[i] = realName;
+			DateName[i] = accountingList.get(size-i-1).getAccountDate().substring(0,10);
 		}
 		
 		i = 0;
@@ -98,6 +101,7 @@ public class AccountingController {
 		model.addAttribute("size", count);
 		model.addAttribute("list", accountingList);
 		model.addAttribute("listpaged",accountingPagedList);
+		model.addAttribute("Date",DateName);
 
 		return "notice/accountingList.lay";
 	}
