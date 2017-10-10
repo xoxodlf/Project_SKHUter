@@ -52,7 +52,7 @@
 	}
 	
 </style>
-
+<div>
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">익명 게시판</h1>
@@ -111,25 +111,26 @@
 				</tr>
 				<tr>
 					<td colspan="8" style="text-align: center;" >
-					
-					<!-- 
-					<ul class="pagination">
-					<li  class="paginate_button" onclick="change();">
-						<a href="#"><i class="fa fa-thumbs-o-up"></i>좋아요</a>
-					</li>
-					<li  class="paginate_button active" onclick="change();">
-						<a href="#"><i class="fa fa-thumbs-o-down"></i>싫어요</a>
-					</li>
-					</ul>
-					 -->
-					 <form role="form" id="updatelikehateform" method="post" action="/board/boardDetail/delete">
+					 <form role="form" id="updatelikeform" method="post" action="/board/boardDetail/uplike">
 					<input type='hidden' name='boardNo' id='bn' value ="${boardDTO.boardNo}">
-					<input type="hidden" id="loguserno" value="${login.userNo}">
-					<button type="button" id="likeBtn" class="btn btn-default
-					 <c:out value="${pageMaker.cri.page == idx? 'active' :''}"/>"><i class="fa fa-thumbs-o-up "></i> 좋아요 </button>
-					<button type="button" id="hateBtn" class="btn btn-default
-					<c:out value="${pageMaker.cri.page == idx? 'active' :''}"/>"><i class="fa fa-thumbs-o-down"></i> 싫어요 ${boardDTO.hateCount}</button>
-					 </form>
+					<input type="hidden" name='userNo' id="loguserno" value="${login.userNo}">
+					<input type="hidden" name="page" value="${cri.page}">
+					<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
+					<input type="hidden" name="keyword" value="${cri.keyword}">
+					<input type="hidden" name="searchType" value="${cri.searchType}">
+					</form>
+					<form role="form" id="updatehateform" method="post" action="/board/boardDetail/uphate">
+					<input type='hidden' name='boardNo' id='bn' value ="${boardDTO.boardNo}">
+					<input type="hidden" name='userNo' id="loguserno" value="${login.userNo}">
+					<input type="hidden" name="page" value="${cri.page}">
+					<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
+					<input type="hidden" name="keyword" value="${cri.keyword}">
+					<input type="hidden" name="searchType" value="${cri.searchType}">
+					</form>
+					<button type="button" id="likeBtn" class="btn btn-default"><i class="fa fa-thumbs-o-up "></i> 좋아요 ${boardDTO.likeCount}</button>
+					<button type="button" id="hateBtn" class="btn btn-default"><i class="fa fa-thumbs-o-down"></i> 싫어요 ${boardDTO.hateCount}</button>
+					
+					 
 					</td>
 				</tr>
 				<tr>
@@ -147,6 +148,10 @@
 		<input type="hidden" id="pw" value="${boardDTO.password}">
 		<input type="hidden" id="loguserno" value="${login.userNo}">
 		<input type="hidden" id="writeruser" value="${replyDTO.userNo}">
+		<input type="hidden" id="deletesuccess" value="${message}">
+		<input type="hidden" id="successuplike" value="${message}">
+		<input type="hidden" id="islike" value="${board.islike}">
+		<input type="hidden" id="ishate" value="${board.ishate}">
 		
 		<!-- end of table -->
 	</div>
@@ -155,6 +160,7 @@
 <!-- div.panel-body -->
 </div>
 <!-- div.col-lg-12 -->
+</div>
 <form role="form" id="listForm">
 <input type="hidden" name="boardNo" value="${boardDTO.boardNo}">
 <input type="hidden" name="page" value="${cri.page}">
@@ -176,13 +182,23 @@ $('#likeBtn').on('click',(function() {
 		  })
 	}else{
 		//아무 버튼도 눌려있지 않은 상태
-		document.getElementById('hateBtn').disabled = true;
-		document.getElementById('likeBtn').className='btn btn-default active';
-		//board에서 해당 board_no의 likecount를 +1
-		//like_table에 board_no와 user_no를 보내 insert
-		
+		var formObj=$('#updatelikeform');
+		formObj.attr("action", "/board/boardDetail/uplike");
+		formObj.attr("method", "post");		
+		formObj.submit();
 	}
 }));
+
+//좋아요 등록에 성공한 경우
+$(function() {
+	var message = $('#successuplike').val();
+	if (message == 'successuplike') {
+		swal({
+			type: 'success',
+		    title: '좋아요를 누르셨습니당!'
+		    })
+	}
+});
 
 $('#hateBtn').on('click',(function() {
 	var likeclass=document.getElementById('likeBtn').className;
@@ -195,34 +211,40 @@ $('#hateBtn').on('click',(function() {
 		    title: '이미 싫어한 게시물입니다.'
 		  })
 	}else{
-		//아무 버튼도 눌려있지 않은 상태
-		document.getElementById('likeBtn').disabled = true;
-		document.getElementById('hateBtn').className='btn btn-default active';
-		//board에서 해당 board_no의 likecount를 +1
-		//like_table에 board_no와 user_no를 보내 insert
+		var formObj=$('#updatehateform');
+		formObj.attr("action", "/board/boardDetail/uphate");
+		formObj.attr("method", "post");		
+		formObj.submit();
 	}
 }));
 
+//싫어요 등록에 성공한 경우
+$(function() {
+	var message = $('#successuphate').val();
+	if (message == 'successuphate') {
+		swal({
+			type: 'success',
+		    title: '싫어요를 누르셨습니당!'
+		    })
+	}
+});
 
 
-
-/** 버튼의 색을 바꿔보자 **/
+/** 버튼의 색을 바꿔보자 
 $('.paginate_button').on('click',(function() {
 	formObj.attr("action", "/board/boardList");
 	formObj.attr("method", "get");		
 	formObj.submit();
 }));
-
+**/
 var boardNo = $('#bn').val();
 var formObj = $("form#listForm");
 
-console.log(formObj);
-
-
 /** 게시판 리스트로 이동**/
 $('.listBtn').on('click',(function() {
+	console.log("user : " + $('input#loguserno').val());
 	formObj.attr("action", "/board/boardList");
-	formObj.attr("method", "get");		
+	formObj.attr("method", "get");
 	formObj.submit();
 }));
 
@@ -256,10 +278,17 @@ $('.removeBtn').on('click',(function() {
 		})
 }));
 
-/** 해당 게시물 댓글 목록 불러오기 **/
+/** 해당 게시물 댓글 목록 불러오기, 좋아요비활성화 버튼 활성화 관리 **/
 $(document).ready(function(data){
 	$.getJSON("/replies/all/" + boardNo, function(data){
-		console.log(data.length);
+		if($('#islike').val()>0){
+			document.getElementById('likeBtn').className='btn btn-default active';
+			document.getElementById('hateBtn').disabled = true;
+		}
+		if($('#ishate').val()>0){
+			document.getElementById('hateBtn').className='btn btn-default active';
+			document.getElementById('likeBtn').disabled = true;
+		}
 		var str = "";
 		var frontstr= "";
 		var countreply= 0;

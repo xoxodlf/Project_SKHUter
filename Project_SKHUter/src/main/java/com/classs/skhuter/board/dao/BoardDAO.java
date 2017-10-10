@@ -1,10 +1,8 @@
 package com.classs.skhuter.board.dao;
 
-import java.sql.Date;
 import java.util.List;
 import com.classs.skhuter.board.domain.BoardDTO;
 import com.classs.skhuter.board.domain.BoardLikeDTO;
-import com.classs.skhuter.notice.domain.VoteListDTO;
 import com.classs.skhuter.util.Criteria;
 
 /**
@@ -55,14 +53,31 @@ public interface BoardDAO {
 
 	/** 좋아요 리스트 전체 불러오기 **/
 	public List<BoardLikeDTO> LikeCountlistAll(int boardNo);
-
-	/** 게시물 등록 **/
-	public void createlike(BoardLikeDTO board);
 	
 	/** 게시물의 좋아요 갯수 **/
 	public int countLike(BoardDTO board);
 	
 	/** 좋아요 여부 **/
-	public int isLike(BoardDTO board);
+	public int isLike(int boardNo, int userNo);
+	
+	/** 좋아요 테이블 게시물 등록 **/
+	public void createlike(int boardNo, int userNo);
+	
+	/** 좋아요 개수 업데이트**/
+	public void uplikeCount(int boardNo);
+	
+	/** 싫어요 테이블 게시물 등록 **/
+	public void createhate(int boardNo, int userNo);
+	
+	/** 싫어요 개수 업데이트**/
+	public void uphateCount(int boardNo);
+	
+	/** 게시물의 싫어요 갯수 **/
+	public int counthate(BoardDTO board);
+	
+	/** 싫어요 여부 **/
+	public int ishate(int boardNo, int userNo);
+
+
 
 }

@@ -17,7 +17,8 @@ public class BoardDTO {
 	private int likeCount;
 	private int hateCount;
 	private int replyCount;
-	private int isVote;
+	private int islike;
+	private int ishate;
 
 	public int getBoardNo() {
 		return boardNo;
@@ -99,19 +100,26 @@ public class BoardDTO {
 		this.replyCount = replyCount;
 	}
 
-	public int getIsVote() {
-		return isVote;
+	public int getIslike() {
+		return islike;
 	}
 
-	public void setIsVote(int isVote) {
-		this.isVote = isVote;
+	public void setIslike(int islike) {
+		this.islike = islike;
 	}
 	
+	public int getIshate() {
+		return ishate;
+	}
+
+	public void setIshate(int ishate) {
+		this.ishate = ishate;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardDTO [boardNo=" + boardNo + ", userNo=" + userNo + ", title=" + title + ", regdate=" + regdate
 				+ ", hitCount=" + hitCount + ", password=" + password + ", content=" + content + ", likeCount="
 				+ likeCount + ", hateCount=" + hateCount + "]";
 	}
-
 }

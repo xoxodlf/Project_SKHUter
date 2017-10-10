@@ -1,6 +1,8 @@
 package com.classs.skhuter.board.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -134,13 +136,6 @@ public class BoardDAOImpl implements BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + ".LikeCountlistAll", boardNo);
 	}
-
-	/** 좋아요 등록 **/
-	@Override
-	public void createlike(BoardLikeDTO board) {
-		// TODO Auto-generated method stub
-		sqlSession.insert(namespace + ".createlike", board);
-	}
 	
 	/** 해당 보드의 좋아요 개수**/
 	@Override
@@ -149,10 +144,70 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne(namespace + ".countLike", board);
 	}
 	/** 좋아요 했는지 여부 **/
-	public int isLike(BoardDTO board) {
-		return sqlSession.selectOne(namespace + ".isLike", board);
+	public int isLike(int boardNo, int userNo) {
+		// TODO Auto-generated method stub
+				Map<String, Object> paramMap = new HashMap<String, Object>();
+				
+				paramMap.put("boardNo", boardNo);
+				paramMap.put("userNo", userNo);
+					
+		return sqlSession.selectOne(namespace + ".isLike", paramMap);
+	}
+
+	/** 좋아요 등록 **/
+	@Override
+	public void createlike(int boardNo, int userNo) {
+		// TODO Auto-generated method stub
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("boardNo", boardNo);
+		paramMap.put("userNo", userNo);
+		
+		sqlSession.insert(namespace + ".createlike", paramMap);
 	}
 	
+	/** 싫어요 개수 업데이트**/
+	@Override
+	public void uplikeCount(int boardNo) {	// TODO Auto-generated method stub
+		sqlSession.update(namespace + ".uplikeCount", boardNo);
+		
+	};
+	
+	/** 싫어요 테이블 게시물 등록 **/
+	@Override
+	public void createhate(int boardNo, int userNo) {
+		// TODO Auto-generated method stub
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("boardNo", boardNo);
+		paramMap.put("userNo", userNo);
+		
+		sqlSession.insert(namespace + ".createhate", paramMap);
+	}
+	
+	/** 싫어요 개수 업데이트**/
+	@Override
+	public void uphateCount(int boardNo) {	// TODO Auto-generated method stub
+		sqlSession.update(namespace + ".uphateCount", boardNo);
+		
+	};
+	
+	/** 해당 보드의 싫어요 개수**/
+	@Override
+	public int counthate(BoardDTO board){
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + ".counthate", board);
+	}
+	/** 싫어요 했는지 여부 **/
+	public int ishate(int boardNo, int userNo) {
+		// TODO Auto-generated method stub
+				Map<String, Object> paramMap = new HashMap<String, Object>();
+				
+				paramMap.put("boardNo", boardNo);
+				paramMap.put("userNo", userNo);
+					
+		return sqlSession.selectOne(namespace + ".ishate", paramMap);
+	}
 	
 	
 }

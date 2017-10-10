@@ -105,7 +105,6 @@ public class BoardDaoTest {
 			BoardLikeDTO board = new BoardLikeDTO();
 			board.setBoardNo(245);
 			board.setUserNo(4);
-			dao.createlike(board);
 
 			logger.info("좋아요 등록 완료~~~~");
 			logger.info(board.toString());
