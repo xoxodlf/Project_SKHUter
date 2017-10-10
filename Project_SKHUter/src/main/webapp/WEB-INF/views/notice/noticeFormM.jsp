@@ -55,6 +55,11 @@
 function contentsend(){
 		var markupStr = $('.summernote').summernote('code');
 		$('input#content').val(markupStr);
+		
+		// test : + button type=submit -> button
+		//		  + button onmouseover -> onclick
+		var form = document.forms["form"];
+		form.submit();
 }
 
 /* SummerNote 내용 받아오기 */
@@ -126,7 +131,7 @@ function goList() {
 	}
 	
 </style>
-<form role="form" id="form" action="noticeForm" method="POST">
+<form role="form" id="form" action="noticeFormM" method="POST">
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">공지사항 글쓰기</h1>
@@ -137,7 +142,7 @@ function goList() {
 <input type="hidden" name="userNo" value="${login.userNo}">
 	<div class="board-btns">
 	<div class="board-btn">
-		<button type="submit" onmouseover="contentsend()" class="btn btn-default">글등록</button>
+		<button type="button" onclick="javascript:contentsend();" class="btn btn-default">글등록</button>
 	</div>
 	<div class="board-btn">
 		<button type="button" id="listBtn" class="btn btn-default listBtn" onclick="goList()">목록</button>
