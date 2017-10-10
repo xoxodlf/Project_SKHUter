@@ -182,7 +182,7 @@ public class NoticeController {
 	@RequestMapping(value="/noticeListM", method=RequestMethod.GET)
 	public String noticeListM(@ModelAttribute("cri") Criteria cri,Model model, UserDTO user,HttpServletRequest req) throws Exception {
 		logger.info(user.toString());
-		if (user != null) {
+		if (user != null && user.getUserNo() > 0 && user.getStatus() >= 0) {
 		      req.getSession().setAttribute("login", user);
 		   } else {
 		      user = (UserDTO) req.getSession().getAttribute("login");
@@ -269,7 +269,7 @@ public class NoticeController {
 		logger.info("유저넘"+userNo+" 스테이터스"+status);
 		service.create(notice);
 		rttr.addFlashAttribute("message", "createsuccess");
-		rttr.addAttribute(user);
+		//rttr.addAttribute(user); // 이거 뭐야 ㅡ.ㅡ
 		rttr.addFlashAttribute("userNo",userNo);
 		rttr.addFlashAttribute("status",status);
 		logger.info(notice.toString());
