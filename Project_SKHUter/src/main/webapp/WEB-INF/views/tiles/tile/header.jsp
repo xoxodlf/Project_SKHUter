@@ -63,7 +63,7 @@
                                 <a href="/notice/voteList" style="color: white;"><i class="fa fa-thumbs-up fa-fw"></i> 투표 </a>
                           </li>
                           <li id="accounting">
-                                <a href="/notice/accountingList" style="color: white;"><i class="fa fa-money fa-fw"></i> 회계 내역 </a>
+                                <a href="/notice/accountingList?status=2" style="color: white;"><i class="fa fa-money fa-fw"></i> 회계 내역 </a>
                           </li>
                       </ul>
 				</li>
