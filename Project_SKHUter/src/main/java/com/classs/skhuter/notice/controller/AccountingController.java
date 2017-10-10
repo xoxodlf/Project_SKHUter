@@ -53,11 +53,28 @@ public class AccountingController {
 	private String uploadPath;
 
 	@RequestMapping(value = "/notice/accountingList", method = RequestMethod.GET)
-	public String accountingList(@ModelAttribute("cri") Criteria cri,Model model) throws Exception {
+	public String accountingList(@ModelAttribute("cri") Criteria cri,Model model,@RequestParam("status") int status) throws Exception {
 		logger.info("여기는 회계내역 페이지!!!");
-
-		List<AccountingDTO> accountingList = accountingService.listAll();
-		List<AccountingDTO> accountingPagedList = accountingService.listCriteria(cri);
+		logger.info(""+status);
+		List<AccountingDTO> accountingList = new ArrayList<>();
+		List<AccountingDTO> accountingPagedList= new ArrayList<>();
+		logger.info(cri.toString());
+		if(cri.getSearchType() !=null) {
+			if(cri.getSearchType().equals("t")) {
+				accountingPagedList = accountingService.accountingListCriteriaAllPage(cri);
+				accountingList = accountingService.accountingListCriteriaAll(cri);
+				logger.info(accountingList.toString());
+			}else if(cri.getSearchType().equals("c")) {
+				logger.info("keyword="+cri.getKeyword());
+				accountingPagedList = accountingService.ListCriteriaStatusPage(cri, status);
+				accountingList = accountingService.ListCriteriaStatus(cri, status);
+				logger.info(accountingList.toString());
+			}
+		} else {
+			accountingPagedList =  accountingService.listCriteria(cri);
+			accountingList = accountingService.listAll();
+			logger.info("널입니다.");
+		}
 		
 		String[] listFileName = new String[accountingList.size()];
 		

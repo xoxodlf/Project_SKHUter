@@ -125,7 +125,7 @@
 	</select>
 	
 	<select id="accountingListCriteria" resultType="Accounting">
-		<![CDATA[
+<![CDATA[
 		select rn,accountNo, userNo, accountDate, content, status, price, fileName, uuidName from(
 SELECT rownum rn, accountNo, userNo, accountDate, content, status, price, fileName, uuidName
     from 
@@ -138,7 +138,7 @@ SELECT rownum rn, accountNo, userNo, accountDate, content, status, price, fileNa
       order by rownum asc
       )
       where rn>=#{pageStart}+1 and rn<=#{pageStart}+10
-		]]>
+	]]>
 	</select>
 	
 	<select id="accountingListCountPaging" resultType="int">
@@ -151,6 +151,80 @@ SELECT rownum rn, accountNo, userNo, accountDate, content, status, price, fileNa
 			account_no > 0
 		]]>
 	</select>
+	
+	
+	<select id="ListCriteriaStatus"  parameterType="java.util.HashMap" resultType="Accounting">
+	<![CDATA[
+	select rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	from(
+	Select rownum rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	From(
+	SELECT account_no as accoutnNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName 
+ 	FROM Accounting
+  	order by ACCOUNT_DATE desc
+	)order by rownum asc
+	)where accountDate like concat(concat('%',#{keyword}),'%') and status =#{status}
+	]]>
+	</select>
+	
+	<select id="accountingListCriteriaAll" resultType="Accounting">
+	<![CDATA[
+	select rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	from(
+	Select rownum rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	From(
+	SELECT account_no as accoutnNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName 
+ 	FROM Accounting
+  	order by ACCOUNT_DATE desc
+	)order by rownum asc
+	)where accountDate like concat(concat('%',#{keyword}),'%')
+	]]>
+	</select>
+	
+	<select id="ListCriteriaStatusPage"  parameterType="java.util.HashMap" resultType="Accounting">
+	<![CDATA[
+	select rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	from
+	(
+	select rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	from(
+	Select rownum rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	From(
+	SELECT account_no as accoutnNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName 
+ 	FROM Accounting
+  	order by ACCOUNT_DATE desc
+	)order by rownum asc
+	)where accountDate like concat(concat('%',#{keyword}),'%') and status =#{status}
+	)where rn>=#{pageStart}+1 and rn<=#{pageStart}+10
+	]]>
+	</select>
+	
+	<select id="accountingListCriteriaAllPage" resultType="Accounting">
+	<![CDATA[
+	select rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	from
+	(
+	select rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	from(
+	Select rownum rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	From(
+	SELECT account_no as accoutnNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName 
+ 	FROM Accounting
+  	order by ACCOUNT_DATE desc
+	)order by rownum asc
+	)where accountDate like concat(concat('%',#{keyword}),'%')
+	)where rn>=#{pageStart}+1 and rn<=#{pageStart}+10
+	]]>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	<!-- 스튜스케줄 -->

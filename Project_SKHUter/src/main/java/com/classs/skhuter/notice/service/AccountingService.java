@@ -17,4 +17,12 @@ public interface AccountingService {
 	public List<AccountingDTO> listCriteria(Criteria cri) throws Exception;
 	
 	public int ListCountCriteria(Criteria cri) throws Exception;
+	
+	public List<AccountingDTO> ListCriteriaStatus(Criteria cri, int status);
+
+	public List<AccountingDTO> accountingListCriteriaAll(Criteria cri);
+	
+	public List<AccountingDTO> ListCriteriaStatusPage(Criteria cri, int status);
+	
+	public List<AccountingDTO> accountingListCriteriaAllPage(Criteria cri);
 }
