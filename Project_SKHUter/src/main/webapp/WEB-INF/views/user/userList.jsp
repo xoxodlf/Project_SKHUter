@@ -206,6 +206,7 @@ $(document).ready(function(){
 	})
 function throwStatus(){
 	var status = $("#selectStatus option:selected").val();
+	var length = $('status').length;
 	console.log(status);
 	$('input#Status').val(status);
 	

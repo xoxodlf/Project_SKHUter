@@ -110,7 +110,7 @@
     			<input type="hidden" name="page" value="${cri.page}">
 <input type="hidden" name="perPageNum" value="${cri.perPageNum}">
     	</form>
-		<c:if test="${login.status>=3}">
+		<c:if test="${UserDTO.status>=3}">
 		<button id="rmbtn" type="button" class="btn btn-danger">삭제</button>
 		</c:if>
 	</div>
@@ -175,7 +175,7 @@ $('#rmbtn').on('click',(function() {
 	 var link = $('form#deleteform');
 		var form = link;
 		var arr = [];
-		form.attr("action", "/notice/noticeDetail/delete");
+		form.attr("action", "/notice/noticeDetail/deleteM");
 	
 	swal({
 		  title: '정말 삭제 하시겠습니까? ',

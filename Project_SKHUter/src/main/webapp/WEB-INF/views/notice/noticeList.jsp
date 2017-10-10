@@ -99,7 +99,7 @@ div.search-box input[type="search"] {
 				<thead>
 					<tr>
 						<c:if test="${login.status>=3}"><th>전체<br />
-						<input type="checkbox" id="checkall"/></th></c:if>
+						<input type="checkbox"  id="checkall"/></th></c:if>
 						<th>No</th>
 						<th>제목</th>
 						<th>작성일</th>
@@ -117,7 +117,7 @@ div.search-box input[type="search"] {
 						<c:otherwise>
 						<c:forEach items="${noticeList}" var="noitceDTO">
 					<tr>
-						<c:if test="${login.status>=3}"><td><input type="checkbox"  name="check"  value="${noitceDTO.noticeNo}" /></td></c:if>
+						<c:if test="${login.status>=3}"><td><input class="checklist" type="checkbox"  name="check"  value="${noitceDTO.noticeNo}" /></td></c:if>
 						<td>${noitceDTO.noticeNo}</td>
 						<td><a href="/notice/noticeDetail${pageMaker.makeSearch(pageMaker.cri.page)}&noticeNo=${noitceDTO.noticeNo}">${noitceDTO.title}</a></td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${noitceDTO.regdate}" /></td>
@@ -208,23 +208,35 @@ div.search-box input[type="search"] {
 	/* 삭제여부 alert 대체 모달 */
 	$('#deletebutton').on('click', (function() {
 		var link = $("form#deleteForm");
-		console.log(link);
-		swal({
-			title : '삭제 하시겠습니까?',
-			text : "",
-			type : 'warning',
-			showCancelButton : true,
-			confirmButtonColor : '#3085d6',
-			cancelButtonColor : '#d33',
-			confirmButtonText : 'YES',
-			cancelButtonText : 'NO'
-		}).then(function() {
-			var form = link;
-			var arr = [];
-			form.attr("action", "/notice/noticeList/deleteList");
-			form.submit();
-			link = '';
-		})
+		var length = $(".checklist:checked").length;
+		console.log(length);
+		if(length<=0){
+			swal({
+				title : '선택한 체크박스가 없습니다.',
+				text : "",
+				type : 'warning',
+				confirmButtonColor : '#3085d6',
+				confirmButtonText : 'YES'
+			})
+		}else{
+			swal({
+				title : '삭제 하시겠습니까?',
+				text : "",
+				type : 'warning',
+				showCancelButton : true,
+				confirmButtonColor : '#3085d6',
+				cancelButtonColor : '#d33',
+				confirmButtonText : 'YES',
+				cancelButtonText : 'NO'
+			}).then(function() {
+				var form = link;
+				var arr = [];
+				form.attr("action", "/notice/noticeList/deleteList");
+				form.submit();
+				link = '';
+			})
+		}
+		
 	}));
 
 	/*등록 삭제 처리 완료시 뜨는 창*/

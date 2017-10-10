@@ -131,7 +131,7 @@ div.search-box input[type="search"] {
 							<tbody>
 								<tr>
 									<c:if test="${login.status>=2}">
-									<td><input type="checkbox" name="check" id="check" value="${AccountingDTO.accountNo }"/></td>
+									<td><input class="checklist" type="checkbox" name="check" id="check" value="${AccountingDTO.accountNo }"/></td>
 									</c:if>
 									<td>${size - ((pageMaker.cri.page - 1)*10+status.index) }</td>
 									<td>${AccountingDTO.content }</td>
@@ -204,8 +204,17 @@ $(document).ready(function(){
 
 	$("#removeBtn").on('click',(function() {
 			var link = $("form#checkForm");
+			var length = $(".checklist:checked").length;
 			console.log(link);
-			 swal({
+			if(length<=0){
+				swal({
+					title : '선택한 체크박스가 없습니다.',
+					text : "",
+					type : 'warning',
+					confirmButtonColor : '#3085d6',
+					confirmButtonText : 'YES'
+				})
+			}else{swal({
 	               title: '삭제 하시겠습니까?',
 	               text: "",
 	               type: 'warning',
@@ -221,6 +230,7 @@ $(document).ready(function(){
 	    			form.submit();
 	    			link = '';
 	            })
+			}
 		}));
 
    function getFileInfo(fullName) {

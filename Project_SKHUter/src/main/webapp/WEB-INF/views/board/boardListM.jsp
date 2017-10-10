@@ -186,7 +186,7 @@ div.search-box input[type="search"] {
 <div class="row">
 	<div class="col-lg-12">
 		<img src="/resources/images/title/board.png" class="page-header"
-			style="width: 20%;">
+			style="width: 40%;">
 	</div>
 </div>
 
@@ -248,7 +248,7 @@ div.search-box input[type="search"] {
 									<td>${boardDTO.boardNo}</td>
 									<td></td>
 									<td><a
-										href="/board/boardDetail?boardNo=${boardDTO.boardNo}">${boardDTO.title}<span style="display:inline;">　[${boardDTO.replyCount}]</span> </a></td>
+										href="/board/boardDetailM?boardNo=${boardDTO.boardNo}">${boardDTO.title}<span style="display:inline;">　[${boardDTO.replyCount}]</span> </a></td>
 									<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 											value="${boardDTO.regdate}" /></td>
 									<td>${boardDTO.hitCount}</td>
@@ -277,18 +277,18 @@ div.search-box input[type="search"] {
 						
 							<c:if test="${pageMaker.prev}">
 								<li class="paginate_button previous"><a
-									href="/board/boardList${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
+									href="/board/boardListM${pageMaker.makeQuery(pageMaker.startPage - 1) }">이전</a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
 								<li  class="paginate_button <c:out value="${pageMaker.cri.page == idx? 'active' :''}"/>">
-									<a href="/board/boardList${pageMaker.makeQuery(idx)}">${idx}</a>
+									<a href="/board/boardListM${pageMaker.makeQuery(idx)}">${idx}</a>
 								</li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li  class="paginate_button next"><a
-									href="/board/boardList${pageMaker.makeQuery(pageMaker.endPage +1) }">다음</a></li>
+									href="/board/boardListM${pageMaker.makeQuery(pageMaker.endPage +1) }">다음</a></li>
 							</c:if>
 					
 				</ul>
