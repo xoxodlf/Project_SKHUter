@@ -237,9 +237,9 @@ SELECT rownum rn, boardNo1 as boardNo, userNo1 as userNo, title, regdate, hitCou
 			board_no =#{boardNo}
 	</select>
 	
-	<!-- 
-	<select id="isLike" parameterType="board" resultType="int">
 	
+	<select id="isLike" resultType="int">
+	<![CDATA[  
 		SELECT count(rn)
 		from 
 			(SELECT rownum rn, user_no as userNo
@@ -247,10 +247,9 @@ SELECT rownum rn, boardNo1 as boardNo, userNo1 as userNo, title, regdate, hitCou
 		BOARD_LIKE where
 			board_no =#{boardNo})
     where 
-      user_no=#{userNo}
-			
+      userNo=#{userNo}
+			]]>
 	</select>
-	좋아요 버튼을 눌렀는지 아닌지 검사 -->
 	
 	<!-- 좋아요 등록 -->
 	<insert id="createlike">
@@ -264,4 +263,42 @@ SELECT rownum rn, boardNo1 as boardNo, userNo1 as userNo, title, regdate, hitCou
 		update board set like_count=like_count+1 where
 		board_no= #{boardNo}
 	</update>
+	
+	
+	<!-- 싫어요 등록 -->
+	<insert id="createhate">
+		INSERT INTO BOARD_HATE (board_no, user_no)
+		VALUES
+		(#{boardNo}, #{userNo})
+	</insert>
+	
+	<!-- 싫어요  + 1 -->
+	<update id="uphateCount">
+		update board set hate_count=hate_count+1 where
+		board_no= #{boardNo}
+	</update>
+	
+	<!-- 해당 게시물의 싫어요 개수 세기 -->
+	<select id="counthate" parameterType="board" resultType="int">
+		SELECT count(user_no)
+		from 
+			BOARD_HATE
+		where 
+			board_no =#{boardNo}
+	</select>
+	
+	
+	<select id="ishate" resultType="int">
+	<![CDATA[  
+		SELECT count(rn)
+		from 
+			(SELECT rownum rn, user_no as userNo
+		FROM
+		BOARD_HATE where
+			board_no =#{boardNo})
+    where 
+      userNo=#{userNo}
+			]]>
+	</select>
+	
 </mapper>

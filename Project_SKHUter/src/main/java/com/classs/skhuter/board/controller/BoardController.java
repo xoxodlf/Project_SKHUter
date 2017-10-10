@@ -1,7 +1,6 @@
 package com.classs.skhuter.board.controller;
 
 import java.util.List;
-import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -53,24 +52,16 @@ public class BoardController {
 
    /** 게시글 불러오기 **/
    @RequestMapping(value = "/boardDetail", method = RequestMethod.GET)
-   public String read(@RequestParam("userNo") int userNo, @RequestParam("boardNo") int boardNo, @ModelAttribute("cri") Criteria cri, Model model)
+   public String read(@RequestParam("boardNo") int boardNo, @RequestParam("userNo") int userNo, @ModelAttribute("cri") Criteria cri, Model model)
          throws Exception {
-      
-      List<BoardLikeDTO> list=service.LikeCountlistAll(boardNo);
-      int likeCount=0, islike=0;
-      BoardDTO tmp = new BoardDTO();
-      tmp.setBoardNo(boardNo);
-      tmp.setUserNo(userNo);
-      for (BoardLikeDTO board : list) {
-      logger.info("board.toString() : " + board.toString());
-      //islike=service.isLike(tmp);
-      likeCount=service.countLike(tmp);
-      }
-      //logger.info(Integer.toString(islike));
-      logger.info("Integer.toString(likeCount) : " + Integer.toString(likeCount));
-      
-      model.addAttribute(cri);
-      model.addAttribute(service.read(boardNo));
+	   BoardDTO board=new BoardDTO();
+	   
+	   board.setBoardNo(boardNo);
+	   board.setIslike(service.isLike(boardNo, userNo));
+	   board.setIshate(service.ishate(boardNo, userNo));
+	   model.addAttribute(cri);
+	   model.addAttribute("board",board);
+	   model.addAttribute(service.read(boardNo));
       
       return "board/boardDetail.lay";
    }
@@ -117,6 +108,9 @@ public class BoardController {
          //좋아요 갯수
          int likeCount=service.countLike(tmp);
          board.setLikeCount(likeCount);
+         //싫어요 갯수
+         int hateCount=service.counthate(tmp);
+         board.setHateCount(hateCount);
          logger.info(board.toString());
       }
 
@@ -138,31 +132,40 @@ public class BoardController {
    
     /**
      * 좋아요했을 때 좋아요 수 올리기
-    
-   @RequestMapping(value="/boardList/uplikeCount", method = RequestMethod.POST)
-   public String doVote(VoteDTO upVote,RedirectAttributes rttr) {
+     */
+   @RequestMapping(value="/boardDetail/uplike", method = RequestMethod.POST)
+   public String uplike(@RequestParam("boardNo") int boardNo, @RequestParam("userNo") int userNo,
+		   @RequestParam("page") int page, @RequestParam("perPageNum") int perPageNum, @RequestParam("keyword") String keyword,
+		   @RequestParam("searchType") String searchType, RedirectAttributes rttr) {
+	   String url = "redirect:/board/boardDetail?page="+page+"&perPageNum="+perPageNum
+	    		  +"&searchType="+searchType+"&keyword="+keyword+"&boardNo="+boardNo+"&userNo="+userNo;
       
-      logger.info(upVote.toString());
-      service.upVote(upVote);
-      VoteListDTO doVote = new VoteListDTO();
-      
-      doVote.setVoteNo(upVote.getVoteNo());
-      doVote.setUserNo(upVote.getUserNo());
-      doVote.setSelectItem("투표했다이사람");
-      
-      service.doVote(doVote);
-      
-      logger.info(doVote.toString());
-      rttr.addFlashAttribute("message", "success");
-      
-      return "redirect:/notice/voteList";   
+	   logger.info(url);
+	   rttr.addFlashAttribute("message", "successuplike");
+      service.createlike(boardNo, userNo);
+      service.uplikeCount(boardNo);
+	  
+      return url; 
    }
    
-   uplike
-   
+   /**
+    * 싫어요했을 때 싫어요 수 올리기
     */
-   
-   
+  @RequestMapping(value="/boardDetail/uphate", method = RequestMethod.POST)
+  public String uphate(@RequestParam("boardNo") int boardNo, @RequestParam("userNo") int userNo,
+		   @RequestParam("page") int page, @RequestParam("perPageNum") int perPageNum, @RequestParam("keyword") String keyword,
+		   @RequestParam("searchType") String searchType, RedirectAttributes rttr) {
+	   String url = "redirect:/board/boardDetail?page="+page+"&perPageNum="+perPageNum
+	    		  +"&searchType="+searchType+"&keyword="+keyword+"&boardNo="+boardNo+"&userNo="+userNo;
+     
+	   logger.info(url);
+	   rttr.addFlashAttribute("message", "successuphate");
+     service.createhate(boardNo, userNo);
+     service.uphateCount(boardNo);
+	  
+     return url; 
+  }
+    
    
    /**
     * (모바일 웹)게시판 리스트 구현 페이징 기능 검색 기능

@@ -51,6 +51,24 @@ public interface BoardService {
 		public int countLike(BoardDTO board) throws Exception;
 		
 		/** 좋아요 했는지 여부 **/
-		public int isLike(BoardDTO board);
+		public int isLike(int boardNo, int userNo);
+		
+		/** 좋아요테이블에 게시물 등록 **/
+		public void createlike(int boardNo, int userNo);
+		
+		/** 해당 게시물의 좋아요 1 올려주기 **/
+		public void uplikeCount(int boardNo);
+		
+		/** 싫어요테이블에 게시물 등록 **/
+		public void createhate(int boardNo, int userNo);
+		
+		/** 해당 게시물의 싫어요 1 올려주기 **/
+		public void uphateCount(int boardNo);
+		
+		 /**싫어요 개수 세기**/
+		public int counthate(BoardDTO board) throws Exception;
+		
+		/** 싫어요 했는지 여부 **/
+		public int ishate(int boardNo, int userNo);
 	
 }

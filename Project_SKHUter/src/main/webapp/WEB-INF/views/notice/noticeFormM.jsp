@@ -49,7 +49,34 @@
 <!-- include summernote css/js-->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<script>
+/* SummerNote */
+/* SummerNote내용 value값으로 전달 */
+function contentsend(){
+		var markupStr = $('.summernote').summernote('code');
+		$('input#content').val(markupStr);
+		
+		// test : + button type=submit -> button
+		//		  + button onmouseover -> onclick
+		var form = document.forms["form"];
+		form.submit();
+}
 
+/* SummerNote 내용 받아오기 */
+$(document).ready(function() {
+    $('.summernote').summernote({
+    	lang: 'ko-KR',
+    	height: 300,
+    	focus: false,
+    	placeholder: '내용을 입력해주세요.'
+    });
+});
+
+function goList() { 
+	location.href = "/notice/noticeListM";
+}
+    
+</script>
 <style>
 /* 기타 */
 	/* 페이지 제목 : 공지사항 : 가운데 정렬 + 굵게 */
@@ -104,7 +131,7 @@
 	}
 	
 </style>
-<form role="form" id="noticeFormM" action="/notice/noticeFormM" method="POST">
+<form role="form" id="form" action="noticeFormM" method="POST">
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">공지사항 글쓰기</h1>
@@ -112,9 +139,10 @@
 </div>
 <div class="col-lg-12">
 <div class="panel-body">
+<input type="hidden" name="userNo" value="${login.userNo}">
 	<div class="board-btns">
 	<div class="board-btn">
-		<button type="button" id="creatMbtn" class="btn btn-default">글등록</button>
+		<button type="button" onclick="javascript:contentsend();" class="btn btn-default">글등록</button>
 	</div>
 	<div class="board-btn">
 		<button type="button" id="listBtn" class="btn btn-default listBtn" onclick="goList()">목록</button>
@@ -156,35 +184,4 @@
 </div>
 <!-- div.col-lg-12 -->
 </form>
-<script>
-/* SummerNote */
-/* SummerNote내용 value값으로 전달 */
 
-$('#creatMbtn').on('click',(function() {
-	var markupStr = $('.summernote').summernote('code');
-	$('input#content').val(markupStr);
-	var link = $("form#noticeFormM");
-	console.log(link);
-        	var form = link;
-			var arr = [];
-			form.attr("action", "/notice/noticeFormM");
-			form.submit();
-			link = '';
- }));
-
-
-/* SummerNote 내용 받아오기 */
-$(document).ready(function() {
-    $('.summernote').summernote({
-    	lang: 'ko-KR',
-    	height: 300,
-    	focus: false,
-    	placeholder: '내용을 입력해주세요.'
-    });
-});
-
-function goList() { 
-	location.href = "/notice/noticeListM";
-}
-    
-</script>
