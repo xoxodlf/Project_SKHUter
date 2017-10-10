@@ -51,6 +51,41 @@
 		padding: 50px 10px 50px 10px;
 	}
 	
+	button#likeBtn {
+		color: #67a6d3;
+  		background-color: white;
+   		border-color: #adadad;
+	}
+	
+	button#hateBtn {
+		color: #ff7058;
+  		background-color: white;
+   		border-color: #adadad;
+	}
+	button#likeBtn.active{
+		color: white;
+  		background-color: #67a6d3;
+   		border-color: #adadad;
+   		
+	}
+	button#hateBtn.active{
+		color: white;
+  		background-color: #ff7058;
+   		border-color: #adadad;
+   		
+	}
+	button#likeBtn:hover{
+		color: #67a6d3;
+  		background-color: rgba(92, 147, 187, 0.29);
+   		border-color: #adadad;
+	}
+	button#hateBtn:hover{
+		color: #ff7058;
+  		background-color: rgba(255, 112, 88, 0.45);
+   		border-color: #adadad;
+	}
+}
+	
 </style>
 <div>
 <div class="row">
@@ -67,7 +102,7 @@
     			<input type="hidden" name="page" value="${cri.page}">
 <input type="hidden" name="perPageNum" value="${cri.perPageNum}">
     	</form>   
-		<button type="button" class="btn btn-default removeBtn">삭제</button>
+		<button type="button" class="btn btn-danger removeBtn">삭제</button>
 	</div>
 	<div class="board-btn">
 		<button type="button" class="btn btn-default listBtn">목록</button>
@@ -78,29 +113,29 @@
 	<div class="table-responsive table-bordered">
 		<table class="table">
 			<colgroup>
-				<col width="15%"/>
-				<col width="15%"/>
-				<col width="5%"/>
-				<col width="10%"/>
-				<col width="5%"/>
-				<col width="10%"/>
-				<col width="5%"/>
 				<col width="20%"/>
+				<col width="15%"/>
+				<col width="5%"/>
+				<col width="10%"/>
+				<col width="7%"/>
+				<col width="15%"/>
+				<col width="7%"/>
+				<col width="21%"/>
 			</colgroup>
 			<thead>
 				<tr>
 				<th>제목</th>
 				<td colspan="7"> ${boardDTO.title}</td>
 				</tr>
+				
 				<tr>
 				<th>조회</th>
 				<td>${boardDTO.hitCount}</td>
 				<th> </th>
 				<td> </td>
-				<th>작성일</th>
-				<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardDTO.regdate}" /></td>
 				<th> </th>
-				<td> </td>
+				<th align="center" style="text-align: right;">작성일</th>
+				<td colspan="2" align="center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardDTO.regdate}" /></td>
 				</tr>
 			</thead>
 			<tbody>
@@ -127,8 +162,8 @@
 					<input type="hidden" name="keyword" value="${cri.keyword}">
 					<input type="hidden" name="searchType" value="${cri.searchType}">
 					</form>
-					<button type="button" id="likeBtn" class="btn btn-default"><i class="fa fa-thumbs-o-up "></i> 좋아요 ${boardDTO.likeCount}</button>
-					<button type="button" id="hateBtn" class="btn btn-default"><i class="fa fa-thumbs-o-down"></i> 싫어요 ${boardDTO.hateCount}</button>
+					<button type="button" id="likeBtn" class="btn btn-default likeBtn"><i class="fa fa-thumbs-o-up "></i> 좋아요 ${boardDTO.likeCount}</button>
+					<button type="button" id="hateBtn" class="btn btn-default hateBtn"><i class="fa fa-thumbs-o-down"></i> 싫어요 ${boardDTO.hateCount}</button>
 					
 					 
 					</td>
@@ -136,7 +171,7 @@
 				<tr>
 					<td align=center>댓글</td> 
 					<td colspan="6">
-					<input type="text" name="replytext" id="newReplyText" size="115"/></td>
+					<input type="text" name="replytext" id="newReplyText" size="100"/></td>
 					<td colspan="2" align=center>
 						<button type="button" id="replyAddBtn" class="btn btn-default" size="30" >등록</button>
 					</td>

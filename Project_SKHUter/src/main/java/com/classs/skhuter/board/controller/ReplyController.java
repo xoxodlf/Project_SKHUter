@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.classs.skhuter.board.domain.BoardDTO;
 import com.classs.skhuter.board.domain.ReplyDTO;
+import com.classs.skhuter.board.service.BoardService;
 import com.classs.skhuter.board.service.ReplyService;
 
 /**
@@ -33,7 +35,6 @@ public class ReplyController {
 	/** 댓글 등록 POST방식 **/
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public ResponseEntity<String> registerReply(@RequestBody ReplyDTO reply) {
-		logger.info(reply.toString());
 		ResponseEntity<String> entity = null;
 		try {
 			service.createReply(reply);
@@ -48,7 +49,6 @@ public class ReplyController {
 	/** 특정 게시물의 전체 댓글 리스트 구현 **/
 	@RequestMapping(value = "/all/{boardNo}", method = RequestMethod.GET)
 	public ResponseEntity<List<ReplyDTO>> listAllReply(@PathVariable("boardNo") int boardNo) {
-		logger.info(String.valueOf(boardNo));
 		ResponseEntity<List<ReplyDTO>> entity = null;
 		try {
 			entity = new ResponseEntity<>(service.listAllReply(boardNo), HttpStatus.OK);
@@ -75,5 +75,4 @@ public class ReplyController {
 		}
 		return entity;
 	}
-
 }

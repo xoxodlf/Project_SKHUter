@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.classs.skhuter.board.domain.BoardDTO;
-import com.classs.skhuter.board.domain.BoardLikeDTO;
 import com.classs.skhuter.board.service.BoardService;
 import com.classs.skhuter.util.Criteria;
 import com.classs.skhuter.util.PageMaker;
@@ -31,25 +30,24 @@ public class BoardController {
 
    @Inject
    private BoardService service;
-
+   
    /** 게시글 등록 GET방식 **/
    @RequestMapping(value = "/boardForm", method = RequestMethod.GET)
    public String boardForm(Model model) {
 
       return "board/boardForm.lay";
    }
-
+   
    /** 게시글 등록 POST방식 **/
    @RequestMapping(value = "/boardForm", method = RequestMethod.POST)
    public String registPOST(BoardDTO board, RedirectAttributes rttr) throws Exception {
 
       service.create(board);
       rttr.addFlashAttribute("message", "createsuccess");
-      logger.info(board.toString());
 
       return "redirect:/board/boardList";
    }
-
+   
    /** 게시글 불러오기 **/
    @RequestMapping(value = "/boardDetail", method = RequestMethod.GET)
    public String read(@RequestParam("boardNo") int boardNo, @RequestParam("userNo") int userNo, @ModelAttribute("cri") Criteria cri, Model model)
@@ -69,7 +67,6 @@ public class BoardController {
    /** 게시글 삭제하기 **/
    @RequestMapping(value = "boardDetail/delete", method = RequestMethod.POST)
    public String remove(@RequestParam("boardNo") int boardNo, Criteria cri, RedirectAttributes rttr) throws Exception {
-      logger.info("컨트롤러랍니다~");
       service.delete(boardNo);
 
       rttr.addAttribute("page", cri.getPage());
@@ -111,7 +108,6 @@ public class BoardController {
          //싫어요 갯수
          int hateCount=service.counthate(tmp);
          board.setHateCount(hateCount);
-         logger.info(board.toString());
       }
 
       model.addAttribute("boardList", list);
@@ -139,8 +135,6 @@ public class BoardController {
 		   @RequestParam("searchType") String searchType, RedirectAttributes rttr) {
 	   String url = "redirect:/board/boardDetail?page="+page+"&perPageNum="+perPageNum
 	    		  +"&searchType="+searchType+"&keyword="+keyword+"&boardNo="+boardNo+"&userNo="+userNo;
-      
-	   logger.info(url);
 	   rttr.addFlashAttribute("message", "successuplike");
       service.createlike(boardNo, userNo);
       service.uplikeCount(boardNo);
@@ -157,8 +151,6 @@ public class BoardController {
 		   @RequestParam("searchType") String searchType, RedirectAttributes rttr) {
 	   String url = "redirect:/board/boardDetail?page="+page+"&perPageNum="+perPageNum
 	    		  +"&searchType="+searchType+"&keyword="+keyword+"&boardNo="+boardNo+"&userNo="+userNo;
-     
-	   logger.info(url);
 	   rttr.addFlashAttribute("message", "successuphate");
      service.createhate(boardNo, userNo);
      service.uphateCount(boardNo);
