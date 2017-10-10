@@ -336,7 +336,7 @@ VALUES (seq_School_schedule.nextVal, #{content},TO_DATE(#{startDate},'yyyy-MM-dd
 
 <!-- 조회수 세기 -->
 	<update id="updateHitCount">
-		update board set hit_count=hit_count+1 where
+		update notice set hit_count=hit_count+1 where
 		notice_no= #{noticeNo}
 	</update>
 

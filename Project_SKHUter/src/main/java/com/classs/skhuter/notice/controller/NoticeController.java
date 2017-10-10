@@ -62,6 +62,7 @@ public class NoticeController {
 	
 	@RequestMapping(value="/noticeDetail", method=RequestMethod.GET)
 	public String noticeDetail(@RequestParam("noticeNo") int noticeNo, @ModelAttribute("cri") Criteria cri, Model model) throws Exception {
+		service.updateHitCount(noticeNo);
 		model.addAttribute(cri);
 		model.addAttribute(service.read(noticeNo));
 		
