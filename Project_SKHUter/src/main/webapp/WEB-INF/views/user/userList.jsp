@@ -64,7 +64,6 @@
         					<option value="0">승인 대기</option>
         					<option value="1">일반 학생</option>
         					<option value="2">학생회</option>
-        					<option value="3">회장단</option>
       					</select>
 	<button id="changeStatusBtn" type="button" class="btn btn-default" onmouseover="throwStatus()">등급 변경</button>
 
