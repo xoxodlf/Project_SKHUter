@@ -78,4 +78,9 @@ public class NoticeDAOImpl implements NoticeDAO {
 		return sqlSession.selectOne(namespace + ".listSearchCount_tc", cri);
 	}
 
+	@Override
+	public void updateHitCount(int noticeNo) throws Exception {
+		sqlSession.update(namespace + ".updateHitCount", noticeNo);
+	}
+
 }

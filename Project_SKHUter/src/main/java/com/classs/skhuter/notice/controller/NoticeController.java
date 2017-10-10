@@ -82,12 +82,22 @@ public class NoticeController {
 		return "redirect:/notice/noticeList";
 	}
 	
-	@RequestMapping(value = "/noticeList/delete", method = RequestMethod.POST)
-	public String deleteNotice(@RequestParam(value="check", required=true) List<String> checks) throws Exception {
+	@RequestMapping(value = "/noticeList/deleteList", method = RequestMethod.POST)
+	public String deleteNoticeList(@RequestParam(value="check", required=true) List<String> checks) throws Exception {
 		for(String check:checks) {
 			service.delete(Integer.parseInt(check));
 		}
 		return "redirect:/notice/noticeList";
+	}	
+	@RequestMapping(value = "/noticeDetail/delete", method = RequestMethod.POST)
+	public String deleteNotice(@RequestParam("noticeNo") int noticeNo, Criteria cri, RedirectAttributes rttr) throws Exception {
+			service.delete(noticeNo);
+
+	      rttr.addAttribute("page", cri.getPage());
+	      rttr.addAttribute("perPageNum", cri.getPerPageNum());
+	      rttr.addFlashAttribute("message", "deletesuccess");
+
+	      return "redirect:/notice/noticeList";
 	}	
 	
 }

@@ -61,15 +61,16 @@
 	<div class="board-btns">
 	<div class="board-btn">
 	<form role="form" id="deleteform" method="post" action="/board/boardDetail/delete">
-    			<input type='hidden' name='noticeNo' id='bn' value ="${noticeDTO.noticeNo}">
+    			<input type='hidden' name='noticeNo' id='nn' value ="${noticeDTO.noticeNo}">
     			<input type="hidden" name="page" value="${cri.page}">
 <input type="hidden" name="perPageNum" value="${cri.perPageNum}">
     	</form>
-		<button type="button" class="btn btn-primary">수정</button>
-		<button type="button" class="btn btn-danger">삭제</button>
+		<c:if test="${login.status>=3}">
+		<button id="rmbtn" type="button" class="btn btn-danger">삭제</button>
+		</c:if>
 	</div>
 	<div class="board-btn">
-		<button type="button" class="btn btn-default">목록</button>
+		<button id="libtn" type="button" class="btn btn-default">목록</button>
 	</div>
 	</div>
 	<!-- div.board-btns -->
@@ -117,4 +118,34 @@
 <!-- div.panel-body -->
 </div>
 <!-- div.col-lg-12 -->
-
+<form role="form" id="listForm">
+<input type="hidden" name="noticeNo" value="${noticeDTO.noticeNo}">
+<input type="hidden" name="page" value="${cri.page}">
+<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
+<input type="hidden" name="keyword" value="${cri.keyword}">
+<input type="hidden" name="searchType" value="${cri.searchType}">
+</form>  
+<script>
+$('#rmbtn').on('click',(function() {
+	 var link = $('form#deleteform');
+		var form = link;
+		var arr = [];
+		form.attr("action", "/notice/noticeDetail/delete");
+	
+	swal({
+		  title: '정말 삭제 하시겠습니까? ',
+		  text: "",
+		  showCancelButton: true,
+		}).then(function (answer) {
+			form.submit();
+			link = '';
+		})
+}));
+var noticeNo = $('#nn').val();
+var formObj = $("form#listForm");
+$('#libtn').on('click',(function() {
+	formObj.attr("action", "/notice/noticeList");
+	formObj.attr("method", "get");		
+	formObj.submit();
+}));
+</script>
