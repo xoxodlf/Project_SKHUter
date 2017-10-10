@@ -117,10 +117,10 @@ div.search-box input[type="search"] {
 						</td>
 						</c:when>
 						<c:otherwise>
-						<c:forEach items="${noticeList}" var="noitceDTO">
+						<c:forEach items="${noticeList}" var="noitceDTO" varStatus="status">
 					<tr>
 						<c:if test="${login.status>=3}"><td><input class="checklist" type="checkbox"  name="check"  value="${noitceDTO.noticeNo}" /></td></c:if>
-						<td>${noitceDTO.noticeNo}</td>
+						<td>${size-((pageMaker.cri.page-1)*10 + status.index)}</td>
 						<td><a href="/notice/noticeDetail${pageMaker.makeSearch(pageMaker.cri.page)}&noticeNo=${noitceDTO.noticeNo}">${noitceDTO.title}</a></td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${noitceDTO.regdate}" /></td>
 						<td>${noitceDTO.hitCount}　</td>

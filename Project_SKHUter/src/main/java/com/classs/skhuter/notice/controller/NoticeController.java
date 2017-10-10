@@ -83,6 +83,7 @@ public class NoticeController {
 			pageMaker.setTotalCount(service.countPaging(cri));
 
 		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("size",list.size());
 		
 		return "notice/noticeList.lay";
 		

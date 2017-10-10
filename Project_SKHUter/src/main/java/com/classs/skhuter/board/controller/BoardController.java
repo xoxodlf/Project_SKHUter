@@ -131,6 +131,7 @@ public class BoardController {
       else pageMaker.setTotalCount(service.listCountCriteria(cri));
 
       model.addAttribute("pageMaker", pageMaker);
+      model.addAttribute("size", list.size());
 
       return "board/boardList.lay";
 
