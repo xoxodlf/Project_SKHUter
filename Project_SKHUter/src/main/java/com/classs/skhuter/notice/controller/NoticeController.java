@@ -69,6 +69,9 @@ public class NoticeController {
 		return "notice/noticeDetail.lay";
 	}
 	
+	
+	
+	
 	@RequestMapping(value="/noticeForm", method=RequestMethod.GET)
 	public String noticeForm(Model model) {
 		return "notice/noticeForm.lay";
@@ -132,4 +135,26 @@ public class NoticeController {
 		return "notice/noticeListM";
 	}
 	
+	@RequestMapping(value="/noticeDetailM", method=RequestMethod.GET)
+	public String noticeDetailM(@RequestParam("noticeNo") int noticeNo, @ModelAttribute("cri") Criteria cri, Model model) throws Exception {
+		service.updateHitCount(noticeNo);
+		model.addAttribute(cri);
+		model.addAttribute(service.read(noticeNo));
+		
+		return "notice/noticeDetailM";
+	}
+	
+	@RequestMapping(value="/noticeFormM", method=RequestMethod.GET)
+	public String noticeFormM(Model model) {
+		return "notice/noticeFormM";
+	}
+	@RequestMapping(value = "/noticeFormM", method = RequestMethod.POST)
+	public String registPOSTM(NoticeDTO notice, RedirectAttributes rttr) throws Exception {
+
+		service.create(notice);
+		rttr.addFlashAttribute("message", "createsuccess");
+		logger.info(notice.toString());
+
+		return "redirect:/notice/noticeListM";
+	}
 }
