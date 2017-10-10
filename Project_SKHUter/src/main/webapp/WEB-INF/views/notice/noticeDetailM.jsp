@@ -175,7 +175,7 @@ $('#rmbtn').on('click',(function() {
 	 var link = $('form#deleteform');
 		var form = link;
 		var arr = [];
-		form.attr("action", "/notice/noticeDetail/delete");
+		form.attr("action", "/notice/noticeDetail/deleteM");
 	
 	swal({
 		  title: '정말 삭제 하시겠습니까? ',

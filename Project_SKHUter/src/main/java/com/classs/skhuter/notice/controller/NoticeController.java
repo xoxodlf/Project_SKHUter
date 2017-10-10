@@ -3,6 +3,7 @@ package com.classs.skhuter.notice.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.classs.skhuter.board.domain.BoardDTO;
 import com.classs.skhuter.notice.domain.NoticeDTO;
 import com.classs.skhuter.notice.service.NoticeService;
+import com.classs.skhuter.user.domain.UserDTO;
 import com.classs.skhuter.util.Criteria;
 import com.classs.skhuter.util.PageMaker;
 
@@ -104,10 +106,15 @@ public class NoticeController {
 	      return "redirect:/notice/noticeList";
 	}
 	
+	///////////////////////모바일 컨트롤러구현/////////////////////////////////////
 	
 	@RequestMapping(value="/noticeListM", method=RequestMethod.GET)
-	public String noticeListM(@ModelAttribute("cri") Criteria cri,Model model) throws Exception {
-		
+	public String noticeListM(@ModelAttribute("cri") Criteria cri,Model model, UserDTO user,HttpServletRequest req) throws Exception {
+		if (user != null) {
+		      req.getSession().setAttribute("login", user);
+		   } else {
+		      user = (UserDTO) req.getSession().getAttribute("login");
+		   }
 		List<NoticeDTO> list;
 		if(cri.getSearchType()!=null) {
 			if(cri.getSearchType().equals("t")) {
@@ -130,31 +137,45 @@ public class NoticeController {
 		else if(cri.getSearchType()=="c") pageMaker.setTotalCount(service.listSearchCount_c(cri));
 		else if(cri.getSearchType()=="tc")pageMaker.setTotalCount(service.listSearchCount_tc(cri));
 		else pageMaker.setTotalCount(service.countPaging(cri));
-
+		model.addAttribute("UserDTO",user);
 		model.addAttribute("pageMaker", pageMaker);
 		return "notice/noticeListM";
 	}
 	
 	@RequestMapping(value="/noticeDetailM", method=RequestMethod.GET)
-	public String noticeDetailM(@RequestParam("noticeNo") int noticeNo, @ModelAttribute("cri") Criteria cri, Model model) throws Exception {
+	public String noticeDetailM(@RequestParam("noticeNo") int noticeNo, @ModelAttribute("cri") Criteria cri, Model model,HttpServletRequest req) throws Exception {
 		service.updateHitCount(noticeNo);
 		model.addAttribute(cri);
 		model.addAttribute(service.read(noticeNo));
-		
+		UserDTO user = (UserDTO) req.getSession().getAttribute("login");
+		model.addAttribute("UserDTO",user);
 		return "notice/noticeDetailM";
 	}
 	
 	@RequestMapping(value="/noticeFormM", method=RequestMethod.GET)
-	public String noticeFormM(Model model) {
+	public String noticeFormM(Model model,HttpServletRequest req) {
 		return "notice/noticeFormM";
 	}
 	@RequestMapping(value = "/noticeFormM", method = RequestMethod.POST)
-	public String registPOSTM(NoticeDTO notice, RedirectAttributes rttr) throws Exception {
-
+	public String registPOSTM(NoticeDTO notice, RedirectAttributes rttr,Model model,HttpServletRequest req) throws Exception {
+		UserDTO user = (UserDTO) req.getSession().getAttribute("login");
+		notice.setUserNo(user.getUserNo());
 		service.create(notice);
 		rttr.addFlashAttribute("message", "createsuccess");
+		model.addAttribute(user);
 		logger.info(notice.toString());
 
 		return "redirect:/notice/noticeListM";
+	}
+	
+	@RequestMapping(value = "/noticeDetail/deleteM", method = RequestMethod.POST)
+	public String deleteNoticeM(@RequestParam("noticeNo") int noticeNo, Criteria cri, RedirectAttributes rttr,HttpServletRequest req, Model model) throws Exception {
+		UserDTO user = (UserDTO) req.getSession().getAttribute("login");	
+		service.delete(noticeNo);
+			
+	      rttr.addAttribute("page", cri.getPage());
+	      rttr.addAttribute("perPageNum", cri.getPerPageNum());
+	      rttr.addFlashAttribute("message", "deletesuccess");
+	      return "redirect:/notice/noticeListM";
 	}
 }

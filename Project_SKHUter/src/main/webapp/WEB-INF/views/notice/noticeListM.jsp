@@ -119,13 +119,13 @@ div.search-box input[type="search"] {
 		<div class="board-btns">
 		
 			<div class="board-btn">
-			<c:if test="${login.status>=3}">
-				<button type="button" id="deletebutton" class="btn btn-danger">삭제</button>
-				</c:if>
-			</div>
+					</div>
 			
 			<div class="board-btn">
+				<c:if test="${UserDTO.status>=3}">
 				<a href="/notice/noticeFormM" class="btn btn-default"> 글쓰기 </a>
+				</c:if>
+
 			</div>
 		</div>
 		<!-- div.board-btns -->
@@ -135,9 +135,6 @@ div.search-box input[type="search"] {
 		<form role="form" id="deleteForm" action="/notice/noticeList/deleteList" method="post">
 			<table class="table table-hover">
 				<colgroup>
-				<c:if test="${login.status>=3}">
-					<col width="7%" />
-					</c:if>
 					<col width="7%" />
 					<col width="*" />
 					<col width="20%" />
@@ -145,8 +142,6 @@ div.search-box input[type="search"] {
 				</colgroup>
 				<thead>
 					<tr>
-						<c:if test="${login.status>=3}"><th>전체<br />
-						<input type="checkbox" id="checkall"/></th></c:if>
 						<th>No</th>
 						<th>제목</th>
 						<th>작성일</th>
@@ -164,7 +159,6 @@ div.search-box input[type="search"] {
 						<c:otherwise>
 						<c:forEach items="${noticeList}" var="noitceDTO">
 					<tr>
-						<c:if test="${login.status>=3}"><td><input type="checkbox"  name="check"  value="${noitceDTO.noticeNo}" /></td></c:if>
 						<td>${noitceDTO.noticeNo}</td>
 						<td><a href="/notice/noticeDetailM${pageMaker.makeSearch(pageMaker.cri.page)}&noticeNo=${noitceDTO.noticeNo}">${noitceDTO.title}</a></td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${noitceDTO.regdate}" /></td>
