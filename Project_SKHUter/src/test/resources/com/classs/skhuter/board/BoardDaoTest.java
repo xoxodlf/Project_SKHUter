@@ -26,21 +26,19 @@ public class BoardDaoTest {
 	Logger logger = Logger.getLogger(BoardDaoTest.class);
 	@Test
 	public void TestCreate() {
-		//for(int i=201; i<=230; i++) {
 		BoardDTO board = new BoardDTO();
 		board.setUserNo(1);
-		board.setTitle("테스트231");
-		board.setHitCount(10);
-		board.setPassword("123");
-		board.setContent("9");
-		board.setLikeCount(1);
-		board.setHateCount(2);
+		board.setTitle("※익명게시판 공지사항입니다※");
+		board.setHitCount(0);
+		board.setPassword("1234");
+		board.setContent("자유롭게 의견 나눌 수 있는 공간입니다. 모두에게 쾌적한 이용을 위해 인신공격성 게시물은 삼가해주세요.");
+		board.setLikeCount(8);
+		board.setHateCount(0);
 
 		dao.create(board);
 
 		logger.info("신규게시 완료~~~~");
 		logger.info(board.toString());
-		//}
 	}
 
 	@Test

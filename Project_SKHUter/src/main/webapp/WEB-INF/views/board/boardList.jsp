@@ -69,104 +69,7 @@ div.search-box input[type="search"] {
 }
 </style>
 
-<!-- 전체 체크박스 클릭시 모든 체크박스 선택-->
-<!-- 체크박스 하나라도 해제시 전체 체크부분 해제 -->
-<script type="text/javascript">
-	function allCheckFunc(obj) {
-		$("[name=checkOne]").prop("checked", $(obj).prop("checked"));
-	}
 
-	/* 체크박스 체크시 전체선택 체크 여부 */
-	function oneCheckFunc(obj) {
-		var allObj = $("[name=checkAll]");
-		var objName = $(obj).attr("name");
-
-		if ($(obj).prop("checked")) {
-			checkBoxLength = $("[name=" + objName + "]").length;
-			checkedLength = $("[name=" + objName + "]:checked").length;
-
-			if (checkBoxLength == checkedLength) {
-				allObj.prop("checked", true);
-			} else {
-				allObj.prop("checked", false);
-			}
-		} else {
-			allObj.prop("checked", false);
-		}
-	}
-
-	$(function() {
-		$("[name=checkAll]").click(function() {
-			allCheckFunc(this);
-		});
-		$("[name=checkOne]").each(function() {
-			$(this).click(function() {
-				oneCheckFunc($(this));
-			});
-		});
-	});
-	
-	/* 글쓰기 페이지로 이동 */
-	function goboardForm() {
-		location.href = "/board/boardForm";
-	}
-
-	/* 삭제여부 alert 대체 모달 */
-	$('.removeBtn').on('click', (function() {
-		var link = $(this).parent().parent().parent().prev();
-		console.log('link');
-		swal({
-			title : '삭제 하시겠습니까?',
-			text : "",
-			type : 'warning',
-			showCancelButton : true,
-			confirmButtonColor : '#3085d6',
-			cancelButtonColor : '#d33',
-			confirmButtonText : 'YES',
-			cancelButtonText : 'NO'
-		}).then(function() {
-			var form = link;
-			var arr = [];
-			form.attr("action", "/board/boardList/delete");
-			form.submit();
-			link = '';
-		})
-	}));
-
-	/*등록 삭제 처리 완료시 뜨는 창*/
-	$(function() {
-		var message = $('#createsuccess').val();
-		if (message == 'createsuccess') {
-			swal({
-				type: 'success',
-			    title: '등록이 완료되었습니다.'
-			    })
-		}
-	});
-	$(function() {
-		var message = $('#deletesuccess').val();
-		if (message == 'deletesuccess') {
-			swal({
-				type: 'success',
-			    title: '삭제가 완료되었습니다.'
-			    })
-		}
-	});
-	
-	$(document).ready(
-			function() {
-				$('#searchBtn').on(
-						"click",
-						function(event) {
-							self.location.href = "boardList"
-									+ '${pageMaker.makeQuery(1)}'
-									+ "&searchType="
-									+ $("#searchType option:selected").val()
-									+ "&keyword=" + $('#keywordInput').val();
-						});
-			});
-
-</script>
 
 <input type="hidden" id="deletesuccess" value="${message}">
 <input type="hidden" id="createsuccess" value="${message}">
@@ -182,24 +85,27 @@ div.search-box input[type="search"] {
 	<div class="panel-body">
 
 		<!-- 테이블 상단 버튼들 -->
+		<c:if test="${login.status>=3}">
 		<div class="board-btns">
 			<div class="board-btn">
-				<button type="button" id="deleteBtn"
-					class="btn btn-danger removeBtn">삭제</button>
+				<button type="button" id="deletebutton"
+					class="btn btn-danger removeBtn deleteBtn">삭제</button>
 			</div>
 			<div class="board-btn" onclick="goboardForm();">
 				<button type="button" class="btn btn-default">글쓰기</button>
 			</div>
-		</div>
+		</div></c:if>
 		<!-- div.board-btns -->
 
 		<br />
 		<div class="table-responsive">
-
+		<form role="form" id="deleteForm" action="/board/boardList/deleteList" method="post">
 			<!-- 게시판 테이블 구성 -->
 			<table class="table table-hover">
 				<colgroup>
+					<c:if test="${login.status>=3}">
 					<col width="6%" />
+					</c:if>
 					<col width="9%" />
 					<col width="15%" />
 					<col width="*" />
@@ -210,8 +116,8 @@ div.search-box input[type="search"] {
 				</colgroup>
 				<thead>
 					<tr>
-						<th style="margin-bottom: 0px;">전체<br />
-						<input type="checkbox" name="checkAll" /></th>
+						<c:if test="${login.status>=3}"><th>전체<br />
+						<input type="checkbox"  id="checkall"/></th></c:if>
 						<th>No</th>
 						<th></th>
 						<th>제목</th>
@@ -227,24 +133,11 @@ div.search-box input[type="search"] {
 						<td colspan="7" style="background-color: white; text-align: center; font-size: 20px;">
 						게시물이 존재하지 않습니당
 						</td>
-						
-						
-						
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${boardList}" var="boardDTO">
-								<form role="form" id="deleteform"
-									action="/board/boardList/delete" method="post">
-									<input type='hidden' name='boardNo' value="${board.boardNo}">
-								</form>
 								<tr>
-									<td><input type="checkbox" name="checkOne" /></td>
-									<!--<td>
-										<div class="board-btn">
-											<button type="submit" id="deleteBtn"
-												class="btn btn-danger btn-sm removeBtn">삭제</button>
-										</div>
-									</td> -->
+									<c:if test="${login.status>=3}"><td><input class="checklist" type="checkbox"  name="check"  value="${boardDTO.boardNo}" /></td></c:if>
 									<td>${boardDTO.boardNo}</td>
 									<td></td>
 									 <td><a
@@ -262,7 +155,7 @@ div.search-box input[type="search"] {
 				</tbody>
 			</table>
 			<!-- end of table -->
-
+			</form>
 			<!-- 검색창 -->
 			<div class="search-box">
 				<select name="searchType" id="searchType" class="form-control input-sm" style="display:inline; width: 9%">
@@ -314,3 +207,95 @@ div.search-box input[type="search"] {
 	<!-- div.panel-body -->
 </div>
 <!-- div.col-lg-12 -->
+<!-- 체크박스 하나라도 해제시 전체 체크부분 해제 -->
+<script type="text/javascript">
+	function allCheckFunc(obj) {
+		$("[name=checkOne]").prop("checked", $(obj).prop("checked"));
+	}
+	/* 글쓰기 페이지로 이동 */
+	function goboardForm() {
+		location.href = "/board/boardForm";
+	}
+
+	$(document).ready(function(){
+		    //최상단 체크박스 클릭
+		    $("#checkall").click(function(){
+		        //클릭되었으면
+		        if($("#checkall").prop("checked")){
+		            //input태그의 class이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+		            $("input[name=check]").prop("checked",true);
+		            //클릭이 안되있으면
+		        }else{
+		            //input태그의 class이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+		            $("input[name=check]").prop("checked",false);
+		        }
+		    })
+		})
+		
+	/* 삭제여부 alert 대체 모달 */
+	$("#deletebutton").on('click', (function() {
+		var link = $("form#deleteForm");
+		var length = $(".checklist:checked").length;
+		if(length<=0){
+			swal({
+				title : '선택한 체크박스가 없습니다.',
+				text : "",
+				type : 'warning',
+				confirmButtonColor : '#3085d6',
+				confirmButtonText : 'YES'
+			})
+		}else{
+			swal({
+				title : '삭제 하시겠습니까?',
+				text : "",
+				type : 'warning',
+				showCancelButton : true,
+				confirmButtonColor : '#3085d6',
+				cancelButtonColor : '#d33',
+				confirmButtonText : 'YES',
+				cancelButtonText : 'NO'
+			}).then(function() {
+				var form = link;
+				var arr = [];
+				form.attr("action", "/board/boardList/deleteList");
+				form.submit();
+				link = '';
+			})
+		}
+		
+	}));
+	
+	/*등록 삭제 처리 완료시 뜨는 창*/
+	$(function() {
+		var message = $('#createsuccess').val();
+		if (message == 'createsuccess') {
+			swal({
+				type: 'success',
+			    title: '등록이 완료되었습니다.'
+			    })
+		}
+	});
+	$(function() {
+		var message = $('#deletesuccess').val();
+		if (message == 'deletesuccess') {
+			swal({
+				type: 'success',
+			    title: '삭제가 완료되었습니다.'
+			    })
+		}
+	});
+	
+	$(document).ready(
+			function() {
+				$('#searchBtn').on(
+						"click",
+						function(event) {
+							self.location.href = "boardList"
+									+ '${pageMaker.makeQuery(1)}'
+									+ "&searchType="
+									+ $("#searchType option:selected").val()
+									+ "&keyword=" + $('#keywordInput').val();
+						});
+			});
+
+</script>

@@ -64,6 +64,16 @@ public class BoardController {
       return "board/boardDetail.lay";
    }
    
+   /** 체크박스로 게시글 삭제하기 **/
+   @RequestMapping(value = "/boardList/deleteList", method = RequestMethod.POST)
+	public String deleteBoardList(@RequestParam(value = "check", required = true) List<String> checks)
+			throws Exception {
+		for (String check : checks) {
+			service.delete(Integer.parseInt(check));
+		}
+		return "redirect:/board/boardList/";
+	}
+   
    /** 게시글 삭제하기 **/
    @RequestMapping(value = "boardDetail/delete", method = RequestMethod.POST)
    public String remove(@RequestParam("boardNo") int boardNo, Criteria cri, RedirectAttributes rttr) throws Exception {
