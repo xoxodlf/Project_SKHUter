@@ -110,7 +110,7 @@
     			<input type="hidden" name="page" value="${cri.page}">
 <input type="hidden" name="perPageNum" value="${cri.perPageNum}">
     	</form>
-		<c:if test="${login.status>=3}">
+		<c:if test="${UserDTO.status>=3}">
 		<button id="rmbtn" type="button" class="btn btn-danger">삭제</button>
 		</c:if>
 	</div>
