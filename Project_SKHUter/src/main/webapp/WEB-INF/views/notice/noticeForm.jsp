@@ -14,7 +14,7 @@
 /* SummerNote */
 /* SummerNote내용 value값으로 전달 */
 function contentsend(){
-		var markupStr = $('.summernote').summernote('code');
+		var markupStr = $('#summernote').summernote('code');
 		$('input#content').val(markupStr);
 }
 
@@ -126,7 +126,7 @@ function goList() {
 				<tr>
 					<td class="table-content" colspan="4">
 					<!-- SummerNote Editer -->
-					<textarea class="summernote" name="content"></textarea>
+					<div id="summernote" class="summernote"></div>
 					<input type="hidden" name="content" id="content">
 					</td>
 				</tr>

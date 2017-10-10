@@ -78,7 +78,9 @@ div.search-box input[type="search"] {
 			</div>
 			
 			<div class="board-btn">
+			<c:if test="${login.status>=3}">
 				<a href="/notice/noticeForm" class="btn btn-default"> 글쓰기 </a>
+			</c:if>
 			</div>
 		</div>
 		<!-- div.board-btns -->
