@@ -150,7 +150,7 @@ div.search-box input[type="search"] {
 										</c:otherwise>
 									</c:choose>
 									<td>${Date[size - ((pageMaker.cri.page - 1)*10+status.index)-1]}</td>
-									<td><a href="/resources/upload${listFileName[size - ((pageMaker.cri.page - 1)*10+status.index)] }" rel="lightbox" data-lightbox="image-${status.index}">${AccountingDTO.fileName }</a></td>
+									<td><a href="/resources/upload${listFileName[status.index]}" rel="lightbox" data-lightbox="image-${status.index}">${AccountingDTO.fileName }</a></td>
 								</tr>
 							</tbody>
 						</c:forEach>
