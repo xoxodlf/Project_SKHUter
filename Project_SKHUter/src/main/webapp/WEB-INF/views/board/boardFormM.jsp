@@ -1,8 +1,7 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- 파비콘 설정 -->
-	<link rel="shortcut icon" type="image/x-icon" href="/resources/images/skhuter.ico" />
+<link rel="shortcut icon" type="image/x-icon" href="/resources/images/skhuter.ico" />
 	
 	
 	<!-- CSS -->
@@ -51,31 +50,6 @@
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
-
-
-<script>
-	/* SummerNote */
-	/* SummerNote내용 value값으로 전달 */
-	function contentsend(){
-			var markupStr = $('#summernote').summernote('code');
-			$('input#content').val(markupStr);
-	}
-	
-	/* SummerNote 내용 받아오기 */
-    $(document).ready(function() {
-        $('.summernote').summernote({
-        	lang: 'ko-KR',
-        	height: 300,
-        	focus: false,
-        	placeholder: '내용을 입력해주세요.'
-        });
-    });
-	
-    $('.listBtn').on('click',(function() {
-    	location.href = "/board/boardList";
-    }));
-
-</script>
 <style>
 /* 기타 */
 	/* 페이지 제목 : 익명게시판 : 가운데 정렬 + 굵게 */
@@ -135,7 +109,7 @@
 	}
 	
 </style>
-<form role="form" id="form" action="boardForm" method="POST">
+<form role="form" id="boardFormM" action="boardFormM" method="POST">
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">익명 게시판</h1>
@@ -143,13 +117,12 @@
 </div>
 <div class="col-lg-12">
 <div class="panel-body">
-<input type="hidden" name="userNo" value="${login.userNo}">
 	<div class="board-btns">
 	<div class="board-btn">
-		<button type="submit" onmouseover="contentsend()" class="btn btn-default">글등록</button>
+		<button type="button" id="creatMbtn" class="btn btn-default">글등록</button>
 	</div>
 	<div class="board-btn">
-		<button type="button" class="btn btn-default listBtn">목록</button>
+		<button type="button" class="btn btn-default listBtn" onclick="goList()">목록</button>
 	</div>
 	</div>
 	<!-- div.board-btns -->
@@ -159,14 +132,14 @@
 			<colgroup>
 				<col width="15%"/>
 				<col width="35%"/>
-				<col width="15%"/>
+				<col width="*%"/>
 				<col width="35%"/>
 			</colgroup>
 			<thead>
 				<tr>
 				<th>제목</th>
 				<td colspan="3">
-				<input type="text" name="title" class="title" style="width:820;"/>
+				<input type="text" name="title" class="title" style="width:100%;"/>
 				</td>
 				</tr>
 			</thead>
@@ -184,6 +157,7 @@
 				<th style="vertical-align: middle; text-align: center;">암호</th>
 				<td colspan="3" style="vertical-align: middle;">
 				<input type="password" name="password" class="password"/><p style="font-size: small; display: inline-block;">　*게시물 삭제시 사용됩니다.*</p>
+				<input type="hidden" name="content" id="content">
 				</td>
 				</tr>
 			</tfoot>
@@ -197,3 +171,35 @@
 <!-- div.col-lg-12 -->
 </form>
 
+<script>
+/* SummerNote */
+/* SummerNote내용 value값으로 전달 */
+
+$('#creatMbtn').on('click',(function() {
+	var markupStr = $('#summernote').summernote('code');
+	$('input#content').val(markupStr);
+	var link = $("form#boardFormM");
+	console.log(link);
+        	var form = link;
+			var arr = [];
+			form.attr("action", "/board/boardFormM");
+			form.submit();
+			link = '';
+ }));
+
+
+/* SummerNote 내용 받아오기 */
+$(document).ready(function() {
+    $('.summernote').summernote({
+    	lang: 'ko-KR',
+    	height: 300,
+    	focus: false,
+    	placeholder: '내용을 입력해주세요.'
+    });
+});
+
+function goList() { 
+	location.href = "/board/boardListM";
+}
+    
+</script>

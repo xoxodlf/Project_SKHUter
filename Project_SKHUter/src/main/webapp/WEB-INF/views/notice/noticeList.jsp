@@ -263,9 +263,7 @@ div.search-box input[type="search"] {
 	
 	$(document).ready(
 			function() {
-				$('#searchBtn').on(
-						"click",
-						function(event) {
+				$('#searchBtn').on("click",function(event) {
 							self.location.href = "noticeList"
 									+ '${pageMaker.makeQuery(1)}'
 									+ "&searchType="

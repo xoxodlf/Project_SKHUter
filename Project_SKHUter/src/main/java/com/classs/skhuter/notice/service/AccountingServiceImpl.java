@@ -52,4 +52,28 @@ public class AccountingServiceImpl implements AccountingService {
 		return dao.countPaging(cri);
 	}
 
+	@Override
+	public List<AccountingDTO> ListCriteriaStatus(Criteria cri, int status) {
+		// TODO Auto-generated method stub
+		return dao.ListCriteriaStatus(cri, status);
+	}
+
+	@Override
+	public List<AccountingDTO> accountingListCriteriaAll(Criteria cri) {
+		// TODO Auto-generated method stub
+		return dao.accountingListCriteriaAll(cri);
+	}
+
+	@Override
+	public List<AccountingDTO> ListCriteriaStatusPage(Criteria cri, int status) {
+		// TODO Auto-generated method stub
+		return dao.ListCriteriaStatusPage(cri, status);
+	}
+
+	@Override
+	public List<AccountingDTO> accountingListCriteriaAllPage(Criteria cri) {
+		// TODO Auto-generated method stub
+		return dao.accountingListCriteriaAllPage(cri);
+	}
+
 }
