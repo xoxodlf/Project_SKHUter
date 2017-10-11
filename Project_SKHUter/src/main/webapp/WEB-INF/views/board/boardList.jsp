@@ -138,7 +138,7 @@ div.search-box input[type="search"] {
 							<c:forEach items="${boardList}" var="boardDTO" varStatus="status">
 								<tr>
 									<c:if test="${login.status>=3}"><td><input class="checklist" type="checkbox"  name="check"  value="${boardDTO.boardNo}" /></td></c:if>
-									<td>${size - ((pageMaker.cri.page - 1)*10+status.index)}</td>
+									<td>${boardDTO.boardNo}</td>
 									<td></td>
 									 <td><a
 										href="/board/boardDetail${pageMaker.makeSearch(pageMaker.cri.page)}&boardNo=${boardDTO.boardNo}&userNo=${login.userNo}">${boardDTO.title}
