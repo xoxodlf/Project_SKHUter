@@ -85,12 +85,11 @@ div.search-box input[type="search"] {
 
 		<!-- 테이블 상단 버튼들 -->
 		<div class="board-btns">
-			<c:if test="${login.status>=3}">
-				<div class="board-btn">
-					<button type="button" id="deletebutton"
-						class="btn btn-danger removeBtn deleteBtn">삭제</button>
-				</div>
-			</c:if>
+			<div class="board-btn">
+				<c:if test="${login.status>=3}">
+					<button type="button" id="deletebutton" class="btn btn-danger removeBtn deleteBtn">삭제</button>
+				</c:if>
+			</div>
 			<div class="board-btn" onclick="goboardForm();">
 				<button type="button" class="btn btn-default">글쓰기</button>
 			</div>
@@ -134,7 +133,7 @@ div.search-box input[type="search"] {
 							<c:when test="${empty boardList }">
 								<td colspan="7"
 									style="background-color: white; text-align: center; font-size: 20px;">
-									게시물이 존재하지 않습니당</td>
+									게시물이 존재하지 않습니다.</td>
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${boardList}" var="boardDTO"

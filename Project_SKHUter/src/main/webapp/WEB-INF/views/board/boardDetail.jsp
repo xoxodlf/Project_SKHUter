@@ -230,7 +230,7 @@ $(function() {
 	if (message == 'successuplike') {
 		swal({
 			type: 'success',
-		    title: '좋아요를 누르셨습니당!'
+		    title: '좋아요를 누르셨습니다!'
 		    })
 	}
 });
@@ -259,7 +259,7 @@ $(function() {
 	if (message == 'successuphate') {
 		swal({
 			type: 'success',
-		    title: '싫어요를 누르셨습니당!'
+		    title: '싫어요를 누르셨습니다!'
 		    })
 	}
 });
