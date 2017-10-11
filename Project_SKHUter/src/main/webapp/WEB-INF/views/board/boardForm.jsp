@@ -14,30 +14,6 @@
 <!-- include summernote-ko-KR 
 <script src="lang/summernote-ko-KR.js"></script>-->
 
-<script>
-	/* SummerNote */
-	/* SummerNote내용 value값으로 전달 */
-	function contentsend(){
-			var markupStr = $('#summernote').summernote('code');
-			console.log(markupStr);
-			$('input#content').val(markupStr);
-	}
-	
-	/* SummerNote 내용 받아오기 */
-    $(document).ready(function() {
-        $('.summernote').summernote({
-        	lang: 'ko-KR',
-        	height: 300,
-        	focus: false,
-        	placeholder: '내용을 입력해주세요.'
-        });
-    });
-	
-    $('.listBtn').on('click',(function() {
-    	location.href = "/board/boardList";
-    }));
-
-</script>
 <style>
 /* 기타 */
 	/* 페이지 제목 : 익명게시판 : 가운데 정렬 + 굵게 */
@@ -100,7 +76,7 @@
 <form role="form" id="form" action="boardForm" method="POST">
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">익명 게시판</h1>
+		<img src="/resources/images/title/board.png" class="page-header" style="width: 20%;">
 	</div>
 </div>
 <div class="col-lg-12">
@@ -108,7 +84,7 @@
 <input type="hidden" name="userNo" value="${login.userNo}">
 	<div class="board-btns">
 	<div class="board-btn">
-		<button type="submit" onmouseover="contentsend()" class="btn btn-default">글등록</button>
+		<button type="submit" onmouseover="contentsend()" class="btn btn-default">등록</button>
 	</div>
 	<div class="board-btn">
 		<button type="button" class="btn btn-default listBtn">목록</button>
@@ -159,3 +135,35 @@
 <!-- div.col-lg-12 -->
 </form>
 
+<script>
+	/* SummerNote */
+	/* SummerNote내용 value값으로 전달 */
+	function contentsend(){
+			var markupStr = $('#summernote').summernote('code');
+			console.log(markupStr);
+			$('input#content').val(markupStr);
+	}
+	
+	/* SummerNote 내용 받아오기 */
+    $(document).ready(function() {
+        $('.summernote').summernote({
+        	lang: 'ko-KR',
+        	height: 300,
+        	focus: false,
+        	placeholder: '내용을 입력해주세요.'
+        });
+    });
+	
+    $('.listBtn').on('click',(function() {
+    	location.href = "/board/boardList";
+    }));
+    
+    /** 게시판 리스트로 이동**/
+    $('.listBtn').on('click',(function() {
+    	console.log("user : " + $('input#userNo').val());
+    	formObj.attr("action", "/board/boardList");
+    	formObj.attr("method", "get");
+    	formObj.submit();
+    }));
+
+</script>

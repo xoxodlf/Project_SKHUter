@@ -53,7 +53,7 @@
 </style>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">공지사항</h1>
+		<img src="/resources/images/title/notice.png" class="page-header" style="width: 20%;">
 	</div>
 </div>
 <div class="col-lg-12">
