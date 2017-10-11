@@ -269,7 +269,7 @@ public class BoardController {
       rttr.addFlashAttribute("userNo",userNo);
 		rttr.addFlashAttribute("status",status);
       return "redirect:/board/boardListM";
-   }
+   } 
    
    /**
     * 좋아요했을 때 좋아요 수 올리기
