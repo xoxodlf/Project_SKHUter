@@ -131,8 +131,6 @@ div.search-box input[type="search"] {
 		<c:if test="${login.status>=3}">
 		<div class="board-btns">
 			<div class="board-btn">
-				<button type="button" id="deletebutton"
-					class="btn btn-danger removeBtn deleteBtn">삭제</button>
 			</div>
 			<div class="board-btn" onclick="goboardForm();">
 				<button type="button" class="btn btn-default">글쓰기</button>
@@ -146,9 +144,7 @@ div.search-box input[type="search"] {
 			<!-- 게시판 테이블 구성 -->
 			<table class="table table-hover">
 				<colgroup>
-					<c:if test="${login.status>=3}">
-					<col width="6%" />
-					</c:if>
+					
 					<col width="9%" />
 					<col width="15%" />
 					<col width="*" />
@@ -159,8 +155,7 @@ div.search-box input[type="search"] {
 				</colgroup>
 				<thead>
 					<tr>
-						<c:if test="${login.status>=3}"><th>전체<br />
-						<input type="checkbox"  id="checkall"/></th></c:if>
+					
 						<th>No</th>
 						<th></th>
 						<th>제목</th>
@@ -180,7 +175,6 @@ div.search-box input[type="search"] {
 						<c:otherwise>
 							<c:forEach items="${boardList}" var="boardDTO" varStatus="status">
 								<tr>
-									<c:if test="${login.status>=3}"><td><input class="checklist" type="checkbox"  name="check"  value="${boardDTO.boardNo}" /></td></c:if>
 									<td>${size - ((pageMaker.cri.page - 1)*10+status.index)}</td>
 									<td></td>
 									 <td><a
@@ -333,7 +327,7 @@ div.search-box input[type="search"] {
 				$('#searchBtn').on(
 						"click",
 						function(event) {
-							self.location.href = "boardList"
+							self.location.href = "boardListM"
 									+ '${pageMaker.makeQuery(1)}'
 									+ "&searchType="
 									+ $("#searchType option:selected").val()
