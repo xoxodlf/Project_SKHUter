@@ -142,8 +142,8 @@ if (message == 'votesuccess') {
 						</div>
 						<div class="col-xs-6 col-sm-6 ">
 							<select name="isLeave" style="width: 50%">
-								<option value="1"> 재학 </option>
-								<option value="0"> 휴학 </option>
+								<option value="0"> 재학 </option>
+								<option value="1"> 휴학 </option>
 							</select>
 						</div>
 						<div class="clearfix"></div>
