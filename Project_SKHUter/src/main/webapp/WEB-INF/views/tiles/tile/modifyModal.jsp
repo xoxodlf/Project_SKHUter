@@ -116,7 +116,7 @@ if (message == 'votesuccess') {
 							<label class="regist_label">휴대폰 번호</label>
 						</div>
 						<div class="col-xs-6 col-sm-6">
-							<input type="tel" class="form-control placeholder" id="modifyPhone" name="phone" placeholder="휴대폰 번호를 입력하세요" />
+							<input type="tel" class="form-control placeholder" id="modifyPhone" name="phone"  value="${login.phone }" placeholder="휴대폰 번호를 입력하세요" />
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -179,10 +179,10 @@ function passwdCheck() {
     var repassword = $('#repassword').val();
     var passwdText = document.getElementById("info");
     if (password == repassword) {
-       passwdText.innerHTML = "비밀번호가 일치합니다.";
+       passwdText.innerHTML = "일치!";
        $("#info").css("color","blue");
     } else {
-       passwdText.innerHTML = "비밀번호가 일치하지 않습니다.";
+       passwdText.innerHTML = "일치하지 않습니다.";
        $("#info").css("color","red");
     }
 
@@ -193,8 +193,7 @@ $(function(){
     $('#modifyBtn').click(function(e){ 
           var password = $("#password").val();
           var repassword = $("#repassword").val();
-          if (password < 1
-                  || repassword < 1) {
+          if (password < 1 || repassword < 1) {
                swal({
                   title : '',
                   text : '비밀번호를 입력해주세요.',
@@ -219,10 +218,10 @@ $(function(){
            }
             
             
-            if ($('#password').val().length < 4) {
+            if ($('#password').val().length < 8) {
                 swal({
                    title : '',
-                   text : '비밀번호는 4자 이상이여야합니다.',
+                   text : '비밀번호는 8자 이상이여야합니다.',
                    type : 'warning',
                    confirmButtonText : '닫기'
                 })

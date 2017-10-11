@@ -49,7 +49,7 @@
 							<label for="id" class="regist_label">아이디</label>
 						</div>
 						<div class="col-xs-6 col-sm-6">
-							<input type="text" class="form-control onlyNumber" id="registerId" name="id" placeholder="학번" maxlength="9" onkeyup="idCheck()">
+							<input type="number" class="form-control onlyNumber" id="registerId" name="id" placeholder="학번" maxlength="9" onkeyup="idCheck()">
 						</div>
                         <div class="col-xs-3 col-sm-3" style="font-size:small">
                           <label id="display">(학번)</label>
@@ -124,8 +124,8 @@
 						</div>
 						<div class="col-xs-6 col-sm-6 ">
 							<select name="isLeave" style="width: 50%">
-								<option value="0"> 재학 </option>
-								<option value="1"> 휴학 </option>
+								<option value="1"> 재학 </option>
+								<option value="0"> 휴학 </option>
 							</select>
 						</div>
 						<div class="clearfix"></div>
@@ -157,7 +157,7 @@
    function idCheck() {
       var registerId = $('#registerId').val();
       
-      if (registerId.length > 3) {
+      if (registerId.length > 8) {
 
          $.ajax({
             type : 'GET',
@@ -261,10 +261,10 @@ $(function(){
             }
             
             
-            if ($('#registerPassword').val().length < 4) {
+            if ($('#registerPassword').val().length < 8) {
                 swal({
                    title : '',
-                   text : '비밀번호는 4자 이상이여야합니다.',
+                   text : '비밀번호는 8자 이상이여야합니다.',
                    type : 'warning',
                    confirmButtonText : '닫기'
                 })
