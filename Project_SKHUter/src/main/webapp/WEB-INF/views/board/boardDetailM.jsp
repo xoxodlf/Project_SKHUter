@@ -316,7 +316,7 @@ var formObj = $("form#listForm");
 /** 게시판 리스트로 이동**/
 $('.listBtn').on('click',(function() {
 	console.log("user : " + $('input#loguserno').val());
-	formObj.attr("action", "/board/boardList");
+	formObj.attr("action", "/board/boardListM");
 	formObj.attr("method", "get");
 	formObj.submit();
 }));
