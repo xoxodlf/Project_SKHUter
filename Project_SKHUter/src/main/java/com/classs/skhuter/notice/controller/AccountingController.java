@@ -64,7 +64,7 @@ public class AccountingController {
 		int count = accountingList.size();
 		int i = 0;
 		int Money = 0;
-		int size = accountingList.size();
+
 		String[] DateName = new String[accountingList.size()];
 		
 		for (int listsize = accountingList.size(); i < listsize; i++) {
@@ -75,7 +75,7 @@ public class AccountingController {
 			String realName = front + end;
 			
 			listFileName[i] = realName;
-			DateName[i] = accountingList.get(size-i-1).getAccountDate().substring(0,10);
+			DateName[i] = accountingList.get(count-i-1).getAccountDate().substring(0,10);
 		}
 		
 		i = 0;
@@ -295,12 +295,6 @@ public class AccountingController {
 	 */
 	@RequestMapping(value = "/notice/accountingList/remove", method = RequestMethod.POST)
 	public String remove(@RequestParam(value = "check", required = true) List<String> checks, RedirectAttributes rttr) {
-		
-		for(String checksCheck : checks) {
-			if(checksCheck == null) {
-				return "redirect:/notice/accountingList";
-			}
-		}
 		
 		for (String accountingNo : checks) {
 			accountingService.remove(Integer.parseInt(accountingNo));
