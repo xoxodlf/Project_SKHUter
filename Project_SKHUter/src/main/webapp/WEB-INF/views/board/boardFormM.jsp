@@ -175,7 +175,7 @@
 /* SummerNote */
 /* SummerNote내용 value값으로 전달 */
 
-$('#creatMbtn').on('click',(function() {
+$('#creatMbtn').on('click',(function() { 
 	var markupStr = $('#summernote').summernote('code');
 	$('input#content').val(markupStr);
 	var link = $("form#boardFormM");

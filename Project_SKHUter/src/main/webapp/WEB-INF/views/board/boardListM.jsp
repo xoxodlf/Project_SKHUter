@@ -215,7 +215,7 @@ div.search-box input[type="search"] {
 
 			<!-- 페이징 버튼들 -->
 			<div class="paging-box">
-				<ul class="pagination">
+				<ul class="pagination"> 
 
 							<c:if test="${pageMaker.prev}">
 								<li class="paginate_button previous"><a
