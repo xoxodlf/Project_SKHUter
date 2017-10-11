@@ -13,6 +13,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.security.auth.login.AccountExpiredException;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -33,6 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.classs.skhuter.notice.domain.AccountingDTO;
+import com.classs.skhuter.notice.domain.VoteDTO;
 import com.classs.skhuter.notice.service.AccountingService;
 import com.classs.skhuter.user.domain.UserDTO;
 import com.classs.skhuter.util.Criteria;
@@ -77,23 +79,37 @@ public class AccountingController {
 		}
 		
 		String[] listFileName = new String[accountingList.size()];
-		
-		int count = accountingList.size();
+
 		int i = 0;
 		int Money = 0;
 		int size = accountingList.size();
-		String[] DateName = new String[accountingList.size()];
 		
-		for (int listsize = accountingList.size(); i < listsize; i++) {
-			int length = accountingList.get(i).getUuidName().length();
-			
-			String front = accountingList.get(i).getUuidName().substring(0, 9);
-			String end = accountingList.get(i).getUuidName().substring(11, length);
+			for(AccountingDTO account : accountingPagedList) {
+			account.getAccountDate();
+			int length = account.getUuidName().length();
+			String front = account.getUuidName().substring(0, 9);
+			String end = account.getUuidName().substring(11, length);
 			String realName = front + end;
-			
 			listFileName[i] = realName;
-			DateName[i] = accountingList.get(size-i-1).getAccountDate().substring(0,10);
-		}
+			account.setAccountDate(account.getAccountDate().substring(0,10));
+			logger.info(account.toString());
+			i++;
+			}
+		
+		
+//		for (int listsize = accountingPagedList.size(); i < listsize; i++) {
+//			int length = accountingPagedList.get(i).getUuidName().length();
+//			
+//			String front = accountingPagedList.get(i).getUuidName().substring(0, 9);
+//			String end = accountingPagedList.get(i).getUuidName().substring(11, length);
+//			String realName = front + end;
+//			
+//			listFileName[i] = realName;
+//			accountingPagedList.get(i).setAccountDate(accountingPagedList.get(i).getAccountDate().substring(0,10));
+//			
+//		}
+		int allSize = accountingList.size();
+		int pagedSize = accountingPagedList.size();
 		
 		i = 0;
 		
@@ -105,21 +121,21 @@ public class AccountingController {
 			}
 		}
 		
+
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(accountingService.ListCountCriteria(cri));
+		pageMaker.setTotalCount(allSize);
 		
 
 
 		model.addAttribute("pageMaker", pageMaker);
-		
+		model.addAttribute("size",allSize);
 		model.addAttribute("listFileName", listFileName);
 		model.addAttribute("money", Money);
-		model.addAttribute("size", count);
 		model.addAttribute("list", accountingList);
 		model.addAttribute("listpaged",accountingPagedList);
-		model.addAttribute("Date",DateName);
-
+		model.addAttribute("status",status);
 		return "notice/accountingList.lay";
 	}
 
@@ -151,7 +167,7 @@ public class AccountingController {
 
 		rttr.addFlashAttribute("msg", "success");
 
-		return "redirect:/notice/accountingList";
+		return "redirect:/notice/accountingList?page=1&perPageNum=10&searchType=t&keyword=/&status=2";
 	}
 
 	/**
@@ -190,7 +206,7 @@ public class AccountingController {
 
 		model.addAttribute("savedName", savedName);
 
-		return "redirect:/notice/accountingList";
+		return "redirect:/notice/accountingList?page=1&perPageNum=10&searchType=t&keyword=/&status=2";
 	}
 
 	private String uploadFile(String originalName, byte[] fileData) throws Exception {
@@ -312,20 +328,15 @@ public class AccountingController {
 	 */
 	@RequestMapping(value = "/notice/accountingList/remove", method = RequestMethod.POST)
 	public String remove(@RequestParam(value = "check", required = true) List<String> checks, RedirectAttributes rttr) {
-		
-		for(String checksCheck : checks) {
-			if(checksCheck == null) {
-				return "redirect:/notice/accountingList";
-			}
-		}
-		
+		logger.info(checks.toString());
 		for (String accountingNo : checks) {
 			accountingService.remove(Integer.parseInt(accountingNo));
+			
 		}
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
-		return "redirect:/notice/accountingList";
+		return "redirect:/notice/accountingList?page=1&perPageNum=10&searchType=t&keyword=/&status=2";
 	}
 	
 	

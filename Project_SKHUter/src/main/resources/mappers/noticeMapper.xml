@@ -155,25 +155,25 @@ SELECT rownum rn, accountNo, userNo, accountDate, content, status, price, fileNa
 	
 	<select id="ListCriteriaStatus"  parameterType="java.util.HashMap" resultType="Accounting">
 	<![CDATA[
-	select rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	select rn, accountNo, userNo, accountDate, content, status, price, fileName, uuidName
 	from(
-	Select rownum rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	Select rownum rn, accountNo, userNo, accountDate, content, status, price, fileName, uuidName
 	From(
-	SELECT account_no as accoutnNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName 
+	SELECT account_no as accountNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName 
  	FROM Accounting
   	order by ACCOUNT_DATE desc
 	)order by rownum asc
-	)where accountDate like concat(concat('%',#{keyword}),'%') and status =#{status}
+	)where accountDate like concat(concat('%',#{cri.keyword}),'%') and status =#{status}
 	]]>
 	</select>
 	
 	<select id="accountingListCriteriaAll" resultType="Accounting">
 	<![CDATA[
-	select rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	select rn, accountNo, userNo, accountDate, content, status, price, fileName, uuidName
 	from(
-	Select rownum rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	Select rownum rn, accountNo, userNo, accountDate, content, status, price, fileName, uuidName
 	From(
-	SELECT account_no as accoutnNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName 
+	SELECT account_no as accountNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName 
  	FROM Accounting
   	order by ACCOUNT_DATE desc
 	)order by rownum asc
@@ -183,32 +183,32 @@ SELECT rownum rn, accountNo, userNo, accountDate, content, status, price, fileNa
 	
 	<select id="ListCriteriaStatusPage"  parameterType="java.util.HashMap" resultType="Accounting">
 	<![CDATA[
-	select rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	select rn, accountNo, userNo, accountDate, content, status, price, fileName, uuidName
 	from
 	(
-	select rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	select rn, accountNo, userNo, accountDate, content, status, price, fileName, uuidName
 	from(
-	Select rownum rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	Select rownum rn, accountNo, userNo, accountDate, content, status, price, fileName, uuidName
 	From(
-	SELECT account_no as accoutnNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName 
+	SELECT account_no as accountNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName 
  	FROM Accounting
   	order by ACCOUNT_DATE desc
 	)order by rownum asc
-	)where accountDate like concat(concat('%',#{keyword}),'%') and status =#{status}
-	)where rn>=#{pageStart}+1 and rn<=#{pageStart}+10
+	)where accountDate like concat(concat('%',#{cri.keyword}),'%') and status =#{status}
+	)where rn>=#{cri.pageStart}+1 and rn<=#{cri.pageStart}+10
 	]]>
 	</select>
 	
 	<select id="accountingListCriteriaAllPage" resultType="Accounting">
 	<![CDATA[
-	select rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	select rn, accountNo, userNo, accountDate, content, status, price, fileName, uuidName
 	from
 	(
-	select rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	select rn, accountNo, userNo, accountDate, content, status, price, fileName, uuidName
 	from(
-	Select rownum rn, accoutnNo, userNo, accountDate, content, status, price, fileName, uuidName
+	Select rownum rn, accountNo, userNo, accountDate, content, status, price, fileName, uuidName
 	From(
-	SELECT account_no as accoutnNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName 
+	SELECT account_no as accountNo, user_no as userNo, account_date as accountDate, content, status, price, file_name as fileName, uuid_name as uuidName 
  	FROM Accounting
   	order by ACCOUNT_DATE desc
 	)order by rownum asc
