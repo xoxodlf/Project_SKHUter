@@ -12,9 +12,14 @@ import com.classs.skhuter.board.domain.BoardDTO;
 import com.classs.skhuter.board.domain.ReplyDTO;
 
 /**
- ** ReplyDAO 인터페이스를 구현하는 클래스
- **/
-
+ * ReplyDAO 인터페이스를 구현하는 클래스
+ * 
+ * @패키지 : com.classs.skhuter.board.dao
+ * @파일명 : ReplyDAOImpl.java
+ * @작성자 : 이겨레
+ * @작성일 : 2017. 10. 01. 
+ *
+ */
 @Repository
 public class ReplyDAOImpl implements ReplyDAO {
 	@Inject
@@ -24,25 +29,19 @@ public class ReplyDAOImpl implements ReplyDAO {
 
 	Logger logger = Logger.getLogger(ReplyDAOImpl.class);
 
-	/** 댓글 리스트 보여주기 **/
 	@Override
 	public void createReply(ReplyDTO reply) {
-		// TODO Auto-generated method stub
 		sqlSession.insert(namespace + ".createReply", reply);
 	}
 
-	/** 댓글 등록 **/
 	@Override
 	public void deleteReply(int replyNo) throws Exception {
-		// TODO Auto-generated method stub
 		sqlSession.delete(namespace + ".deleteReply", replyNo);
 	}
 
-	/** 댓글 삭제 **/
 	@Override
 	public List<ReplyDTO> listAllReply(int boardNo) throws Exception {
 
 		return sqlSession.selectList(namespace + ".listAllReply", boardNo);
 	}
-
 }
