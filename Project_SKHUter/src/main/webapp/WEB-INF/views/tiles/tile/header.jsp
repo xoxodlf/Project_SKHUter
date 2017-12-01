@@ -34,9 +34,11 @@
 			</div>
 		 <form action="/user/logout" id="logout">
 			<ul class="nav" id="side-menu" style="margin-top: 10%">
+				<c:if test="${login.status==3}">
 				<li id="studentList">
 					<a href="/user/userList" style="color: white;"><i class="fa fa-th-list fa-fw"></i> 학생 목록 </a>
 				</li>
+				</c:if>
 				<li id="council">
 					<a href="#" style="color: white;"><i class="fa fa-users fa-fw"></i> 학생회<span class="fa arrow"></span></a>
                       <ul class="nav nav-second-level">

@@ -100,10 +100,11 @@ div.board-btn button {
                         	<div class="alert alert-warning ">
                            		<a href="javascript:showModal('${vote.title}','${vote.item1}','${vote.item2}','${vote.item3}','${vote.item4}','${vote.item5}','${vote.item6}','${vote.voteNo}','${vote.content}','${vote.item1Count}','${vote.item2Count}','${vote.item3Count}','${vote.item4Count}','${vote.item5Count}','${vote.item6Count}');">${vote.title}</a>
                         		<div style="float: right;display:inline-block;">
+                        		<c:if test="${login.status==3}">
                         		<button id="deleteBtn" class="btn btn-default btn-sm removeBtn" type="button">
                         		<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
                         		</button>
-                        		
+                        		</c:if>
                         		</div>
                         		
                         	</div>
@@ -128,10 +129,11 @@ div.board-btn button {
             			<div class="alert alert-warning ">
                            		<a href="javascript:showDoneModal('${vote.title}','${vote.item1}','${vote.item2}','${vote.item3}','${vote.item4}','${vote.item5}','${vote.item6}','${vote.voteNo}','${vote.content}','${vote.item1Count}','${vote.item2Count}','${vote.item3Count}','${vote.item4Count}','${vote.item5Count}','${vote.item6Count}');">${vote.title}</a>
                         		<div style="float: right;display:inline-block;">
+                        		<c:if test="${login.status==3}">
                         		<button id="deleteBtn" class="btn btn-default btn-sm removeBtn" type="button">
                         		<p class="glyphicon glyphicon-trash" aria-hidden="true"></p>
                         		</button>
-                        		
+                        		</c:if>
                         		</div>
                         		
                         	</div>
@@ -149,9 +151,11 @@ div.board-btn button {
         </div>
         
         <div class="board-btns">
-			<div class="board-btn" onclick="goVoteForm();" style="width:100%; text-align: center;">
-				<button type="button" class="btn btn-default">투표등록</button>
-			</div>
+        	<c:if test="${login.status>=2}">
+				<div class="board-btn" onclick="goVoteForm();" style="width:100%; text-align: center;">
+					<button type="button" class="btn btn-default">투표등록</button>
+				</div>
+			</c:if>
 	    </div>
 </div>
         

@@ -67,7 +67,7 @@
         					<option value="3">회장단</option>
       					</select>
 	<button id="changeStatusBtn" type="button" class="btn btn-default" onmouseover="throwStatus()">등급 변경</button>
-		<button type="button" class="btn btn-danger">삭제</button>
+
 		
 	</div>
 	<div class="board-btn">
