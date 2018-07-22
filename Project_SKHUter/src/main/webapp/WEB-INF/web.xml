@@ -3,12 +3,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
-	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<!-- The definition of the Root Spring Container shared by all Servlets 
+		and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 	</context-param>
-	
+
 	<!-- 한글 처리용 필터 -->
 	<filter>
 		<filter-name>encoding</filter-name>
@@ -22,7 +23,17 @@
 		<filter-name>encoding</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
+	<!-- 댓글 작성시 REST방식 전송용 필터 -->
+	<filter>
+		<filter-name>hiddenHttpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>hiddenHttpMethodFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -38,18 +49,29 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-		
+
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- tld파일 설정 -->
 	<jsp-config>
- 		<taglib>
-        	<taglib-uri>urlDecode</taglib-uri>
-        	<taglib-location>/WEB-INF/views/tiles/decoder.tld</taglib-location>
-    	</taglib>
-  	</jsp-config> 
+		<taglib>
+			<taglib-uri>urlDecode</taglib-uri>
+			<taglib-location>/WEB-INF/views/tiles/decoder.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+
+	<!-- 스프링 인터셉터 모바일 제외 -->
+	<filter>
+		<filter-name>deviceResolverRequestFilter</filter-name>
+		<filter-class>org.springframework.mobile.device.DeviceResolverRequestFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>deviceResolverRequestFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 </web-app>

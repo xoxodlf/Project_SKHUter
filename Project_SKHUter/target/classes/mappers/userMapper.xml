@@ -32,13 +32,13 @@
 	SELECT user_no as UserNo, id, password, name, phone, grade, is_leave as isLeave, status, takeover_code as takeoverCode, 
 		   recent_login as recentLogin, session_key as sessionKey, session_limit as sessionLimit, secession
 	FROM Users
-	order by USER_NO desc
+	order by name asc
 	</select>
 	
 	<!-- 로그인 -->
 	<select id="login" resultType="User">
 	
-	SELECT user_no as userNo, id, password, name 
+	SELECT user_no as userNo, id, password, name, phone, grade, is_leave as isLeave, status, secession
 	FROM Users 
 	WHERE id=#{id} AND password=#{password}
 	
@@ -104,6 +104,58 @@
 	UPDATE users SET secession = 1 WHERE user_no=#{userNo}
 	
 	</update>
+	<!-- 회원등급변경 -->
+	<update id="changeStatus">
+	
+	update users set status = #{status} where user_no=#{userNo}
+	</update>
+	
+	<!-- 인수인계코드 -->
+	<update id="takeover">
+	update users set takeover_code = #{takeoverCode} where user_no=#{userNo}
+	</update>
+	
+	<select id="searchGiver" resultType="int">
+	select user_no from users where takeover_code = #{takeoverCode} 
+	</select>
 
+	<select id="listsearch_name" resultType="User">
+	<![CDATA[  
+	select rn, UserNo, id, password, name, phone, grade,isLeave,status,takeoverCode,recentLogin,sessionKey,sessionLimit,secession
+	from(
+	SELECT rownum rn, user_no as UserNo, id, password, name, phone, grade, is_leave as isLeave, status, takeover_code as takeoverCode, 
+		   recent_login as recentLogin, session_key as sessionKey, session_limit as sessionLimit, secession
+	FROM Users
+	order by name asc
+ 	 )
+ 	where name like concat(concat('%',#{keyword}),'%')
+ ]]>
+	</select>
+	<select id="listsearch_id" resultType="User">
+	<![CDATA[  
+	select rn, UserNo, id, password, name, phone, grade,isLeave,status,takeoverCode,recentLogin,sessionKey,sessionLimit,secession
+	from(
+	SELECT rownum rn, user_no as UserNo, id, password, name, phone, grade, is_leave as isLeave, status, takeover_code as takeoverCode, 
+		   recent_login as recentLogin, session_key as sessionKey, session_limit as sessionLimit, secession
+	FROM Users
+	order by name asc
+ 	 )
+ 	where id like concat(concat('%',#{keyword}),'%')
+ ]]>
+	</select>
+	
+	<select id="listsearch_grade" resultType="User">
+	<![CDATA[  
+	select rn, UserNo, id, password, name, phone, grade,isLeave,status,takeoverCode,recentLogin,sessionKey,sessionLimit,secession
+	from(
+	SELECT rownum rn, user_no as UserNo, id, password, name, phone, grade, is_leave as isLeave, status, takeover_code as takeoverCode, 
+		   recent_login as recentLogin, session_key as sessionKey, session_limit as sessionLimit, secession
+	FROM Users
+	order by name asc
+ 	 )
+ 	where grade like concat(concat('%',#{keyword}),'%')
+ ]]>
+	</select>
+	
 
 </mapper>
