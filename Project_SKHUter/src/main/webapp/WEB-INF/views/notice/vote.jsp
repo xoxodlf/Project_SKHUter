@@ -310,6 +310,12 @@ div.board-btn button {
 			$('input#item4Count').val(item4Count);
 			$('input#item5Count').val(item5Count);
 			$('input#item6Count').val(item6Count);
+			$('label#item1view').text(item1Count);
+			$('label#item2view').text(item2Count);
+			$('label#item3view').text(item3Count);
+			$('label#item4view').text(item4Count);
+			$('label#item5view').text(item5Count);
+			$('label#item6view').text(item6Count);
 			var total = Number(item1Count)+Number(item2Count)+Number(item3Count)+Number(item4Count)+Number(item5Count)+Number(item6Count);
 			console.log(total);
 			var item1bar =Number($('input#item1Count').val())/total*100+'%';
